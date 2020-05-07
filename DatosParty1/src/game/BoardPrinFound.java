@@ -16,11 +16,11 @@ import javax.swing.JPanel;
  */
 public class BoardPrinFound extends JPanel{
     
-        private Image imgFondo;
+        private Image imageFound;
         @Override
         public void paint(Graphics g){
-            imgFondo = new ImageIcon(getClass().getResource("/images/Board/PrincipalBoard.png")).getImage();
-            g.drawImage(imgFondo,0,0,getWidth(), getHeight(),this);
+            imageFound = new ImageIcon(getClass().getResource("/images/Board/PrincipalBoard.png")).getImage();
+            g.drawImage(imageFound,0,0,getWidth(), getHeight(),this);
             setOpaque(false);
             super.paint(g);
             

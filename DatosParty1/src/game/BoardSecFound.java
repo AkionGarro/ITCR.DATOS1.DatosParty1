@@ -13,12 +13,12 @@ import javax.swing.JPanel;
 
 public class BoardSecFound extends JPanel{
        
-        private Image imgFondo2;
+        private Image imageFound2;
         @Override
         public void paint(Graphics g){
             
-            imgFondo2 = new ImageIcon(getClass().getResource("/images/Board/SecundaryBoard.png")).getImage();
-            g.drawImage(imgFondo2,0,0,getWidth(), getHeight(),this);
+            imageFound2 = new ImageIcon(getClass().getResource("/images/Board/SecundaryBoard.png")).getImage();
+            g.drawImage(imageFound2,0,0,getWidth(), getHeight(),this);
             setOpaque(false);
             super.paint(g);
             
