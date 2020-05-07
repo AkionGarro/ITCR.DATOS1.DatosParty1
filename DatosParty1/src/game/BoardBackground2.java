@@ -11,14 +11,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
-public class BoardSecFound extends JPanel{
+public class BoardBackground2 extends JPanel{
        
-        private Image imageFound2;
+        private Image background2;
         @Override
         public void paint(Graphics g){
             
-            imageFound2 = new ImageIcon(getClass().getResource("/images/Board/SecundaryBoard.png")).getImage();
-            g.drawImage(imageFound2,0,0,getWidth(), getHeight(),this);
+            background2 = new ImageIcon(getClass().getResource("/images/Board/SecundaryBoard.png")).getImage();
+            g.drawImage(background2,0,0,getWidth(), getHeight(),this);
             setOpaque(false);
             super.paint(g);
             
