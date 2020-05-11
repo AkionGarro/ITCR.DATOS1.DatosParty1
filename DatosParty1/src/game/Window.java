@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 
 public class Window extends javax.swing.JFrame {
@@ -10,6 +11,7 @@ public class Window extends javax.swing.JFrame {
     private boolean player2Active = false;
     private boolean player3Active = false;
     private boolean player4Active = false;
+    public static ArrayList<Player> players = new ArrayList<Player>();
 
     public Window() {
         initComponents();
@@ -22,6 +24,8 @@ public class Window extends javax.swing.JFrame {
         group.add(button3Players);
         group.add(button4Players);
         setLocationRelativeTo(null);
+        name1Txt.setVisible(true);
+        name2Txt.setVisible(true);
         name3Label.setVisible(false);
         name3Txt.setVisible(false);
         name4Label.setVisible(false);
@@ -262,7 +266,42 @@ public class Window extends javax.swing.JFrame {
 
     private void startGameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startGameButtonMouseClicked
         checkNames();
+        playersCreation();
+
     }//GEN-LAST:event_startGameButtonMouseClicked
+    private void playersCreation() {
+        String name1 = name1Txt.getText();
+        String name2 = name2Txt.getText();
+        String name3 = name3Txt.getText();
+        String name4 = name4Txt.getText();
+        int coins = 0;
+        int stars = 0;
+
+        if (player1Active == true && player2Active == true && player3Active == false && player4Active == false) {
+            Player player1 = new Player(name1, stars, coins);
+            players.add(player1);
+            Player player2 = new Player(name2, stars, coins);
+            players.add(player2);
+
+        } else if (player1Active == true && player2Active == true && player3Active == true && player4Active == false) {
+            Player player1 = new Player(name1, stars, coins);
+            players.add(player1);
+            Player player2 = new Player(name2, stars, coins);
+            players.add(player2);
+            Player player3 = new Player(name3, stars, coins);
+            players.add(player3);
+
+        } else {
+            Player player1 = new Player(name1, stars, coins);
+            players.add(player1);
+            Player player2 = new Player(name2, stars, coins);
+            players.add(player2);
+            Player player3 = new Player(name3, stars, coins);
+            players.add(player3);
+            Player player4 = new Player(name4, stars, coins);
+            players.add(player4);
+        }
+    }
 
     private void name1TxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1TxtKeyTyped
         char c = evt.getKeyChar();
@@ -301,6 +340,7 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_name4TxtKeyTyped
 
     public void checkNames() {
+
         if (validNames == true && emptyFields == false) {
             Board board = new Board();
             board.setVisible(true);
@@ -331,6 +371,7 @@ public class Window extends javax.swing.JFrame {
             } else {
                 validNames = true;
                 emptyFields = false;
+
                 player1Active = true;
                 player2Active = true;
 
