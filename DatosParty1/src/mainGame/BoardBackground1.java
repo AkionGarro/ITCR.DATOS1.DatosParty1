@@ -1,5 +1,5 @@
 
-package game;
+package mainGame;
 
 import java.awt.Graphics;
 import java.awt.Image;

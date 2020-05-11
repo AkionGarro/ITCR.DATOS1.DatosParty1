@@ -1,4 +1,4 @@
-package game;
+package mainGame;
 
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
@@ -77,13 +77,11 @@ public class Window extends javax.swing.JFrame {
         windowPanel.add(datosPartyImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 0, 780, 70));
 
         playersNumber.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        playersNumber.setForeground(new java.awt.Color(0, 0, 0));
         playersNumber.setText("Ingrese la cantidad de jugadores:");
         windowPanel.add(playersNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
 
         button2Players.setBackground(new java.awt.Color(47, 82, 245));
         button2Players.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        button2Players.setForeground(new java.awt.Color(0, 0, 0));
         button2Players.setSelected(true);
         button2Players.setText("2");
         button2Players.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,7 +93,6 @@ public class Window extends javax.swing.JFrame {
 
         button3Players.setBackground(new java.awt.Color(47, 82, 245));
         button3Players.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        button3Players.setForeground(new java.awt.Color(0, 0, 0));
         button3Players.setText("3");
         button3Players.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,7 +103,6 @@ public class Window extends javax.swing.JFrame {
 
         button4Players.setBackground(new java.awt.Color(47, 82, 245));
         button4Players.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        button4Players.setForeground(new java.awt.Color(0, 0, 0));
         button4Players.setText("4");
         button4Players.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -116,32 +112,26 @@ public class Window extends javax.swing.JFrame {
         windowPanel.add(button4Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 60, 30));
 
         name1Label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        name1Label.setForeground(new java.awt.Color(0, 0, 0));
         name1Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name1Label.setText("Nombre Jugador 1:");
         windowPanel.add(name1Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 770, -1));
 
         name2Label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        name2Label.setForeground(new java.awt.Color(0, 0, 0));
         name2Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name2Label.setText("Nombre Jugador 2:");
         windowPanel.add(name2Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 770, -1));
 
         name3Label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        name3Label.setForeground(new java.awt.Color(0, 0, 0));
         name3Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name3Label.setText("Nombre Jugador 3:");
         windowPanel.add(name3Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 770, -1));
 
         name4Label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        name4Label.setForeground(new java.awt.Color(0, 0, 0));
         name4Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name4Label.setText("Nombre Jugador 4:");
         windowPanel.add(name4Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 770, -1));
 
-        name1Txt.setBackground(new java.awt.Color(255, 255, 255));
         name1Txt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        name1Txt.setForeground(new java.awt.Color(0, 0, 0));
         name1Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         name1Txt.setToolTipText("");
         name1Txt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -151,9 +141,7 @@ public class Window extends javax.swing.JFrame {
         });
         windowPanel.add(name1Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 180, -1));
 
-        name2Txt.setBackground(new java.awt.Color(255, 255, 255));
         name2Txt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        name2Txt.setForeground(new java.awt.Color(0, 0, 0));
         name2Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         name2Txt.setToolTipText("");
         name2Txt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -163,9 +151,7 @@ public class Window extends javax.swing.JFrame {
         });
         windowPanel.add(name2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 180, -1));
 
-        name3Txt.setBackground(new java.awt.Color(255, 255, 255));
         name3Txt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        name3Txt.setForeground(new java.awt.Color(0, 0, 0));
         name3Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         name3Txt.setToolTipText("");
         name3Txt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -175,9 +161,7 @@ public class Window extends javax.swing.JFrame {
         });
         windowPanel.add(name3Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 180, -1));
 
-        name4Txt.setBackground(new java.awt.Color(255, 255, 255));
         name4Txt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        name4Txt.setForeground(new java.awt.Color(0, 0, 0));
         name4Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         name4Txt.setToolTipText("");
         name4Txt.addKeyListener(new java.awt.event.KeyAdapter() {

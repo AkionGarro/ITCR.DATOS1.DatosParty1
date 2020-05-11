@@ -1,4 +1,4 @@
-package game;
+package mainGame;
 
 public class Board extends javax.swing.JFrame {
 
@@ -50,12 +50,12 @@ public class Board extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        boardPanel = new game.BoardBackground1();
+        boardPanel = new mainGame.BoardBackground1();
         tokenPlayer1 = new javax.swing.JLabel();
         tokenPlayer2 = new javax.swing.JLabel();
         tokenPlayer3 = new javax.swing.JLabel();
         tokenPlayer4 = new javax.swing.JLabel();
-        informationPanel = new game.BoardBackground2();
+        informationPanel = new mainGame.BoardBackground2();
         dicePanel = new javax.swing.JPanel();
         leftDice1 = new javax.swing.JLabel();
         leftDice2 = new javax.swing.JLabel();
