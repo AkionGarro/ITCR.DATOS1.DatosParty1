@@ -55,6 +55,7 @@ public class Board extends javax.swing.JFrame {
         tokenPlayer2 = new javax.swing.JLabel();
         tokenPlayer3 = new javax.swing.JLabel();
         tokenPlayer4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         informationPanel = new mainGame.BoardBackground2();
         dicePanel = new javax.swing.JPanel();
         leftDice1 = new javax.swing.JLabel();
@@ -104,16 +105,19 @@ public class Board extends javax.swing.JFrame {
         boardPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tokenPlayer1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player1.png"))); // NOI18N
-        boardPanel.add(tokenPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 620, -1, -1));
+        boardPanel.add(tokenPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 640, -1, -1));
 
         tokenPlayer2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player2.png"))); // NOI18N
-        boardPanel.add(tokenPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 620, -1, -1));
+        boardPanel.add(tokenPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 670, -1, -1));
 
         tokenPlayer3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player3.png"))); // NOI18N
-        boardPanel.add(tokenPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 650, -1, -1));
+        boardPanel.add(tokenPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 640, -1, -1));
 
         tokenPlayer4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player4.png"))); // NOI18N
-        boardPanel.add(tokenPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 650, -1, -1));
+        boardPanel.add(tokenPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 670, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Board/board.png"))); // NOI18N
+        boardPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 700));
 
         informationPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -121,7 +125,7 @@ public class Board extends javax.swing.JFrame {
         informationPanel.setLayout(informationPanelLayout);
         informationPanelLayout.setHorizontalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         informationPanelLayout.setVerticalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,88 +178,60 @@ public class Board extends javax.swing.JFrame {
             }
         });
         dicePanel.add(rollButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
-
-        coinImage1.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\coin.png")); // NOI18N
         dicePanel.add(coinImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
-
-        coinImage2.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\coin.png")); // NOI18N
         dicePanel.add(coinImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 95, -1, -1));
-
-        coinImage3.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\coin.png")); // NOI18N
         dicePanel.add(coinImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 136, -1, -1));
-
-        coinImage4.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\coin.png")); // NOI18N
         dicePanel.add(coinImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 182, -1, -1));
 
         activeCoinsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeCoinsPlayer1.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeCoinsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 46, 80, 30));
 
         activeCoinsPlayer2.setBackground(new java.awt.Color(0, 0, 0));
         activeCoinsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeCoinsPlayer2.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeCoinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 92, 80, 30));
 
         activeCoinsPlayer3.setBackground(new java.awt.Color(0, 0, 0));
         activeCoinsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeCoinsPlayer3.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeCoinsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 133, 80, 30));
 
         activeCoinsPlayer4.setBackground(new java.awt.Color(0, 0, 0));
         activeCoinsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeCoinsPlayer4.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeCoinsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 178, 80, 30));
-
-        startImage1.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\estrella.png")); // NOI18N
         dicePanel.add(startImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 45, 30, 30));
-
-        startImage2.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\estrella.png")); // NOI18N
         dicePanel.add(startImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 30, 30));
-
-        startImage3.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\estrella.png")); // NOI18N
         dicePanel.add(startImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 132, 30, 30));
-
-        startImage4.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\Desktop\\imaes\\estrella.png")); // NOI18N
         dicePanel.add(startImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 177, 30, 30));
 
         activeStarsPlayer1.setBackground(new java.awt.Color(0, 0, 0));
         activeStarsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeStarsPlayer1.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeStarsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 80, 30));
 
         activeStarsPlayer2.setBackground(new java.awt.Color(0, 0, 0));
         activeStarsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeStarsPlayer2.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeStarsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 88, 80, 30));
 
         activeStarsPlayer3.setBackground(new java.awt.Color(0, 0, 0));
         activeStarsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeStarsPlayer3.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeStarsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 128, 80, 30));
 
         activeStarsPlayer4.setBackground(new java.awt.Color(0, 0, 0));
         activeStarsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        activeStarsPlayer4.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 174, 80, 30));
 
         namePlayer1.setBackground(new java.awt.Color(0, 0, 0));
         namePlayer1.setFont(new java.awt.Font("Elephant", 1, 20)); // NOI18N
-        namePlayer1.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(namePlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 100, 30));
 
         namePlayer2.setBackground(new java.awt.Color(0, 0, 0));
         namePlayer2.setFont(new java.awt.Font("Elephant", 1, 20)); // NOI18N
-        namePlayer2.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(namePlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 100, 30));
 
         namePlayer3.setBackground(new java.awt.Color(0, 0, 0));
         namePlayer3.setFont(new java.awt.Font("Elephant", 1, 20)); // NOI18N
-        namePlayer3.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(namePlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 155, 100, 30));
 
         namePlayer4.setBackground(new java.awt.Color(0, 0, 0));
         namePlayer4.setFont(new java.awt.Font("Elephant", 1, 20)); // NOI18N
-        namePlayer4.setForeground(new java.awt.Color(0, 0, 0));
         dicePanel.add(namePlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 205, 100, 30));
 
         leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/Leaderboard.png"))); // NOI18N
@@ -269,20 +245,22 @@ public class Board extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(28, 28, 28)
+                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(informationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(informationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -447,6 +425,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel diceBackground;
     private javax.swing.JPanel dicePanel;
     public javax.swing.JPanel informationPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel leaderboard;
     private javax.swing.JLabel leftDice1;
     private javax.swing.JLabel leftDice2;
