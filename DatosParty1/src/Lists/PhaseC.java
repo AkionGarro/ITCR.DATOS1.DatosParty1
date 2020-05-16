@@ -7,26 +7,23 @@ public class PhaseC extends  ListStructure{
     }
     
     @Override
-    public void addCell(int cellNumber, int xPosition, int yPosition, String color) {
+    public void addNode(Cell cell) {
         
-        newCell.cellNumber = cellNumber;
-        newCell.xPosition = xPosition;
-        newCell.yPosition = yPosition;
-        newCell.color = color;
+        newNode.cell = cell;
         
         if (first == null) {
             
-            last = newCell;
+            last = newNode;
             last.next = null;
             last.previous = null;
             last = first;
         
         } else {
             
-            newCell.previous = last;
-            newCell.next = null;
-            last.next = newCell;
-            last = newCell;
+            newNode.previous = last;
+            newNode.next = null;
+            last.next = newNode;
+            last = newNode;
             
         }
         

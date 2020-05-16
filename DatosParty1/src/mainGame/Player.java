@@ -36,8 +36,4 @@ public class Player {
         this.coins = coins;
     }
     
-    
-    
-    
-
 }

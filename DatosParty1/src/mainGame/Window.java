@@ -1,5 +1,11 @@
 package mainGame;
 
+import Lists.Cell;
+import Lists.PhaseA;
+import Lists.PhaseB;
+import Lists.PhaseC;
+import Lists.PhaseD;
+import Lists.Principal;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 
@@ -11,14 +17,24 @@ public class Window extends javax.swing.JFrame {
     private boolean player2Active = false;
     private boolean player3Active = false;
     private boolean player4Active = false;
+    
     public static ArrayList<Player> players = new ArrayList<Player>();
+    
+    Principal principal = new Principal();
+    PhaseA phaseA = new PhaseA();
+    PhaseB phaseB = new PhaseB();
+    PhaseC phaseC = new PhaseC();
+    PhaseD phaseD = new PhaseD();
 
     public Window() {
+        
         initComponents();
         configComponents();
+        
     }
 
     public void configComponents() {
+        
         ButtonGroup group = new ButtonGroup();
         group.add(button2Players);
         group.add(button3Players);
@@ -32,6 +48,7 @@ public class Window extends javax.swing.JFrame {
         name4Txt.setVisible(false);
         errorSameName.setVisible(false);
         errorWithoutName.setVisible(false);
+        
     }
 
     /**
@@ -213,6 +230,7 @@ public class Window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button2PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2PlayersMouseClicked
+        
         name1Label.setVisible(true);
         name2Label.setVisible(true);
         name3Label.setVisible(false);
@@ -222,9 +240,11 @@ public class Window extends javax.swing.JFrame {
         name2Txt.setVisible(true);
         name3Txt.setVisible(false);
         name4Txt.setVisible(false);
+        
     }//GEN-LAST:event_button2PlayersMouseClicked
 
     private void button3PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button3PlayersMouseClicked
+        
         name1Label.setVisible(true);
         name2Label.setVisible(true);
         name3Label.setVisible(true);
@@ -234,9 +254,11 @@ public class Window extends javax.swing.JFrame {
         name2Txt.setVisible(true);
         name3Txt.setVisible(true);
         name4Txt.setVisible(false);
+        
     }//GEN-LAST:event_button3PlayersMouseClicked
 
     private void button4PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button4PlayersMouseClicked
+        
         name1Label.setVisible(true);
         name2Label.setVisible(true);
         name3Label.setVisible(true);
@@ -246,10 +268,18 @@ public class Window extends javax.swing.JFrame {
         name2Txt.setVisible(true);
         name3Txt.setVisible(true);
         name4Txt.setVisible(true);
+        
     }//GEN-LAST:event_button4PlayersMouseClicked
 
     private void startGameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startGameButtonMouseClicked
-        checkNames();
+        
+        principalBuilder(principal);
+        phaseABuilder(phaseA);
+        phaseBBuilder(phaseB);
+        phaseCBuilder(phaseC);
+        phaseDBuilder(phaseD);
+        
+        checkNames();        
         playersCreation();
 
     }//GEN-LAST:event_startGameButtonMouseClicked
@@ -288,39 +318,66 @@ public class Window extends javax.swing.JFrame {
     }
 
     private void name1TxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1TxtKeyTyped
+        
         char c = evt.getKeyChar();
+        
         if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            
             name1Txt.setEditable(true);
+            
         } else {
+            
             name1Txt.setEditable(false);
+            
         }
+        
     }//GEN-LAST:event_name1TxtKeyTyped
 
     private void name2TxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name2TxtKeyTyped
+        
         char c = evt.getKeyChar();
+        
         if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            
             name2Txt.setEditable(true);
         } else {
+            
             name2Txt.setEditable(false);
+            
         }
+        
     }//GEN-LAST:event_name2TxtKeyTyped
 
     private void name3TxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name3TxtKeyTyped
+        
         char c = evt.getKeyChar();
+        
         if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            
             name3Txt.setEditable(true);
+            
         } else {
+            
             name3Txt.setEditable(false);
+            
         }
+        
     }//GEN-LAST:event_name3TxtKeyTyped
 
     private void name4TxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name4TxtKeyTyped
+        
         char c = evt.getKeyChar();
+        
         if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            
             name4Txt.setEditable(true);
+            
         } else {
+            
             name4Txt.setEditable(false);
+            
         }
+        
     }//GEN-LAST:event_name4TxtKeyTyped
 
     public void checkNames() {
@@ -433,6 +490,229 @@ public class Window extends javax.swing.JFrame {
 
     }
 
+    private void phaseABuilder(PhaseA phaseA) {
+    
+        int x = 140;
+        int y = 580;
+        
+        Cell newCell;
+        
+        for (int i = 38; i < 49; i++) {           
+            
+            if (i == 46 || i == 47) {
+                
+                x -= 60;
+                
+            } else if (i == 45 || i == 48) {
+                
+                x -= 70;
+                
+            } else if (i == 43 || i == 44) {
+            
+                y -= 60;
+            
+            } else if (i == 39) {
+            
+                y -= 70;
+            
+            } else if (i == 40 || i == 41) {
+                
+                x += 60;
+                
+            } else if (i == 42) {
+            
+                x += 70;
+                
+            }
+            
+            if (i == 38 || i == 42 || i == 45) {
+                
+                newCell = new Cell(i, x, y, "blue", "neutral");
+                phaseA.addNode(newCell);
+                
+            }else if (i == 40 || i == 46) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                phaseA.addNode(newCell);
+                
+            }else if (i == 39 || i == 41 || i == 44 || i == 47) {
+                
+                newCell = new Cell(i, x, y, "red", "loseCoins");
+                phaseA.addNode(newCell);
+                
+            }else if (i == 43 || i == 48) {
+                
+                newCell = new Cell(i, x, y, "green", "winCoins");
+                phaseA.addNode(newCell);
+                
+            }            
+            
+        }
+        
+    }
+    
+    private void phaseBBuilder(PhaseB phaseB) {
+    
+        int x = 260;
+        int y = 70;
+        
+        Cell newCell;
+        
+        for (int i = 49; i < 55; i++) {           
+            
+            if (i == 50) {
+            
+                y += 60;
+            
+            } else if (i == 52 || i == 54) {
+                
+                x += 60;
+                
+            } else if (i == 51 || i == 53) {
+            
+                x += 70;
+                
+            }
+                        
+            newCell = new Cell(i, x, y, "yellow", "events");
+            phaseB.addNode(newCell);
+             
+        }
+    
+    }
+    
+    private void phaseCBuilder(PhaseC phaseC) {
+    
+        int x = 70;
+        int y = 130;
+        
+        Cell newCell;
+        
+        for (int i = 55; i < 69; i++) {           
+            
+            if (i == 59 || i == 60 || i == 62 || i == 68) {
+                
+                x += 60;
+                
+            } else if (i == 56 || i == 61 || i == 63) {
+            
+                x += 70;
+            
+            } else if (i == 58 || i == 64 || i == 66 || i == 67) {
+            
+                y += 60;
+            
+            } else if (i == 57 || i == 65) {
+            
+                y += 70;
+            
+            }
+            
+            if (i == 57 || i == 63 || i == 65) {
+                
+                newCell = new Cell(i, x, y, "blue", "neutral");
+                phaseC.addNode(newCell);
+                
+            }else if (i == 60 || i == 66) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                phaseC.addNode(newCell);
+                
+            }else if (i == 56 || i == 58 || i == 61 || i == 68) {
+                
+                newCell = new Cell(i, x, y, "red", "loseCoins");
+                phaseC.addNode(newCell);
+                
+            }else if (i == 55 || i == 59 || i == 62 || i == 64 || i == 67) {
+                
+                newCell = new Cell(i, x, y, "green", "winCoins");
+                phaseC.addNode(newCell);
+                
+            }  
+            
+        }
+            
+    }
+    
+    private void phaseDBuilder(PhaseD phaseD) {
+    
+        
+    
+    }
+    
+    private void principalBuilder(Principal principal) {
+    
+        int x = 580;
+        int y = 640;
+        
+        Cell newCell;
+        
+        for (int i = 0; i < 38; i++) {           
+            
+            if (i == 1 || i == 2 || i == 4 || i == 6 || i == 7 || i == 9) {
+                
+                x -= 60;
+                
+            } else if (i == 3 || i == 5 || i == 8) {
+                
+                x -= 70;
+                
+            } else if (i == 10 || i == 12 || i == 13 || i == 15 || i == 16 || i == 18 || i == 19) {
+            
+                y -= 60;
+            
+            } else if (i == 11 || i == 14 || i == 17) {
+            
+                y -= 70;
+            
+            } else if (i == 20 || i == 22 || i == 23 || i == 25 || i == 27 || i == 28) {
+                
+                x += 60;
+                
+            } else if (i == 21 || i == 24 || i == 26) {
+            
+                x += 70;
+            
+            } else if (i == 29 || i == 30 || i == 32 || i == 33 || i == 35 || i == 36) {
+            
+                y += 60;
+            
+            } else if (i == 31 || i == 34 || i == 37) {
+            
+                y += 70;
+            
+            }
+            
+            if (i == 0) {
+                
+                newCell = new Cell(i, x, y, "gray", "neutral");
+                principal.addNode(newCell);
+            
+            } else if (i == 1 || i == 5 || i == 9 || i == 13 || i == 17 || i == 19 || i == 23 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37) {
+                
+                newCell = new Cell(i, x, y, "blue", "neutral");
+                principal.addNode(newCell);
+                
+            }else if (i == 2 || i == 7 || i == 11 || i == 16 || i == 22 || i == 27 || i == 32 || i == 36) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                principal.addNode(newCell);
+                
+            }else if (i == 3 || i == 6 || i == 12 || i == 15 || i == 21 || i == 26 || i == 29 || i == 35) {
+                
+                newCell = new Cell(i, x, y, "red", "loseCoins");
+                principal.addNode(newCell);
+                
+            }else if (i == 4 || i == 8 || i == 10 || i == 14 || i == 18 || i == 20 || i == 24 || i == 30 || i == 33) {
+                
+                newCell = new Cell(i, x, y, "green", "winCoins");
+                principal.addNode(newCell);
+                
+            }            
+            
+        }           
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton button2Players;

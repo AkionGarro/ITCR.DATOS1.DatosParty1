@@ -1,25 +1,11 @@
 package Lists;
 
-public class ListStructure {
+public abstract class ListStructure {
     
-    Cell first;
-    Cell last;
-    Cell newCell = new Cell();
+    Node first = null;
+    Node last = null;
+    Node newNode = new Node();
     
-    public ListStructure() {
+    public abstract void addNode(Cell cell);      
         
-        first = null;
-        last = null;  
-    
-    }
-    
-    public void addCell(int cellNumber, int xPosition, int yPosition, String color) {
-        
-        newCell.cellNumber = cellNumber;
-        newCell.xPosition = xPosition;
-        newCell.yPosition = yPosition;
-        newCell.color = color;
-        
-    }
-    
 }

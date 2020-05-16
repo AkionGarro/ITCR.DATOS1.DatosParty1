@@ -5,26 +5,23 @@ public class PhaseA extends ListStructure{
     public PhaseA() {  
     
     }
-        
+    
     @Override
-    public void addCell(int cellNumber, int xPosition, int yPosition, String color) {
+    public void addNode(Cell cell) {       
         
-        newCell.cellNumber = cellNumber;
-        newCell.xPosition = xPosition;
-        newCell.yPosition = yPosition;
-        newCell.color = color;         
+        newNode.cell = cell;
          
         if (first == null) {
 
-            first = newCell;
+            first = newNode;
             first.next = null;
-            last = newCell;        
+            last = newNode;        
 
         } else {
 
-            last.next = newCell;
-            newCell.next = null;
-            last = newCell;
+            last.next = newNode;
+            newNode.next = null;
+            last = newNode;
 
         }
         
