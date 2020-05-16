@@ -635,9 +635,58 @@ public class Window extends javax.swing.JFrame {
     }
     
     private void phaseDBuilder(PhaseD phaseD) {
-    
+                      
+        int x = 10;
+        int y = 10;
         
-    
+        Cell newCell;
+        
+        for (int i = 69; i < 83; i++) {           
+            
+            if (i == 74) {
+                
+                x += 60;
+                
+            } else if (i == 70 || i == 71 || i == 72 || i == 73) {
+            
+                x += 70;
+            
+            } else if (i == 77) {
+            
+                x -= 60;
+                
+            } else if (i == 78 || i == 79 || i == 80 || i == 81) {
+                
+                x -= 70;
+                
+            }else if (i == 75) {
+            
+                y += 60;
+            
+            } else if (i == 76) {
+            
+                y += 70;
+            
+            } else if (i == 82) {
+            
+                y -= 70;
+            
+            }
+            
+            if (i == 69 || i == 72 || i == 76 || i == 80) {
+                
+                newCell = new Cell(i, x, y, "gray", "getOut");
+                phaseD.addNode(newCell);
+                
+            }else if (i == 70 || i == 71 || i == 73 || i == 74 || i == 75 || i == 77 || i == 78 || i == 79 || i == 81 || i == 82) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                phaseD.addNode(newCell);
+                
+            }          
+                         
+        }
+            
     }
     
     private void principalBuilder(Principal principal) {
