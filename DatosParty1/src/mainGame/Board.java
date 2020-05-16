@@ -57,6 +57,7 @@ public class Board extends javax.swing.JFrame {
         tokenPlayer4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         informationPanel = new mainGame.BoardBackground2();
+        jLabel2 = new javax.swing.JLabel();
         dicePanel = new javax.swing.JPanel();
         leftDice1 = new javax.swing.JLabel();
         leftDice2 = new javax.swing.JLabel();
@@ -121,15 +122,21 @@ public class Board extends javax.swing.JFrame {
 
         informationPanel.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Board/d.png"))); // NOI18N
+
         javax.swing.GroupLayout informationPanelLayout = new javax.swing.GroupLayout(informationPanel);
         informationPanel.setLayout(informationPanelLayout);
         informationPanelLayout.setHorizontalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
         );
         informationPanelLayout.setVerticalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
         );
 
         dicePanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -427,6 +434,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JPanel dicePanel;
     public javax.swing.JPanel informationPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel leaderboard;
     private javax.swing.JLabel leftDice1;
     private javax.swing.JLabel leftDice2;
