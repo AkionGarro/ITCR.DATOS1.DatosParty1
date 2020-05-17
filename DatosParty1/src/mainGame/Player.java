@@ -8,8 +8,8 @@ public class Player {
 
     public Player(String nombre, int stars, int coins) {
         this.nombre = nombre;
-        this.stars = stars;
-        this.coins = coins;
+        this.stars = 0;
+        this.coins = 0;
     }
 
     public String getNombre() {
@@ -35,5 +35,5 @@ public class Player {
     public void setCoins(int coins) {
         this.coins = coins;
     }
-    
+
 }
