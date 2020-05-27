@@ -2,13 +2,20 @@ package Lists;
 
 public class PhaseA extends ListStructure{
     
-    public PhaseA() {  
+    SingleNode first;
+    SingleNode last;;
+    
+    public PhaseA() {
+        
+        first = null;
+        last = null;
     
     }
     
     @Override
     public void addNode(Cell cell) {       
         
+        SingleNode newNode = new SingleNode();        
         newNode.cell = cell;
          
         if (first == null) {
