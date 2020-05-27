@@ -17,10 +17,10 @@ public class Board extends javax.swing.JFrame {
 
     private void configComponents() {
         this.setLocationRelativeTo(null);
-        tokenPlayer1.setVisible(false);
-        tokenPlayer2.setVisible(false);
-        tokenPlayer3.setVisible(false);
-        tokenPlayer4.setVisible(false);
+        //tokenPlayer1.setVisible(false);
+        //tokenPlayer2.setVisible(false);
+        //tokenPlayer3.setVisible(false);
+        //tokenPlayer4.setVisible(false);
 
     }
 
@@ -101,14 +101,7 @@ public class Board extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        boardPanel = new mainGame.BoardBackground1();
-        tokenPlayer1 = new javax.swing.JLabel();
-        tokenPlayer2 = new javax.swing.JLabel();
-        tokenPlayer3 = new javax.swing.JLabel();
-        tokenPlayer4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        informationPanel = new mainGame.BoardBackground2();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new BoardBackground();
         dicePanel = new javax.swing.JPanel();
         leftDice1 = new javax.swing.JLabel();
         leftDice2 = new javax.swing.JLabel();
@@ -151,45 +144,6 @@ public class Board extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        boardPanel.setBackground(new java.awt.Color(255, 255, 255));
-        boardPanel.setForeground(new java.awt.Color(255, 255, 255));
-        boardPanel.setAlignmentX(0.0F);
-        boardPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tokenPlayer1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player1.png"))); // NOI18N
-        boardPanel.add(tokenPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 640, -1, -1));
-
-        tokenPlayer2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player2.png"))); // NOI18N
-        boardPanel.add(tokenPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 670, -1, -1));
-
-        tokenPlayer3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player3.png"))); // NOI18N
-        boardPanel.add(tokenPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 640, -1, -1));
-
-        tokenPlayer4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player4.png"))); // NOI18N
-        boardPanel.add(tokenPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 670, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Board/board.png"))); // NOI18N
-        boardPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 700));
-
-        informationPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Board/d.png"))); // NOI18N
-
-        javax.swing.GroupLayout informationPanelLayout = new javax.swing.GroupLayout(informationPanel);
-        informationPanel.setLayout(informationPanelLayout);
-        informationPanelLayout.setHorizontalGroup(
-            informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-            .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
-        );
-        informationPanelLayout.setVerticalGroup(
-            informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-            .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-        );
-
         dicePanel.setBackground(new java.awt.Color(255, 255, 255));
         dicePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -230,11 +184,6 @@ public class Board extends javax.swing.JFrame {
         dicePanel.add(rightDice6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, -1, -1));
 
         rollButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/clickhere.png"))); // NOI18N
-        rollButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rollButtonMouseClicked(evt);
-            }
-        });
         dicePanel.add(rollButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 430, -1, -1));
 
         coinImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
@@ -314,45 +263,38 @@ public class Board extends javax.swing.JFrame {
         diceBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/Roll the dices.png"))); // NOI18N
         dicePanel.add(diceBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 390, 160));
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 693, Short.MAX_VALUE)
+                .addComponent(dicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 250, Short.MAX_VALUE)
+                .addComponent(dicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(informationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(dicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGap(0, 1103, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(informationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(dicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addGap(0, 730, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rollButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rollButtonMouseClicked
-        randomDice1();
-        randomDice2();
-
-
-
-    }//GEN-LAST:event_rollButtonMouseClicked
 
     public void randomDice1() {
         dice1 = (int) (Math.random() * 6 + 1);
@@ -508,16 +450,13 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel activeStarsPlayer2;
     private javax.swing.JLabel activeStarsPlayer3;
     private javax.swing.JLabel activeStarsPlayer4;
-    public javax.swing.JPanel boardPanel;
     private javax.swing.JLabel coinImage1;
     private javax.swing.JLabel coinImage2;
     private javax.swing.JLabel coinImage3;
     private javax.swing.JLabel coinImage4;
     private javax.swing.JLabel diceBackground;
     private javax.swing.JPanel dicePanel;
-    public javax.swing.JPanel informationPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel leaderboard;
     private javax.swing.JLabel leftDice1;
     private javax.swing.JLabel leftDice2;
@@ -540,9 +479,5 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel startImage2;
     private javax.swing.JLabel startImage3;
     private javax.swing.JLabel startImage4;
-    private javax.swing.JLabel tokenPlayer1;
-    private javax.swing.JLabel tokenPlayer2;
-    private javax.swing.JLabel tokenPlayer3;
-    private javax.swing.JLabel tokenPlayer4;
     // End of variables declaration//GEN-END:variables
 }
