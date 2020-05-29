@@ -284,20 +284,24 @@ public class Window extends javax.swing.JFrame {
 
     }//GEN-LAST:event_startGameButtonMouseClicked
     private void playersCreation() {
+        
         String name1 = name1Txt.getText();
         String name2 = name2Txt.getText();
         String name3 = name3Txt.getText();
         String name4 = name4Txt.getText();
+        
         int coins = 0;
         int stars = 0;
 
         if (player1Active == true && player2Active == true && player3Active == false && player4Active == false) {
+            
             Player player1 = new Player(name1, stars, coins);
             players.add(player1);
             Player player2 = new Player(name2, stars, coins);
             players.add(player2);
 
         } else if (player1Active == true && player2Active == true && player3Active == true && player4Active == false) {
+
             Player player1 = new Player(name1, stars, coins);
             players.add(player1);
             Player player2 = new Player(name2, stars, coins);
@@ -306,6 +310,7 @@ public class Window extends javax.swing.JFrame {
             players.add(player3);
 
         } else {
+
             Player player1 = new Player(name1, stars, coins);
             players.add(player1);
             Player player2 = new Player(name2, stars, coins);
@@ -314,7 +319,9 @@ public class Window extends javax.swing.JFrame {
             players.add(player3);
             Player player4 = new Player(name4, stars, coins);
             players.add(player4);
+            
         }
+        
     }
 
     private void name1TxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1TxtKeyTyped
@@ -340,6 +347,7 @@ public class Window extends javax.swing.JFrame {
         if (Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
             
             name2Txt.setEditable(true);
+            
         } else {
             
             name2Txt.setEditable(false);
@@ -383,18 +391,25 @@ public class Window extends javax.swing.JFrame {
     public void checkNames() {
 
         if (validNames == true && emptyFields == false) {
+            
             Board board = new Board();
             board.setVisible(true);
             dispose();
+            
         }
 
         if (name1Txt.isVisible() && name2Txt.isVisible() && name3Txt.isVisible() == false && name4Txt.isVisible() == false) {
 
             if (errorSameName.isVisible()) {
+                
                 errorSameName.setVisible(false);
+                
             }
+            
             if (errorWithoutName.isVisible()) {
+                
                 errorWithoutName.setVisible(false);
+                
             }
 
             if (name1Txt.getText().isEmpty() || name2Txt.getText().isEmpty()) {
@@ -410,6 +425,7 @@ public class Window extends javax.swing.JFrame {
                 emptyFields = false;
 
             } else {
+                
                 validNames = true;
                 emptyFields = false;
 
@@ -419,11 +435,17 @@ public class Window extends javax.swing.JFrame {
             }
 
         } else if (name1Txt.isVisible() && name2Txt.isVisible() && name3Txt.isVisible() && name4Txt.isVisible() == false) {
+            
             if (errorSameName.isVisible()) {
+                
                 errorSameName.setVisible(false);
+                
             }
+            
             if (errorWithoutName.isVisible()) {
+                
                 errorWithoutName.setVisible(false);
+                
             }
 
             if (name1Txt.getText().isEmpty() || name2Txt.getText().isEmpty() || name3Txt.getText().isEmpty()) {
@@ -442,6 +464,7 @@ public class Window extends javax.swing.JFrame {
                 emptyFields = false;
 
             } else {
+                
                 validNames = true;
                 emptyFields = false;
                 player1Active = true;
@@ -453,10 +476,14 @@ public class Window extends javax.swing.JFrame {
         } else if (name1Txt.isVisible() && name2Txt.isVisible() && name3Txt.isVisible() && name4Txt.isVisible()) {
 
             if (errorSameName.isVisible()) {
+                
                 errorSameName.setVisible(false);
+                
             }
             if (errorWithoutName.isVisible()) {
+                
                 errorWithoutName.setVisible(false);
+                
             }
 
             if (name1Txt.getText().isEmpty() || name2Txt.getText().isEmpty() || name3Txt.getText().isEmpty() || name4Txt.getText().isEmpty()) {
@@ -477,6 +504,7 @@ public class Window extends javax.swing.JFrame {
                 emptyFields = false;
 
             } else {
+                
                 validNames = true;
                 emptyFields = false;
                 player1Active = true;
@@ -492,37 +520,33 @@ public class Window extends javax.swing.JFrame {
 
     private void phaseABuilder(PhaseA phaseA) {
     
-        int x = 140;
+        int x = 158;
         int y = 580;
         
         Cell newCell;
         
-        for (int i = 38; i < 49; i++) {           
+        for (int i = 38; i < 49; i++) {    
             
-            if (i == 46 || i == 47) {
-                
-                x -= 60;
-                
-            } else if (i == 45 || i == 48) {
-                
-                x -= 70;
-                
-            } else if (i == 43 || i == 44) {
-            
-                y -= 60;
-            
-            } else if (i == 39) {
-            
-                y -= 70;
-            
-            } else if (i == 40 || i == 41) {
+            if (i == 40 || i == 42) {
                 
                 x += 60;
                 
-            } else if (i == 42) {
-            
-                x += 70;
+            } else if (i == 41) {
                 
+                x += 62;
+                                
+            } else if (i == 45 || i == 47 || i == 48) {
+            
+                x -= 60;
+                
+            } else if (i == 46) {
+                
+                x -= 62;
+                
+            } else if (i == 39 || i == 43 || i == 44) {
+            
+                y -= 60;
+            
             }
             
             if (i == 38 || i == 42 || i == 45) {
@@ -553,25 +577,25 @@ public class Window extends javax.swing.JFrame {
     
     private void phaseBBuilder(PhaseB phaseB) {
     
-        int x = 260;
-        int y = 70;
+        int x = 280;
+        int y = 100;
         
         Cell newCell;
         
-        for (int i = 49; i < 55; i++) {           
+        for (int i = 49; i < 55; i++) {    
             
-            if (i == 50) {
-            
-                y += 60;
-            
-            } else if (i == 52 || i == 54) {
+            if (i == 51) {
                 
                 x += 60;
                 
-            } else if (i == 51 || i == 53) {
-            
-                x += 70;
+            } else if (i == 52 || i == 53 || i == 54) {
                 
+                x += 62;                               
+                            
+            } else if (i == 50) {
+            
+                y += 60;                       
+            
             }
                         
             newCell = new Cell(i, x, y, "yellow", "events");
@@ -583,29 +607,25 @@ public class Window extends javax.swing.JFrame {
     
     private void phaseCBuilder(PhaseC phaseC) {
     
-        int x = 70;
-        int y = 130;
+        int x = 98;
+        int y = 160;
         
         Cell newCell;
         
-        for (int i = 55; i < 69; i++) {           
+        for (int i = 55; i < 69; i++) {    
             
-            if (i == 59 || i == 60 || i == 62 || i == 68) {
+            if (i == 56 || i == 59 || i == 61) {
                 
                 x += 60;
                 
-            } else if (i == 56 || i == 61 || i == 63) {
+            } else if (i == 60 || i == 62 || i == 63 || i == 68) {
+                
+                x += 62;                               
+                            
+            }else if (i == 57 || i == 58 || i == 64 || i == 65 || i == 66 || i == 67) {
             
-                x += 70;
-            
-            } else if (i == 58 || i == 64 || i == 66 || i == 67) {
-            
-                y += 60;
-            
-            } else if (i == 57 || i == 65) {
-            
-                y += 70;
-            
+                y += 60;                       
+                        
             }
             
             if (i == 57 || i == 63 || i == 65) {
@@ -636,40 +656,36 @@ public class Window extends javax.swing.JFrame {
     
     private void phaseDBuilder(PhaseD phaseD) {
                       
-        int x = 10;
-        int y = 10;
+        int x = 708;
+        int y = 40;
         
         Cell newCell;
         
-        for (int i = 69; i < 83; i++) {           
+        for (int i = 69; i < 83; i++) {    
             
-            if (i == 74) {
+            if (i == 70 || i == 72 || i == 73) {
                 
                 x += 60;
                 
-            } else if (i == 70 || i == 71 || i == 72 || i == 73) {
-            
-                x += 70;
-            
-            } else if (i == 77) {
+            } else if (i == 71 || i == 74) {
+                
+                x += 62;
+                                
+            } else if (i == 78 || i == 79 || i == 81) {
             
                 x -= 60;
                 
-            } else if (i == 78 || i == 79 || i == 80 || i == 81) {
+            } else if (i == 77 || i == 80) {
                 
-                x -= 70;
+                x -= 62;
                 
-            }else if (i == 75) {
+            }else if (i == 75 || i == 76) {
             
-                y += 60;
-            
-            } else if (i == 76) {
-            
-                y += 70;
+                y += 60;                       
             
             } else if (i == 82) {
             
-                y -= 70;
+                y -= 60;
             
             }
             
@@ -691,44 +707,36 @@ public class Window extends javax.swing.JFrame {
     
     private void principalBuilder(Principal principal) {
     
-        int x = 580;
+        int x = 586;
         int y = 640;
         
         Cell newCell;
         
-        for (int i = 0; i < 38; i++) {           
+        for (int i = 1; i < 38; i++) {           
             
-            if (i == 1 || i == 2 || i == 4 || i == 6 || i == 7 || i == 9) {
-                
-                x -= 60;
-                
-            } else if (i == 3 || i == 5 || i == 8) {
-                
-                x -= 70;
-                
-            } else if (i == 10 || i == 12 || i == 13 || i == 15 || i == 16 || i == 18 || i == 19) {
-            
-                y -= 60;
-            
-            } else if (i == 11 || i == 14 || i == 17) {
-            
-                y -= 70;
-            
-            } else if (i == 20 || i == 22 || i == 23 || i == 25 || i == 27 || i == 28) {
+            if (i == 21 || i == 22 || i == 24 || i == 28) {
                 
                 x += 60;
                 
-            } else if (i == 21 || i == 24 || i == 26) {
+            } else if (i == 20 || i == 23 || i == 25 || i == 26 || i == 27) {
+                
+                x += 62;
+                                
+            } else if (i == 1 || i == 5 || i == 7 || i == 8) {
             
-                x += 70;
+                x -= 60;
+                
+            } else if (i == 2 || i == 3 || i == 4 || i == 6 || i == 9) {
+                
+                x -= 62;
+                
+            }else if (i == 29 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 35 || i == 36 || i == 37) {
             
-            } else if (i == 29 || i == 30 || i == 32 || i == 33 || i == 35 || i == 36) {
+                y += 60;                       
             
-                y += 60;
+            } else if (i == 10 || i == 11 || i == 12 || i == 13 || i == 14 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19) {
             
-            } else if (i == 31 || i == 34 || i == 37) {
-            
-                y += 70;
+                y -= 60;
             
             }
             
