@@ -712,7 +712,7 @@ public class Window extends javax.swing.JFrame {
         
         Cell newCell;
         
-        for (int i = 1; i < 38; i++) {           
+        for (int i = 0; i < 38; i++) {           
             
             if (i == 21 || i == 22 || i == 24 || i == 28) {
                 
