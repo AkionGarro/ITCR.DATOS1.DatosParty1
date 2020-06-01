@@ -33,5 +33,47 @@ public class Principal extends ListStructure{
         }
                 
     }
+    
+    public int findXLocation(int cellNumber) {
+    
+        SingleNode actual = new SingleNode();
+        actual = first;
+                
+        do{
+            
+            if (actual.cell.cellNumber == cellNumber) {
+            
+                return actual.cell.xPosition;
+                
+            }
+            
+            actual = actual.next;
+
+        } while(actual != first);
+        
+        return -1;
+           
+    }
+        
+    public int findYLocation(int cellNumber) {
+    
+        SingleNode actual = new SingleNode();
+        actual = first;
+        
+        do{
+            
+            if (actual.cell.cellNumber == cellNumber) {
+            
+                return actual.cell.yPosition;
+                
+            }
+            
+            actual = actual.next;
+
+        } while(actual != first);
+        
+        return -1;
+           
+    }
         
 }

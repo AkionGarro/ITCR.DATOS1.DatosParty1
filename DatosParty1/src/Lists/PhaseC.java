@@ -36,4 +36,48 @@ public class PhaseC extends  ListStructure{
         
     }
     
+    @Override
+    public int findXLocation(int cellNumber) {
+    
+        DoubleNode actual = new DoubleNode();
+        actual = first;
+        
+        do{
+            
+            if (actual.cell.cellNumber == cellNumber) {
+            
+                return actual.cell.xPosition;
+                
+            }
+            
+            actual = actual.next;
+
+        } while(actual != null);
+        
+        return -1;
+           
+    }
+    
+    @Override
+    public int findYLocation(int cellNumber) {
+    
+        DoubleNode actual = new DoubleNode();
+        actual = first;
+        
+        do{
+            
+            if (actual.cell.cellNumber == cellNumber) {
+            
+                return actual.cell.yPosition;
+                
+            }
+            
+            actual = actual.next;
+
+        } while(actual != null);
+        
+        return -1;
+           
+    }
+    
 }

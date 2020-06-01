@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 public class BoardBackground extends JPanel{
     
         private Image background1;
+        
         @Override
         public void paint(Graphics g){
+            
             background1 = new ImageIcon(getClass().getResource("/images/Board/completeBoard.png")).getImage();
             g.drawImage(background1,0,0,getWidth(), getHeight(),this);
             setOpaque(false);
