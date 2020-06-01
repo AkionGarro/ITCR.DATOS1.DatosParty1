@@ -307,21 +307,26 @@ public class Board extends javax.swing.JFrame {
         
         checkPlayerPlaying();
         
-        rightDice = new Random().nextInt(6 + 1);
-        leftDice = new Random().nextInt(6 + 1);
-        
+        rightDice = new Random().nextInt(6) + 1;
+        leftDice = new Random().nextInt(6) + 1;
+                
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
         
-        Player actualPlayer = Window.players.get(playerPlaying);   
-                
-        int moveToCell = actualPlayer.getCell() + rightDice + leftDice;        
+        Player actualPlayer = Window.players.get(playerPlaying);
+        
+        int moveToCell = actualPlayer.getCell() + rightDice + leftDice;
+        
+        if (moveToCell > 37) {
+            
+            moveToCell -= 38;
+            
+        }
+        
         actualPlayer.setCell(moveToCell);
         
-        int cell = actualPlayer.getCell() + 1;
-        int x = Window.principal.findXLocation(cell);
-        int y = Window.principal.findYLocation(cell);
-        actualPlayer.setCell(cell);
+        int x = Window.principal.findXLocation(moveToCell);
+        int y = Window.principal.findYLocation(moveToCell);
                         
         if (playerPlaying == 0) {
         
@@ -349,27 +354,27 @@ public class Board extends javax.swing.JFrame {
                 
         if (dice == 1) {
             
-            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 1.png")));
+            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
             
         } else if (dice == 2) {
             
-            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 2.png")));
+            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
 
         } else if (dice == 3) {
             
-            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 3.png")));
+            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
 
         } else if (dice == 4) {
             
-            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 4.png")));
+            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
 
         } else if (dice == 5) {
             
-            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 5.png")));
+            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
 
-        } else {
+        } else if (dice == 6) {
             
-            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 6.png")));
+            lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
             
         }
         
@@ -379,27 +384,27 @@ public class Board extends javax.swing.JFrame {
                 
         if (dice == 1) {
             
-            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 1.png")));
+            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
             
         } else if (dice == 2) {
             
-            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 2.png")));
+            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
 
         } else if (dice == 3) {
             
-            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 3.png")));
+            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
 
         } else if (dice == 4) {
             
-            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 4.png")));
+            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
 
         } else if (dice == 5) {
             
-            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 5.png")));
+            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
 
-        } else {
+        } else if (dice == 6) {
             
-            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 6.png")));
+            lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
 
         }
                 
@@ -428,7 +433,7 @@ public class Board extends javax.swing.JFrame {
             }
 
         } else {
-        
+                               
             // validar caso en el que la ficha no esté en el board principal
             // Recordar que si el metodo retorna un -1, quiere decir que el jugador no esta en ese tablero especifico
                 
