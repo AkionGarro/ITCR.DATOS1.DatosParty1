@@ -519,19 +519,19 @@ public class Window extends javax.swing.JFrame {
         
         for (int i = 38; i < 49; i++) {    
             
-            if (i == 40 || i == 42) {
+            if (i == 40) {
                 
                 x += 60;
                 
-            } else if (i == 41) {
+            } else if (i == 41 || i == 42) {
                 
                 x += 62;
                                 
-            } else if (i == 45 || i == 47 || i == 48) {
+            } else if (i == 47 || i == 48) {
             
                 x -= 60;
                 
-            } else if (i == 46) {
+            } else if (i == 45 || i == 46) {
                 
                 x -= 62;
                 
@@ -576,11 +576,11 @@ public class Window extends javax.swing.JFrame {
         
         for (int i = 49; i < 55; i++) {    
             
-            if (i == 51) {
+            if (i == 52) {
                 
                 x += 60;
                 
-            } else if (i == 52 || i == 53 || i == 54) {
+            } else if (i == 51 || i == 53 || i == 54) {
                 
                 x += 62;                               
                             
@@ -606,11 +606,11 @@ public class Window extends javax.swing.JFrame {
         
         for (int i = 55; i < 69; i++) {    
             
-            if (i == 56 || i == 59 || i == 61) {
+            if (i == 56 || i == 59 || i == 62) {
                 
                 x += 60;
                 
-            } else if (i == 60 || i == 62 || i == 63 || i == 68) {
+            } else if (i == 60 || i == 61 || i == 63 || i == 68) {
                 
                 x += 62;                               
                             
@@ -618,7 +618,7 @@ public class Window extends javax.swing.JFrame {
             
                 y += 60;                       
                         
-            }
+            } 
             
             if (i == 57 || i == 63 || i == 65) {
                 
