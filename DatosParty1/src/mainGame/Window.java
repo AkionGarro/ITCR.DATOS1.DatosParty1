@@ -278,6 +278,7 @@ public class Window extends javax.swing.JFrame {
         playersCreation();
 
     }//GEN-LAST:event_startGameButtonMouseClicked
+    
     private void playersCreation() {
         
         String name1 = name1Txt.getText();

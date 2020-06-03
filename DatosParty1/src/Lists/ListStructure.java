@@ -7,5 +7,7 @@ public abstract class ListStructure {
     public abstract int findXLocation(int cellNumber);
         
     public abstract int findYLocation(int cellNumber);
+    
+    public abstract String findColor(int cellNumber);
         
 }
