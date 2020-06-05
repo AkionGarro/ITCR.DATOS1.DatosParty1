@@ -1,5 +1,8 @@
 package mainGame;
 
+/**
+ * Class for creating players.
+ */
 public class Player {
 
     private int number;
@@ -8,6 +11,12 @@ public class Player {
     private int coins;
     private int cell;
 
+    /**
+     * Player class constructor.
+     * @param number player identifier
+     * @param name   player name.
+     * @param coins  Initial amount of coins for each player.
+     */
     public Player(int number, String name, int coins) {
         
         this.number = number;
@@ -18,6 +27,7 @@ public class Player {
         
     }
     
+
     public int getNumber() {
         
         return number;

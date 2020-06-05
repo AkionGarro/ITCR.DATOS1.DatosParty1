@@ -1,10 +1,17 @@
 package Lists;
 
+/**
+ * Class in charge of the creation of phase B, which only has one way.
+ *
+ */
 public class PhaseB extends ListStructure{
     
     SingleNode first;
     SingleNode last;
     
+    /**
+     * Phase B Constructor.
+     */
     public PhaseB() {
         
         first = null;
@@ -12,6 +19,12 @@ public class PhaseB extends ListStructure{
     
     }
     
+    /**
+     * Method to add nodes to the Phase B.
+     *
+     * @param cell It receives the cell type parameter that inside it has the Y
+     * position , X position, color, number and action.
+     */
     @Override
     public void addNode(Cell cell) {
         
@@ -33,7 +46,13 @@ public class PhaseB extends ListStructure{
         }
         
     }
-    
+   
+    /**
+     * Method to find position X.
+     *
+     * @param cellNumber Identifier of the cell
+     * @return X position
+     */
     @Override
     public int findXLocation(int cellNumber) {
     
@@ -56,6 +75,12 @@ public class PhaseB extends ListStructure{
            
     }
     
+    /**
+     * Method to find position Y.
+     *
+     * @param cellNumber Identifier of the cell
+     * @return Y position
+     */
     @Override
     public int findYLocation(int cellNumber) {
     
@@ -77,7 +102,7 @@ public class PhaseB extends ListStructure{
         return -1;
            
     }
-    
+
     @Override
     public String findColor(int cellNumber) {
         
