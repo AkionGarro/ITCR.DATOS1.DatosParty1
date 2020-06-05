@@ -25,6 +25,8 @@ public class Window extends javax.swing.JFrame {
     static PhaseB phaseB = new PhaseB();
     static PhaseC phaseC = new PhaseC();
     static PhaseD phaseD = new PhaseD();
+    
+    public static Stack stack = new Stack();
 
     public Window() {
         
@@ -274,10 +276,12 @@ public class Window extends javax.swing.JFrame {
         phaseCBuilder(phaseC);
         phaseDBuilder(phaseD);
         
+        stack.shuffle();        
         checkNames();        
         playersCreation();
 
     }//GEN-LAST:event_startGameButtonMouseClicked
+    
     private void playersCreation() {
         
         String name1 = name1Txt.getText();

@@ -75,5 +75,28 @@ public class Principal extends ListStructure{
         return -1;
            
     }
+    
+    @Override
+    public String findColor(int cellNumber) {
+        
+        SingleNode actual = new SingleNode();
+        actual = first;
+        String color = "gray";
+        
+        do{
+            
+            if (actual.cell.cellNumber == cellNumber) {
+            
+                return actual.cell.color;
+                
+            }
+            
+            actual = actual.next;
+
+        } while(actual != first);
+        
+        return color;
+        
+    } 
         
 }

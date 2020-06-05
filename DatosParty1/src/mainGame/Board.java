@@ -5,8 +5,9 @@ import java.util.Random;
 public class Board extends javax.swing.JFrame {
 
     private int rightDice;
-    private int leftDice;
-    private int playerPlaying = 0;
+    private int leftDice;    
+    private int activePlayers = Window.players.size() - 1;
+    public static int playerPlaying = 0;
 
     public Board() {
 
@@ -28,12 +29,20 @@ public class Board extends javax.swing.JFrame {
         startImage3.setVisible(false);
         startImage4.setVisible(false);
         
+        activeCoinsPlayer3.setVisible(false);
+        activeCoinsPlayer4.setVisible(false);
+        activeStarsPlayer3.setVisible(false);
+        activeStarsPlayer4.setVisible(false);
+        
         if (Window.player3Active == true && Window.player4Active == false) {
         
             lblTokenPlayer3.setVisible(true);
             coinImage3.setVisible(true);
             startImage3.setVisible(true);
             leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard3.png")));
+            
+            activeCoinsPlayer3.setVisible(true);
+            activeStarsPlayer3.setVisible(true);
         
         } else if (Window.player3Active == true && Window.player4Active == true) {
             
@@ -45,6 +54,11 @@ public class Board extends javax.swing.JFrame {
             coinImage4.setVisible(true);
             startImage4.setVisible(true);
             leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard4.png")));
+            
+            activeCoinsPlayer3.setVisible(true);
+            activeCoinsPlayer4.setVisible(true);
+            activeStarsPlayer3.setVisible(true);
+            activeStarsPlayer4.setVisible(true);
             
         }
         
@@ -91,17 +105,13 @@ public class Board extends javax.swing.JFrame {
     private void updateLeaderboard() {
 
         switch (Window.players.size()) {
-            
+                                    
             case 2:
 
                 activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
                 activeCoinsPlayer2.setText(String.valueOf(Window.players.get(1).getCoins()));
                 activeStarsPlayer1.setText(String.valueOf(Window.players.get(0).getStars()));
                 activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
-                activeCoinsPlayer3.setVisible(false);
-                activeCoinsPlayer4.setVisible(false);
-                activeStarsPlayer3.setVisible(false);
-                activeStarsPlayer4.setVisible(false);
 
                 break;
                 
@@ -113,8 +123,6 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer1.setText(String.valueOf(Window.players.get(0).getStars()));
                 activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
                 activeStarsPlayer3.setText(String.valueOf(Window.players.get(2).getStars()));
-                activeCoinsPlayer4.setVisible(false);
-                activeStarsPlayer4.setVisible(false);
                 
                 break;
                 
@@ -344,7 +352,9 @@ public class Board extends javax.swing.JFrame {
             
             moveToken(3, x, y);
             
-        }     
+        }    
+        
+        actionCell(moveToCell);
                 
         playerPlaying++;
                 
@@ -410,7 +420,7 @@ public class Board extends javax.swing.JFrame {
                 
     }
     
-    private void moveToken(int playerToken, int x, int y) {
+    public static void moveToken(int playerToken, int x, int y) {
         
         if (x != -1 && y != -1) {
     
@@ -443,43 +453,109 @@ public class Board extends javax.swing.JFrame {
     
     private void checkPlayerPlaying() {
         
-        if (Window.player3Active == false && Window.player4Active == false) {
-            
-            if (playerPlaying > 1) {
+        if (playerPlaying > activePlayers) {
             
             playerPlaying = 0;
-            
-            }
-            
-        } else if(Window.player3Active == true && Window.player4Active == false) {
-            
-            if (playerPlaying > 2) {
-            
-            playerPlaying = 0;
-            
-            }
-            
-        } else if(Window.player3Active == true && Window.player4Active == true) {
-            
-            if (playerPlaying > 3) {
-            
-            playerPlaying = 0;
-            
-            }
             
         }
               
     }
     
+    private void actionCell(int cellNumber) {
+        
+        Player player = Window.players.get(playerPlaying);
+        String color = Window.principal.findColor(cellNumber);
+        int actualCoins = player.getCoins(); 
+                
+        if (color == "green") {
+                           
+            player.setCoins(actualCoins + 10);
+            updateCoins();
+                                    
+        } else if (color == "red") {
+                    
+            player.setCoins(actualCoins - 10);
+            updateCoins();
+            
+        } else if (color == "yellow") {
+            
+            eventCellAction();
+            
+        }       
+        
+    }    
+    
+    public static void updateCoins() {
+        
+        String actualCoins = String.valueOf(Window.players.get(playerPlaying).getCoins());
+        
+        if (playerPlaying == 0) {
+            
+            activeCoinsPlayer1.setText(actualCoins);
+            
+        } else if (playerPlaying == 1) {
+            
+            activeCoinsPlayer2.setText(actualCoins);
+            
+        } else if (playerPlaying == 2) {
+            
+            activeCoinsPlayer3.setText(actualCoins);
+            
+        } else if (playerPlaying == 3) {
+            
+            activeCoinsPlayer4.setText(actualCoins);
+            
+        }               
+        
+    }
+    
+    public static void updateStars() {
+        
+        String actualStars = String.valueOf(Window.players.get(playerPlaying).getStars());
+        
+        if (playerPlaying == 0) {
+            
+            activeStarsPlayer1.setText(actualStars);
+            
+        } else if (playerPlaying == 1) {
+            
+            activeStarsPlayer2.setText(actualStars);
+            
+        } else if (playerPlaying == 2) {
+            
+            activeStarsPlayer3.setText(actualStars);
+            
+        } else if (playerPlaying == 3) {
+            
+            activeStarsPlayer4.setText(actualStars);
+            
+        }               
+        
+    }
+    
+    private void eventCellAction() {
+        
+        if (Window.stack.empty() == true) {
+            
+            Window.stack.shuffle();
+            
+        }
+        
+        Events newEvent = new Events(Window.stack.pop());
+                
+        newEvent.start(playerPlaying);               
+                
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel activeCoinsPlayer1;
-    private javax.swing.JLabel activeCoinsPlayer2;
-    private javax.swing.JLabel activeCoinsPlayer3;
-    private javax.swing.JLabel activeCoinsPlayer4;
-    private javax.swing.JLabel activeStarsPlayer1;
-    private javax.swing.JLabel activeStarsPlayer2;
-    private javax.swing.JLabel activeStarsPlayer3;
-    private javax.swing.JLabel activeStarsPlayer4;
+    public static javax.swing.JLabel activeCoinsPlayer1;
+    public static javax.swing.JLabel activeCoinsPlayer2;
+    public static javax.swing.JLabel activeCoinsPlayer3;
+    public static javax.swing.JLabel activeCoinsPlayer4;
+    public static javax.swing.JLabel activeStarsPlayer1;
+    public static javax.swing.JLabel activeStarsPlayer2;
+    public static javax.swing.JLabel activeStarsPlayer3;
+    public static javax.swing.JLabel activeStarsPlayer4;
     private javax.swing.JButton btnRollDices;
     private javax.swing.JLabel coinImage1;
     private javax.swing.JLabel coinImage2;
@@ -488,10 +564,10 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel diceBackground;
     private javax.swing.JLabel lblLeftDice;
     private javax.swing.JLabel lblRightDice;
-    private javax.swing.JLabel lblTokenPlayer1;
-    private javax.swing.JLabel lblTokenPlayer2;
-    private javax.swing.JLabel lblTokenPlayer3;
-    private javax.swing.JLabel lblTokenPlayer4;
+    public static javax.swing.JLabel lblTokenPlayer1;
+    public static javax.swing.JLabel lblTokenPlayer2;
+    public static javax.swing.JLabel lblTokenPlayer3;
+    public static javax.swing.JLabel lblTokenPlayer4;
     private javax.swing.JLabel leaderboard;
     private javax.swing.JLabel namePlayer1;
     private javax.swing.JLabel namePlayer2;
