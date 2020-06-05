@@ -7,10 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
-/**
- * Class in charge of creating the board background.
- * 
- */
 public class BoardBackground extends JPanel{
     
         private Image background1;

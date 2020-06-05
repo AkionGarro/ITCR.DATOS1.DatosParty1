@@ -2,74 +2,58 @@ package mainGame;
 
 import java.util.Random;
 
-/**
- * This class is in charge of all the graphic configuration of the components
- * and other functions found on the board.
- *
- */
 public class Board extends javax.swing.JFrame {
 
     private int rightDice;
     private int leftDice;
     private int playerPlaying = 0;
 
-    /**
-     * This is the constructor of the board class, where the initial
-     * configuration of the components is made.
-     */
     public Board() {
 
         initComponents();
         configComponents();
         playersInformation();
-
+        
     }
 
-    /**
-     * Method in charge of the basic configuration of the graphic components of
-     * the board.
-     */
-    public void configComponents() {
-
+    private void configComponents() {
+        
         this.setLocationRelativeTo(null);
-
+        
         lblTokenPlayer3.setVisible(false);
         lblTokenPlayer4.setVisible(false);
-
+        
         coinImage3.setVisible(false);
         coinImage4.setVisible(false);
         startImage3.setVisible(false);
         startImage4.setVisible(false);
-
-    }
-
-    /**
-     * Place the information of the created players in the leaderboard.
-     */
-    public void playersInformation() {
-
+        
         if (Window.player3Active == true && Window.player4Active == false) {
-
+        
             lblTokenPlayer3.setVisible(true);
             coinImage3.setVisible(true);
             startImage3.setVisible(true);
             leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard3.png")));
-
+        
         } else if (Window.player3Active == true && Window.player4Active == true) {
-
+            
             lblTokenPlayer3.setVisible(true);
             coinImage3.setVisible(true);
             startImage3.setVisible(true);
-
+            
             lblTokenPlayer4.setVisible(true);
             coinImage4.setVisible(true);
             startImage4.setVisible(true);
             leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard4.png")));
-
+            
         }
+        
+    }
+
+    private void playersInformation() {
 
         switch (Window.players.size()) {
-
+            
             case 2:
 
                 namePlayer1.setText(Window.players.get(0).getName());
@@ -77,18 +61,18 @@ public class Board extends javax.swing.JFrame {
                 updateLeaderboard();
 
                 break;
-
+                
             case 3:
-
+                
                 namePlayer1.setText(Window.players.get(0).getName());
                 namePlayer2.setText(Window.players.get(1).getName());
                 namePlayer3.setText(Window.players.get(2).getName());
                 updateLeaderboard();
 
                 break;
-
+                
             case 4:
-
+                
                 namePlayer1.setText(Window.players.get(0).getName());
                 namePlayer2.setText(Window.players.get(1).getName());
                 namePlayer3.setText(Window.players.get(2).getName());
@@ -96,21 +80,18 @@ public class Board extends javax.swing.JFrame {
                 updateLeaderboard();
 
                 break;
-
+                
             default:
-
+                
                 break;
         }
-
+        
     }
 
-    /**
-     * Update the graphic information of the current players in the leaderboard.
-     */
     private void updateLeaderboard() {
 
         switch (Window.players.size()) {
-
+            
             case 2:
 
                 activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
@@ -123,7 +104,7 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer4.setVisible(false);
 
                 break;
-
+                
             case 3:
 
                 activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
@@ -134,9 +115,9 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer3.setText(String.valueOf(Window.players.get(2).getStars()));
                 activeCoinsPlayer4.setVisible(false);
                 activeStarsPlayer4.setVisible(false);
-
+                
                 break;
-
+                
             case 4:
 
                 activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
@@ -147,13 +128,13 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
                 activeStarsPlayer3.setText(String.valueOf(Window.players.get(2).getStars()));
                 activeStarsPlayer4.setText(String.valueOf(Window.players.get(3).getStars()));
-
+                
                 break;
-
+                
             default:
-
+                
                 break;
-
+                
         }
 
     }
@@ -322,197 +303,174 @@ public class Board extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Method for the movement of the player's token with the information of the
-     * dice.
-     */
     private void btnRollDicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollDicesActionPerformed
-
+        
         checkPlayerPlaying();
-
+        
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
-
+                
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
-
+        
         Player actualPlayer = Window.players.get(playerPlaying);
-
+        
         int moveToCell = actualPlayer.getCell() + rightDice + leftDice;
-
+        
         if (moveToCell > 37) {
-
+            
             moveToCell -= 38;
-
+            
         }
-
+        
         actualPlayer.setCell(moveToCell);
-
+        
         int x = Window.principal.findXLocation(moveToCell);
         int y = Window.principal.findYLocation(moveToCell);
-
+                        
         if (playerPlaying == 0) {
-
+        
             moveToken(0, x, y);
-
+            
         } else if (playerPlaying == 1) {
-
+        
             moveToken(1, x, y);
-
+            
         } else if (playerPlaying == 2) {
-
+            
             moveToken(2, x, y);
-
+            
         } else {
-
+            
             moveToken(3, x, y);
-
-        }
-
+            
+        }     
+                
         playerPlaying++;
-
+                
     }//GEN-LAST:event_btnRollDicesActionPerformed
 
-    /**
-     * Perform the animation of the right dice graphically.
-     *
-     * @param dice It is an integer type ramdom number
-     */
-    public void randomRightDice(int dice) {
-
+    private void randomRightDice(int dice) {
+                
         if (dice == 1) {
-
+            
             lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
-
+            
         } else if (dice == 2) {
-
+            
             lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
 
         } else if (dice == 3) {
-
+            
             lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
 
         } else if (dice == 4) {
-
+            
             lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
 
         } else if (dice == 5) {
-
+            
             lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
 
         } else if (dice == 6) {
-
+            
             lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
-
+            
         }
-
+        
     }
-
-    /**
-     * Perform the animation of the left dice graphically.
-     *
-     * @param dice It is an integer type ramdom number
-     */
+    
     public void randomLeftDice(int dice) {
-
+                
         if (dice == 1) {
-
+            
             lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
-
+            
         } else if (dice == 2) {
-
+            
             lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
 
         } else if (dice == 3) {
-
+            
             lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
 
         } else if (dice == 4) {
-
+            
             lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
 
         } else if (dice == 5) {
-
+            
             lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
 
         } else if (dice == 6) {
-
+            
             lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
 
         }
-
+                
     }
-
-    /**
-     * Method to check which player token has to be moved.
-     *
-     * @param playerToken Identifier of each player's token.
-     * @param x position x where the token is located.
-     * @param y position y where the token is located.
-     */
+    
     private void moveToken(int playerToken, int x, int y) {
-
+        
         if (x != -1 && y != -1) {
-
+    
             if (playerToken == 0) {
 
                 lblTokenPlayer1.setLocation(x, y);
 
             } else if (playerToken == 1) {
-
+            
                 lblTokenPlayer2.setLocation(x + 29, y);
-
+                
             } else if (playerToken == 2) {
-
+            
                 lblTokenPlayer3.setLocation(x, y + 28);
-
+                
             } else {
-
+            
                 lblTokenPlayer4.setLocation(x + 29, y + 29);
-
+            
             }
 
         } else {
-
+                               
             // validar caso en el que la ficha no esté en el board principal
             // Recordar que si el metodo retorna un -1, quiere decir que el jugador no esta en ese tablero especifico
+                
         }
-
+        
     }
-
-    /**
-     * Method to check the correct functioning of the players' turns.
-     */
-    public void checkPlayerPlaying() {
-
+    
+    private void checkPlayerPlaying() {
+        
         if (Window.player3Active == false && Window.player4Active == false) {
-
+            
             if (playerPlaying > 1) {
-
-                playerPlaying = 0;
-
+            
+            playerPlaying = 0;
+            
             }
-
-        } else if (Window.player3Active == true && Window.player4Active == false) {
-
+            
+        } else if(Window.player3Active == true && Window.player4Active == false) {
+            
             if (playerPlaying > 2) {
-
-                playerPlaying = 0;
-
+            
+            playerPlaying = 0;
+            
             }
-
-        } else if (Window.player3Active == true && Window.player4Active == true) {
-
+            
+        } else if(Window.player3Active == true && Window.player4Active == true) {
+            
             if (playerPlaying > 3) {
-
-                playerPlaying = 0;
-
+            
+            playerPlaying = 0;
+            
             }
-
+            
         }
-
+              
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activeCoinsPlayer1;
     private javax.swing.JLabel activeCoinsPlayer2;
@@ -546,3 +504,4 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel startImage4;
     // End of variables declaration//GEN-END:variables
 }
+
