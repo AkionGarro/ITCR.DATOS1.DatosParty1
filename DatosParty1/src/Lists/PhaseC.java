@@ -106,4 +106,28 @@ public class PhaseC extends ListStructure {
 
     }
 
+    
+    @Override
+    public String findColor(int cellNumber) {
+        
+        DoubleNode actual = new DoubleNode();
+        actual = first;
+        String color = "gray";
+        
+        do{
+            
+            if (actual.cell.cellNumber == cellNumber) {
+            
+                return actual.cell.color;
+                
+            }
+            
+            actual = actual.next;
+
+        } while(actual != first);
+        
+        return color;
+        
+    }
+    
 }
