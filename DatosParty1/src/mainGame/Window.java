@@ -516,26 +516,26 @@ public class Window extends javax.swing.JFrame {
 
     private void phaseABuilder(PhaseA phaseA) {
     
-        int x = 158;
-        int y = 580;
+        int x = 131;
+        int y = 552;
         
         Cell newCell;
         
         for (int i = 38; i < 49; i++) {    
             
-            if (i == 40) {
+            if (i == 40 || i == 42) {
                 
                 x += 60;
                 
-            } else if (i == 41 || i == 42) {
+            } else if (i == 41) {
                 
                 x += 62;
                                 
-            } else if (i == 47 || i == 48) {
+            } else if (i == 45 || i == 47 || i == 48) {
             
                 x -= 60;
                 
-            } else if (i == 45 || i == 46) {
+            } else if (i == 46) {
                 
                 x -= 62;
                 
@@ -573,18 +573,18 @@ public class Window extends javax.swing.JFrame {
     
     private void phaseBBuilder(PhaseB phaseB) {
     
-        int x = 280;
-        int y = 100;
+        int x = 253;
+        int y = 72;
         
         Cell newCell;
         
         for (int i = 49; i < 55; i++) {    
             
-            if (i == 52) {
+            if (i == 51) {
                 
                 x += 60;
                 
-            } else if (i == 51 || i == 53 || i == 54) {
+            } else if (i == 52 || i == 53 || i == 54) {
                 
                 x += 62;                               
                             
@@ -592,7 +592,7 @@ public class Window extends javax.swing.JFrame {
             
                 y += 60;                       
             
-            }
+            } 
                         
             newCell = new Cell(i, x, y, "yellow", "events");
             phaseB.addNode(newCell);
@@ -603,18 +603,18 @@ public class Window extends javax.swing.JFrame {
     
     private void phaseCBuilder(PhaseC phaseC) {
     
-        int x = 98;
-        int y = 160;
+        int x = 71;
+        int y = 132;
         
         Cell newCell;
         
         for (int i = 55; i < 69; i++) {    
             
-            if (i == 56 || i == 59 || i == 62) {
+            if (i == 56 || i == 59 || i == 61) {
                 
                 x += 60;
                 
-            } else if (i == 60 || i == 61 || i == 63 || i == 68) {
+            } else if (i == 60 || i == 62 || i == 63 || i == 68) {
                 
                 x += 62;                               
                             
@@ -652,13 +652,13 @@ public class Window extends javax.swing.JFrame {
     
     private void phaseDBuilder(PhaseD phaseD) {
                       
-        int x = 708;
-        int y = 40;
+        int x = 680;
+        int y = 12;
         
         Cell newCell;
         
-        for (int i = 69; i < 83; i++) {    
-            
+        for (int i = 69; i < 83; i++) {
+                        
             if (i == 70 || i == 72 || i == 73) {
                 
                 x += 60;
