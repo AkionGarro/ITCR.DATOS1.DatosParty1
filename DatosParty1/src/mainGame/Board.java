@@ -40,22 +40,21 @@ public class Board extends javax.swing.JFrame {
         coinImage4.setVisible(false);
         startImage3.setVisible(false);
         startImage4.setVisible(false);
-        
-        activeCoinsPlayer3.setVisible(false);
-        activeCoinsPlayer4.setVisible(false);
-        activeStarsPlayer3.setVisible(false);
-        activeStarsPlayer4.setVisible(false);
-        
+
+    }
+
+    /**
+     * Place the information of the created players in the leaderboard.
+     */
+    public void playersInformation() {
+
         if (Window.player3Active == true && Window.player4Active == false) {
 
             lblTokenPlayer3.setVisible(true);
             coinImage3.setVisible(true);
             startImage3.setVisible(true);
             leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard3.png")));
-            
-            activeCoinsPlayer3.setVisible(true);
-            activeStarsPlayer3.setVisible(true);
-        
+
         } else if (Window.player3Active == true && Window.player4Active == true) {
 
             lblTokenPlayer3.setVisible(true);
@@ -66,15 +65,6 @@ public class Board extends javax.swing.JFrame {
             coinImage4.setVisible(true);
             startImage4.setVisible(true);
             leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard4.png")));
-            
-            activeCoinsPlayer3.setVisible(true);
-            activeCoinsPlayer4.setVisible(true);
-            activeStarsPlayer3.setVisible(true);
-            activeStarsPlayer4.setVisible(true);
-            
-        }
-        
-    }
 
         }
 
@@ -120,13 +110,17 @@ public class Board extends javax.swing.JFrame {
     private void updateLeaderboard() {
 
         switch (Window.players.size()) {
-                                    
+
             case 2:
 
                 activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
                 activeCoinsPlayer2.setText(String.valueOf(Window.players.get(1).getCoins()));
                 activeStarsPlayer1.setText(String.valueOf(Window.players.get(0).getStars()));
                 activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
+                activeCoinsPlayer3.setVisible(false);
+                activeCoinsPlayer4.setVisible(false);
+                activeStarsPlayer3.setVisible(false);
+                activeStarsPlayer4.setVisible(false);
 
                 break;
 
@@ -138,7 +132,9 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer1.setText(String.valueOf(Window.players.get(0).getStars()));
                 activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
                 activeStarsPlayer3.setText(String.valueOf(Window.players.get(2).getStars()));
-                
+                activeCoinsPlayer4.setVisible(false);
+                activeStarsPlayer4.setVisible(false);
+
                 break;
 
             case 4:
@@ -179,22 +175,22 @@ public class Board extends javax.swing.JFrame {
         namePlayer2 = new javax.swing.JLabel();
         namePlayer3 = new javax.swing.JLabel();
         namePlayer4 = new javax.swing.JLabel();
+        activeStarsPlayer1 = new javax.swing.JLabel();
+        activeStarsPlayer2 = new javax.swing.JLabel();
+        activeStarsPlayer3 = new javax.swing.JLabel();
+        activeStarsPlayer4 = new javax.swing.JLabel();
         startImage1 = new javax.swing.JLabel();
         startImage2 = new javax.swing.JLabel();
         startImage3 = new javax.swing.JLabel();
         startImage4 = new javax.swing.JLabel();
+        activeCoinsPlayer1 = new javax.swing.JLabel();
+        activeCoinsPlayer2 = new javax.swing.JLabel();
+        activeCoinsPlayer3 = new javax.swing.JLabel();
+        activeCoinsPlayer4 = new javax.swing.JLabel();
         coinImage1 = new javax.swing.JLabel();
         coinImage2 = new javax.swing.JLabel();
         coinImage3 = new javax.swing.JLabel();
         coinImage4 = new javax.swing.JLabel();
-        activeCoinsPlayer1 = new javax.swing.JTextField();
-        activeCoinsPlayer4 = new javax.swing.JTextField();
-        activeCoinsPlayer3 = new javax.swing.JTextField();
-        activeCoinsPlayer2 = new javax.swing.JTextField();
-        activeStarsPlayer1 = new javax.swing.JTextField();
-        activeStarsPlayer2 = new javax.swing.JTextField();
-        activeStarsPlayer3 = new javax.swing.JTextField();
-        activeStarsPlayer4 = new javax.swing.JTextField();
         leaderboard = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -250,103 +246,62 @@ public class Board extends javax.swing.JFrame {
         namePlayer4.setFont(new java.awt.Font("Elephant", 1, 20)); // NOI18N
         panel.add(namePlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 440, 100, 30));
 
+        activeStarsPlayer1.setBackground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeStarsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 280, 80, 30));
+
+        activeStarsPlayer2.setBackground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeStarsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, 80, 30));
+
+        activeStarsPlayer3.setBackground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeStarsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 80, 30));
+
+        activeStarsPlayer4.setBackground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 80, 30));
+
         startImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star.png"))); // NOI18N
-        panel.add(startImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 280, 30, 30));
+        panel.add(startImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 280, 30, 30));
 
         startImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star.png"))); // NOI18N
-        panel.add(startImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 330, 30, 30));
+        panel.add(startImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 330, 30, 30));
 
         startImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star.png"))); // NOI18N
-        panel.add(startImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 370, 30, 30));
+        panel.add(startImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 370, 30, 30));
 
         startImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star.png"))); // NOI18N
-        panel.add(startImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 420, 30, 30));
+        panel.add(startImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, 30, 30));
+
+        activeCoinsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeCoinsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, 80, 30));
+
+        activeCoinsPlayer2.setBackground(new java.awt.Color(0, 0, 0));
+        activeCoinsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeCoinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 330, 80, 30));
+
+        activeCoinsPlayer3.setBackground(new java.awt.Color(0, 0, 0));
+        activeCoinsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeCoinsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 370, 80, 30));
+
+        activeCoinsPlayer4.setBackground(new java.awt.Color(0, 0, 0));
+        activeCoinsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
+        panel.add(activeCoinsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 80, 30));
 
         coinImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 280, -1, -1));
+        panel.add(coinImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 280, -1, -1));
 
         coinImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, -1, -1));
+        panel.add(coinImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 330, -1, -1));
 
         coinImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 370, -1, -1));
+        panel.add(coinImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 370, -1, -1));
 
         coinImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 420, -1, -1));
+        panel.add(coinImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 420, -1, -1));
 
-        activeCoinsPlayer1.setEditable(false);
-        activeCoinsPlayer1.setBackground(new java.awt.Color(255, 255, 255));
-        activeCoinsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeCoinsPlayer1.setForeground(new java.awt.Color(0, 0, 0));
-        activeCoinsPlayer1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeCoinsPlayer1.setText("100");
-        activeCoinsPlayer1.setBorder(null);
-        panel.add(activeCoinsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 280, -1, -1));
-
-        activeCoinsPlayer4.setEditable(false);
-        activeCoinsPlayer4.setBackground(new java.awt.Color(255, 255, 255));
-        activeCoinsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeCoinsPlayer4.setForeground(new java.awt.Color(0, 0, 0));
-        activeCoinsPlayer4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeCoinsPlayer4.setText("100");
-        activeCoinsPlayer4.setBorder(null);
-        panel.add(activeCoinsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 420, -1, -1));
-
-        activeCoinsPlayer3.setEditable(false);
-        activeCoinsPlayer3.setBackground(new java.awt.Color(255, 255, 255));
-        activeCoinsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeCoinsPlayer3.setForeground(new java.awt.Color(0, 0, 0));
-        activeCoinsPlayer3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeCoinsPlayer3.setText("100");
-        activeCoinsPlayer3.setBorder(null);
-        panel.add(activeCoinsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 370, -1, -1));
-
-        activeCoinsPlayer2.setEditable(false);
-        activeCoinsPlayer2.setBackground(new java.awt.Color(255, 255, 255));
-        activeCoinsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeCoinsPlayer2.setForeground(new java.awt.Color(0, 0, 0));
-        activeCoinsPlayer2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeCoinsPlayer2.setText("100");
-        activeCoinsPlayer2.setBorder(null);
-        panel.add(activeCoinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, -1, -1));
-
-        activeStarsPlayer1.setEditable(false);
-        activeStarsPlayer1.setBackground(new java.awt.Color(255, 255, 255));
-        activeStarsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeStarsPlayer1.setForeground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeStarsPlayer1.setText("0");
-        activeStarsPlayer1.setBorder(null);
-        panel.add(activeStarsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 280, -1, -1));
-
-        activeStarsPlayer2.setEditable(false);
-        activeStarsPlayer2.setBackground(new java.awt.Color(255, 255, 255));
-        activeStarsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeStarsPlayer2.setForeground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeStarsPlayer2.setText("0");
-        activeStarsPlayer2.setBorder(null);
-        panel.add(activeStarsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 330, -1, -1));
-
-        activeStarsPlayer3.setEditable(false);
-        activeStarsPlayer3.setBackground(new java.awt.Color(255, 255, 255));
-        activeStarsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeStarsPlayer3.setForeground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeStarsPlayer3.setText("0");
-        activeStarsPlayer3.setBorder(null);
-        panel.add(activeStarsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 370, -1, -1));
-
-        activeStarsPlayer4.setEditable(false);
-        activeStarsPlayer4.setBackground(new java.awt.Color(255, 255, 255));
-        activeStarsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        activeStarsPlayer4.setForeground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        activeStarsPlayer4.setText("0");
-        activeStarsPlayer4.setBorder(null);
-        panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 420, -1, -1));
-
-        leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard4.png"))); // NOI18N
+        leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard2.png"))); // NOI18N
         panel.add(leaderboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -388,6 +343,7 @@ public class Board extends javax.swing.JFrame {
         if (moveToCell > 37) {
 
             moveToCell -= 38;
+
         }
 
         actualPlayer.setCell(moveToCell);
@@ -410,11 +366,9 @@ public class Board extends javax.swing.JFrame {
         } else {
 
             moveToken(3, x, y);
-            
+
         }
-        
-        actionCell(moveToCell);
-        
+
         playerPlaying++;
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
@@ -558,70 +512,16 @@ public class Board extends javax.swing.JFrame {
         }
 
     }
-    
-    private void actionCell(int cellNumber) {
-        
-        Player player = Window.players.get(playerPlaying);
-        String color = Window.principal.findColor(cellNumber);
-        int actualCoins = player.getCoins(); 
-                
-        if (color == "green") {
-                           
-            player.setCoins(actualCoins + 10);
-            updateCoins();
-                                    
-        } else if (color == "red") {
-                    
-            player.setCoins(actualCoins - 10);
-            updateCoins();
-            
-        } else if (color == "yellow") {
-            
-            eventCellAction();
-            
-        }       
-        
-    }    
-    
-    private void updateCoins() {
-        
-        String actualCoins = String.valueOf(Window.players.get(playerPlaying).getCoins());
-        
-        if (playerPlaying == 0) {
-            
-            activeCoinsPlayer1.setText(actualCoins);
-            
-        } else if (playerPlaying == 1) {
-            
-            activeCoinsPlayer2.setText(actualCoins);
-            
-        } else if (playerPlaying == 2) {
-            
-            activeCoinsPlayer3.setText(actualCoins);
-            
-        } else if (playerPlaying == 3) {
-            
-            activeCoinsPlayer4.setText(actualCoins);
-            
-        }               
-        
-    }
-    
-    private void eventCellAction() {
-        
-        System.out.println("event");
-                
-    }
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField activeCoinsPlayer1;
-    private javax.swing.JTextField activeCoinsPlayer2;
-    private javax.swing.JTextField activeCoinsPlayer3;
-    private javax.swing.JTextField activeCoinsPlayer4;
-    private javax.swing.JTextField activeStarsPlayer1;
-    private javax.swing.JTextField activeStarsPlayer2;
-    private javax.swing.JTextField activeStarsPlayer3;
-    private javax.swing.JTextField activeStarsPlayer4;
+    private javax.swing.JLabel activeCoinsPlayer1;
+    private javax.swing.JLabel activeCoinsPlayer2;
+    private javax.swing.JLabel activeCoinsPlayer3;
+    private javax.swing.JLabel activeCoinsPlayer4;
+    private javax.swing.JLabel activeStarsPlayer1;
+    private javax.swing.JLabel activeStarsPlayer2;
+    private javax.swing.JLabel activeStarsPlayer3;
+    private javax.swing.JLabel activeStarsPlayer4;
     private javax.swing.JButton btnRollDices;
     private javax.swing.JLabel coinImage1;
     private javax.swing.JLabel coinImage2;

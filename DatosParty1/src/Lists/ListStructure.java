@@ -31,7 +31,3 @@ public abstract class ListStructure {
     public abstract int findYLocation(int cellNumber);
 
 }
-    
-    public abstract String findColor(int cellNumber);
-        
-}
