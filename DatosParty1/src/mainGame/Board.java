@@ -364,7 +364,7 @@ public class Board extends javax.swing.JFrame {
                 activeCoinsPlayer2ActionPerformed(evt);
             }
         });
-        panel.add(activeCoinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 320, -1, -1));
+        panel.add(activeCoinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 330, -1, -1));
 
         activeCoinsPlayer3.setEditable(false);
         activeCoinsPlayer3.setBackground(new java.awt.Color(255, 255, 255));
@@ -378,7 +378,7 @@ public class Board extends javax.swing.JFrame {
                 activeCoinsPlayer3ActionPerformed(evt);
             }
         });
-        panel.add(activeCoinsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 360, -1, -1));
+        panel.add(activeCoinsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 370, -1, -1));
 
         activeCoinsPlayer4.setEditable(false);
         activeCoinsPlayer4.setBackground(new java.awt.Color(255, 255, 255));
@@ -392,7 +392,7 @@ public class Board extends javax.swing.JFrame {
                 activeCoinsPlayer4ActionPerformed(evt);
             }
         });
-        panel.add(activeCoinsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 410, -1, -1));
+        panel.add(activeCoinsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, -1, -1));
 
         startImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star.png"))); // NOI18N
         panel.add(startImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 280, 30, 30));
@@ -418,7 +418,7 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer1ActionPerformed(evt);
             }
         });
-        panel.add(activeStarsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 280, -1, -1));
+        panel.add(activeStarsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 280, -1, -1));
 
         activeStarsPlayer2.setEditable(false);
         activeStarsPlayer2.setBackground(new java.awt.Color(255, 255, 255));
@@ -432,7 +432,7 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer2ActionPerformed(evt);
             }
         });
-        panel.add(activeStarsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 320, -1, -1));
+        panel.add(activeStarsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 330, -1, -1));
 
         activeStarsPlayer3.setEditable(false);
         activeStarsPlayer3.setBackground(new java.awt.Color(255, 255, 255));
@@ -446,7 +446,7 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer3ActionPerformed(evt);
             }
         });
-        panel.add(activeStarsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 360, -1, -1));
+        panel.add(activeStarsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 370, -1, -1));
 
         activeStarsPlayer4.setEditable(false);
         activeStarsPlayer4.setBackground(new java.awt.Color(255, 255, 255));
@@ -460,7 +460,7 @@ public class Board extends javax.swing.JFrame {
                 activeStarsPlayer4ActionPerformed(evt);
             }
         });
-        panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 410, -1, -1));
+        panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, -1, -1));
 
         leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard2.png"))); // NOI18N
         panel.add(leaderboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, 240));
@@ -499,21 +499,84 @@ public class Board extends javax.swing.JFrame {
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
 
-        Player actualPlayer = players.get(playerPlaying);
-
+        Player actualPlayer = players.get(playerPlaying);       
+        
         int moveToCell = actualPlayer.getCell() + rightDice + leftDice;
+        
+        String actualPhase = actualPlayer.getPhase();
+        
+        int x = 0;
+        int y = 0;
+        
+        if (actualPhase == "principal") {
 
-        if (moveToCell > 37) {
+            if (moveToCell > 37) {
 
             moveToCell -= 38;
 
-        }
+            }
+               
+            if (moveToCell == 0) {
 
+            x = phaseD.findXLocation(69);
+            y = phaseD.findYLocation(69);
+
+            // movimiento hacia la izquierda
+
+            } else if (moveToCell == 9) {
+
+                x = phaseD.findXLocation(72);
+                y = phaseD.findYLocation(72);
+
+                // movimiento hacia la izquierda
+
+            } else if (moveToCell == 99) {
+
+                x = phaseD.findXLocation(76);
+                y = phaseD.findYLocation(76);
+
+                // movimiento hacia la derecha
+
+            } else if (moveToCell == 28) {
+
+                x = phaseD.findXLocation(80);
+                y = phaseD.findYLocation(80);
+
+                // movimiento hacia la derecha
+
+            } else {
+
+                x = principal.findXLocation(moveToCell);
+                y = principal.findYLocation(moveToCell);
+
+            }
+            
+        } else if (actualPhase == "phaseA") {
+            
+            x = phaseA.findXLocation(moveToCell);
+            y = phaseA.findYLocation(moveToCell);
+            
+        } else if (actualPhase == "phaseB") {
+            
+            x = phaseB.findXLocation(moveToCell);
+            y = phaseB.findYLocation(moveToCell);
+            
+            
+        } else if (actualPhase == "phaseC") {
+            
+            x = phaseC.findXLocation(moveToCell);
+            y = phaseC.findYLocation(moveToCell);
+            
+            
+        } else if (actualPhase == "phaseD") {
+            
+            x = phaseD.findXLocation(moveToCell);
+            y = phaseD.findYLocation(moveToCell);            
+            
+        }   
+        
         actualPlayer.setCell(moveToCell);
-
-        int x = principal.findXLocation(moveToCell);
-        int y = principal.findYLocation(moveToCell);
-
+        
         if (playerPlaying == 0) {
 
             moveToken(0, x, y);
