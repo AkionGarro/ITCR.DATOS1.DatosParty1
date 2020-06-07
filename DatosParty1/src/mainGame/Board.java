@@ -1,5 +1,16 @@
 package mainGame;
 
+import Lists.Cell;
+import Lists.PhaseA;
+import Lists.PhaseB;
+import Lists.PhaseC;
+import Lists.PhaseD;
+import Lists.Principal;
+import static mainGame.Window.player1Active;
+import static mainGame.Window.player2Active;
+import static mainGame.Window.player3Active;
+import static mainGame.Window.player4Active;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -9,9 +20,19 @@ import java.util.Random;
 public class Board extends javax.swing.JFrame {
 
     private int rightDice;
-    private int leftDice;
-    private int activePlayers = Window.players.size() - 1;
+    private int leftDice;        
     public static int playerPlaying = 0;
+    private static int activePlayers;
+    
+    public static ArrayList<Player> players = new ArrayList<Player>();
+        
+    static Principal principal = new Principal();
+    static PhaseA phaseA = new PhaseA();
+    static PhaseB phaseB = new PhaseB();
+    static PhaseC phaseC = new PhaseC();
+    static PhaseD phaseD = new PhaseD();
+    
+    public static Stack stack = new Stack();
 
     /**
      * This is the constructor of the board class, where the initial
@@ -21,8 +42,19 @@ public class Board extends javax.swing.JFrame {
 
         initComponents();
         configComponents();
+        
+        principalBuilder(principal);
+        phaseABuilder(phaseA);
+        phaseBBuilder(phaseB);
+        phaseCBuilder(phaseC);
+        phaseDBuilder(phaseD);
+        
+        playersCreation();        
         playersInformation();
-
+        
+        activePlayers = players.size() - 1;
+        stack.shuffle();        
+        
     }
 
     /**
@@ -77,35 +109,76 @@ public class Board extends javax.swing.JFrame {
     }
 
     /**
+     * Creation of the chosen players, with their respective attributes.
+     */    
+    private void playersCreation() {
+        
+        String name1 = Window.name1Txt.getText();
+        String name2 = Window.name2Txt.getText();
+        String name3 = Window.name3Txt.getText();
+        String name4 = Window.name4Txt.getText();
+                
+        if (player1Active == true && player2Active == true && player3Active == false && player4Active == false) {
+            
+            Player player1 = new Player(0, name1, 100);
+            players.add(player1);
+            Player player2 = new Player(1, name2, 100);
+            players.add(player2);
+
+        } else if (player1Active == true && player2Active == true && player3Active == true && player4Active == false) {
+
+            Player player1 = new Player(0, name1, 100);
+            players.add(player1);
+            Player player2 = new Player(1, name2, 100);
+            players.add(player2);
+            Player player3 = new Player(2, name3, 100);
+            players.add(player3);
+
+        } else {
+
+            Player player1 = new Player(0, name1, 100);
+            players.add(player1);
+            Player player2 = new Player(1, name2, 100);
+            players.add(player2);
+            Player player3 = new Player(2, name3, 100);
+            players.add(player3);
+            Player player4 = new Player(3, name4, 100);
+            players.add(player4);
+            
+        }
+        
+    }
+        
+    /**
      * Place the information of the created players in the leaderboard.
      */
     private void playersInformation() {
 
-        switch (Window.players.size()) {
+        switch (players.size()) {
 
             case 2:
 
-                namePlayer1.setText(Window.players.get(0).getName());
-                namePlayer2.setText(Window.players.get(1).getName());
+                namePlayer1.setText(players.get(0).getName());
+                namePlayer2.setText(players.get(1).getName());
                 updateLeaderboard();
 
                 break;
 
             case 3:
 
-                namePlayer1.setText(Window.players.get(0).getName());
-                namePlayer2.setText(Window.players.get(1).getName());
-                namePlayer3.setText(Window.players.get(2).getName());
+                namePlayer1.setText(players.get(0).getName());
+                namePlayer2.setText(players.get(1).getName());
+                namePlayer3.setText(players.get(2).getName());
                 updateLeaderboard();
 
                 break;
 
             case 4:
 
-                namePlayer1.setText(Window.players.get(0).getName());
-                namePlayer2.setText(Window.players.get(1).getName());
-                namePlayer3.setText(Window.players.get(2).getName());
-                namePlayer4.setText(Window.players.get(3).getName());
+                namePlayer1.setText(players.get(0).getName());
+                namePlayer2.setText(players.get(1).getName());
+                namePlayer3.setText(players.get(2).getName());
+                namePlayer4.setText(players.get(3).getName());
                 updateLeaderboard();
 
                 break;
@@ -122,38 +195,38 @@ public class Board extends javax.swing.JFrame {
      */
     private void updateLeaderboard() {
 
-        switch (Window.players.size()) {
+        switch (players.size()) {
 
             case 2:
 
-                activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
-                activeCoinsPlayer2.setText(String.valueOf(Window.players.get(1).getCoins()));
-                activeStarsPlayer1.setText(String.valueOf(Window.players.get(0).getStars()));
-                activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
+                activeCoinsPlayer1.setText(String.valueOf(players.get(0).getCoins()));
+                activeCoinsPlayer2.setText(String.valueOf(players.get(1).getCoins()));
+                activeStarsPlayer1.setText(String.valueOf(players.get(0).getStars()));
+                activeStarsPlayer2.setText(String.valueOf(players.get(1).getStars()));
 
                 break;
 
             case 3:
 
-                activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
-                activeCoinsPlayer2.setText(String.valueOf(Window.players.get(1).getCoins()));
-                activeCoinsPlayer3.setText(String.valueOf(Window.players.get(2).getCoins()));
-                activeStarsPlayer1.setText(String.valueOf(Window.players.get(0).getStars()));
-                activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
-                activeStarsPlayer3.setText(String.valueOf(Window.players.get(2).getStars()));
+                activeCoinsPlayer1.setText(String.valueOf(players.get(0).getCoins()));
+                activeCoinsPlayer2.setText(String.valueOf(players.get(1).getCoins()));
+                activeCoinsPlayer3.setText(String.valueOf(players.get(2).getCoins()));
+                activeStarsPlayer1.setText(String.valueOf(players.get(0).getStars()));
+                activeStarsPlayer2.setText(String.valueOf(players.get(1).getStars()));
+                activeStarsPlayer3.setText(String.valueOf(players.get(2).getStars()));
 
                 break;
 
             case 4:
 
-                activeCoinsPlayer1.setText(String.valueOf(Window.players.get(0).getCoins()));
-                activeCoinsPlayer2.setText(String.valueOf(Window.players.get(1).getCoins()));
-                activeCoinsPlayer3.setText(String.valueOf(Window.players.get(2).getCoins()));
-                activeCoinsPlayer4.setText(String.valueOf(Window.players.get(3).getCoins()));
-                activeStarsPlayer1.setText(String.valueOf(Window.players.get(0).getStars()));
-                activeStarsPlayer2.setText(String.valueOf(Window.players.get(1).getStars()));
-                activeStarsPlayer3.setText(String.valueOf(Window.players.get(2).getStars()));
-                activeStarsPlayer4.setText(String.valueOf(Window.players.get(3).getStars()));
+                activeCoinsPlayer1.setText(String.valueOf(players.get(0).getCoins()));
+                activeCoinsPlayer2.setText(String.valueOf(players.get(1).getCoins()));
+                activeCoinsPlayer3.setText(String.valueOf(players.get(2).getCoins()));
+                activeCoinsPlayer4.setText(String.valueOf(players.get(3).getCoins()));
+                activeStarsPlayer1.setText(String.valueOf(players.get(0).getStars()));
+                activeStarsPlayer2.setText(String.valueOf(players.get(1).getStars()));
+                activeStarsPlayer3.setText(String.valueOf(players.get(2).getStars()));
+                activeStarsPlayer4.setText(String.valueOf(players.get(3).getStars()));
 
                 break;
 
@@ -182,22 +255,22 @@ public class Board extends javax.swing.JFrame {
         namePlayer2 = new javax.swing.JLabel();
         namePlayer3 = new javax.swing.JLabel();
         namePlayer4 = new javax.swing.JLabel();
-        activeStarsPlayer1 = new javax.swing.JLabel();
-        activeStarsPlayer2 = new javax.swing.JLabel();
-        activeStarsPlayer3 = new javax.swing.JLabel();
-        activeStarsPlayer4 = new javax.swing.JLabel();
-        startImage1 = new javax.swing.JLabel();
-        startImage2 = new javax.swing.JLabel();
-        startImage3 = new javax.swing.JLabel();
-        startImage4 = new javax.swing.JLabel();
-        activeCoinsPlayer1 = new javax.swing.JLabel();
-        activeCoinsPlayer2 = new javax.swing.JLabel();
-        activeCoinsPlayer3 = new javax.swing.JLabel();
-        activeCoinsPlayer4 = new javax.swing.JLabel();
         coinImage1 = new javax.swing.JLabel();
         coinImage2 = new javax.swing.JLabel();
         coinImage3 = new javax.swing.JLabel();
         coinImage4 = new javax.swing.JLabel();
+        activeCoinsPlayer1 = new javax.swing.JTextField();
+        activeCoinsPlayer2 = new javax.swing.JTextField();
+        activeCoinsPlayer3 = new javax.swing.JTextField();
+        activeCoinsPlayer4 = new javax.swing.JTextField();
+        startImage1 = new javax.swing.JLabel();
+        startImage2 = new javax.swing.JLabel();
+        startImage3 = new javax.swing.JLabel();
+        startImage4 = new javax.swing.JLabel();
+        activeStarsPlayer1 = new javax.swing.JTextField();
+        activeStarsPlayer2 = new javax.swing.JTextField();
+        activeStarsPlayer3 = new javax.swing.JTextField();
+        activeStarsPlayer4 = new javax.swing.JTextField();
         leaderboard = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -253,21 +326,73 @@ public class Board extends javax.swing.JFrame {
         namePlayer4.setFont(new java.awt.Font("Elephant", 1, 20)); // NOI18N
         panel.add(namePlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 440, 100, 30));
 
-        activeStarsPlayer1.setBackground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeStarsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 280, 80, 30));
+        coinImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
+        panel.add(coinImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 280, -1, -1));
 
-        activeStarsPlayer2.setBackground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeStarsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, 80, 30));
+        coinImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
+        panel.add(coinImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 330, -1, -1));
 
-        activeStarsPlayer3.setBackground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeStarsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 80, 30));
+        coinImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
+        panel.add(coinImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 370, -1, -1));
 
-        activeStarsPlayer4.setBackground(new java.awt.Color(0, 0, 0));
-        activeStarsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 80, 30));
+        coinImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
+        panel.add(coinImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 420, -1, -1));
+
+        activeCoinsPlayer1.setEditable(false);
+        activeCoinsPlayer1.setBackground(new java.awt.Color(255, 255, 255));
+        activeCoinsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeCoinsPlayer1.setForeground(new java.awt.Color(0, 0, 0));
+        activeCoinsPlayer1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeCoinsPlayer1.setText("100");
+        activeCoinsPlayer1.setBorder(null);
+        activeCoinsPlayer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeCoinsPlayer1ActionPerformed(evt);
+            }
+        });
+        panel.add(activeCoinsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 280, -1, -1));
+
+        activeCoinsPlayer2.setEditable(false);
+        activeCoinsPlayer2.setBackground(new java.awt.Color(255, 255, 255));
+        activeCoinsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeCoinsPlayer2.setForeground(new java.awt.Color(0, 0, 0));
+        activeCoinsPlayer2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeCoinsPlayer2.setText("100");
+        activeCoinsPlayer2.setBorder(null);
+        activeCoinsPlayer2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeCoinsPlayer2ActionPerformed(evt);
+            }
+        });
+        panel.add(activeCoinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 320, -1, -1));
+
+        activeCoinsPlayer3.setEditable(false);
+        activeCoinsPlayer3.setBackground(new java.awt.Color(255, 255, 255));
+        activeCoinsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeCoinsPlayer3.setForeground(new java.awt.Color(0, 0, 0));
+        activeCoinsPlayer3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeCoinsPlayer3.setText("100");
+        activeCoinsPlayer3.setBorder(null);
+        activeCoinsPlayer3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeCoinsPlayer3ActionPerformed(evt);
+            }
+        });
+        panel.add(activeCoinsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 360, -1, -1));
+
+        activeCoinsPlayer4.setEditable(false);
+        activeCoinsPlayer4.setBackground(new java.awt.Color(255, 255, 255));
+        activeCoinsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeCoinsPlayer4.setForeground(new java.awt.Color(0, 0, 0));
+        activeCoinsPlayer4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeCoinsPlayer4.setText("100");
+        activeCoinsPlayer4.setBorder(null);
+        activeCoinsPlayer4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeCoinsPlayer4ActionPerformed(evt);
+            }
+        });
+        panel.add(activeCoinsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 410, -1, -1));
 
         startImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star.png"))); // NOI18N
         panel.add(startImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 280, 30, 30));
@@ -281,32 +406,61 @@ public class Board extends javax.swing.JFrame {
         startImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star.png"))); // NOI18N
         panel.add(startImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, 30, 30));
 
-        activeCoinsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeCoinsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, 80, 30));
+        activeStarsPlayer1.setEditable(false);
+        activeStarsPlayer1.setBackground(new java.awt.Color(255, 255, 255));
+        activeStarsPlayer1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeStarsPlayer1.setForeground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeStarsPlayer1.setText("100");
+        activeStarsPlayer1.setBorder(null);
+        activeStarsPlayer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeStarsPlayer1ActionPerformed(evt);
+            }
+        });
+        panel.add(activeStarsPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 280, -1, -1));
 
-        activeCoinsPlayer2.setBackground(new java.awt.Color(0, 0, 0));
-        activeCoinsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeCoinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 330, 80, 30));
+        activeStarsPlayer2.setEditable(false);
+        activeStarsPlayer2.setBackground(new java.awt.Color(255, 255, 255));
+        activeStarsPlayer2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeStarsPlayer2.setForeground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeStarsPlayer2.setText("100");
+        activeStarsPlayer2.setBorder(null);
+        activeStarsPlayer2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeStarsPlayer2ActionPerformed(evt);
+            }
+        });
+        panel.add(activeStarsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 320, -1, -1));
 
-        activeCoinsPlayer3.setBackground(new java.awt.Color(0, 0, 0));
-        activeCoinsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeCoinsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 370, 80, 30));
+        activeStarsPlayer3.setEditable(false);
+        activeStarsPlayer3.setBackground(new java.awt.Color(255, 255, 255));
+        activeStarsPlayer3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeStarsPlayer3.setForeground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeStarsPlayer3.setText("100");
+        activeStarsPlayer3.setBorder(null);
+        activeStarsPlayer3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeStarsPlayer3ActionPerformed(evt);
+            }
+        });
+        panel.add(activeStarsPlayer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 360, -1, -1));
 
-        activeCoinsPlayer4.setBackground(new java.awt.Color(0, 0, 0));
-        activeCoinsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        panel.add(activeCoinsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 80, 30));
-
-        coinImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 280, -1, -1));
-
-        coinImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 330, -1, -1));
-
-        coinImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 370, -1, -1));
-
-        coinImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/coin.png"))); // NOI18N
-        panel.add(coinImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 420, -1, -1));
+        activeStarsPlayer4.setEditable(false);
+        activeStarsPlayer4.setBackground(new java.awt.Color(255, 255, 255));
+        activeStarsPlayer4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        activeStarsPlayer4.setForeground(new java.awt.Color(0, 0, 0));
+        activeStarsPlayer4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        activeStarsPlayer4.setText("100");
+        activeStarsPlayer4.setBorder(null);
+        activeStarsPlayer4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeStarsPlayer4ActionPerformed(evt);
+            }
+        });
+        panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 410, -1, -1));
 
         leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard2.png"))); // NOI18N
         panel.add(leaderboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, 240));
@@ -345,7 +499,7 @@ public class Board extends javax.swing.JFrame {
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
 
-        Player actualPlayer = Window.players.get(playerPlaying);
+        Player actualPlayer = players.get(playerPlaying);
 
         int moveToCell = actualPlayer.getCell() + rightDice + leftDice;
 
@@ -357,8 +511,8 @@ public class Board extends javax.swing.JFrame {
 
         actualPlayer.setCell(moveToCell);
 
-        int x = Window.principal.findXLocation(moveToCell);
-        int y = Window.principal.findYLocation(moveToCell);
+        int x = principal.findXLocation(moveToCell);
+        int y = principal.findYLocation(moveToCell);
 
         if (playerPlaying == 0) {
 
@@ -383,6 +537,38 @@ public class Board extends javax.swing.JFrame {
         playerPlaying++;
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
+
+    private void activeCoinsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer1ActionPerformed
+
+    private void activeCoinsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer2ActionPerformed
+
+    private void activeCoinsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer3ActionPerformed
+
+    private void activeCoinsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer4ActionPerformed
+
+    private void activeStarsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer1ActionPerformed
+
+    private void activeStarsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer2ActionPerformed
+
+    private void activeStarsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer3ActionPerformed
+
+    private void activeStarsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer4ActionPerformed
 
     /**
      * Perform the animation of the right dice graphically.
@@ -505,32 +691,36 @@ public class Board extends javax.swing.JFrame {
     }
 
     private void actionCell(int cellNumber) {
-
-        Player player = Window.players.get(playerPlaying);
-        String color = Window.principal.findColor(cellNumber);
-        int actualCoins = player.getCoins();
-
+        
+        Player player = players.get(playerPlaying);
+        String color = principal.findColor(cellNumber);
+        int actualCoins = player.getCoins(); 
+                
         if (color == "green") {
-
+                           
             player.setCoins(actualCoins + 10);
             updateCoins();
-
+                                    
         } else if (color == "red") {
-
-            player.setCoins(actualCoins - 10);
-            updateCoins();
-
+            
+            if (actualCoins < 10) {            
+                    
+                player.setCoins(actualCoins - 10);
+                updateCoins();
+            
+            }
+            
         } else if (color == "yellow") {
-
+            
             eventCellAction();
-
-        }
-
+            
+        }       
+        
     }
 
     public static void updateCoins() {
 
-        String actualCoins = String.valueOf(Window.players.get(playerPlaying).getCoins());
+        String actualCoins = String.valueOf(players.get(playerPlaying).getCoins());
 
         if (playerPlaying == 0) {
 
@@ -551,54 +741,367 @@ public class Board extends javax.swing.JFrame {
         }
 
     }
+    
+    public static void updateCoinsEvent() {
+        
+        String actualCoins1 = String.valueOf(players.get(0).getCoins());
+        String actualCoins2 = String.valueOf(players.get(1).getCoins());
+        
+        if (activePlayers == 1) {
+            
+            activeCoinsPlayer1.setText(actualCoins1);
+            activeCoinsPlayer2.setText(actualCoins2);
+            
+        } else if (activePlayers == 2) {
+            
+            String actualCoins3 = String.valueOf(players.get(2).getCoins());
+            
+            activeCoinsPlayer1.setText(actualCoins1);
+            activeCoinsPlayer2.setText(actualCoins2);
+            activeCoinsPlayer3.setText(actualCoins3);
+            
+        } else if (activePlayers == 3) {
+            
+            String actualCoins3 = String.valueOf(players.get(2).getCoins());
+            String actualCoins4 = String.valueOf(players.get(3).getCoins());
+            
+            activeCoinsPlayer1.setText(actualCoins1);
+            activeCoinsPlayer2.setText(actualCoins2);
+            activeCoinsPlayer3.setText(actualCoins3);
+            activeCoinsPlayer4.setText(actualCoins4);
+            
+        }              
+        
+    }
 
-    public static void updateStars() {
-
-        String actualStars = String.valueOf(Window.players.get(playerPlaying).getStars());
-
-        if (playerPlaying == 0) {
-
-            activeStarsPlayer1.setText(actualStars);
-
-        } else if (playerPlaying == 1) {
-
-            activeStarsPlayer2.setText(actualStars);
-
-        } else if (playerPlaying == 2) {
-
-            activeStarsPlayer3.setText(actualStars);
-
-        } else if (playerPlaying == 3) {
-
-            activeStarsPlayer4.setText(actualStars);
-
-        }
-
+    public static void updateStarsEvent() {
+        
+        String actualStars1 = String.valueOf(players.get(0).getStars());
+        String actualStars2 = String.valueOf(players.get(1).getStars());
+        
+        if (activePlayers == 1) {
+            
+            activeStarsPlayer1.setText(actualStars1);
+            activeStarsPlayer2.setText(actualStars2);
+            
+        } else if (activePlayers == 2) {
+            
+            String actualStars3 = String.valueOf(players.get(2).getStars());
+            
+            activeStarsPlayer1.setText(actualStars1);
+            activeStarsPlayer2.setText(actualStars2);
+            activeStarsPlayer3.setText(actualStars3);
+            
+        } else if (activePlayers == 3) {
+            
+            String actualStars3 = String.valueOf(players.get(2).getStars());
+            String actualStars4 = String.valueOf(players.get(3).getStars());
+            
+            activeStarsPlayer1.setText(actualStars1);
+            activeStarsPlayer2.setText(actualStars2);
+            activeStarsPlayer3.setText(actualStars3);
+            activeStarsPlayer4.setText(actualStars4);
+            
+        }               
+        
     }
 
     private void eventCellAction() {
 
-        if (Window.stack.empty() == true) {
+        if (stack.empty() == true) {
 
-            Window.stack.shuffle();
+            stack.shuffle();
 
         }
 
-        Events newEvent = new Events(Window.stack.pop());
+        Events newEvent = new Events(stack.pop());
 
         newEvent.start(playerPlaying);
 
     }
+    
+    /**
+     * Creation of the cells depending on the phase in which it is.
+     * @param phaseA 
+     */
+    private void phaseABuilder(PhaseA phaseA) {
+    
+        int x = 131;
+        int y = 552;
+        
+        Cell newCell;
+        
+        for (int i = 38; i < 49; i++) {    
+            
+            if (i == 40 || i == 42) {
+                
+                x += 60;
+                
+            } else if (i == 41) {
+                
+                x += 62;
+                                
+            } else if (i == 45 || i == 47 || i == 48) {
+            
+                x -= 60;
+                
+            } else if (i == 46) {
+                
+                x -= 62;
+                
+            } else if (i == 39 || i == 43 || i == 44) {
+            
+                y -= 60;
+            
+            }
+            
+            if (i == 38 || i == 42 || i == 45) {
+                
+                newCell = new Cell(i, x, y, "blue", "neutral");
+                phaseA.addNode(newCell);
+                
+            }else if (i == 40 || i == 46) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                phaseA.addNode(newCell);
+                
+            }else if (i == 39 || i == 41 || i == 44 || i == 47) {
+                
+                newCell = new Cell(i, x, y, "red", "loseCoins");
+                phaseA.addNode(newCell);
+                
+            }else if (i == 43 || i == 48) {
+                
+                newCell = new Cell(i, x, y, "green", "winCoins");
+                phaseA.addNode(newCell);
+                
+            }            
+            
+        }
+        
+    }
+    
+    /**
+     * Creation of the cells depending on the phase in which it is.
+     * @param phaseB 
+     */
+    private void phaseBBuilder(PhaseB phaseB) {
+    
+        int x = 253;
+        int y = 72;
+        
+        Cell newCell;
+        
+        for (int i = 49; i < 55; i++) {    
+            
+            if (i == 51) {
+                
+                x += 60;
+                
+            } else if (i == 52 || i == 53 || i == 54) {
+                
+                x += 62;                               
+                            
+            } else if (i == 50) {
+            
+                y += 60;                       
+            
+            } 
+                        
+            newCell = new Cell(i, x, y, "yellow", "events");
+            phaseB.addNode(newCell);
+             
+        }
+    
+    }
+    
+    /**
+     * Creation of the cells depending on the phase in which it is.
+     * @param phaseC 
+     */
+    private void phaseCBuilder(PhaseC phaseC) {
+    
+        int x = 71;
+        int y = 132;
+        
+        Cell newCell;
+        
+        for (int i = 55; i < 69; i++) {    
+            
+            if (i == 56 || i == 59 || i == 61) {
+                
+                x += 60;
+                
+            } else if (i == 60 || i == 62 || i == 63 || i == 68) {
+                
+                x += 62;                               
+                            
+            }else if (i == 57 || i == 58 || i == 64 || i == 65 || i == 66 || i == 67) {
+            
+                y += 60;                       
+                        
+            }  
+            
+            if (i == 57 || i == 63 || i == 65) {
+                
+                newCell = new Cell(i, x, y, "blue", "neutral");
+                phaseC.addNode(newCell);
+                
+            }else if (i == 60 || i == 66) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                phaseC.addNode(newCell);
+                
+            }else if (i == 56 || i == 58 || i == 61 || i == 68) {
+                
+                newCell = new Cell(i, x, y, "red", "loseCoins");
+                phaseC.addNode(newCell);
+                
+            }else if (i == 55 || i == 59 || i == 62 || i == 64 || i == 67) {
+                
+                newCell = new Cell(i, x, y, "green", "winCoins");
+                phaseC.addNode(newCell);
+                
+            }  
+            
+        }
+            
+    }
+    
+    /**
+     * Creation of the cells depending on the phase in which it is.
+     * @param phaseD 
+     */
+    private void phaseDBuilder(PhaseD phaseD) {
+                      
+        int x = 680;
+        int y = 12;
+        
+        Cell newCell;
+        
+        for (int i = 69; i < 83; i++) {
+                        
+            if (i == 70 || i == 72 || i == 73) {
+                
+                x += 60;
+                
+            } else if (i == 71 || i == 74) {
+                
+                x += 62;
+                                
+            } else if (i == 78 || i == 79 || i == 81) {
+            
+                x -= 60;
+                
+            } else if (i == 77 || i == 80) {
+                
+                x -= 62;
+                
+            }else if (i == 75 || i == 76) {
+            
+                y += 60;                       
+            
+            } else if (i == 82) {
+            
+                y -= 60;
+            
+            }
+            
+            if (i == 69 || i == 72 || i == 76 || i == 80) {
+                
+                newCell = new Cell(i, x, y, "gray", "getOut");
+                phaseD.addNode(newCell);
+                
+            }else if (i == 70 || i == 71 || i == 73 || i == 74 || i == 75 || i == 77 || i == 78 || i == 79 || i == 81 || i == 82) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                phaseD.addNode(newCell);
+                
+            }          
+                         
+        }
+            
+    }
+    
+    /**
+     * Creation of the cells depending on the phase in which it is.
+     * @param principal 
+     */
+    private void principalBuilder(Principal principal) {
+    
+        int x = 557;
+        int y = 612;
+        
+        Cell newCell;
+        
+        for (int i = 0; i < 38; i++) {
+            
+            if (i == 21 || i == 22 || i == 24 || i == 28) {
+                
+                x += 60;
+                
+            } else if (i == 20 || i == 23 || i == 25 || i == 26 || i == 27) {
+                
+                x += 62;
+                                
+            } else if (i == 1 || i == 4 || i == 5 || i == 7 || i == 8) {
+            
+                x -= 60;
+                
+            } else if (i == 2 || i == 3 || i == 6 || i == 9) {
+                
+                x -= 62;
+                
+            }else if (i == 29 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 35 || i == 36 || i == 37) {
+            
+                y += 60;                       
+            
+            } else if (i == 10 || i == 11 || i == 12 || i == 13 || i == 14 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19) {
+            
+                y -= 60;
+            
+            }
+            
+            if (i == 0) {
+                
+                newCell = new Cell(i, x, y, "gray", "neutral");
+                principal.addNode(newCell);
+            
+            } else if (i == 1 || i == 5 || i == 9 || i == 13 || i == 17 || i == 19 || i == 23 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37) {
+                
+                newCell = new Cell(i, x, y, "blue", "neutral");
+                principal.addNode(newCell);
+                
+            }else if (i == 2 || i == 7 || i == 11 || i == 16 || i == 22 || i == 27 || i == 32 || i == 36) {
+                
+                newCell = new Cell(i, x, y, "yellow", "events");
+                principal.addNode(newCell);
+                
+            }else if (i == 3 || i == 6 || i == 12 || i == 15 || i == 21 || i == 26 || i == 29 || i == 35) {
+                
+                newCell = new Cell(i, x, y, "red", "loseCoins");
+                principal.addNode(newCell);
+                
+            }else if (i == 4 || i == 8 || i == 10 || i == 14 || i == 18 || i == 20 || i == 24 || i == 30 || i == 33) {
+                
+                newCell = new Cell(i, x, y, "green", "winCoins");
+                principal.addNode(newCell);
+                
+            }            
+            
+        }           
+    
+    }        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel activeCoinsPlayer1;
-    public static javax.swing.JLabel activeCoinsPlayer2;
-    public static javax.swing.JLabel activeCoinsPlayer3;
-    public static javax.swing.JLabel activeCoinsPlayer4;
-    public static javax.swing.JLabel activeStarsPlayer1;
-    public static javax.swing.JLabel activeStarsPlayer2;
-    public static javax.swing.JLabel activeStarsPlayer3;
-    public static javax.swing.JLabel activeStarsPlayer4;
+    public static javax.swing.JTextField activeCoinsPlayer1;
+    public static javax.swing.JTextField activeCoinsPlayer2;
+    public static javax.swing.JTextField activeCoinsPlayer3;
+    public static javax.swing.JTextField activeCoinsPlayer4;
+    public static javax.swing.JTextField activeStarsPlayer1;
+    public static javax.swing.JTextField activeStarsPlayer2;
+    public static javax.swing.JTextField activeStarsPlayer3;
+    public static javax.swing.JTextField activeStarsPlayer4;
     private javax.swing.JButton btnRollDices;
     private javax.swing.JLabel coinImage1;
     private javax.swing.JLabel coinImage2;
