@@ -216,10 +216,10 @@ public class Board extends javax.swing.JFrame {
         });
         panel.add(btnRollDices, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 610, -1, -1));
 
-        lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 1.png"))); // NOI18N
+        lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
         panel.add(lblRightDice, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 540, -1, -1));
 
-        lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dado 1.png"))); // NOI18N
+        lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
         panel.add(lblLeftDice, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 540, -1, -1));
 
         diceBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/rollDices.png"))); // NOI18N
