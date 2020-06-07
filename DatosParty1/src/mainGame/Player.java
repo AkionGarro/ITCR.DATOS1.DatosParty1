@@ -98,7 +98,7 @@ public class Player {
         
     }
     
-    public void setDirection(int cell) {
+    public void setDirection(String cell) {
         
         this.direction = getDirection();
         

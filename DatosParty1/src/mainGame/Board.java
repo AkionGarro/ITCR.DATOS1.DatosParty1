@@ -508,91 +508,102 @@ public class Board extends javax.swing.JFrame {
         int x = 0;
         int y = 0;
         
-        if (actualPhase == "principal") {
+        if (null != actualPhase) switch (actualPhase) {
+            case "principal":
+                if (moveToCell > 37) {
+                    
+                    moveToCell -= 38;
+                    
+                }   switch (moveToCell) {
+                    case 0:
+                        x = phaseD.findXLocation(69);
+                        y = phaseD.findYLocation(69);
+                        actualPlayer.setDirection("next");
+                        // movimiento hacia la izquierda
+                        break;
+                    case 9:
+                        x = phaseD.findXLocation(72);
+                        y = phaseD.findYLocation(72);
+                        actualPlayer.setDirection("next");
+                        // movimiento hacia la izquierda
+                        break;
+                    case 19:
+                        x = phaseD.findXLocation(76);
+                        y = phaseD.findYLocation(76);
+                        actualPlayer.setDirection("previus");
+                        // movimiento hacia la derecha
+                        break;
+                    case 28:
+                        x = phaseD.findXLocation(80);
+                        y = phaseD.findYLocation(80);
+                        actualPlayer.setDirection("previus");
+                        
+                        // movimiento hacia la derecha
+                        break;
+                    case 7:
+                        x= phaseA.findXLocation(38);
+                        y= phaseA.findYLocation(38);
+                        actualPlayer.setDirection("next");
+                        break;
+                    case 17:
+                        x= phaseC.findXLocation(55);
+                        y= phaseC.findYLocation(55);
+                        actualPlayer.setDirection("next");
+                        break;
+                    case 36:
+                        x= phaseC.findXLocation(68);
+                        y= phaseC.findYLocation(68);
+                        actualPlayer.setDirection("previus");
+                        break;
+                    case 23:
+                        x= phaseB.findXLocation(49);
+                        y= phaseB.findYLocation(49);
+                        actualPlayer.setDirection("next");
+                        break;
 
-            if (moveToCell > 37) {
-
-            moveToCell -= 38;
-
-            }
-               
-            if (moveToCell == 0) {
-
-            x = phaseD.findXLocation(69);
-            y = phaseD.findYLocation(69);
-
-            // movimiento hacia la izquierda
-
-            } else if (moveToCell == 9) {
-
-                x = phaseD.findXLocation(72);
-                y = phaseD.findYLocation(72);
-
-                // movimiento hacia la izquierda
-
-            } else if (moveToCell == 99) {
-
-                x = phaseD.findXLocation(76);
-                y = phaseD.findYLocation(76);
-
-                // movimiento hacia la derecha
-
-            } else if (moveToCell == 28) {
-
-                x = phaseD.findXLocation(80);
-                y = phaseD.findYLocation(80);
-
-                // movimiento hacia la derecha
-
-            } else {
-
-                x = principal.findXLocation(moveToCell);
-                y = principal.findYLocation(moveToCell);
-
-            }
-            
-        } else if (actualPhase == "phaseA") {
-            
-            x = phaseA.findXLocation(moveToCell);
-            y = phaseA.findYLocation(moveToCell);
-            
-        } else if (actualPhase == "phaseB") {
-            
-            x = phaseB.findXLocation(moveToCell);
-            y = phaseB.findYLocation(moveToCell);
-            
-            
-        } else if (actualPhase == "phaseC") {
-            
-            x = phaseC.findXLocation(moveToCell);
-            y = phaseC.findYLocation(moveToCell);
-            
-            
-        } else if (actualPhase == "phaseD") {
-            
-            x = phaseD.findXLocation(moveToCell);
-            y = phaseD.findYLocation(moveToCell);            
-            
-        }   
+                    default:
+                        x = principal.findXLocation(moveToCell);
+                        y = principal.findYLocation(moveToCell);
+                        actualPlayer.setDirection("next");
+                        break;
+                }   
+                break;
+                
+            case "phaseA":
+                x = phaseA.findXLocation(moveToCell);
+                y = phaseA.findYLocation(moveToCell);
+                break;
+            case "phaseB":
+                x = phaseB.findXLocation(moveToCell);
+                y = phaseB.findYLocation(moveToCell);
+                break;
+            case "phaseC":
+                x = phaseC.findXLocation(moveToCell);
+                y = phaseC.findYLocation(moveToCell);
+                break;
+            case "phaseD":   
+                x = phaseD.findXLocation(moveToCell);
+                y = phaseD.findYLocation(moveToCell);
+                break;
+            default:
+                break;
+        }
         
         actualPlayer.setCell(moveToCell);
         
-        if (playerPlaying == 0) {
-
-            moveToken(0, x, y);
-
-        } else if (playerPlaying == 1) {
-
-            moveToken(1, x, y);
-
-        } else if (playerPlaying == 2) {
-
-            moveToken(2, x, y);
-
-        } else {
-
-            moveToken(3, x, y);
-
+        switch (playerPlaying) {
+            case 0:
+                moveToken(0, x, y);
+                break;
+            case 1:
+                moveToken(1, x, y);
+                break;
+            case 2:
+                moveToken(2, x, y);
+                break;
+            default:
+                moveToken(3, x, y);
+                break;
         }
 
         actionCell(moveToCell);
