@@ -20,18 +20,18 @@ import java.util.Random;
 public class Board extends javax.swing.JFrame {
 
     private int rightDice;
-    private int leftDice;        
+    private int leftDice;
     public static int playerPlaying = 0;
     private static int activePlayers;
-    
+
     public static ArrayList<Player> players = new ArrayList<Player>();
-        
+
     static Principal principal = new Principal();
     static PhaseA phaseA = new PhaseA();
     static PhaseB phaseB = new PhaseB();
     static PhaseC phaseC = new PhaseC();
     static PhaseD phaseD = new PhaseD();
-    
+
     public static Stack stack = new Stack();
 
     /**
@@ -42,19 +42,19 @@ public class Board extends javax.swing.JFrame {
 
         initComponents();
         configComponents();
-        
+
         principalBuilder(principal);
         phaseABuilder(phaseA);
         phaseBBuilder(phaseB);
         phaseCBuilder(phaseC);
         phaseDBuilder(phaseD);
-        
-        playersCreation();        
+
+        playersCreation();
         playersInformation();
-        
+
         activePlayers = players.size() - 1;
-        stack.shuffle();        
-        
+        stack.shuffle();
+
     }
 
     /**
@@ -110,16 +110,16 @@ public class Board extends javax.swing.JFrame {
 
     /**
      * Creation of the chosen players, with their respective attributes.
-     */    
+     */
     private void playersCreation() {
-        
+
         String name1 = Window.name1Txt.getText();
         String name2 = Window.name2Txt.getText();
         String name3 = Window.name3Txt.getText();
         String name4 = Window.name4Txt.getText();
-                
+
         if (player1Active == true && player2Active == true && player3Active == false && player4Active == false) {
-            
+
             Player player1 = new Player(0, name1, 100);
             players.add(player1);
             Player player2 = new Player(1, name2, 100);
@@ -144,11 +144,11 @@ public class Board extends javax.swing.JFrame {
             players.add(player3);
             Player player4 = new Player(3, name4, 100);
             players.add(player4);
-            
+
         }
-        
+
     }
-        
+
     /**
      * Place the information of the created players in the leaderboard.
      */
@@ -495,102 +495,104 @@ public class Board extends javax.swing.JFrame {
 
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
-
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
 
-        Player actualPlayer = players.get(playerPlaying);       
-        
+        Player actualPlayer = players.get(playerPlaying);
+
         int moveToCell = actualPlayer.getCell() + rightDice + leftDice;
-        
+
         String actualPhase = actualPlayer.getPhase();
-        
+
         int x = 0;
         int y = 0;
-        
-        if (null != actualPhase) switch (actualPhase) {
-            case "principal":
-                if (moveToCell > 37) {
-                    
-                    moveToCell -= 38;
-                    
-                }   switch (moveToCell) {
-                    case 0:
-                        x = phaseD.findXLocation(69);
-                        y = phaseD.findYLocation(69);
-                        actualPlayer.setDirection("next");
-                        // movimiento hacia la izquierda
-                        break;
-                    case 9:
-                        x = phaseD.findXLocation(72);
-                        y = phaseD.findYLocation(72);
-                        actualPlayer.setDirection("next");
-                        // movimiento hacia la izquierda
-                        break;
-                    case 19:
-                        x = phaseD.findXLocation(76);
-                        y = phaseD.findYLocation(76);
-                        actualPlayer.setDirection("previus");
-                        // movimiento hacia la derecha
-                        break;
-                    case 28:
-                        x = phaseD.findXLocation(80);
-                        y = phaseD.findYLocation(80);
-                        actualPlayer.setDirection("previus");
-                        
-                        // movimiento hacia la derecha
-                        break;
-                    case 7:
-                        x= phaseA.findXLocation(38);
-                        y= phaseA.findYLocation(38);
-                        actualPlayer.setDirection("next");
-                        break;
-                    case 17:
-                        x= phaseC.findXLocation(55);
-                        y= phaseC.findYLocation(55);
-                        actualPlayer.setDirection("next");
-                        break;
-                    case 36:
-                        x= phaseC.findXLocation(68);
-                        y= phaseC.findYLocation(68);
-                        actualPlayer.setDirection("previus");
-                        break;
-                    case 23:
-                        x= phaseB.findXLocation(49);
-                        y= phaseB.findYLocation(49);
-                        actualPlayer.setDirection("next");
-                        break;
 
-                    default:
-                        x = principal.findXLocation(moveToCell);
-                        y = principal.findYLocation(moveToCell);
-                        actualPlayer.setDirection("next");
-                        break;
-                }   
-                break;
-                
-            case "phaseA":
-                x = phaseA.findXLocation(moveToCell);
-                y = phaseA.findYLocation(moveToCell);
-                break;
-            case "phaseB":
-                x = phaseB.findXLocation(moveToCell);
-                y = phaseB.findYLocation(moveToCell);
-                break;
-            case "phaseC":
-                x = phaseC.findXLocation(moveToCell);
-                y = phaseC.findYLocation(moveToCell);
-                break;
-            case "phaseD":   
-                x = phaseD.findXLocation(moveToCell);
-                y = phaseD.findYLocation(moveToCell);
-                break;
-            default:
-                break;
+        if (null != actualPhase) {
+            switch (actualPhase) {
+                case "principal":
+                    if (moveToCell > 37) {
+
+                        moveToCell -= 38;
+
+                    }
+                    switch (moveToCell) {
+                        case 0:
+                            x = phaseD.findXLocation(69);
+                            y = phaseD.findYLocation(69);
+                            actualPlayer.setDirection("next");
+                            // movimiento hacia la izquierda
+                            break;
+                        case 9:
+                            x = phaseD.findXLocation(72);
+                            y = phaseD.findYLocation(72);
+                            actualPlayer.setDirection("next");
+                            // movimiento hacia la izquierda
+                            break;
+                        case 19:
+                            x = phaseD.findXLocation(76);
+                            y = phaseD.findYLocation(76);
+                            actualPlayer.setDirection("previus");
+                            // movimiento hacia la derecha
+                            break;
+                        case 28:
+                            x = phaseD.findXLocation(80);
+                            y = phaseD.findYLocation(80);
+                            actualPlayer.setDirection("previus");
+
+                            // movimiento hacia la derecha
+                            break;
+                        case 7:
+                            x = phaseA.findXLocation(38);
+                            y = phaseA.findYLocation(38);
+                            actualPlayer.setDirection("next");
+                            break;
+                        case 17:
+                            x = phaseC.findXLocation(55);
+                            y = phaseC.findYLocation(55);
+                            actualPlayer.setDirection("next");
+                            break;
+                        case 36:
+                            x = phaseC.findXLocation(68);
+                            y = phaseC.findYLocation(68);
+                            actualPlayer.setDirection("previus");
+                            break;
+                        case 23:
+                            x = phaseB.findXLocation(49);
+                            y = phaseB.findYLocation(49);
+                            actualPlayer.setDirection("next");
+                            break;
+
+                        default:
+                            x = principal.findXLocation(moveToCell);
+                            y = principal.findYLocation(moveToCell);
+                            actualPlayer.setDirection("next");
+                            break;
+                    }
+                    break;
+
+                case "phaseA":
+                    x = phaseA.findXLocation(moveToCell);
+                    y = phaseA.findYLocation(moveToCell);
+                    break;
+                case "phaseB":
+                    x = phaseB.findXLocation(moveToCell);
+                    y = phaseB.findYLocation(moveToCell);
+                    break;
+                case "phaseC":
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    break;
+                case "phaseD":
+                    x = phaseD.findXLocation(moveToCell);
+                    y = phaseD.findYLocation(moveToCell);
+                    break;
+                default:
+                    break;
+            }
         }
-        
+
         actualPlayer.setCell(moveToCell);
-        
+
         switch (playerPlaying) {
             case 0:
                 moveToken(0, x, y);
@@ -765,31 +767,31 @@ public class Board extends javax.swing.JFrame {
     }
 
     private void actionCell(int cellNumber) {
-        
+
         Player player = players.get(playerPlaying);
         String color = principal.findColor(cellNumber);
-        int actualCoins = player.getCoins(); 
-                
+        int actualCoins = player.getCoins();
+
         if (color == "green") {
-                           
+
             player.setCoins(actualCoins + 10);
             updateCoins();
-                                    
+
         } else if (color == "red") {
-            
-            if (actualCoins < 10) {            
-                    
+
+            if (actualCoins < 10) {
+
                 player.setCoins(actualCoins - 10);
                 updateCoins();
-            
+
             }
-            
+
         } else if (color == "yellow") {
-            
+
             eventCellAction();
-            
-        }       
-        
+
+        }
+
     }
 
     public static void updateCoins() {
@@ -815,69 +817,69 @@ public class Board extends javax.swing.JFrame {
         }
 
     }
-    
+
     public static void updateCoinsEvent() {
-        
+
         String actualCoins1 = String.valueOf(players.get(0).getCoins());
         String actualCoins2 = String.valueOf(players.get(1).getCoins());
-        
+
         if (activePlayers == 1) {
-            
+
             activeCoinsPlayer1.setText(actualCoins1);
             activeCoinsPlayer2.setText(actualCoins2);
-            
+
         } else if (activePlayers == 2) {
-            
+
             String actualCoins3 = String.valueOf(players.get(2).getCoins());
-            
+
             activeCoinsPlayer1.setText(actualCoins1);
             activeCoinsPlayer2.setText(actualCoins2);
             activeCoinsPlayer3.setText(actualCoins3);
-            
+
         } else if (activePlayers == 3) {
-            
+
             String actualCoins3 = String.valueOf(players.get(2).getCoins());
             String actualCoins4 = String.valueOf(players.get(3).getCoins());
-            
+
             activeCoinsPlayer1.setText(actualCoins1);
             activeCoinsPlayer2.setText(actualCoins2);
             activeCoinsPlayer3.setText(actualCoins3);
             activeCoinsPlayer4.setText(actualCoins4);
-            
-        }              
-        
+
+        }
+
     }
 
     public static void updateStarsEvent() {
-        
+
         String actualStars1 = String.valueOf(players.get(0).getStars());
         String actualStars2 = String.valueOf(players.get(1).getStars());
-        
+
         if (activePlayers == 1) {
-            
+
             activeStarsPlayer1.setText(actualStars1);
             activeStarsPlayer2.setText(actualStars2);
-            
+
         } else if (activePlayers == 2) {
-            
+
             String actualStars3 = String.valueOf(players.get(2).getStars());
-            
+
             activeStarsPlayer1.setText(actualStars1);
             activeStarsPlayer2.setText(actualStars2);
             activeStarsPlayer3.setText(actualStars3);
-            
+
         } else if (activePlayers == 3) {
-            
+
             String actualStars3 = String.valueOf(players.get(2).getStars());
             String actualStars4 = String.valueOf(players.get(3).getStars());
-            
+
             activeStarsPlayer1.setText(actualStars1);
             activeStarsPlayer2.setText(actualStars2);
             activeStarsPlayer3.setText(actualStars3);
             activeStarsPlayer4.setText(actualStars4);
-            
-        }               
-        
+
+        }
+
     }
 
     private void eventCellAction() {
@@ -893,279 +895,284 @@ public class Board extends javax.swing.JFrame {
         newEvent.start(playerPlaying);
 
     }
-    
+
     /**
      * Creation of the cells depending on the phase in which it is.
-     * @param phaseA 
+     *
+     * @param phaseA
      */
     private void phaseABuilder(PhaseA phaseA) {
-    
+
         int x = 131;
         int y = 552;
-        
+
         Cell newCell;
-        
-        for (int i = 38; i < 49; i++) {    
-            
+
+        for (int i = 38; i < 49; i++) {
+
             if (i == 40 || i == 42) {
-                
+
                 x += 60;
-                
+
             } else if (i == 41) {
-                
+
                 x += 62;
-                                
+
             } else if (i == 45 || i == 47 || i == 48) {
-            
+
                 x -= 60;
-                
+
             } else if (i == 46) {
-                
+
                 x -= 62;
-                
+
             } else if (i == 39 || i == 43 || i == 44) {
-            
+
                 y -= 60;
-            
+
             }
-            
+
             if (i == 38 || i == 42 || i == 45) {
-                
+
                 newCell = new Cell(i, x, y, "blue", "neutral");
                 phaseA.addNode(newCell);
-                
-            }else if (i == 40 || i == 46) {
-                
+
+            } else if (i == 40 || i == 46) {
+
                 newCell = new Cell(i, x, y, "yellow", "events");
                 phaseA.addNode(newCell);
-                
-            }else if (i == 39 || i == 41 || i == 44 || i == 47) {
-                
+
+            } else if (i == 39 || i == 41 || i == 44 || i == 47) {
+
                 newCell = new Cell(i, x, y, "red", "loseCoins");
                 phaseA.addNode(newCell);
-                
-            }else if (i == 43 || i == 48) {
-                
+
+            } else if (i == 43 || i == 48) {
+
                 newCell = new Cell(i, x, y, "green", "winCoins");
                 phaseA.addNode(newCell);
-                
-            }            
-            
+
+            }
+
         }
-        
+
     }
-    
+
     /**
      * Creation of the cells depending on the phase in which it is.
-     * @param phaseB 
+     *
+     * @param phaseB
      */
     private void phaseBBuilder(PhaseB phaseB) {
-    
+
         int x = 253;
         int y = 72;
-        
+
         Cell newCell;
-        
-        for (int i = 49; i < 55; i++) {    
-            
+
+        for (int i = 49; i < 55; i++) {
+
             if (i == 51) {
-                
+
                 x += 60;
-                
+
             } else if (i == 52 || i == 53 || i == 54) {
-                
-                x += 62;                               
-                            
+
+                x += 62;
+
             } else if (i == 50) {
-            
-                y += 60;                       
-            
-            } 
-                        
+
+                y += 60;
+
+            }
+
             newCell = new Cell(i, x, y, "yellow", "events");
             phaseB.addNode(newCell);
-             
+
         }
-    
+
     }
-    
+
     /**
      * Creation of the cells depending on the phase in which it is.
-     * @param phaseC 
+     *
+     * @param phaseC
      */
     private void phaseCBuilder(PhaseC phaseC) {
-    
+
         int x = 71;
         int y = 132;
-        
+
         Cell newCell;
-        
-        for (int i = 55; i < 69; i++) {    
-            
+
+        for (int i = 55; i < 69; i++) {
+
             if (i == 56 || i == 59 || i == 61) {
-                
+
                 x += 60;
-                
+
             } else if (i == 60 || i == 62 || i == 63 || i == 68) {
-                
-                x += 62;                               
-                            
-            }else if (i == 57 || i == 58 || i == 64 || i == 65 || i == 66 || i == 67) {
-            
-                y += 60;                       
-                        
-            }  
-            
+
+                x += 62;
+
+            } else if (i == 57 || i == 58 || i == 64 || i == 65 || i == 66 || i == 67) {
+
+                y += 60;
+
+            }
+
             if (i == 57 || i == 63 || i == 65) {
-                
+
                 newCell = new Cell(i, x, y, "blue", "neutral");
                 phaseC.addNode(newCell);
-                
-            }else if (i == 60 || i == 66) {
-                
+
+            } else if (i == 60 || i == 66) {
+
                 newCell = new Cell(i, x, y, "yellow", "events");
                 phaseC.addNode(newCell);
-                
-            }else if (i == 56 || i == 58 || i == 61 || i == 68) {
-                
+
+            } else if (i == 56 || i == 58 || i == 61 || i == 68) {
+
                 newCell = new Cell(i, x, y, "red", "loseCoins");
                 phaseC.addNode(newCell);
-                
-            }else if (i == 55 || i == 59 || i == 62 || i == 64 || i == 67) {
-                
+
+            } else if (i == 55 || i == 59 || i == 62 || i == 64 || i == 67) {
+
                 newCell = new Cell(i, x, y, "green", "winCoins");
                 phaseC.addNode(newCell);
-                
-            }  
-            
+
+            }
+
         }
-            
+
     }
-    
+
     /**
      * Creation of the cells depending on the phase in which it is.
-     * @param phaseD 
+     *
+     * @param phaseD
      */
     private void phaseDBuilder(PhaseD phaseD) {
-                      
+
         int x = 680;
         int y = 12;
-        
+
         Cell newCell;
-        
+
         for (int i = 69; i < 83; i++) {
-                        
+
             if (i == 70 || i == 72 || i == 73) {
-                
+
                 x += 60;
-                
+
             } else if (i == 71 || i == 74) {
-                
+
                 x += 62;
-                                
+
             } else if (i == 78 || i == 79 || i == 81) {
-            
+
                 x -= 60;
-                
+
             } else if (i == 77 || i == 80) {
-                
+
                 x -= 62;
-                
-            }else if (i == 75 || i == 76) {
-            
-                y += 60;                       
-            
+
+            } else if (i == 75 || i == 76) {
+
+                y += 60;
+
             } else if (i == 82) {
-            
+
                 y -= 60;
-            
+
             }
-            
+
             if (i == 69 || i == 72 || i == 76 || i == 80) {
-                
+
                 newCell = new Cell(i, x, y, "gray", "getOut");
                 phaseD.addNode(newCell);
-                
-            }else if (i == 70 || i == 71 || i == 73 || i == 74 || i == 75 || i == 77 || i == 78 || i == 79 || i == 81 || i == 82) {
-                
+
+            } else if (i == 70 || i == 71 || i == 73 || i == 74 || i == 75 || i == 77 || i == 78 || i == 79 || i == 81 || i == 82) {
+
                 newCell = new Cell(i, x, y, "yellow", "events");
                 phaseD.addNode(newCell);
-                
-            }          
-                         
+
+            }
+
         }
-            
+
     }
-    
+
     /**
      * Creation of the cells depending on the phase in which it is.
-     * @param principal 
+     *
+     * @param principal
      */
     private void principalBuilder(Principal principal) {
-    
+
         int x = 557;
         int y = 612;
-        
+
         Cell newCell;
-        
+
         for (int i = 0; i < 38; i++) {
-            
+
             if (i == 21 || i == 22 || i == 24 || i == 28) {
-                
+
                 x += 60;
-                
+
             } else if (i == 20 || i == 23 || i == 25 || i == 26 || i == 27) {
-                
+
                 x += 62;
-                                
+
             } else if (i == 1 || i == 4 || i == 5 || i == 7 || i == 8) {
-            
+
                 x -= 60;
-                
+
             } else if (i == 2 || i == 3 || i == 6 || i == 9) {
-                
+
                 x -= 62;
-                
-            }else if (i == 29 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 35 || i == 36 || i == 37) {
-            
-                y += 60;                       
-            
+
+            } else if (i == 29 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 35 || i == 36 || i == 37) {
+
+                y += 60;
+
             } else if (i == 10 || i == 11 || i == 12 || i == 13 || i == 14 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19) {
-            
+
                 y -= 60;
-            
+
             }
-            
+
             if (i == 0) {
-                
+
                 newCell = new Cell(i, x, y, "gray", "neutral");
                 principal.addNode(newCell);
-            
+
             } else if (i == 1 || i == 5 || i == 9 || i == 13 || i == 17 || i == 19 || i == 23 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37) {
-                
+
                 newCell = new Cell(i, x, y, "blue", "neutral");
                 principal.addNode(newCell);
-                
-            }else if (i == 2 || i == 7 || i == 11 || i == 16 || i == 22 || i == 27 || i == 32 || i == 36) {
-                
+
+            } else if (i == 2 || i == 7 || i == 11 || i == 16 || i == 22 || i == 27 || i == 32 || i == 36) {
+
                 newCell = new Cell(i, x, y, "yellow", "events");
                 principal.addNode(newCell);
-                
-            }else if (i == 3 || i == 6 || i == 12 || i == 15 || i == 21 || i == 26 || i == 29 || i == 35) {
-                
+
+            } else if (i == 3 || i == 6 || i == 12 || i == 15 || i == 21 || i == 26 || i == 29 || i == 35) {
+
                 newCell = new Cell(i, x, y, "red", "loseCoins");
                 principal.addNode(newCell);
-                
-            }else if (i == 4 || i == 8 || i == 10 || i == 14 || i == 18 || i == 20 || i == 24 || i == 30 || i == 33) {
-                
+
+            } else if (i == 4 || i == 8 || i == 10 || i == 14 || i == 18 || i == 20 || i == 24 || i == 30 || i == 33) {
+
                 newCell = new Cell(i, x, y, "green", "winCoins");
                 principal.addNode(newCell);
-                
-            }            
-            
-        }           
-    
-    }        
+
+            }
+
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField activeCoinsPlayer1;

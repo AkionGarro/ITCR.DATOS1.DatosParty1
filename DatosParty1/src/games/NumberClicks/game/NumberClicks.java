@@ -1,4 +1,4 @@
-package MiniGames;
+package games.NumberClicks.game;
 
 import javax.swing.Timer;
 import java.awt.event.*;

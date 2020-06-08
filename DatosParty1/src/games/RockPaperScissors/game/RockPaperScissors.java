@@ -1,4 +1,4 @@
-package game.RockPaperScissors.game;
+package games.RockPaperScissors.game;
 
 import java.util.Random;
 import javax.swing.JOptionPane;

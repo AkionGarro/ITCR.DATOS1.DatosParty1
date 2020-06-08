@@ -1,4 +1,4 @@
-package MiniGames;
+package games.TicTacToe.game;
 
 import java.awt.Color;
 import javax.swing.JLabel;
