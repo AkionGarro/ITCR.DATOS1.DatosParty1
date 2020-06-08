@@ -1,68 +1,90 @@
 package games.MathQuiz;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
-/**
- *
- * @author gabos
- */
 public class MathQuiz extends javax.swing.JFrame {
 
-        Random rand = new Random();
-        int n = rand.nextInt(50) + 1;
-        int m = rand.nextInt(50) + 1;
-        int k = rand.nextInt(50) + 1;
-        int total = 0;
-        int b,c,d,e=0;
-         
-        boolean correct = false;
-        int o = rand.nextInt(4) + 1;
-        
-    public MathQuiz() {
-        initComponents();
-    }
-     
-    
-    
-    
+    private Timer time;
+    private int hundredths = 0, seconds = 0, minutes = 0, hours = 0;
 
-    
+    Random rand = new Random();
+    int n = rand.nextInt(50) + 1;
+    int m = rand.nextInt(50) + 1;
+    int k = rand.nextInt(50) + 1;
+    int total = 0;
+    int b, c, d, e = 0;
+
+    boolean correct = false;
+    int option = rand.nextInt(4) + 1;
+
+    public MathQuiz() {
+        time = new Timer(10, action);
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    private ActionListener action = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            hundredths++;
+            if (hundredths == 100) {
+                seconds++;
+                hundredths = 0;
+            }
+            if (seconds == 60) {
+                minutes++;
+                seconds = 0;
+            }
+            if (minutes == 60) {
+                hours++;
+                minutes = 0;
+
+            }
+
+            updateTimeLabel();
+        }
+    };
+
+    private void updateTimeLabel() {
+        String text = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths;
+        timeRunning.setText(text);
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        lblOperation = new javax.swing.JLabel();
+        gamePanel = new javax.swing.JPanel();
         startButton = new javax.swing.JButton();
-        readyButton = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        lblanswer1 = new javax.swing.JLabel();
-        lblanswer2 = new javax.swing.JLabel();
-        lblanswer3 = new javax.swing.JLabel();
-        lblanswer4 = new javax.swing.JLabel();
+        finishButton = new javax.swing.JButton();
+        option1Button = new javax.swing.JRadioButton();
+        option2Button = new javax.swing.JRadioButton();
+        option3Button = new javax.swing.JRadioButton();
+        option4Button = new javax.swing.JRadioButton();
+        answer1Label = new javax.swing.JLabel();
+        answer2Label = new javax.swing.JLabel();
+        answer3Label = new javax.swing.JLabel();
+        answer4Label = new javax.swing.JLabel();
+        operationLabel = new javax.swing.JLabel();
+        informationPanel = new javax.swing.JPanel();
+        timeRunning = new javax.swing.JLabel();
+        gameTittle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setTitle("Math Quiz");
+        setResizable(false);
 
-        lblOperation.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblOperation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(lblOperation, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 32, 262, 80));
+        gamePanel.setBackground(new java.awt.Color(255, 255, 255));
+        gamePanel.setForeground(new java.awt.Color(255, 255, 255));
+        gamePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        startButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        startButton.setForeground(new java.awt.Color(0, 0, 0));
         startButton.setText("Start");
         startButton.setVisible(true);
         startButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,176 +97,205 @@ public class MathQuiz extends javax.swing.JFrame {
                 startButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 70, -1));
+        gamePanel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 240, 80));
 
-        readyButton.setText("Ready");
-        readyButton.setVisible(false);
-        readyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        finishButton.setBackground(new java.awt.Color(255, 255, 255));
+        finishButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        finishButton.setForeground(new java.awt.Color(0, 0, 0));
+        finishButton.setText("Finish");
+        finishButton.setVisible(false);
+        finishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                readyButtonMouseClicked(evt);
+                finishButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(readyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 70, -1));
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setVisible(false);
-        jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioButton1MouseClicked(evt);
-            }
-        });
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        finishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                finishButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        gamePanel.add(finishButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, 250, 80));
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setVisible(false);
-        jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonGroup1.add(option1Button);
+        option1Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        option1Button.setVisible(false);
+        option1Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioButton2MouseClicked(evt);
+                option1ButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        gamePanel.add(option1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 30, -1));
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setVisible(false);
-        jRadioButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonGroup1.add(option2Button);
+        option2Button.setVisible(false);
+        option2Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioButton3MouseClicked(evt);
+                option2ButtonMouseClicked(evt);
             }
         });
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 185, -1, -1));
+        gamePanel.add(option2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 540, -1, -1));
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setVisible(false);
-        jRadioButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonGroup1.add(option3Button);
+        option3Button.setVisible(false);
+        option3Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioButton4MouseClicked(evt);
+                option3ButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 258, -1, -1));
-        getContentPane().add(lblanswer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 40, 28));
-        getContentPane().add(lblanswer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 24, 28));
-        getContentPane().add(lblanswer3, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 195, 18, 18));
-        getContentPane().add(lblanswer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 258, 19, 27));
+        gamePanel.add(option3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, -1, -1));
+
+        buttonGroup1.add(option4Button);
+        option4Button.setForeground(new java.awt.Color(255, 255, 255));
+        option4Button.setVisible(false);
+        option4Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                option4ButtonMouseClicked(evt);
+            }
+        });
+        gamePanel.add(option4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, -1, -1));
+
+        answer1Label.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        gamePanel.add(answer1Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 50, 28));
+
+        answer2Label.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        gamePanel.add(answer2Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 540, 50, 30));
+
+        answer3Label.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        gamePanel.add(answer3Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 50, 30));
+
+        answer4Label.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        gamePanel.add(answer4Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 50, 30));
+
+        operationLabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        operationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gamePanel.add(operationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 500, 150));
+
+        informationPanel.setBackground(new java.awt.Color(255, 255, 255));
+        informationPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        timeRunning.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
+        timeRunning.setForeground(new java.awt.Color(0, 0, 0));
+        timeRunning.setText("00:00:00:00");
+        informationPanel.add(timeRunning, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
+
+        gameTittle.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        gameTittle.setForeground(new java.awt.Color(0, 0, 0));
+        gameTittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameTittle.setText("¡Realiza la operación matemática aleatoria!");
+        informationPanel.add(gameTittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 60));
+
+        gamePanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 130));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startButtonMouseClicked
-     
-       quizMath();
-       readyButton.setVisible(true);
-       startButton.setVisible(false);
-       jRadioButton2.setVisible(true);
-       jRadioButton3.setVisible(true);
-       jRadioButton4.setVisible(true);
-       jRadioButton1.setVisible(true);
-       
-       
-       
+
+        quizMath();
+        finishButton.setVisible(true);
+        startButton.setVisible(false);
+        option2Button.setVisible(true);
+        option3Button.setVisible(true);
+        option4Button.setVisible(true);
+        option1Button.setVisible(true);
+
+
     }//GEN-LAST:event_startButtonMouseClicked
 
-    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_startButtonActionPerformed
-
-    private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
-        if (o==3){
-            correct=true;
+    private void option2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option2ButtonMouseClicked
+        if (option == 3) {
+            correct = true;
         }
-    }//GEN-LAST:event_jRadioButton2MouseClicked
+    }//GEN-LAST:event_option2ButtonMouseClicked
 
-    private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
-        if (o==2){
-            correct=true;
+    private void option3ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option3ButtonMouseClicked
+        if (option == 2) {
+            correct = true;
         }
-    }//GEN-LAST:event_jRadioButton3MouseClicked
+    }//GEN-LAST:event_option3ButtonMouseClicked
 
-    private void jRadioButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton4MouseClicked
-        if (o==1){
-            correct=true;
+    private void option4ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option4ButtonMouseClicked
+        if (option == 1) {
+            correct = true;
         }
-    }//GEN-LAST:event_jRadioButton4MouseClicked
+    }//GEN-LAST:event_option4ButtonMouseClicked
 
-    private void readyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_readyButtonMouseClicked
+    private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finishButtonMouseClicked
 
-        if (correct==true){
+        if (correct == true) {
             JOptionPane.showMessageDialog(this, "Felicidades tu respuesta es correcta");
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Tu respuesta es incorrecta");
         }
-    }//GEN-LAST:event_readyButtonMouseClicked
+    }//GEN-LAST:event_finishButtonMouseClicked
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
-        if (o==4){
-            correct=true;
+    private void option1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option1ButtonMouseClicked
+        if (option == 4) {
+            correct = true;
         }
-    }//GEN-LAST:event_jRadioButton1MouseClicked
+    }//GEN-LAST:event_option1ButtonMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public void quizMath(){
-        total = (n+m-k);
-        lblOperation.setText(String.valueOf(n+"+"+m+"-"+k));
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        time.start();
+    }//GEN-LAST:event_startButtonActionPerformed
 
-        switch(o){
+    private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
+        if (correct == true) {
+            time.stop();
+        }
+
+    }//GEN-LAST:event_finishButtonActionPerformed
+
+
+    public void quizMath() {
+        total = (n + m - k);
+        operationLabel.setText(String.valueOf(n + "+" + m + "-" + k));
+
+        switch (option) {
             case 1:
-                lblanswer4.setText(String.valueOf(total));
-                lblanswer2.setText(String.valueOf(total-1));
-                lblanswer3.setText(String.valueOf(total+2));
-                lblanswer1.setText(String.valueOf(total/2));
+                answer4Label.setText(String.valueOf(total));
+                answer2Label.setText(String.valueOf(total - 1));
+                answer3Label.setText(String.valueOf(total + 2));
+                answer1Label.setText(String.valueOf(total / 2));
                 break;
-                
+
             case 2:
-                lblanswer3.setText(String.valueOf(total));
-                lblanswer4.setText(String.valueOf(total-1));
-                lblanswer1.setText(String.valueOf(total+2));
-                lblanswer2.setText(String.valueOf(total/2));
+                answer3Label.setText(String.valueOf(total));
+                answer4Label.setText(String.valueOf(total - 1));
+                answer1Label.setText(String.valueOf(total + 2));
+                answer2Label.setText(String.valueOf(total / 2));
                 break;
-                
+
             case 3:
-                lblanswer2.setText(String.valueOf(total));
-                lblanswer4.setText(String.valueOf(total-1));
-                lblanswer1.setText(String.valueOf(total+2));
-                lblanswer3.setText(String.valueOf(total/2)); 
+                answer2Label.setText(String.valueOf(total));
+                answer4Label.setText(String.valueOf(total - 1));
+                answer1Label.setText(String.valueOf(total + 2));
+                answer3Label.setText(String.valueOf(total / 2));
                 break;
-                
+
             case 4:
-                lblanswer1.setText(String.valueOf(total));
-                lblanswer4.setText(String.valueOf(total-1));
-                lblanswer3.setText(String.valueOf(total+2));
-                lblanswer2.setText(String.valueOf(total/2));  
+                answer1Label.setText(String.valueOf(total));
+                answer4Label.setText(String.valueOf(total - 1));
+                answer3Label.setText(String.valueOf(total + 2));
+                answer2Label.setText(String.valueOf(total / 2));
                 break;
-                
-            
-                
-                
+
         }
-        System.out.println("gg"+total);
-        
-        
-        
+
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -274,26 +325,27 @@ public class MathQuiz extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MathQuiz().setVisible(true);
-                
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel answer1Label;
+    private javax.swing.JLabel answer2Label;
+    private javax.swing.JLabel answer3Label;
+    private javax.swing.JLabel answer4Label;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JLabel lblOperation;
-    private javax.swing.JLabel lblanswer1;
-    private javax.swing.JLabel lblanswer2;
-    private javax.swing.JLabel lblanswer3;
-    private javax.swing.JLabel lblanswer4;
-    private javax.swing.JButton readyButton;
+    private javax.swing.JButton finishButton;
+    private javax.swing.JPanel gamePanel;
+    private javax.swing.JLabel gameTittle;
+    private javax.swing.JPanel informationPanel;
+    private javax.swing.JLabel operationLabel;
+    private javax.swing.JRadioButton option1Button;
+    private javax.swing.JRadioButton option2Button;
+    private javax.swing.JRadioButton option3Button;
+    private javax.swing.JRadioButton option4Button;
     private javax.swing.JButton startButton;
+    private javax.swing.JLabel timeRunning;
     // End of variables declaration//GEN-END:variables
 }
