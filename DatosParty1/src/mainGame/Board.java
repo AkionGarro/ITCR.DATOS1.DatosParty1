@@ -12,6 +12,7 @@ import static mainGame.Window.player3Active;
 import static mainGame.Window.player4Active;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  * This class is in charge of all the graphic configuration of the components
@@ -23,6 +24,7 @@ public class Board extends javax.swing.JFrame {
     private int leftDice;
     public static int playerPlaying = 0;
     private static int activePlayers;
+    private static int round = 0;
 
     public static ArrayList<Player> players = new ArrayList<Player>();
 
@@ -491,8 +493,6 @@ public class Board extends javax.swing.JFrame {
      */
     private void btnRollDicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollDicesActionPerformed
 
-        checkPlayerPlaying();
-
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
 
@@ -517,6 +517,7 @@ public class Board extends javax.swing.JFrame {
                 
         int x = 0;
         int y = 0;
+        int pointer = 0;
         
         if (null != actualPhase) switch (actualPhase) {
             
@@ -572,6 +573,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 7:
                         
+                        pointer = 7;
                         actualPlayer.setPhase("phaseA");
                         x = principal.findXLocation(7);
                         y = principal.findYLocation(7);
@@ -580,8 +582,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 17:
                         
-                        System.out.println("entre a 17");
-                        
+                        pointer = 17;
                         actualPlayer.setPhase("phaseC");
                         actualPlayer.setDirection("next");
                         x = principal.findXLocation(17);
@@ -591,8 +592,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 23:
                         
-                        System.out.println("entre a 23");
-                        
+                        pointer = 23;
                         actualPlayer.setPhase("phaseB");
                         actualPlayer.setDirection("next");
                         x = principal.findXLocation(23);
@@ -602,8 +602,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 36:
                         
-                        System.out.println("entre a 36");
-                        
+                        pointer = 36;
                         actualPlayer.setPhase("phaseC");
                         actualPlayer.setDirection("previous");
                         x = principal.findXLocation(36);
@@ -820,9 +819,11 @@ public class Board extends javax.swing.JFrame {
 
         }
 
-        actionCell(moveToCell);
+        actionCell(moveToCell, pointer);
 
         playerPlaying ++;
+        
+        checkPlayerPlaying(); 
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
 
@@ -940,38 +941,67 @@ public class Board extends javax.swing.JFrame {
      */
     private void checkPlayerPlaying() {
 
-        if (playerPlaying > activePlayers) {
+        if (round > 0 && playerPlaying > activePlayers) {
+            
+            //nuevo minijuego
+            
+            String message = "El minijuego será: "; // + minijuego.getName
+        
+            JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
+
+            //minijuego.start
+            
+            playerPlaying = 0;
+            
+        } else if (playerPlaying > activePlayers) {
 
             playerPlaying = 0;
+            round ++;
 
         }
 
     }
 
-    private void actionCell(int cellNumber) {
+    private void actionCell(int cellNumber, int pointer) {
         
         Player player = players.get(playerPlaying);
         int actualCoins = player.getCoins();
         String phase = player.getPhase();
         String color = "";
-        
+                
         if (phase == "principal") {
             
             color = principal.findColor(cellNumber);
             
+        } else if (phase == "phaseA" && pointer == 7) {
+            
+            color = "yellow";           
+                        
         } else if (phase == "phaseA") {
             
             color = phaseA.findColor(cellNumber);
             
-        } else if (phase == "pahseB") {
+        } else if (phase == "phaseB" && pointer == 23) { 
+        
+            color = "blue";
+        
+        } else if (phase == "phaseB") {
             
             color = phaseB.findColor(cellNumber);
             
-        } else if (phase == "pahseC") {
+        } else if (phase == "phaseC" && pointer == 17) {
+            
+            color = "blue";
+            
+        } else if (phase == "phaseC" && pointer == 36) {
+        
+            color = "yellow"; 
+        
+        } else if (phase == "phaseC") {
             
             color = phaseC.findColor(cellNumber);
             
-        } else if (phase == "pahseD") {
+        } else if (phase == "phaseD") {
             
             color = phaseD.findColor(cellNumber);
             
@@ -995,7 +1025,7 @@ public class Board extends javax.swing.JFrame {
             
             eventCellAction();
             
-        }       
+        }          
         
     }
 
