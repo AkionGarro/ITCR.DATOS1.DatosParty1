@@ -107,6 +107,48 @@ public class PhaseD extends ListStructure {
         return -1;
 
     }
+    
+    public int findXLocationPrevious(int cellNumber) {
+
+        DoubleNode actual = new DoubleNode();
+        actual = first;
+
+        do {
+
+            if (actual.cell.cellNumber == cellNumber) {
+
+                return actual.cell.xPosition;
+
+            }
+
+            actual = actual.previous;
+
+        } while (actual != null);
+
+        return -1;
+
+    }
+    
+    public int findYLocationPrevious(int cellNumber) {
+
+        DoubleNode actual = new DoubleNode();
+        actual = first;
+
+        do {
+
+            if (actual.cell.cellNumber == cellNumber) {
+
+                return actual.cell.yPosition;
+
+            }
+
+            actual = actual.previous;
+
+        } while (actual != null);
+
+        return -1;
+
+    }
 
     @Override
     public String findColor(int cellNumber) {

@@ -495,156 +495,336 @@ public class Board extends javax.swing.JFrame {
 
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
+
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
 
-        Player actualPlayer = players.get(playerPlaying);
-
-        int moveToCell = actualPlayer.getCell() + rightDice + leftDice;
-
+        Player actualPlayer = players.get(playerPlaying); 
+        
+        int moveToCell;
+        
+        if (actualPlayer.getDirection() == "next") {
+            
+            moveToCell = actualPlayer.getCell() + rightDice + leftDice;
+            
+        } else {
+            
+            moveToCell = actualPlayer.getCell() - rightDice - leftDice;
+            
+        }
+                
         String actualPhase = actualPlayer.getPhase();
-
+                
         int x = 0;
         int y = 0;
+        
+        if (null != actualPhase) switch (actualPhase) {
+            
+            case "principal":
+                
+                if (moveToCell > 37) {
+                    
+                    moveToCell -= 38;
+                    
+                } 
+                
+                switch (moveToCell) {
+                                        
+                    case 0:
+                        
+                        moveToCell = 69;                        
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("next");                                                
+                        x = phaseD.findXLocation(69);
+                        y = phaseD.findYLocation(69);
+                        
+                        break;
+                        
+                    case 9:
+                        
+                        moveToCell = 72;                                                                      
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("next");                        
+                        x = phaseD.findXLocation(72);
+                        y = phaseD.findYLocation(72);                          
+                        
+                        break;
+                        
+                    case 19:
+                        
+                        moveToCell = 76;
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("previous");                        
+                        x = phaseD.findXLocation(76);
+                        y = phaseD.findYLocation(76);
+                        
+                        break;
+                        
+                    case 28:
+                        
+                        moveToCell = 80;
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("previous");                        
+                        x = phaseD.findXLocation(80);
+                        y = phaseD.findYLocation(80);
+                        
+                        break;
+                        
+                    case 7:
+                        
+                        actualPlayer.setPhase("phaseA");
+                        x = principal.findXLocation(7);
+                        y = principal.findYLocation(7);
+                        
+                        break;
+                        
+                    case 17:
+                        
+                        System.out.println("entre a 17");
+                        
+                        actualPlayer.setPhase("phaseC");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(17);
+                        y = principal.findYLocation(17);
+                                                
+                        break;
+                        
+                    case 23:
+                        
+                        System.out.println("entre a 23");
+                        
+                        actualPlayer.setPhase("phaseB");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(23);
+                        y = principal.findYLocation(23);
+                        
+                        break;
+                        
+                    case 36:
+                        
+                        System.out.println("entre a 36");
+                        
+                        actualPlayer.setPhase("phaseC");
+                        actualPlayer.setDirection("previous");
+                        x = principal.findXLocation(36);
+                        y = principal.findYLocation(36);
+                                                
+                        break;
+                        
+                    default:
+                        
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(moveToCell);
+                        y = principal.findYLocation(moveToCell);
+                                                
+                        break;
+                        
+                }   
 
-        if (null != actualPhase) {
-            switch (actualPhase) {
-                case "principal":
-                    if (moveToCell > 37) {
+                break;
 
-                        moveToCell -= 38;
-
-                    }
-                    switch (moveToCell) {
-                        case 0:
-                            x = phaseD.findXLocation(69);
-                            y = phaseD.findYLocation(69);
-                            actualPlayer.setDirection("next");
-                            // movimiento hacia la izquierda
-                            break;
-                        case 9:
-                            x = phaseD.findXLocation(72);
-                            y = phaseD.findYLocation(72);
-                            actualPlayer.setDirection("next");
-                            // movimiento hacia la izquierda
-                            break;
-                        case 19:
-                            x = phaseD.findXLocation(76);
-                            y = phaseD.findYLocation(76);
-                            actualPlayer.setDirection("previus");
-                            // movimiento hacia la derecha
-                            break;
-                        case 28:
-                            x = phaseD.findXLocation(80);
-                            y = phaseD.findYLocation(80);
-                            actualPlayer.setDirection("previus");
-
-                            // movimiento hacia la derecha
-                            break;
-                        case 7:
-                            x = phaseA.findXLocation(38);
-                            y = phaseA.findYLocation(38);
-                            actualPlayer.setDirection("next");
-                            break;
-                        case 17:
-                            x = phaseC.findXLocation(55);
-                            y = phaseC.findYLocation(55);
-                            actualPlayer.setDirection("next");
-                            break;
-                        case 36:
-                            x = phaseC.findXLocation(68);
-                            y = phaseC.findYLocation(68);
-                            actualPlayer.setDirection("previus");
-                            break;
-                        case 23:
-                            x = phaseB.findXLocation(49);
-                            y = phaseB.findYLocation(49);
-                            actualPlayer.setDirection("next");
-                            break;
-
-                        default:
-                            x = principal.findXLocation(moveToCell);
-                            y = principal.findYLocation(moveToCell);
-                            actualPlayer.setDirection("next");
-                            break;
-                    }
-                    break;
-
-                case "phaseA":
+                
+            case "phaseA":
+                
+                if (actualPlayer.getCell() == 7) {
+                    
+                    moveToCell = 37 + rightDice + leftDice;
                     x = phaseA.findXLocation(moveToCell);
                     y = phaseA.findYLocation(moveToCell);
-                    break;
-                case "phaseB":
+                    
+                }
+                
+                if (moveToCell > 48) {
+                    
+                    moveToCell = moveToCell - 49 + 13;                    
+                    actualPlayer.setPhase("principal");                    
+                    actualPlayer.setDirection("next");
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else {
+                    
+                    x = phaseA.findXLocation(moveToCell);
+                    y = phaseA.findYLocation(moveToCell);
+                    
+                }  
+                
+                break;
+                
+            case "phaseB":
+                
+                if (actualPlayer.getCell() == 23) {
+                    
+                    moveToCell = 48 + rightDice + leftDice;
                     x = phaseB.findXLocation(moveToCell);
                     y = phaseB.findYLocation(moveToCell);
-                    break;
-                case "phaseC":
+                    
+                }
+                
+                if (moveToCell > 54) {
+                    
+                    moveToCell = moveToCell - 55 + 30;                    
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else {
+                    
+                    x = phaseB.findXLocation(moveToCell);
+                    y = phaseB.findYLocation(moveToCell);
+                    
+                }   
+                
+                break;
+                
+            case "phaseC":
+                
+                if (actualPlayer.getCell() == 17) {
+                    
+                    moveToCell = 54 + rightDice + leftDice;
                     x = phaseC.findXLocation(moveToCell);
                     y = phaseC.findYLocation(moveToCell);
-                    break;
-                case "phaseD":
+                    
+                } else if (actualPlayer.getCell() == 36) {
+                    
+                    moveToCell = 69 - rightDice - leftDice;
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    
+                } else if (moveToCell > 68) {
+                    
+                    moveToCell = moveToCell - 69 + 36;
+                    
+                    if (moveToCell > 37) {
+                        
+                        moveToCell -= 38;
+                        
+                    }
+                    
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else if (moveToCell < 55) {
+                    
+                    moveToCell = 54 - moveToCell + 17;                    
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else if (actualPlayer.getDirection() == "next") {
+                    
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    
+                } else if (actualPlayer.getDirection() == "previous") {
+                    
+                    x = phaseC.findXLocationPrevious(moveToCell);
+                    y = phaseC.findYLocationPrevious(moveToCell);
+                    
+                }
+                
+                break;
+                
+            case "phaseD":
+                
+                if (moveToCell > 82) {
+                    
+                    moveToCell = moveToCell - 83 + 69;
+                    
+                } else if (moveToCell < 69) {
+                    
+                    moveToCell = 82 - (68 - moveToCell);
+                    
+                }
+                
+                if (moveToCell == 69) {
+                    
+                    moveToCell = 0;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(0);
+                    y = principal.findYLocation(0);
+                    
+                    
+                } else if (moveToCell == 72) {
+                    
+                    moveToCell = 9;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(9);
+                    y = principal.findYLocation(9);     
+                    
+                } else if (moveToCell == 76) {
+                    
+                    moveToCell = 19;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(19);
+                    y = principal.findYLocation(19);
+                    
+                } else if (moveToCell == 80) {
+                    
+                    moveToCell = 28;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(28);
+                    y = principal.findYLocation(28);
+                    
+                    if (moveToCell > 37) {
+                    
+                    moveToCell -= 38;
+                    
+                    }   
+                    
+                } else if (actualPlayer.getDirection() == "next") {
+                    
                     x = phaseD.findXLocation(moveToCell);
                     y = phaseD.findYLocation(moveToCell);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        actualPlayer.setCell(moveToCell);
-
-        switch (playerPlaying) {
-            case 0:
-                moveToken(0, x, y);
+                    
+                } else if (actualPlayer.getDirection() == "previous") {
+                    
+                    x = phaseD.findXLocationPrevious(moveToCell);
+                    y = phaseD.findYLocationPrevious(moveToCell);
+                    
+                }    
+                
                 break;
-            case 1:
-                moveToken(1, x, y);
-                break;
-            case 2:
-                moveToken(2, x, y);
-                break;
+                
             default:
-                moveToken(3, x, y);
+                
                 break;
+                
+        }
+                
+        actualPlayer.setCell(moveToCell);        
+        
+        if (playerPlaying == 0) {
+
+            moveToken(0, x, y);
+
+        } else if (playerPlaying == 1) {
+
+            moveToken(1, x, y);
+
+        } else if (playerPlaying == 2) {
+
+            moveToken(2, x, y);
+
+        } else {
+
+            moveToken(3, x, y);
+
         }
 
         actionCell(moveToCell);
 
-        playerPlaying++;
+        playerPlaying ++;
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
-
-    private void activeCoinsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeCoinsPlayer1ActionPerformed
-
-    private void activeCoinsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeCoinsPlayer2ActionPerformed
-
-    private void activeCoinsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeCoinsPlayer3ActionPerformed
-
-    private void activeCoinsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeCoinsPlayer4ActionPerformed
-
-    private void activeStarsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeStarsPlayer1ActionPerformed
-
-    private void activeStarsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeStarsPlayer2ActionPerformed
-
-    private void activeStarsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeStarsPlayer3ActionPerformed
-
-    private void activeStarsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activeStarsPlayer4ActionPerformed
 
     /**
      * Perform the animation of the right dice graphically.
@@ -746,6 +926,8 @@ public class Board extends javax.swing.JFrame {
             }
 
         } else {
+            
+            System.out.println("X y Y son iguales a -1");
 
             // validar caso en el que la ficha no esté en el board principal
             // Recordar que si el metodo retorna un -1, quiere decir que el jugador no esta en ese tablero especifico
@@ -767,31 +949,54 @@ public class Board extends javax.swing.JFrame {
     }
 
     private void actionCell(int cellNumber) {
-
+        
         Player player = players.get(playerPlaying);
-        String color = principal.findColor(cellNumber);
         int actualCoins = player.getCoins();
-
+        String phase = player.getPhase();
+        String color = "";
+        
+        if (phase == "principal") {
+            
+            color = principal.findColor(cellNumber);
+            
+        } else if (phase == "phaseA") {
+            
+            color = phaseA.findColor(cellNumber);
+            
+        } else if (phase == "pahseB") {
+            
+            color = phaseB.findColor(cellNumber);
+            
+        } else if (phase == "pahseC") {
+            
+            color = phaseC.findColor(cellNumber);
+            
+        } else if (phase == "pahseD") {
+            
+            color = phaseD.findColor(cellNumber);
+            
+        }
+                        
         if (color == "green") {
-
+                           
             player.setCoins(actualCoins + 10);
             updateCoins();
-
+                                    
         } else if (color == "red") {
-
-            if (actualCoins < 10) {
-
+            
+            if (actualCoins < 10) {            
+                    
                 player.setCoins(actualCoins - 10);
                 updateCoins();
-
+            
             }
-
+            
         } else if (color == "yellow") {
-
+            
             eventCellAction();
-
-        }
-
+            
+        }       
+        
     }
 
     public static void updateCoins() {
@@ -1173,7 +1378,39 @@ public class Board extends javax.swing.JFrame {
         }
 
     }
+        
+    private void activeCoinsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer1ActionPerformed
 
+    private void activeCoinsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer2ActionPerformed
+
+    private void activeCoinsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer3ActionPerformed
+
+    private void activeCoinsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeCoinsPlayer4ActionPerformed
+
+    private void activeStarsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer1ActionPerformed
+
+    private void activeStarsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer2ActionPerformed
+
+    private void activeStarsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer3ActionPerformed
+
+    private void activeStarsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activeStarsPlayer4ActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField activeCoinsPlayer1;
     public static javax.swing.JTextField activeCoinsPlayer2;

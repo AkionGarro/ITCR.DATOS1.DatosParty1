@@ -16,7 +16,7 @@ public class Events {
     
     public void start(int actualIndex) {
                                    
-        switch (this.name) {          
+        switch (this.name) {        
                       
             case "duel":
                 
@@ -82,7 +82,7 @@ public class Events {
                 
             case "changePositions":
                 
-                changePositionsEvent(actualIndex, randomIndex1(actualIndex)); //Preguntar si será random o elegido
+                changePositionsEvent(actualIndex, randomIndex1(actualIndex));
                 
                 break;
         
@@ -91,14 +91,18 @@ public class Events {
     }
     
     private int randomIndex1(int firstIndex) {
-    
-        int secondIndex = new Random().nextInt(activePlayers);
-                
-        while (secondIndex == firstIndex) {
+        
+        int secondIndex = 0;
+                        
+        for (int i = 0; i <= activePlayers; i++) {
 
-            secondIndex = new Random().nextInt(activePlayers);                
+            if (i != firstIndex) {
 
-        }
+                secondIndex = i;
+
+            }
+
+        }        
         
         return secondIndex;
     
@@ -141,7 +145,7 @@ public class Events {
     } 
     
     private void duelEvent(int firstIndex, int secondIndex) {
-        
+                       
         Player firstPlayer = Board.players.get(firstIndex);
         Player secondPlayer = Board.players.get(secondIndex);
         
@@ -167,8 +171,7 @@ public class Events {
         Player firstPlayer = Board.players.get(firstIndex);
         Player secondPlayer = Board.players.get(secondIndex);
                         
-        String message = firstPlayer.getName() + " perdió " + 0 + " monedas" + " y" + "\n"
-                       + secondPlayer.getName() + " ganó " + 0 + " monedas";
+        String message = firstPlayer.getName() + " no tiene monedas para ser robadas";
         
         int stolenCoins = new Random().nextInt(25);
         
@@ -353,8 +356,47 @@ public class Events {
         int newCell = secondPlayer.getCell();
         firstPlayer.setCell(newCell);
         
-        int newX = Board.principal.findXLocation(newCell);
-        int newY = Board.principal.findYLocation(newCell);
+        String newDirection = secondPlayer.getDirection();
+        
+        int newX = 0;
+        int newY = 0;
+        
+        if (newCell >= 0 && newCell <= 37) {
+                        
+            firstPlayer.setPhase("principal");
+            firstPlayer.setDirection(newDirection);
+            newX = Board.principal.findXLocation(newCell);
+            newY = Board.principal.findYLocation(newCell);            
+            
+        } else if (newCell >= 38 && newCell <= 48) {
+            
+            firstPlayer.setPhase("phaseA");
+            firstPlayer.setDirection(newDirection);
+            newX = Board.phaseA.findXLocation(newCell);
+            newY = Board.phaseA.findYLocation(newCell);
+            
+        } else if (newCell >= 49 && newCell <= 54) {
+            
+            firstPlayer.setPhase("phaseB");
+            firstPlayer.setDirection(newDirection);
+            newX = Board.phaseB.findXLocation(newCell);
+            newY = Board.phaseB.findYLocation(newCell);
+            
+        } else if (newCell >= 55 && newCell <= 68) {
+            
+            firstPlayer.setPhase("phaseC");
+            firstPlayer.setDirection(newDirection);
+            newX = Board.phaseC.findXLocation(newCell);
+            newY = Board.phaseC.findYLocation(newCell);
+            
+        } else if (newCell >= 69 && newCell <= 82) {
+            
+            firstPlayer.setPhase("phaseD");
+            firstPlayer.setDirection(newDirection);
+            newX = Board.phaseD.findXLocation(newCell);
+            newY = Board.phaseD.findYLocation(newCell);           
+                        
+        }        
         
         String message = firstPlayer.getName() + " se teletransportará a donde está " + secondPlayer.getName();
         
@@ -375,10 +417,87 @@ public class Events {
         firstPlayer.setCell(newCell1);
         secondPlayer.setCell(newCell2);
         
-        int newX1 = Board.principal.findXLocation(newCell1);
-        int newY1 = Board.principal.findYLocation(newCell1);
-        int newX2 = Board.principal.findXLocation(newCell2);
-        int newY2 = Board.principal.findYLocation(newCell2);
+        String newDirection1 = secondPlayer.getDirection();
+        String newDirection2 = firstPlayer.getDirection();
+        
+        int newX1 = 0;
+        int newY1 = 0;
+        int newX2 = 0;
+        int newY2 = 0;
+        
+        if (newCell1 >= 0 && newCell1 <= 37) {
+                        
+            firstPlayer.setPhase("principal");
+            firstPlayer.setDirection(newDirection1);
+            newX1 = Board.principal.findXLocation(newCell1);
+            newY1 = Board.principal.findYLocation(newCell1);            
+            
+        } else if (newCell1 >= 38 && newCell1 <= 48) {
+            
+            firstPlayer.setPhase("phaseA");
+            firstPlayer.setDirection(newDirection1);
+            newX1 = Board.phaseA.findXLocation(newCell1);
+            newY1 = Board.phaseA.findYLocation(newCell1);
+            
+        } else if (newCell1 >= 49 && newCell1 <= 54) {
+            
+            firstPlayer.setPhase("phaseB");
+            firstPlayer.setDirection(newDirection1);
+            newX1 = Board.phaseB.findXLocation(newCell1);
+            newY1 = Board.phaseB.findYLocation(newCell1);
+            
+        } else if (newCell1 >= 55 && newCell1 <= 68) {
+            
+            firstPlayer.setPhase("phaseC");
+            firstPlayer.setDirection(newDirection1);
+            newX1 = Board.phaseC.findXLocation(newCell1);
+            newY1 = Board.phaseC.findYLocation(newCell1);
+            
+        } else if (newCell1 >= 69 && newCell1 <= 82) {
+            
+            firstPlayer.setPhase("phaseD");
+            firstPlayer.setDirection(newDirection1);
+            newX1 = Board.phaseD.findXLocation(newCell1);
+            newY1 = Board.phaseD.findYLocation(newCell1);           
+                        
+        }
+        
+        if (newCell2 >= 0 && newCell2 <= 37) {
+                        
+            secondPlayer.setPhase("principal");
+            secondPlayer.setDirection(newDirection2);
+            newX2 = Board.principal.findXLocation(newCell2);
+            newY2 = Board.principal.findYLocation(newCell2);            
+            
+        } else if (newCell2 >= 38 && newCell2 <= 48) {
+            
+            secondPlayer.setPhase("phaseA");
+            secondPlayer.setDirection(newDirection2);
+            newX2 = Board.phaseA.findXLocation(newCell2);
+            newY2 = Board.phaseA.findYLocation(newCell2);
+            
+        } else if (newCell2 >= 49 && newCell2 <= 54) {
+            
+            secondPlayer.setPhase("phaseB");
+            secondPlayer.setDirection(newDirection2);
+            newX2 = Board.phaseB.findXLocation(newCell2);
+            newY2 = Board.phaseB.findYLocation(newCell2);
+            
+        } else if (newCell2 >= 55 && newCell2 <= 68) {
+            
+            secondPlayer.setPhase("phaseC");
+            secondPlayer.setDirection(newDirection2);
+            newX2 = Board.phaseC.findXLocation(newCell2);
+            newY2 = Board.phaseC.findYLocation(newCell2);
+            
+        } else if (newCell2 >= 69 && newCell2 <= 82) {
+            
+            secondPlayer.setPhase("phaseD");
+            secondPlayer.setDirection(newDirection2);
+            newX2 = Board.phaseD.findXLocation(newCell2);
+            newY2 = Board.phaseD.findYLocation(newCell2);           
+                        
+        }
         
         String message = firstPlayer.getName() + " y " + secondPlayer.getName() + " cambiarán de posiciones";
         

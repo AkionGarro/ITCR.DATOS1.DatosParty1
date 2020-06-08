@@ -34,43 +34,43 @@ public class Player {
 
     public int getNumber() {
         
-        return number;
+        return this.number;
         
     }
 
     public String getName() {
         
-        return name;
+        return this.name;
         
     }
 
     public int getStars() {
         
-        return stars;
+        return this.stars;
         
     }
 
     public int getCoins() {
         
-        return coins;
+        return this.coins;
         
     }
     
     public int getCell() {
         
-        return cell;
+        return this.cell;
         
     }
     
     public String getPhase() {
         
-        return phase;
+        return this.phase;
         
     }
     
     public String getDirection() {
         
-        return direction;
+        return this.direction;
         
     }
     
@@ -92,15 +92,15 @@ public class Player {
         
     }
     
-    public void setPhase(int cell) {
+    public void setPhase(String phase) {
         
-        this.phase = getPhase();
+        this.phase = phase;
         
     }
     
-    public void setDirection(String cell) {
+    public void setDirection(String direction) {
         
-        this.direction = getDirection();
+        this.direction = direction;
         
     }
 
