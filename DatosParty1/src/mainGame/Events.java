@@ -356,43 +356,37 @@ public class Events {
         int newCell = secondPlayer.getCell();
         firstPlayer.setCell(newCell);
         
+        String newPhase = secondPlayer.getPhase();
+        firstPlayer.setPhase(newPhase);
+        
         String newDirection = secondPlayer.getDirection();
+        firstPlayer.setDirection(newDirection);               
         
         int newX = 0;
         int newY = 0;
         
         if (newCell >= 0 && newCell <= 37) {
-                        
-            firstPlayer.setPhase("principal");
-            firstPlayer.setDirection(newDirection);
+            
             newX = Board.principal.findXLocation(newCell);
-            newY = Board.principal.findYLocation(newCell);            
+            newY = Board.principal.findYLocation(newCell); 
             
         } else if (newCell >= 38 && newCell <= 48) {
             
-            firstPlayer.setPhase("phaseA");
-            firstPlayer.setDirection(newDirection);
             newX = Board.phaseA.findXLocation(newCell);
             newY = Board.phaseA.findYLocation(newCell);
             
         } else if (newCell >= 49 && newCell <= 54) {
             
-            firstPlayer.setPhase("phaseB");
-            firstPlayer.setDirection(newDirection);
             newX = Board.phaseB.findXLocation(newCell);
             newY = Board.phaseB.findYLocation(newCell);
             
         } else if (newCell >= 55 && newCell <= 68) {
             
-            firstPlayer.setPhase("phaseC");
-            firstPlayer.setDirection(newDirection);
             newX = Board.phaseC.findXLocation(newCell);
             newY = Board.phaseC.findYLocation(newCell);
             
         } else if (newCell >= 69 && newCell <= 82) {
             
-            firstPlayer.setPhase("phaseD");
-            firstPlayer.setDirection(newDirection);
             newX = Board.phaseD.findXLocation(newCell);
             newY = Board.phaseD.findYLocation(newCell);           
                         
@@ -412,13 +406,19 @@ public class Events {
         Player secondPlayer = Board.players.get(secondIndex);
         
         int newCell1 = secondPlayer.getCell();
-        int newCell2 = firstPlayer.getCell();
-                
+        int newCell2 = firstPlayer.getCell();                
         firstPlayer.setCell(newCell1);
         secondPlayer.setCell(newCell2);
         
+        String newPhase1 = secondPlayer.getPhase();
+        String newPhase2 = firstPlayer.getPhase();        
+        firstPlayer.setPhase(newPhase1);
+        secondPlayer.setPhase(newPhase2);
+        
         String newDirection1 = secondPlayer.getDirection();
         String newDirection2 = firstPlayer.getDirection();
+        firstPlayer.setDirection(newDirection1);
+        secondPlayer.setDirection(newDirection2); 
         
         int newX1 = 0;
         int newY1 = 0;
@@ -426,37 +426,27 @@ public class Events {
         int newY2 = 0;
         
         if (newCell1 >= 0 && newCell1 <= 37) {
-                        
-            firstPlayer.setPhase("principal");
-            firstPlayer.setDirection(newDirection1);
+            
             newX1 = Board.principal.findXLocation(newCell1);
             newY1 = Board.principal.findYLocation(newCell1);            
             
         } else if (newCell1 >= 38 && newCell1 <= 48) {
             
-            firstPlayer.setPhase("phaseA");
-            firstPlayer.setDirection(newDirection1);
             newX1 = Board.phaseA.findXLocation(newCell1);
             newY1 = Board.phaseA.findYLocation(newCell1);
             
         } else if (newCell1 >= 49 && newCell1 <= 54) {
             
-            firstPlayer.setPhase("phaseB");
-            firstPlayer.setDirection(newDirection1);
             newX1 = Board.phaseB.findXLocation(newCell1);
             newY1 = Board.phaseB.findYLocation(newCell1);
             
         } else if (newCell1 >= 55 && newCell1 <= 68) {
             
-            firstPlayer.setPhase("phaseC");
-            firstPlayer.setDirection(newDirection1);
             newX1 = Board.phaseC.findXLocation(newCell1);
             newY1 = Board.phaseC.findYLocation(newCell1);
             
         } else if (newCell1 >= 69 && newCell1 <= 82) {
             
-            firstPlayer.setPhase("phaseD");
-            firstPlayer.setDirection(newDirection1);
             newX1 = Board.phaseD.findXLocation(newCell1);
             newY1 = Board.phaseD.findYLocation(newCell1);           
                         
@@ -464,36 +454,26 @@ public class Events {
         
         if (newCell2 >= 0 && newCell2 <= 37) {
                         
-            secondPlayer.setPhase("principal");
-            secondPlayer.setDirection(newDirection2);
             newX2 = Board.principal.findXLocation(newCell2);
             newY2 = Board.principal.findYLocation(newCell2);            
             
         } else if (newCell2 >= 38 && newCell2 <= 48) {
             
-            secondPlayer.setPhase("phaseA");
-            secondPlayer.setDirection(newDirection2);
             newX2 = Board.phaseA.findXLocation(newCell2);
             newY2 = Board.phaseA.findYLocation(newCell2);
             
         } else if (newCell2 >= 49 && newCell2 <= 54) {
             
-            secondPlayer.setPhase("phaseB");
-            secondPlayer.setDirection(newDirection2);
             newX2 = Board.phaseB.findXLocation(newCell2);
             newY2 = Board.phaseB.findYLocation(newCell2);
             
         } else if (newCell2 >= 55 && newCell2 <= 68) {
             
-            secondPlayer.setPhase("phaseC");
-            secondPlayer.setDirection(newDirection2);
             newX2 = Board.phaseC.findXLocation(newCell2);
             newY2 = Board.phaseC.findYLocation(newCell2);
             
         } else if (newCell2 >= 69 && newCell2 <= 82) {
             
-            secondPlayer.setPhase("phaseD");
-            secondPlayer.setDirection(newDirection2);
             newX2 = Board.phaseD.findXLocation(newCell2);
             newY2 = Board.phaseD.findYLocation(newCell2);           
                         

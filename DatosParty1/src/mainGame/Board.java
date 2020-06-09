@@ -25,6 +25,7 @@ public class Board extends javax.swing.JFrame {
     public static int playerPlaying = 0;
     private static int activePlayers;
     private static int round = 0;
+    private static int pointer = 0;
 
     public static ArrayList<Player> players = new ArrayList<Player>();
 
@@ -517,7 +518,6 @@ public class Board extends javax.swing.JFrame {
                 
         int x = 0;
         int y = 0;
-        int pointer = 0;
         
         if (null != actualPhase) switch (actualPhase) {
             
@@ -819,7 +819,9 @@ public class Board extends javax.swing.JFrame {
 
         }
 
-        actionCell(moveToCell, pointer);
+        actionCell(moveToCell);
+        
+        pointer = 0;
 
         playerPlaying ++;
         
@@ -962,7 +964,7 @@ public class Board extends javax.swing.JFrame {
 
     }
 
-    private void actionCell(int cellNumber, int pointer) {
+    private void actionCell(int cellNumber) {
         
         Player player = players.get(playerPlaying);
         int actualCoins = player.getCoins();
