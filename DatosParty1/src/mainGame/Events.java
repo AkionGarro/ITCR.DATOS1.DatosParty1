@@ -181,11 +181,11 @@ public class Events {
                         
         String message = firstPlayer.getName() + " no tiene monedas para ser robadas";
         
-        int stolenCoins = new Random().nextInt(25);
+        int stolenCoins = new Random().nextInt(26);
         
-        if (firstPlayer.getCoins() > 0) {
+        if (secondPlayer.getCoins() > 0) {
             
-            while (stolenCoins == 0 || (firstPlayer.getCoins() - stolenCoins) < 0) {
+            while (stolenCoins == 0 || (secondPlayer.getCoins() - stolenCoins) < 0) {
 
                 stolenCoins = new Random().nextInt(51);
 
@@ -224,7 +224,7 @@ public class Events {
 
             lostCoins = new Random().nextInt(51);
 
-        }                
+        }       
         
         if (firstPlayer.getCoins() >= activePlayers) {                       
             

@@ -960,6 +960,8 @@ public class Board extends javax.swing.JFrame {
         } else {
             
             System.out.println("X y Y son iguales a -1");
+            
+            System.out.println("player token " + players.get(playerToken).getPhase() + "   " + players.get(playerToken).getCell());
 
             // validar caso en el que la ficha no esté en el board principal
             // Recordar que si el metodo retorna un -1, quiere decir que el jugador no esta en ese tablero especifico
@@ -1088,47 +1090,47 @@ public class Board extends javax.swing.JFrame {
     
     private void checkEndGame() {
         
-        System.out.println(round);
-        
-        if (round == 12) {
+        if (round == 12) {            
+                        
+            int starsArray[] = new int[players.size()];   
             
-            int winnerStars = players.get(0).getStars();
-            String winnerName = players.get(0).getName();
-            boolean sameStars = true;
-            
-            for (int i = 1; i < players.size(); i ++) {
+            for (int i = 0; i <= activePlayers; i ++) {
                 
-                if (players.get(i).getStars() != winnerStars) {
-                    
-                    sameStars = false;
-                    
-                }
+                starsArray[i] = players.get(i).getStars();
                 
-                if (players.get(i).getStars() > winnerStars) {
-                    
-                    winnerStars = players.get(i).getStars();
-                    winnerName = players.get(i).getName();
-                    
-                }
-                                                
             }
             
-            if (sameStars == true) {
+            int maxIndex = getMaxIndexStars(starsArray);
+            
+            String winnerName = players.get(maxIndex).getName();
+                                    
+            int repeated = checkRepeated(starsArray, maxIndex);
+            
+            if (repeated == 1) {
                 
-                int winnerCoins = players.get(0).getCoins();
-
-                for (int i = 0; i < players.size(); i ++) {
-
-                    if (players.get(i).getCoins() > winnerCoins) {
-
-                        winnerCoins = players.get(i).getCoins();
-                        winnerName = players.get(i).getName();
-
-                    }
-
-                }
+                Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 2);
+                
+                maxIndex = getMaxIndexPlayers(arrayPlayers, 2);
+                
+                winnerName = players.get(maxIndex).getName();
                                 
-            }                       
+            } else if (repeated == 2) {
+                
+                Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 3);
+                
+                maxIndex = getMaxIndexPlayers(arrayPlayers, 3);
+                
+                winnerName = players.get(maxIndex).getName();
+                                
+            } else if (repeated == 3) {
+                
+                Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 4);
+                
+                maxIndex = getMaxIndexPlayers(arrayPlayers, 4);
+                
+                winnerName = players.get(maxIndex).getName();
+                
+            }
             
             String message = winnerName + " ha ganado el juego";
         
@@ -1139,7 +1141,87 @@ public class Board extends javax.swing.JFrame {
         }
         
     }
-
+    
+    private int checkRepeated(int []array, int max) {
+        
+        int repeated = 0;
+        int number = array[max];
+        
+        for (int i = 0; i <= activePlayers; i++) {
+            
+            if (array[i] == number && i != max) {
+                
+                repeated ++;
+                
+            }            
+            
+        }
+        
+        return repeated;
+        
+    }
+    
+    private Player[] checkRepeatedPlayers(int max, int size) {
+        
+        Player arrayPlayers[] = new Player[size];
+        
+        int counter = 0;
+                        
+        for (int i = 0; i <= activePlayers; i++) {
+            
+            if (players.get(i).getStars() == max) {
+                
+                arrayPlayers[counter] = players.get(i);
+                counter ++;
+                
+            }            
+            
+        }
+        
+        return arrayPlayers;
+        
+    }
+    
+    private int getMaxIndexStars(int []array) {
+        
+        int max = array[0];
+        int index = 0;
+        
+        for (int i = 1; i <= activePlayers; i++) {
+            
+            if (array[i] > max) {
+                
+                max = array[i];
+                index = i;
+                
+            }            
+            
+        }
+        
+        return index;
+        
+    }
+    
+    private int getMaxIndexPlayers(Player []array, int size) {
+        
+        int max = array[0].getCoins();
+        int index = 0;
+        
+        for (int i = 1; i < size; i++) {
+                        
+            if (array[i].getCoins() > max) {
+                
+                max = array[i].getCoins();
+                index = i;
+                
+            }            
+            
+        }
+        
+        return index;
+        
+    }
+    
     private void actionCell(int cellNumber) {
         
         Player player = players.get(playerPlaying);
