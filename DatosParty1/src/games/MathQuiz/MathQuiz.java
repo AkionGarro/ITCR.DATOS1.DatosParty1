@@ -9,7 +9,7 @@ import javax.swing.Timer;
 public class MathQuiz extends javax.swing.JFrame {
 
     private Timer time;
-    private int hundredths = 0, seconds = 0, minutes = 0, hours = 0;
+    private int hundredths = 60, seconds = 30;
 
     Random rand = new Random();
     int n = rand.nextInt(50) + 1;
@@ -29,19 +29,14 @@ public class MathQuiz extends javax.swing.JFrame {
     private ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            hundredths++;
-            if (hundredths == 100) {
-                seconds++;
+            hundredths--;
+            if (hundredths == 0) {
+                seconds--;
+                hundredths = 60;
+            }
+            if (seconds == 0) {
+                time.stop();
                 hundredths = 0;
-            }
-            if (seconds == 60) {
-                minutes++;
-                seconds = 0;
-            }
-            if (minutes == 60) {
-                hours++;
-                minutes = 0;
-
             }
 
             updateTimeLabel();
@@ -49,7 +44,7 @@ public class MathQuiz extends javax.swing.JFrame {
     };
 
     private void updateTimeLabel() {
-        String text = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths;
+        String text = (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths + " s";
         timeRunning.setText(text);
 
     }
@@ -175,8 +170,8 @@ public class MathQuiz extends javax.swing.JFrame {
 
         timeRunning.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
         timeRunning.setForeground(new java.awt.Color(0, 0, 0));
-        timeRunning.setText("00:00:00:00");
-        informationPanel.add(timeRunning, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
+        timeRunning.setText("00:00 s");
+        informationPanel.add(timeRunning, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
 
         gameTittle.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         gameTittle.setForeground(new java.awt.Color(0, 0, 0));
@@ -257,7 +252,6 @@ public class MathQuiz extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_finishButtonActionPerformed
-
 
     public void quizMath() {
         total = (n + m - k);
