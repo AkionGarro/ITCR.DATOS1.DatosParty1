@@ -126,29 +126,29 @@ public class Board extends javax.swing.JFrame {
 
         if (player1Active == true && player2Active == true && player3Active == false && player4Active == false) {
 
-            Player player1 = new Player(0, name1, 100);
+            Player player1 = new Player(0, name1);
             players.add(player1);
-            Player player2 = new Player(1, name2, 100);
+            Player player2 = new Player(1, name2);
             players.add(player2);
 
         } else if (player1Active == true && player2Active == true && player3Active == true && player4Active == false) {
 
-            Player player1 = new Player(0, name1, 100);
+            Player player1 = new Player(0, name1);
             players.add(player1);
-            Player player2 = new Player(1, name2, 100);
+            Player player2 = new Player(1, name2);
             players.add(player2);
-            Player player3 = new Player(2, name3, 100);
+            Player player3 = new Player(2, name3);
             players.add(player3);
 
         } else {
 
-            Player player1 = new Player(0, name1, 100);
+            Player player1 = new Player(0, name1);
             players.add(player1);
-            Player player2 = new Player(1, name2, 100);
+            Player player2 = new Player(1, name2);
             players.add(player2);
-            Player player3 = new Player(2, name3, 100);
+            Player player3 = new Player(2, name3);
             players.add(player3);
-            Player player4 = new Player(3, name4, 100);
+            Player player4 = new Player(3, name4);
             players.add(player4);
 
         }
@@ -842,7 +842,9 @@ public class Board extends javax.swing.JFrame {
 
         }
 
-        actionCell(moveToCell); 
+        actionCell(moveToCell);
+        
+        checkDuel();
         
         pointer1 = 0;        
             
@@ -1025,21 +1027,61 @@ public class Board extends javax.swing.JFrame {
                 int option = JOptionPane.showConfirmDialog(null,message, "Comprar estrella", JOptionPane.YES_NO_OPTION);
 
                 if (option == JOptionPane.YES_OPTION) {
+                    
+                    if (player.getCoins() >= 100) {
+                        
+                        player.setStars(player.getStars() + 1);
+                        
+                        player.setCoins(player.getCoins() - 100);
 
-                    // verificar si le alcanza
+                        updateStarsEvent();
+                        
+                        updateCoinsEvent();
 
-                    player.setStars(player.getStars() + 1);
-
-                    updateStarsEvent();
-
-                    newStar(); 
-
+                        newStar();                        
+                                                
+                    } else {
+                        
+                        message = player.getName() + " no posee suficientes monedas para comprar la estrella.";
+                        
+                        JOptionPane.showMessageDialog(null, message, "Comprar estrella", 1);
+                        
+                    }
+                    
                 }       
                             
             }
             
         }
             
+    }
+    
+    private void checkDuel() {               
+             
+        if (activePlayers == 1) {
+            
+            Events newEvent = new Events("duelSameCell");
+
+            newEvent.start(0, 1);
+                        
+        } else {
+            
+            Player actualPlayer = players.get(playerPlaying);
+            
+            for (int i = 0; i < players.size(); i ++) {
+                
+                if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
+                    
+                    Events newEvent = new Events("duelSameCell");
+
+                    newEvent.start(playerPlaying, i);
+                    
+                }
+                
+            }
+        
+        }
+        
     }
 
     private void actionCell(int cellNumber) {
@@ -1207,7 +1249,7 @@ public class Board extends javax.swing.JFrame {
 
         Events newEvent = new Events(stack.pop());
 
-        newEvent.start(playerPlaying);
+        newEvent.start(playerPlaying, 0);
 
     }
 
