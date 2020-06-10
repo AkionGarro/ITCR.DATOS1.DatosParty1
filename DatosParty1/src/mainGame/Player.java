@@ -24,7 +24,7 @@ public class Player {
         this.number = number;
         this.name = name;
         this.stars = 0;
-        this.coins = 50;
+        this.coins = 100;
         this.cell = 0;
         this.phase = "principal";
         this.direction = "next";

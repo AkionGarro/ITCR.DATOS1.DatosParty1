@@ -853,6 +853,8 @@ public class Board extends javax.swing.JFrame {
         playerPlaying ++;
         
         checkPlayerPlaying();
+        
+        checkEndGame();
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
 
@@ -1080,6 +1082,60 @@ public class Board extends javax.swing.JFrame {
                 
             }
         
+        }
+        
+    }
+    
+    private void checkEndGame() {
+        
+        System.out.println(round);
+        
+        if (round == 12) {
+            
+            int winnerStars = players.get(0).getStars();
+            String winnerName = players.get(0).getName();
+            boolean sameStars = true;
+            
+            for (int i = 1; i < players.size(); i ++) {
+                
+                if (players.get(i).getStars() != winnerStars) {
+                    
+                    sameStars = false;
+                    
+                }
+                
+                if (players.get(i).getStars() > winnerStars) {
+                    
+                    winnerStars = players.get(i).getStars();
+                    winnerName = players.get(i).getName();
+                    
+                }
+                                                
+            }
+            
+            if (sameStars == true) {
+                
+                int winnerCoins = players.get(0).getCoins();
+
+                for (int i = 0; i < players.size(); i ++) {
+
+                    if (players.get(i).getCoins() > winnerCoins) {
+
+                        winnerCoins = players.get(i).getCoins();
+                        winnerName = players.get(i).getName();
+
+                    }
+
+                }
+                                
+            }                       
+            
+            String message = winnerName + " ha ganado el juego";
+        
+            JOptionPane.showMessageDialog(null, message, "Ganador del juego", 1);
+            
+            btnRollDices.setEnabled(false);
+                        
         }
         
     }
@@ -1532,35 +1588,27 @@ public class Board extends javax.swing.JFrame {
     }
         
     private void activeCoinsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeCoinsPlayer1ActionPerformed
 
     private void activeCoinsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer2ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeCoinsPlayer2ActionPerformed
 
     private void activeCoinsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer3ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeCoinsPlayer3ActionPerformed
 
     private void activeCoinsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCoinsPlayer4ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeCoinsPlayer4ActionPerformed
 
     private void activeStarsPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeStarsPlayer1ActionPerformed
 
     private void activeStarsPlayer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer2ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeStarsPlayer2ActionPerformed
 
     private void activeStarsPlayer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer3ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeStarsPlayer3ActionPerformed
 
     private void activeStarsPlayer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeStarsPlayer4ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_activeStarsPlayer4ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
