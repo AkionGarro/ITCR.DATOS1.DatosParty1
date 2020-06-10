@@ -19,12 +19,12 @@ public class Player {
      * @param name   player name.
      * @param coins  Initial amount of coins for each player.
      */
-    public Player(int number, String name, int coins) {
+    public Player(int number, String name) {
         
         this.number = number;
         this.name = name;
         this.stars = 0;
-        this.coins = coins;
+        this.coins = 50;
         this.cell = 0;
         this.phase = "principal";
         this.direction = "next";

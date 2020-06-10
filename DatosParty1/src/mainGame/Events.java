@@ -14,16 +14,24 @@ public class Events {
     
     }
     
-    public void start(int actualIndex) {
+    public void start(int actualIndex, int secondIndexDuel) {
+        
+        int firstIndex;
                                    
         switch (this.name) {        
                       
             case "duel":
                 
-                int firstIndex = new Random().nextInt(activePlayers);
+                firstIndex = new Random().nextInt(activePlayers);
                 
                 duelEvent(firstIndex, randomIndex1(firstIndex));               
                                 
+                break;                
+                
+            case "duelSameCell":
+                
+                duelEvent(actualIndex, secondIndexDuel);  
+                
                 break;
                 
             case "stealCoins":
@@ -179,7 +187,7 @@ public class Events {
             
             while (stolenCoins == 0 || (firstPlayer.getCoins() - stolenCoins) < 0) {
 
-                stolenCoins = new Random().nextInt(25);
+                stolenCoins = new Random().nextInt(51);
 
             }
 
@@ -214,7 +222,7 @@ public class Events {
         
         while ((lostCoins % activePlayers) != 0 || lostCoins == 0 || (firstPlayer.getCoins() - lostCoins) < 0) {
 
-            lostCoins = new Random().nextInt(61);
+            lostCoins = new Random().nextInt(51);
 
         }                
         
@@ -312,7 +320,7 @@ public class Events {
         
         String message = firstPlayer.getName() + " no tiene estrellas";
         
-        if (firstPlayer.getStars() != 0) {
+        if (firstPlayer.getStars() > 0) {
         
             firstPlayer.setStars(firstPlayer.getStars() - 1);        
             secondPlayer.setStars(secondPlayer.getStars() + 1);
