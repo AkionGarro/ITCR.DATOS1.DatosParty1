@@ -25,7 +25,8 @@ public class Board extends javax.swing.JFrame {
     public static int playerPlaying = 0;
     private static int activePlayers;
     private static int round = 0;
-    private static int pointer = 0;
+    private static int pointer1 = 0;
+    private static boolean pointer2 = false;
 
     public static ArrayList<Player> players = new ArrayList<Player>();
 
@@ -36,6 +37,8 @@ public class Board extends javax.swing.JFrame {
     static PhaseD phaseD = new PhaseD();
 
     public static Stack stack = new Stack();
+    
+    static Star star;
 
     /**
      * This is the constructor of the board class, where the initial
@@ -250,6 +253,7 @@ public class Board extends javax.swing.JFrame {
         lblRightDice = new javax.swing.JLabel();
         lblLeftDice = new javax.swing.JLabel();
         diceBackground = new javax.swing.JLabel();
+        lblStar = new javax.swing.JLabel();
         lblTokenPlayer1 = new javax.swing.JLabel();
         lblTokenPlayer2 = new javax.swing.JLabel();
         lblTokenPlayer3 = new javax.swing.JLabel();
@@ -300,6 +304,9 @@ public class Board extends javax.swing.JFrame {
 
         diceBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/rollDices.png"))); // NOI18N
         panel.add(diceBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 490, 390, 180));
+
+        lblStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star2.png"))); // NOI18N
+        panel.add(lblStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, -1, -1));
 
         lblTokenPlayer1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/player1.png"))); // NOI18N
         panel.add(lblTokenPlayer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 612, -1, -1));
@@ -474,13 +481,13 @@ public class Board extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1103, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1103, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 730, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE))
         );
 
         pack();
@@ -494,6 +501,16 @@ public class Board extends javax.swing.JFrame {
      */
     private void btnRollDicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollDicesActionPerformed
 
+        if (round == 1 && pointer2 == false) {
+
+            lblStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star1.png")));
+
+            newStar();
+            
+            pointer2 = true;
+
+        }
+        
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
 
@@ -501,6 +518,10 @@ public class Board extends javax.swing.JFrame {
         randomLeftDice(leftDice);
 
         Player actualPlayer = players.get(playerPlaying); 
+        
+        int previousCell = actualPlayer.getCell();
+        
+        int nextCell = 0;
         
         int moveToCell;
         
@@ -573,7 +594,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 7:
                         
-                        pointer = 7;
+                        pointer1 = 7;
                         actualPlayer.setPhase("phaseA");
                         x = principal.findXLocation(7);
                         y = principal.findYLocation(7);
@@ -582,7 +603,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 17:
                         
-                        pointer = 17;
+                        pointer1 = 17;
                         actualPlayer.setPhase("phaseC");
                         actualPlayer.setDirection("next");
                         x = principal.findXLocation(17);
@@ -592,7 +613,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 23:
                         
-                        pointer = 23;
+                        pointer1 = 23;
                         actualPlayer.setPhase("phaseB");
                         actualPlayer.setDirection("next");
                         x = principal.findXLocation(23);
@@ -602,7 +623,7 @@ public class Board extends javax.swing.JFrame {
                         
                     case 36:
                         
-                        pointer = 36;
+                        pointer1 = 36;
                         actualPlayer.setPhase("phaseC");
                         actualPlayer.setDirection("previous");
                         x = principal.findXLocation(36);
@@ -799,7 +820,9 @@ public class Board extends javax.swing.JFrame {
                 
         }
                 
-        actualPlayer.setCell(moveToCell);        
+        actualPlayer.setCell(moveToCell);
+        
+        nextCell = moveToCell;
         
         if (playerPlaying == 0) {
 
@@ -819,13 +842,15 @@ public class Board extends javax.swing.JFrame {
 
         }
 
-        actionCell(moveToCell);
+        actionCell(moveToCell); 
         
-        pointer = 0;
+        pointer1 = 0;        
+            
+        checkStar(previousCell, nextCell);
 
         playerPlaying ++;
         
-        checkPlayerPlaying(); 
+        checkPlayerPlaying();
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
 
@@ -943,25 +968,78 @@ public class Board extends javax.swing.JFrame {
      */
     private void checkPlayerPlaying() {
 
-        if (round > 0 && playerPlaying > activePlayers) {
-            
+        if (round > 0 && playerPlaying > activePlayers) {               
+           
             //nuevo minijuego
             
             String message = "El minijuego será: "; // + minijuego.getName
         
             JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
 
-            //minijuego.start
-            
+            //minijuego.start             
+                        
             playerPlaying = 0;
+            round ++;
             
         } else if (playerPlaying > activePlayers) {
 
             playerPlaying = 0;
             round ++;
 
-        }
+        } 
 
+    }
+    
+    private void newStar() {
+        
+        star.setCell();
+        
+        star.setSoldFalse();
+                
+        int starCell = star.getCell();
+
+        int newX = principal.findXLocation(starCell);
+        int newY = principal.findYLocation(starCell);   
+
+        lblStar.setLocation(newX, newY);
+                
+    }
+    
+    private void checkStar(int previousCell, int nextCell) {
+        
+        Player player = players.get(playerPlaying);
+        
+        star = Star.getStar();
+        
+        int starCell = star.getCell();        
+        
+        String message = "";
+        
+        if (previousCell < 38 && nextCell < 38) {
+            
+            if (starCell > previousCell && starCell <= nextCell && round > 1 && player.getCell() < 38) {
+            
+                message = "Has pasado por una casilla donde se encuentra la estrella" + "\n"
+                        + "¿Deseas comprarla?";
+
+                int option = JOptionPane.showConfirmDialog(null,message, "Comprar estrella", JOptionPane.YES_NO_OPTION);
+
+                if (option == JOptionPane.YES_OPTION) {
+
+                    // verificar si le alcanza
+
+                    player.setStars(player.getStars() + 1);
+
+                    updateStarsEvent();
+
+                    newStar(); 
+
+                }       
+                            
+            }
+            
+        }
+            
     }
 
     private void actionCell(int cellNumber) {
@@ -975,7 +1053,7 @@ public class Board extends javax.swing.JFrame {
             
             color = principal.findColor(cellNumber);
             
-        } else if (phase == "phaseA" && pointer == 7) {
+        } else if (phase == "phaseA" && pointer1 == 7) {
             
             color = "yellow";           
                         
@@ -983,7 +1061,7 @@ public class Board extends javax.swing.JFrame {
             
             color = phaseA.findColor(cellNumber);
             
-        } else if (phase == "phaseB" && pointer == 23) { 
+        } else if (phase == "phaseB" && pointer1 == 23) { 
         
             color = "blue";
         
@@ -991,11 +1069,11 @@ public class Board extends javax.swing.JFrame {
             
             color = phaseB.findColor(cellNumber);
             
-        } else if (phase == "phaseC" && pointer == 17) {
+        } else if (phase == "phaseC" && pointer1 == 17) {
             
             color = "blue";
             
-        } else if (phase == "phaseC" && pointer == 36) {
+        } else if (phase == "phaseC" && pointer1 == 36) {
         
             color = "yellow"; 
         
@@ -1460,6 +1538,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel diceBackground;
     private javax.swing.JLabel lblLeftDice;
     private javax.swing.JLabel lblRightDice;
+    public static javax.swing.JLabel lblStar;
     public static javax.swing.JLabel lblTokenPlayer1;
     public static javax.swing.JLabel lblTokenPlayer2;
     public static javax.swing.JLabel lblTokenPlayer3;
