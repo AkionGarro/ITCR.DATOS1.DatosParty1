@@ -17,7 +17,6 @@ public class Player {
      * Player class constructor.
      * @param number player identifier
      * @param name   player name.
-     * @param coins  Initial amount of coins for each player.
      */
     public Player(int number, String name) {
         

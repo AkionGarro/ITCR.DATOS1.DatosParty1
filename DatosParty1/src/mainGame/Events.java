@@ -18,10 +18,11 @@ public class Events {
 
     }
 
-    /**
-     * Method that selects which event to execute.
-     *
-     */
+/**
+ * Method that selects which event to execute.
+ * @param actualIndex
+ * @param secondIndexDuel 
+ */
     public void start(int actualIndex, int secondIndexDuel) {
 
         int firstIndex;
