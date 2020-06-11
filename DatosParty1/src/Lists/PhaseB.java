@@ -4,21 +4,21 @@ package Lists;
  * Class in charge of the creation of phase B, which only has one way.
  *
  */
-public class PhaseB extends ListStructure{
-    
+public class PhaseB extends ListStructure {
+
     SingleNode first;
     SingleNode last;
-    
+
     /**
      * Phase B Constructor.
      */
     public PhaseB() {
-        
+
         first = null;
         last = null;
-    
+
     }
-    
+
     /**
      * Method to add nodes to the Phase B.
      *
@@ -27,15 +27,15 @@ public class PhaseB extends ListStructure{
      */
     @Override
     public void addNode(Cell cell) {
-        
-        SingleNode newNode = new SingleNode();        
+
+        SingleNode newNode = new SingleNode();
         newNode.cell = cell;
-         
+
         if (first == null) {
 
             first = newNode;
             first.next = null;
-            last = newNode;        
+            last = newNode;
 
         } else {
 
@@ -44,9 +44,9 @@ public class PhaseB extends ListStructure{
             last = newNode;
 
         }
-        
+
     }
-   
+
     /**
      * Method to find position X.
      *
@@ -55,26 +55,26 @@ public class PhaseB extends ListStructure{
      */
     @Override
     public int findXLocation(int cellNumber) {
-    
+
         SingleNode actual = new SingleNode();
         actual = first;
-        
-        do{
-            
+
+        do {
+
             if (actual.cell.cellNumber == cellNumber) {
-            
+
                 return actual.cell.xPosition;
-                
+
             }
-            
+
             actual = actual.next;
 
-        } while(actual != null);
-        
+        } while (actual != null);
+
         return -1;
-           
+
     }
-    
+
     /**
      * Method to find position Y.
      *
@@ -83,47 +83,53 @@ public class PhaseB extends ListStructure{
      */
     @Override
     public int findYLocation(int cellNumber) {
-    
+
         SingleNode actual = new SingleNode();
         actual = first;
-        
-        do{
-            
+
+        do {
+
             if (actual.cell.cellNumber == cellNumber) {
-            
+
                 return actual.cell.yPosition;
-                
+
             }
-            
+
             actual = actual.next;
 
-        } while(actual != null);
-        
+        } while (actual != null);
+
         return -1;
-           
+
     }
 
+    /**
+     * Method to find the color of the cell.
+     *
+     * @param cellNumber number of the cell you want to find the color.
+     * @return The color of the desired cell.
+     */
     @Override
     public String findColor(int cellNumber) {
-        
+
         SingleNode actual = new SingleNode();
         actual = first;
         String color = "gray";
-        
-        do{
-            
+
+        do {
+
             if (actual.cell.cellNumber == cellNumber) {
-            
+
                 return actual.cell.color;
-                
+
             }
-            
+
             actual = actual.next;
 
-        } while(actual != first);
-        
+        } while (actual != first);
+
         return color;
-        
+
     }
-    
+
 }

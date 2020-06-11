@@ -2,12 +2,19 @@ package mainGame;
 
 import java.util.Random;
 
+/**
+ * Class is in charge of creating the star Ramdon.
+ * 
+ */
 public class Star {
     
     private static Star instance = null;
     private int cell;
     private boolean sold;
     
+    /**
+     * Constructor method.
+     */
     protected Star(){
         
         this.cell = new Random().nextInt(38);
@@ -15,6 +22,10 @@ public class Star {
                 
     }
     
+    /**
+     * Singleton in charge of creating the star only once.
+     * @return Returns the star-like object
+     */
     public static Star getStar() {
         
         if (instance == null) {

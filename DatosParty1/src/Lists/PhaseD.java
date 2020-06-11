@@ -107,7 +107,14 @@ public class PhaseD extends ListStructure {
         return -1;
 
     }
-    
+
+    /**
+     * Method that finds the x position for when you want to go from a phase
+     * with a double node to the main one.
+     *
+     * @param cellNumber number of the cell to which you want to pass.
+     * @return The x position of the previous cell.
+     */
     public int findXLocationPrevious(int cellNumber) {
 
         DoubleNode actual = new DoubleNode();
@@ -128,7 +135,14 @@ public class PhaseD extends ListStructure {
         return -1;
 
     }
-    
+
+    /**
+     * Method that finds the y position for when you want to go from a phase
+     * with a double node to the main one.
+     *
+     * @param cellNumber number of the cell to which you want to pass.
+     * @return The y position of the previous cell.
+     */
     public int findYLocationPrevious(int cellNumber) {
 
         DoubleNode actual = new DoubleNode();
@@ -150,6 +164,12 @@ public class PhaseD extends ListStructure {
 
     }
 
+    /**
+     * Method to find the color of the cell.
+     *
+     * @param cellNumber number of the cell you want to find the color.
+     * @return The color of the desired cell.
+     */
     @Override
     public String findColor(int cellNumber) {
 

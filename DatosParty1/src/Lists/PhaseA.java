@@ -103,6 +103,12 @@ public class PhaseA extends ListStructure {
 
     }
 
+    /**
+     * Method to find the color of the cell.
+     *
+     * @param cellNumber number of the cell you want to find the color.
+     * @return The color of the desired cell.
+     */
     @Override
     public String findColor(int cellNumber) {
 
