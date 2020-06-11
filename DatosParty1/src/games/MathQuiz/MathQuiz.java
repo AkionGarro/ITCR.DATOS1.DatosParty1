@@ -12,15 +12,11 @@ public class MathQuiz extends javax.swing.JFrame {
     private int hundredths = 60, seconds = 30;
 
     Random rand = new Random();
-    int n = rand.nextInt(50) + 1;
-    int m = rand.nextInt(50) + 1;
-    int k = rand.nextInt(50) + 1;
     int total = 0;
-    int b, c, d, e = 0;
-
+    int b, c, d, e,n,m,k = 0;
+    int points,option=0;
     boolean correct = false;
-    int option = rand.nextInt(4) + 1;
-
+    
     public MathQuiz() {
         time = new Timer(10, action);
         initComponents();
@@ -69,6 +65,8 @@ public class MathQuiz extends javax.swing.JFrame {
         informationPanel = new javax.swing.JPanel();
         timeRunning = new javax.swing.JLabel();
         gameTittle = new javax.swing.JLabel();
+        lblPoints = new javax.swing.JLabel();
+        pointsText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Math Quiz");
@@ -181,6 +179,16 @@ public class MathQuiz extends javax.swing.JFrame {
 
         gamePanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 130));
 
+        lblPoints.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblPoints.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gamePanel.add(lblPoints, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, 60));
+
+        pointsText.setVisible(false);
+        pointsText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        pointsText.setForeground(new java.awt.Color(0, 0, 0));
+        pointsText.setText("Points");
+        gamePanel.add(pointsText, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 60, 80));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,6 +212,8 @@ public class MathQuiz extends javax.swing.JFrame {
         option3Button.setVisible(true);
         option4Button.setVisible(true);
         option1Button.setVisible(true);
+        pointsText.setVisible(true);
+        lblPoints.setText(String.valueOf(points));
 
 
     }//GEN-LAST:event_startButtonMouseClicked
@@ -227,13 +237,25 @@ public class MathQuiz extends javax.swing.JFrame {
     }//GEN-LAST:event_option4ButtonMouseClicked
 
     private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finishButtonMouseClicked
-
+        
         if (correct == true) {
             JOptionPane.showMessageDialog(this, "Felicidades tu respuesta es correcta");
+            points+=1;
+            nextquestion();
+            lblPoints.setText(String.valueOf(points));
+            buttonGroup1.clearSelection();
+            
 
         } else {
             JOptionPane.showMessageDialog(this, "Tu respuesta es incorrecta");
+            nextquestion();
+            lblPoints.setText(String.valueOf(points));
+            buttonGroup1.clearSelection();
+            
+             
         }
+       
+        
     }//GEN-LAST:event_finishButtonMouseClicked
 
     private void option1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option1ButtonMouseClicked
@@ -247,13 +269,18 @@ public class MathQuiz extends javax.swing.JFrame {
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
-        if (correct == true) {
-            time.stop();
-        }
-
+        lblPoints.setText(String.valueOf(points));
+        
     }//GEN-LAST:event_finishButtonActionPerformed
-
+    public void nextquestion(){
+        
+        quizMath();
+    }
     public void quizMath() {
+        option = rand.nextInt(4) + 1;
+        n = rand.nextInt(50) + 1;
+        m = rand.nextInt(50) + 1;
+        k = rand.nextInt(50) + 1;
         total = (n + m - k);
         operationLabel.setText(String.valueOf(n + "+" + m + "-" + k));
 
@@ -334,11 +361,13 @@ public class MathQuiz extends javax.swing.JFrame {
     private javax.swing.JPanel gamePanel;
     private javax.swing.JLabel gameTittle;
     private javax.swing.JPanel informationPanel;
+    private javax.swing.JLabel lblPoints;
     private javax.swing.JLabel operationLabel;
     private javax.swing.JRadioButton option1Button;
     private javax.swing.JRadioButton option2Button;
     private javax.swing.JRadioButton option3Button;
     private javax.swing.JRadioButton option4Button;
+    private javax.swing.JLabel pointsText;
     private javax.swing.JButton startButton;
     private javax.swing.JLabel timeRunning;
     // End of variables declaration//GEN-END:variables
