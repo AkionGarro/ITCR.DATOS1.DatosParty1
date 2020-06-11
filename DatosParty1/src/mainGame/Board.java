@@ -960,10 +960,7 @@ public class Board extends javax.swing.JFrame {
 
         star.setCell();
 
-        star.setSoldFalse();
-
         int starCell = star.getCell();
-
         int newX = principal.findXLocation(starCell);
         int newY = principal.findYLocation(starCell);
 
@@ -1062,57 +1059,59 @@ public class Board extends javax.swing.JFrame {
      * players to select the winning player.
      */
     private void checkEndGame() {
-
-        if (round == 12) {
-
-            int starsArray[] = new int[players.size()];
-
-            for (int i = 0; i <= activePlayers; i++) {
-
+        
+        updateLeaderboard();
+        
+        if (round == 12) {            
+                        
+            int starsArray[] = new int[players.size()];   
+            
+            for (int i = 0; i <= activePlayers; i ++) {
+                
                 starsArray[i] = players.get(i).getStars();
-
+                
             }
-
+            
             int maxIndex = getMaxIndexStars(starsArray);
-
+            
             String winnerName = players.get(maxIndex).getName();
-
+                                    
             int repeated = checkRepeated(starsArray, maxIndex);
-
+            
             if (repeated == 1) {
-
+                
                 Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 2);
-
+                
                 maxIndex = getMaxIndexPlayers(arrayPlayers, 2);
-
-                winnerName = players.get(maxIndex).getName();
-
+                
+                winnerName = arrayPlayers[maxIndex].getName();
+                                
             } else if (repeated == 2) {
-
+                
                 Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 3);
-
+                
                 maxIndex = getMaxIndexPlayers(arrayPlayers, 3);
-
-                winnerName = players.get(maxIndex).getName();
-
+                
+                winnerName = arrayPlayers[maxIndex].getName();
+                                
             } else if (repeated == 3) {
-
+                
                 Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 4);
-
+                
                 maxIndex = getMaxIndexPlayers(arrayPlayers, 4);
-
-                winnerName = players.get(maxIndex).getName();
-
+                
+                winnerName = arrayPlayers[maxIndex].getName();
+                
             }
-
+            
             String message = winnerName + " ha ganado el juego";
-
+        
             JOptionPane.showMessageDialog(null, message, "Ganador del juego", 1);
-
+            
             btnRollDices.setEnabled(false);
-
+                        
         }
-
+        
     }
 
     /**
