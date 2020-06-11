@@ -26,7 +26,9 @@ public class Board extends javax.swing.JFrame {
     private static int activePlayers;
     private static int round = 0;
     private static int pointer1 = 0;
-    private static boolean pointer2 = false;
+    private static boolean pointer2 = false;    
+    public static boolean teleportation = false;
+    public static boolean changePositions = false;
 
     public static ArrayList<Player> players = new ArrayList<Player>();
 

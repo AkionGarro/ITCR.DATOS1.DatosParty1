@@ -459,6 +459,8 @@ public class Events {
         JOptionPane.showMessageDialog(null, message, "Evento: Teletransportación", 1);
 
         Board.moveToken(firstIndex, newX, newY);
+        
+        Board.teleportation = true;
 
     }
 
@@ -553,6 +555,8 @@ public class Events {
 
         Board.moveToken(firstIndex, newX1, newY1);
         Board.moveToken(secondIndex, newX2, newY2);
+        
+        Board.changePositions = true;
 
     }
 
