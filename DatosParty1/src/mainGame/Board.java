@@ -1027,32 +1027,44 @@ public class Board extends javax.swing.JFrame {
      * Check if the players fall in the same square and create a duel between
      * them.
      */
-    private void checkDuel() {
-
-        if (activePlayers == 1) {
-
-            Events newEvent = new Events("duelSameCell");
-
-            newEvent.start(0, 1);
-
-        } else {
-
+    private void checkDuel() {   
+        
+        if (teleportation == false && changePositions == false) {
+            
             Player actualPlayer = players.get(playerPlaying);
+            
+            Events newEvent = new Events("duelSameCell");
+                        
+            if (activePlayers == 1) {
+                
+                for (int i = 0; i <= activePlayers; i ++) {
 
-            for (int i = 0; i < players.size(); i++) {
+                    if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
 
-                if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
+                        newEvent.start(0, 1);
 
-                    Events newEvent = new Events("duelSameCell");
+                    }
 
-                    newEvent.start(playerPlaying, i);
+                }
+
+            } else {
+
+                for (int i = 0; i <= activePlayers; i ++) {
+
+                    if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
+
+                        newEvent.start(playerPlaying, i);
+
+                    }
 
                 }
 
             }
-
+        
         }
-
+        
+        // reocordar retroceder una casilla al jugador que perdio 
+        
     }
 
     /**
