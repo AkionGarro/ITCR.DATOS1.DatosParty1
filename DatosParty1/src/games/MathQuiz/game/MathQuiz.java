@@ -81,7 +81,7 @@ public class MathQuiz extends javax.swing.JFrame {
         lblPoints = new javax.swing.JLabel();
         pointsText = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Math Quiz");
         setResizable(false);
 
