@@ -170,6 +170,7 @@ public class Differences extends javax.swing.JFrame {
         activepoints2 = new javax.swing.JLabel();
         activepoints3 = new javax.swing.JLabel();
         activepoints4 = new javax.swing.JLabel();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Differences Game");
@@ -309,7 +310,7 @@ public class Differences extends javax.swing.JFrame {
                 startButtonActionPerformed(evt);
             }
         });
-        informationPanel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 180, 50));
+        informationPanel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 180, 50));
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -318,13 +319,13 @@ public class Differences extends javax.swing.JFrame {
 
         nextButton.setBackground(new java.awt.Color(0, 255, 204));
         nextButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        nextButton.setText("Next");
+        nextButton.setText("Next Player");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
             }
         });
-        informationPanel.add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 180, 50));
+        informationPanel.add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 180, 50));
 
         playerPoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints1.setForeground(new java.awt.Color(0, 0, 0));
@@ -365,6 +366,16 @@ public class Differences extends javax.swing.JFrame {
         activepoints4.setForeground(new java.awt.Color(0, 0, 0));
         activepoints4.setText("0");
         informationPanel.add(activepoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 142, 50, 20));
+
+        exitButton.setBackground(new java.awt.Color(0, 255, 204));
+        exitButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+        informationPanel.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 180, 50));
 
         differencesPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 190));
 
@@ -770,8 +781,12 @@ public class Differences extends javax.swing.JFrame {
 
                     sendPlayer1Coins();
                     sendPlayer2Coins();
-                    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+                    System.out.println("rounda :" + round);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
 
                 }
                 break;
@@ -799,7 +814,11 @@ public class Differences extends javax.swing.JFrame {
                     sendPlayer1Coins();
                     sendPlayer2Coins();
                     sendPlayer3Coins();
-                    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
 
                 }
                 break;
@@ -835,9 +854,26 @@ public class Differences extends javax.swing.JFrame {
                     sendPlayer2Coins();
                     sendPlayer3Coins();
                     sendPlayer4Coins();
-                    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
+                    if (round == 4 && playerPoints.get(3) != null) {
+                        round = 0;
+                        configComponents();
+                        hundredths = 60;
+                        seconds = 30;
+                        timeRunning.setText("30:00 s");
+                        startButton.setEnabled(true);
+                        pointsPlayer1 = 0;
+                        pointsPlayer2 = 0;
+                        pointsPlayer3 = 0;
+                        pointsPlayer4 = 0;
 
+                    } else {
 
+                    }
                 }
                 break;
 
@@ -847,8 +883,50 @@ public class Differences extends javax.swing.JFrame {
         }
 
 
-
     }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        switch (option) {
+            case 2:
+                if (round == 2) {
+                    round = 0;
+                    pointsPlayer1 = 0;
+                    pointsPlayer2 = 0;
+
+                    dispose();
+
+                } else {
+                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                }
+                break;
+            case 3:
+                if (round == 3) {
+                    round = 0;
+                    pointsPlayer1 = 0;
+                    pointsPlayer2 = 0;
+                    pointsPlayer3 = 0;
+
+                    dispose();
+                } else {
+                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                }
+                break;
+            case 4:
+                if (round == 4) {
+                    round = 0;
+                    pointsPlayer1 = 0;
+                    pointsPlayer2 = 0;
+                    pointsPlayer3 = 0;
+                    pointsPlayer4 = 0;
+                    dispose();
+                } else {
+                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                }
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     public static void main() {
 
@@ -887,6 +965,7 @@ public class Differences extends javax.swing.JFrame {
     private javax.swing.JLabel difference8;
     private javax.swing.JLabel difference9;
     private javax.swing.JPanel differencesPanel;
+    private javax.swing.JButton exitButton;
     private javax.swing.JLabel imageBackground;
     private javax.swing.JPanel informationPanel;
     private javax.swing.JLabel jLabel1;

@@ -30,7 +30,7 @@ public class Board extends javax.swing.JFrame {
     private static int activePlayers;
     private static int round = 1;
     private static int pointer1 = 0;
-    private static boolean pointer2 = false;    
+    private static boolean pointer2 = false;
     public static boolean teleportation = false;
     public static boolean changePositions = false;
 
@@ -68,7 +68,7 @@ public class Board extends javax.swing.JFrame {
         activePlayers = players.size() - 1;
         stackEvents.shuffle();
         stackMinigames.shuffle();
-        
+
         txtRound.setText("Ronda 1");
         txtTurn.setText("Turno de " + players.get(0).getName());
 
@@ -490,377 +490,377 @@ public class Board extends javax.swing.JFrame {
      *
      */
     private void btnRollDicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollDicesActionPerformed
-        
+
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
 
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
 
-        Player actualPlayer = players.get(playerPlaying); 
-        
+        Player actualPlayer = players.get(playerPlaying);
+
         int previousCell = actualPlayer.getCell();
-        
+
         int nextCell = 0;
-        
+
         int moveToCell;
-        
+
         if (actualPlayer.getDirection() == "next") {
-            
+
             moveToCell = actualPlayer.getCell() + rightDice + leftDice;
-            
+
         } else {
-            
+
             moveToCell = actualPlayer.getCell() - rightDice - leftDice;
-            
+
         }
-                
+
         String actualPhase = actualPlayer.getPhase();
-                
+
         int x = 0;
         int y = 0;
-        
-        if (null != actualPhase) switch (actualPhase) {
-            
-            case "principal":
-                
-                if (moveToCell > 37) {
-                    
-                    moveToCell -= 38;
-                    
-                } 
-                
-                switch (moveToCell) {
-                                        
-                    case 0:
-                        
-                        moveToCell = 69;                        
-                        actualPlayer.setPhase("phaseD");
-                        actualPlayer.setDirection("next");                                                
-                        x = phaseD.findXLocation(69);
-                        y = phaseD.findYLocation(69);
-                        
-                        break;
-                        
-                    case 9:
-                        
-                        moveToCell = 72;                                                                      
-                        actualPlayer.setPhase("phaseD");
-                        actualPlayer.setDirection("next");                        
-                        x = phaseD.findXLocation(72);
-                        y = phaseD.findYLocation(72);                          
-                        
-                        break;
-                        
-                    case 19:
-                        
-                        moveToCell = 76;
-                        actualPlayer.setPhase("phaseD");
-                        actualPlayer.setDirection("previous");                        
-                        x = phaseD.findXLocation(76);
-                        y = phaseD.findYLocation(76);
-                        
-                        break;
-                        
-                    case 28:
-                        
-                        moveToCell = 80;
-                        actualPlayer.setPhase("phaseD");
-                        actualPlayer.setDirection("previous");                        
-                        x = phaseD.findXLocation(80);
-                        y = phaseD.findYLocation(80);
-                        
-                        break;
-                        
-                    case 7:
-                        
-                        pointer1 = 7;
-                        actualPlayer.setPhase("phaseA");
-                        x = principal.findXLocation(7);
-                        y = principal.findYLocation(7);
-                        
-                        break;
-                        
-                    case 17:
-                        
-                        pointer1 = 17;
-                        actualPlayer.setPhase("phaseC");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(17);
-                        y = principal.findYLocation(17);
-                                                
-                        break;
-                        
-                    case 23:
-                        
-                        pointer1 = 23;
-                        actualPlayer.setPhase("phaseB");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(23);
-                        y = principal.findYLocation(23);
-                        
-                        break;
-                        
-                    case 36:
-                        
-                        pointer1 = 36;
-                        actualPlayer.setPhase("phaseC");
-                        actualPlayer.setDirection("previous");
-                        x = principal.findXLocation(36);
-                        y = principal.findYLocation(36);
-                                                
-                        break;
-                        
-                    default:
-                        
+
+        if (null != actualPhase) {
+            switch (actualPhase) {
+
+                case "principal":
+
+                    if (moveToCell > 37) {
+
+                        moveToCell -= 38;
+
+                    }
+
+                    switch (moveToCell) {
+
+                        case 0:
+
+                            moveToCell = 69;
+                            actualPlayer.setPhase("phaseD");
+                            actualPlayer.setDirection("next");
+                            x = phaseD.findXLocation(69);
+                            y = phaseD.findYLocation(69);
+
+                            break;
+
+                        case 9:
+
+                            moveToCell = 72;
+                            actualPlayer.setPhase("phaseD");
+                            actualPlayer.setDirection("next");
+                            x = phaseD.findXLocation(72);
+                            y = phaseD.findYLocation(72);
+
+                            break;
+
+                        case 19:
+
+                            moveToCell = 76;
+                            actualPlayer.setPhase("phaseD");
+                            actualPlayer.setDirection("previous");
+                            x = phaseD.findXLocation(76);
+                            y = phaseD.findYLocation(76);
+
+                            break;
+
+                        case 28:
+
+                            moveToCell = 80;
+                            actualPlayer.setPhase("phaseD");
+                            actualPlayer.setDirection("previous");
+                            x = phaseD.findXLocation(80);
+                            y = phaseD.findYLocation(80);
+
+                            break;
+
+                        case 7:
+
+                            pointer1 = 7;
+                            actualPlayer.setPhase("phaseA");
+                            x = principal.findXLocation(7);
+                            y = principal.findYLocation(7);
+
+                            break;
+
+                        case 17:
+
+                            pointer1 = 17;
+                            actualPlayer.setPhase("phaseC");
+                            actualPlayer.setDirection("next");
+                            x = principal.findXLocation(17);
+                            y = principal.findYLocation(17);
+
+                            break;
+
+                        case 23:
+
+                            pointer1 = 23;
+                            actualPlayer.setPhase("phaseB");
+                            actualPlayer.setDirection("next");
+                            x = principal.findXLocation(23);
+                            y = principal.findYLocation(23);
+
+                            break;
+
+                        case 36:
+
+                            pointer1 = 36;
+                            actualPlayer.setPhase("phaseC");
+                            actualPlayer.setDirection("previous");
+                            x = principal.findXLocation(36);
+                            y = principal.findYLocation(36);
+
+                            break;
+
+                        default:
+
+                            actualPlayer.setDirection("next");
+                            x = principal.findXLocation(moveToCell);
+                            y = principal.findYLocation(moveToCell);
+
+                            break;
+
+                    }
+
+                    break;
+
+                case "phaseA":
+
+                    if (actualPlayer.getCell() == 7) {
+
+                        moveToCell = 37 + rightDice + leftDice;
+                        x = phaseA.findXLocation(moveToCell);
+                        y = phaseA.findYLocation(moveToCell);
+
+                    }
+
+                    if (moveToCell > 48) {
+
+                        moveToCell = moveToCell - 49 + 13;
+                        actualPlayer.setPhase("principal");
                         actualPlayer.setDirection("next");
                         x = principal.findXLocation(moveToCell);
                         y = principal.findYLocation(moveToCell);
-                                                
-                        break;
-                        
-                }   
 
-                break;
+                    } else {
 
-                
-            case "phaseA":
-                
-                if (actualPlayer.getCell() == 7) {
-                    
-                    moveToCell = 37 + rightDice + leftDice;
-                    x = phaseA.findXLocation(moveToCell);
-                    y = phaseA.findYLocation(moveToCell);
-                    
-                }
-                
-                if (moveToCell > 48) {
-                    
-                    moveToCell = moveToCell - 49 + 13;                    
-                    actualPlayer.setPhase("principal");                    
-                    actualPlayer.setDirection("next");
-                    x = principal.findXLocation(moveToCell);
-                    y = principal.findYLocation(moveToCell);
-                    
-                } else {
-                    
-                    x = phaseA.findXLocation(moveToCell);
-                    y = phaseA.findYLocation(moveToCell);
-                    
-                }  
-                
-                break;
-                
-            case "phaseB":
-                
-                if (actualPlayer.getCell() == 23) {
-                    
-                    moveToCell = 48 + rightDice + leftDice;
-                    x = phaseB.findXLocation(moveToCell);
-                    y = phaseB.findYLocation(moveToCell);
-                    
-                }
-                
-                if (moveToCell > 54) {
-                    
-                    moveToCell = moveToCell - 55 + 30;                    
-                    actualPlayer.setPhase("principal");
-                    actualPlayer.setDirection("next");
-                    x = principal.findXLocation(moveToCell);
-                    y = principal.findYLocation(moveToCell);
-                    
-                } else {
-                    
-                    x = phaseB.findXLocation(moveToCell);
-                    y = phaseB.findYLocation(moveToCell);
-                    
-                }   
-                
-                break;
-                
-            case "phaseC":
-                
-                if (actualPlayer.getCell() == 17) {
-                    
-                    moveToCell = 54 + rightDice + leftDice;
-                    x = phaseC.findXLocation(moveToCell);
-                    y = phaseC.findYLocation(moveToCell);
-                    
-                } else if (actualPlayer.getCell() == 36) {
-                    
-                    moveToCell = 69 - rightDice - leftDice;
-                    x = phaseC.findXLocation(moveToCell);
-                    y = phaseC.findYLocation(moveToCell);
-                    
-                } else if (moveToCell > 68) {
-                    
-                    moveToCell = moveToCell - 69 + 36;
-                    
-                    if (moveToCell > 37) {
-                        
-                        moveToCell -= 38;
-                        
+                        x = phaseA.findXLocation(moveToCell);
+                        y = phaseA.findYLocation(moveToCell);
+
                     }
-                    
-                    actualPlayer.setPhase("principal");
-                    actualPlayer.setDirection("next");                    
-                    x = principal.findXLocation(moveToCell);
-                    y = principal.findYLocation(moveToCell);
-                    
-                } else if (moveToCell < 55) {
-                    
-                    moveToCell = 54 - moveToCell + 17;                    
-                    actualPlayer.setPhase("principal");
-                    actualPlayer.setDirection("next");                    
-                    x = principal.findXLocation(moveToCell);
-                    y = principal.findYLocation(moveToCell);
-                    
-                } else if (actualPlayer.getDirection() == "next") {
-                    
-                    x = phaseC.findXLocation(moveToCell);
-                    y = phaseC.findYLocation(moveToCell);
-                    
-                } else if (actualPlayer.getDirection() == "previous") {
-                    
-                    x = phaseC.findXLocationPrevious(moveToCell);
-                    y = phaseC.findYLocationPrevious(moveToCell);
-                    
-                }
-                
-                break;
-                
-            case "phaseD":
-                
-                if (moveToCell > 82) {
-                    
-                    moveToCell = moveToCell - 83 + 69;
-                    
-                } else if (moveToCell < 69) {
-                    
-                    moveToCell = 82 - (68 - moveToCell);
-                    
-                }
-                
-                if (moveToCell == 69) {
-                    
-                    moveToCell = 0;
-                    actualPlayer.setPhase("principal");
-                    actualPlayer.setDirection("next");                    
-                    x = principal.findXLocation(0);
-                    y = principal.findYLocation(0);
-                    
-                    
-                } else if (moveToCell == 72) {
-                    
-                    moveToCell = 9;
-                    actualPlayer.setPhase("principal");
-                    actualPlayer.setDirection("next");                    
-                    x = principal.findXLocation(9);
-                    y = principal.findYLocation(9);     
-                    
-                } else if (moveToCell == 76) {
-                    
-                    moveToCell = 19;
-                    actualPlayer.setPhase("principal");
-                    actualPlayer.setDirection("next");                    
-                    x = principal.findXLocation(19);
-                    y = principal.findYLocation(19);
-                    
-                } else if (moveToCell == 80) {
-                    
-                    moveToCell = 28;
-                    actualPlayer.setPhase("principal");
-                    actualPlayer.setDirection("next");                    
-                    x = principal.findXLocation(28);
-                    y = principal.findYLocation(28);
-                    
-                    if (moveToCell > 37) {
-                    
-                    moveToCell -= 38;
-                    
-                    }   
-                    
-                } else if (actualPlayer.getDirection() == "next") {
-                    
-                    x = phaseD.findXLocation(moveToCell);
-                    y = phaseD.findYLocation(moveToCell);
-                    
-                } else if (actualPlayer.getDirection() == "previous") {
-                    
-                    x = phaseD.findXLocationPrevious(moveToCell);
-                    y = phaseD.findYLocationPrevious(moveToCell);
-                    
-                }    
-                
-                break;
-                
-            default:
-                
-                break;
-                
+
+                    break;
+
+                case "phaseB":
+
+                    if (actualPlayer.getCell() == 23) {
+
+                        moveToCell = 48 + rightDice + leftDice;
+                        x = phaseB.findXLocation(moveToCell);
+                        y = phaseB.findYLocation(moveToCell);
+
+                    }
+
+                    if (moveToCell > 54) {
+
+                        moveToCell = moveToCell - 55 + 30;
+                        actualPlayer.setPhase("principal");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(moveToCell);
+                        y = principal.findYLocation(moveToCell);
+
+                    } else {
+
+                        x = phaseB.findXLocation(moveToCell);
+                        y = phaseB.findYLocation(moveToCell);
+
+                    }
+
+                    break;
+
+                case "phaseC":
+
+                    if (actualPlayer.getCell() == 17) {
+
+                        moveToCell = 54 + rightDice + leftDice;
+                        x = phaseC.findXLocation(moveToCell);
+                        y = phaseC.findYLocation(moveToCell);
+
+                    } else if (actualPlayer.getCell() == 36) {
+
+                        moveToCell = 69 - rightDice - leftDice;
+                        x = phaseC.findXLocation(moveToCell);
+                        y = phaseC.findYLocation(moveToCell);
+
+                    } else if (moveToCell > 68) {
+
+                        moveToCell = moveToCell - 69 + 36;
+
+                        if (moveToCell > 37) {
+
+                            moveToCell -= 38;
+
+                        }
+
+                        actualPlayer.setPhase("principal");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(moveToCell);
+                        y = principal.findYLocation(moveToCell);
+
+                    } else if (moveToCell < 55) {
+
+                        moveToCell = 54 - moveToCell + 17;
+                        actualPlayer.setPhase("principal");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(moveToCell);
+                        y = principal.findYLocation(moveToCell);
+
+                    } else if (actualPlayer.getDirection() == "next") {
+
+                        x = phaseC.findXLocation(moveToCell);
+                        y = phaseC.findYLocation(moveToCell);
+
+                    } else if (actualPlayer.getDirection() == "previous") {
+
+                        x = phaseC.findXLocationPrevious(moveToCell);
+                        y = phaseC.findYLocationPrevious(moveToCell);
+
+                    }
+
+                    break;
+
+                case "phaseD":
+
+                    if (moveToCell > 82) {
+
+                        moveToCell = moveToCell - 83 + 69;
+
+                    } else if (moveToCell < 69) {
+
+                        moveToCell = 82 - (68 - moveToCell);
+
+                    }
+
+                    if (moveToCell == 69) {
+
+                        moveToCell = 0;
+                        actualPlayer.setPhase("principal");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(0);
+                        y = principal.findYLocation(0);
+
+                    } else if (moveToCell == 72) {
+
+                        moveToCell = 9;
+                        actualPlayer.setPhase("principal");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(9);
+                        y = principal.findYLocation(9);
+
+                    } else if (moveToCell == 76) {
+
+                        moveToCell = 19;
+                        actualPlayer.setPhase("principal");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(19);
+                        y = principal.findYLocation(19);
+
+                    } else if (moveToCell == 80) {
+
+                        moveToCell = 28;
+                        actualPlayer.setPhase("principal");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(28);
+                        y = principal.findYLocation(28);
+
+                        if (moveToCell > 37) {
+
+                            moveToCell -= 38;
+
+                        }
+
+                    } else if (actualPlayer.getDirection() == "next") {
+
+                        x = phaseD.findXLocation(moveToCell);
+                        y = phaseD.findYLocation(moveToCell);
+
+                    } else if (actualPlayer.getDirection() == "previous") {
+
+                        x = phaseD.findXLocationPrevious(moveToCell);
+                        y = phaseD.findYLocationPrevious(moveToCell);
+
+                    }
+
+                    break;
+
+                default:
+
+                    break;
+
+            }
         }
-                
+
         actualPlayer.setCell(moveToCell);
-        
+
         nextCell = moveToCell;
-        
+
         switch (playerPlaying) {
-            
+
             case 0:
-                
+
                 moveToken(0, x, y);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 moveToken(1, x, y);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 moveToken(2, x, y);
-                
+
                 break;
-                
+
             default:
-                
+
                 moveToken(3, x, y);
-                
+
                 break;
         }
 
         actionCell(moveToCell);
-        
+
         checkDuel();
-        
+
         teleportation = false;
-        
+
         changePositions = false;
-        
-        pointer1 = 0;        
-            
+
+        pointer1 = 0;
+
         checkStar(previousCell, nextCell);
 
-        playerPlaying ++;
-                        
+        playerPlaying++;
+
         try {
-            
+
             checkPlayerPlaying();
-            
+
         } catch (InterruptedException ex) {
-            
+
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
-        
+
         if (round != 13) {
-            
+
             txtTurn.setText("Turno de " + players.get(playerPlaying).getName());
-            
-        }               
-        
+
+        }
+
         checkEndGame();
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
@@ -873,47 +873,47 @@ public class Board extends javax.swing.JFrame {
     public void randomRightDice(int dice) {
 
         switch (dice) {
-            
+
             case 1:
-                
+
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
-                
+
                 break;
-                
+
             case 2:
-                
+
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
-                
+
                 break;
-                
+
             case 3:
-                
+
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
-                
+
                 break;
-                
+
             case 4:
-                
+
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
-                
+
                 break;
-                
+
             case 5:
-                
+
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
-                
+
                 break;
-                
+
             case 6:
-                
+
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
@@ -926,47 +926,47 @@ public class Board extends javax.swing.JFrame {
     public void randomLeftDice(int dice) {
 
         switch (dice) {
-            
+
             case 1:
-                
+
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
-                
+
                 break;
-                
+
             case 2:
-                
+
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
-                
+
                 break;
-                
+
             case 3:
-                
+
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
-                
+
                 break;
-                
+
             case 4:
-                
+
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
-                
+
                 break;
-                
+
             case 5:
-                
+
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
-                
+
                 break;
-                
+
             case 6:
-                
+
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
@@ -1014,52 +1014,52 @@ public class Board extends javax.swing.JFrame {
      */
     private void checkPlayerPlaying() throws InterruptedException {
 
-        if (round > 1 && playerPlaying > activePlayers) {               
-           
+        if (round > 1 && playerPlaying > activePlayers) {
+
             Minigames newMinigame = new Minigames(stackMinigames.pop());
-                        
+
             String message = "El minijuego será " + newMinigame.name;
-        
+
             JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
 
             newMinigame.start();
-                        
+
             playerPlaying = 0;
-            round ++;
-            
+            round++;
+
             txtRound.setText("Ronda " + round);
-            
+
         } else if (playerPlaying > activePlayers) {
 
             playerPlaying = 0;
-            round ++;
-            
+            round++;
+
             Minigames newMinigame = new Minigames(stackMinigames.pop());
-                        
+
             String message = "El minijuego será " + newMinigame.name;
-        
+
             JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
 
             newMinigame.start();
-            
+
             txtRound.setText("Ronda " + round);
 
         }
-        
+
         if (round == 2 && pointer2 == false) {
 
             lblStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star1.png")));
 
             newStar();
-            
+
             pointer2 = true;
 
         }
-        
+
         if (round == 13) {
-            
+
             txtRound.setText("Ronda 12");
-            
+
         }
 
     }
@@ -1080,55 +1080,55 @@ public class Board extends javax.swing.JFrame {
     }
 
     private void checkStar(int previousCell, int nextCell) {
-                
+
         Player player = players.get(playerPlaying);
-        
+
         star = Star.getStar();
-        
-        int starCell = star.getCell();        
-        
+
+        int starCell = star.getCell();
+
         if (round > 1 && player.getCell() < 38) {
-            
+
             if (previousCell < 38 && nextCell < 38) {
-                
+
                 if (previousCell < nextCell) {
 
                     if ((starCell > previousCell && starCell <= nextCell)) {
 
-                        buyStar();    
+                        buyStar();
 
                     }
 
                 } else if (previousCell > 26 && nextCell < 12) {
-                                        
+
                     nextCell += 38;
 
                     if (starCell < 12) {
 
                         starCell += 38;
 
-                    }            
+                    }
 
                     if (starCell > previousCell && starCell <= nextCell) {
 
-                        buyStar();    
+                        buyStar();
 
                     }
 
-                }            
+                }
 
             } else if ((previousCell == 7 || (previousCell >= 38 && previousCell <= 48)) && nextCell < 38) {
-                
-                previousCell = 13;        
+
+                previousCell = 13;
 
                 if ((starCell >= previousCell && starCell <= nextCell)) {
 
-                    buyStar();    
+                    buyStar();
 
                 }
 
             } else if ((previousCell == 23 || (previousCell >= 49 && previousCell <= 54)) && nextCell < 38) {
-                
+
                 previousCell = 30;
 
                 if (nextCell < 12) {
@@ -1139,94 +1139,94 @@ public class Board extends javax.swing.JFrame {
 
                 if ((starCell >= previousCell && starCell <= nextCell)) {
 
-                    buyStar();    
+                    buyStar();
 
                 }
 
             } else if ((previousCell >= 55 && previousCell <= 68) && nextCell <= 28) {
-                
-                previousCell = 17;            
+
+                previousCell = 17;
 
                 if ((starCell >= previousCell && starCell <= nextCell)) {
 
-                    buyStar();    
+                    buyStar();
 
                 }
 
-            } else if ((previousCell >= 55 && previousCell <= 68) && nextCell < 38){
-                
+            } else if ((previousCell >= 55 && previousCell <= 68) && nextCell < 38) {
+
                 previousCell = 36;
 
                 if (nextCell < 10) {
 
                     nextCell += 38;
 
-                }            
-
-                if ((starCell >= previousCell && starCell <= nextCell)) {
-
-                    buyStar();    
-
-                }           
-                
-            } else if (previousCell < 38 && nextCell >= 69){
-                                
-                switch (nextCell) {
-                    
-                    case 69:
-                        
-                        nextCell = 38;
-                        
-                        break;
-                        
-                    case 72:
-                        
-                        nextCell = 9;
-                        
-                        break;
-                        
-                    case 76:
-                        
-                        nextCell = 19;
-                        
-                        break;
-                        
-                    case 80:
-                        
-                        nextCell = 28;
-                        
-                        break;
-                        
-                    default:
-                        
-                        break;
-                        
                 }
 
                 if ((starCell >= previousCell && starCell <= nextCell)) {
 
-                    buyStar();    
+                    buyStar();
 
-                }  
+                }
 
-            } else if (nextCell == starCell){
-                
-                buyStar();    
+            } else if (previousCell < 38 && nextCell >= 69) {
+
+                switch (nextCell) {
+
+                    case 69:
+
+                        nextCell = 38;
+
+                        break;
+
+                    case 72:
+
+                        nextCell = 9;
+
+                        break;
+
+                    case 76:
+
+                        nextCell = 19;
+
+                        break;
+
+                    case 80:
+
+                        nextCell = 28;
+
+                        break;
+
+                    default:
+
+                        break;
+
+                }
+
+                if ((starCell >= previousCell && starCell <= nextCell)) {
+
+                    buyStar();
+
+                }
+
+            } else if (nextCell == starCell) {
+
+                buyStar();
 
             }
-            
-        }
-           
-    }
-    
-    private void buyStar() {
-        
-        Player player = players.get(playerPlaying);           
-                
-        String message = "Has pasado por una casilla donde se encuentra la estrella" + "\n"
-                            + "¿Deseas comprarla?";
 
-        int option = JOptionPane.showConfirmDialog(null,message, "Comprar estrella", JOptionPane.YES_NO_OPTION);
+        }
+
+    }
+
+    private void buyStar() {
+
+        Player player = players.get(playerPlaying);
+
+        String message = "Has pasado por una casilla donde se encuentra la estrella" + "\n"
+                + "¿Deseas comprarla?";
+
+        int option = JOptionPane.showConfirmDialog(null, message, "Comprar estrella", JOptionPane.YES_NO_OPTION);
 
         if (option == JOptionPane.YES_OPTION) {
 
@@ -1235,12 +1235,12 @@ public class Board extends javax.swing.JFrame {
                 player.setStars(player.getStars() + 1);
 
                 player.setCoins(player.getCoins() - 100);
-                
-                newStar(); 
+
+                newStar();
 
                 updateStarsEvent();
 
-                updateCoinsEvent();                                      
+                updateCoinsEvent();
 
             } else {
 
@@ -1250,25 +1250,25 @@ public class Board extends javax.swing.JFrame {
 
             }
 
-        } 
-        
+        }
+
     }
-    
+
     /**
      * Check if the players fall in the same square and create a duel between
      * them.
      */
-    private void checkDuel() {   
-        
+    private void checkDuel() {
+
         if (teleportation == false && changePositions == false) {
-            
+
             Player actualPlayer = players.get(playerPlaying);
-            
+
             Events newEvent = new Events("duelSameCell");
-                        
+
             if (activePlayers == 1) {
-                
-                for (int i = 0; i <= activePlayers; i ++) {
+
+                for (int i = 0; i <= activePlayers; i++) {
 
                     if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
 
@@ -1280,7 +1280,7 @@ public class Board extends javax.swing.JFrame {
 
             } else {
 
-                for (int i = 0; i <= activePlayers; i ++) {
+                for (int i = 0; i <= activePlayers; i++) {
 
                     if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
 
@@ -1291,11 +1291,10 @@ public class Board extends javax.swing.JFrame {
                 }
 
             }
-        
+
         }
-        
+
         // reocordar retroceder una casilla al jugador que perdio 
-        
     }
 
     /**
@@ -1304,77 +1303,71 @@ public class Board extends javax.swing.JFrame {
      * players to select the winning player.
      */
     private void checkEndGame() {
-        
+
         updateLeaderboard();
-        
-        if (round == 13) {            
-                        
-            int starsArray[] = new int[players.size()];   
-            
-            for (int i = 0; i <= activePlayers; i ++) {
-                
+
+        if (round == 14) {
+
+            int starsArray[] = new int[players.size()];
+
+            for (int i = 0; i <= activePlayers; i++) {
+
                 starsArray[i] = players.get(i).getStars();
-                
+
             }
-            
+
             int maxIndex = getMaxIndexStars(starsArray);
-            
+
             String winnerName = players.get(maxIndex).getName();
-                                    
+
             int repeated = checkRepeated(starsArray, maxIndex);
-            
+
             switch (repeated) {
-                
-                case 1:
-                    
-                    {
-                        
-                        Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 2);
-                        maxIndex = getMaxIndexPlayers(arrayPlayers, 2);
-                        winnerName = arrayPlayers[maxIndex].getName();
-                        
-                        break;
-                        
-                    }
-                    
-                case 2:
-                    
-                    {
-                        
-                        Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 3);
-                        maxIndex = getMaxIndexPlayers(arrayPlayers, 3);
-                        winnerName = arrayPlayers[maxIndex].getName();
-                        
-                        break;
-                        
-                    }
-                    
-                case 3:
-                    
-                    {
-                        
-                        Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 4);
-                        maxIndex = getMaxIndexPlayers(arrayPlayers, 4);
-                        winnerName = arrayPlayers[maxIndex].getName();
-                        
-                        break;
-                        
-                    }
-                    
-                default:
-                    
+
+                case 1: {
+
+                    Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 2);
+                    maxIndex = getMaxIndexPlayers(arrayPlayers, 2);
+                    winnerName = arrayPlayers[maxIndex].getName();
+
                     break;
-                    
+
+                }
+
+                case 2: {
+
+                    Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 3);
+                    maxIndex = getMaxIndexPlayers(arrayPlayers, 3);
+                    winnerName = arrayPlayers[maxIndex].getName();
+
+                    break;
+
+                }
+
+                case 3: {
+
+                    Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 4);
+                    maxIndex = getMaxIndexPlayers(arrayPlayers, 4);
+                    winnerName = arrayPlayers[maxIndex].getName();
+
+                    break;
+
+                }
+
+                default:
+
+                    break;
+
             }
-            
+
             String message = winnerName + " ha ganado el juego";
-        
+
             JOptionPane.showMessageDialog(null, message, "Ganador del juego", 1);
-            
+
             btnRollDices.setEnabled(false);
-                        
+
         }
-        
+
     }
 
     /**
@@ -1565,35 +1558,35 @@ public class Board extends javax.swing.JFrame {
         String actualCoins = String.valueOf(players.get(playerPlaying).getCoins());
 
         switch (playerPlaying) {
-            
+
             case 0:
-                
+
                 activeCoinsPlayer1.setText(actualCoins);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 activeCoinsPlayer2.setText(actualCoins);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 activeCoinsPlayer3.setText(actualCoins);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 activeCoinsPlayer4.setText(actualCoins);
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
@@ -1607,46 +1600,42 @@ public class Board extends javax.swing.JFrame {
         String actualCoins2 = String.valueOf(players.get(1).getCoins());
 
         switch (activePlayers) {
-            
+
             case 1:
-                
+
                 activeCoinsPlayer1.setText(actualCoins1);
                 activeCoinsPlayer2.setText(actualCoins2);
-                
+
                 break;
-                
-            case 2:
-                
-                {
-                    
-                    String actualCoins3 = String.valueOf(players.get(2).getCoins());
-                    activeCoinsPlayer1.setText(actualCoins1);
-                    activeCoinsPlayer2.setText(actualCoins2);
-                    activeCoinsPlayer3.setText(actualCoins3);
-                    
-                    break;
-                    
-                }
-                
-            case 3:
-                
-                {
-                    
-                    String actualCoins3 = String.valueOf(players.get(2).getCoins());
-                    String actualCoins4 = String.valueOf(players.get(3).getCoins());
-                    activeCoinsPlayer1.setText(actualCoins1);
-                    activeCoinsPlayer2.setText(actualCoins2);
-                    activeCoinsPlayer3.setText(actualCoins3);
-                    activeCoinsPlayer4.setText(actualCoins4);
-                    
-                    break;
-                    
-                }
-                
+
+            case 2: {
+
+                String actualCoins3 = String.valueOf(players.get(2).getCoins());
+                activeCoinsPlayer1.setText(actualCoins1);
+                activeCoinsPlayer2.setText(actualCoins2);
+                activeCoinsPlayer3.setText(actualCoins3);
+
+                break;
+
+            }
+
+            case 3: {
+
+                String actualCoins3 = String.valueOf(players.get(2).getCoins());
+                String actualCoins4 = String.valueOf(players.get(3).getCoins());
+                activeCoinsPlayer1.setText(actualCoins1);
+                activeCoinsPlayer2.setText(actualCoins2);
+                activeCoinsPlayer3.setText(actualCoins3);
+                activeCoinsPlayer4.setText(actualCoins4);
+
+                break;
+
+            }
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
@@ -1660,46 +1649,42 @@ public class Board extends javax.swing.JFrame {
         String actualStars2 = String.valueOf(players.get(1).getStars());
 
         switch (activePlayers) {
-            
+
             case 1:
-                
+
                 activeStarsPlayer1.setText(actualStars1);
                 activeStarsPlayer2.setText(actualStars2);
-                
+
                 break;
-                
-            case 2:
-                
-                {
-                    
-                    String actualStars3 = String.valueOf(players.get(2).getStars());
-                    activeStarsPlayer1.setText(actualStars1);
-                    activeStarsPlayer2.setText(actualStars2);
-                    activeStarsPlayer3.setText(actualStars3);
-                    
-                    break;
-                    
-                }
-                
-            case 3:
-                
-                {
-                    
-                    String actualStars3 = String.valueOf(players.get(2).getStars());
-                    String actualStars4 = String.valueOf(players.get(3).getStars());
-                    activeStarsPlayer1.setText(actualStars1);
-                    activeStarsPlayer2.setText(actualStars2);
-                    activeStarsPlayer3.setText(actualStars3);
-                    activeStarsPlayer4.setText(actualStars4);
-                    
-                    break;
-                    
-                }
-                
+
+            case 2: {
+
+                String actualStars3 = String.valueOf(players.get(2).getStars());
+                activeStarsPlayer1.setText(actualStars1);
+                activeStarsPlayer2.setText(actualStars2);
+                activeStarsPlayer3.setText(actualStars3);
+
+                break;
+
+            }
+
+            case 3: {
+
+                String actualStars3 = String.valueOf(players.get(2).getStars());
+                String actualStars4 = String.valueOf(players.get(3).getStars());
+                activeStarsPlayer1.setText(actualStars1);
+                activeStarsPlayer2.setText(actualStars2);
+                activeStarsPlayer3.setText(actualStars3);
+                activeStarsPlayer4.setText(actualStars4);
+
+                break;
+
+            }
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
