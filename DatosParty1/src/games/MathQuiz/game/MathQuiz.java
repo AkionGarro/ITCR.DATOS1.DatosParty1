@@ -359,7 +359,7 @@ public class MathQuiz extends javax.swing.JFrame {
 
     }
 
-    public static void main(String args[]) {
+    public static void main() {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             

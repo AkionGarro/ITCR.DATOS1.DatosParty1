@@ -333,15 +333,15 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
         if (yourScore == 3) {
 
-                lblWinner.setVisible(true);
-                lblWinner.setText("El ganador es: El Jugador");
-                result = true;
+            lblWinner.setVisible(true);
+            lblWinner.setText("El ganador es: El Jugador");
+            result = true;
 
             } else if (computerScore == 3) {
 
-                    lblWinner.setVisible(true);
-                    lblWinner.setText("El ganador es: La Computadora");
-                    result = true;
+                lblWinner.setVisible(true);
+                lblWinner.setText("El ganador es: La Computadora");
+                result = true;
 
             }
         
@@ -349,7 +349,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
     }
     
-    public static void main(String args[]) {
+    public static void main() {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             

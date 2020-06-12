@@ -68,6 +68,7 @@ public class Differences extends javax.swing.JFrame {
     }
 
     private ActionListener action = new ActionListener() {
+        
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -75,7 +76,7 @@ public class Differences extends javax.swing.JFrame {
 
             if (hundredths == 0) {
 
-                seconds--;
+                seconds --;
                 hundredths = 60;
 
             }
@@ -85,7 +86,9 @@ public class Differences extends javax.swing.JFrame {
                 time.stop();
                 hundredths = 0;
                 nextButton.setEnabled(true);
+                
             }
+            
             updateTimeLabel();
 
         }
@@ -355,103 +358,155 @@ public class Differences extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void prueba() {
+        
         if (round == 1) {
-            pointsPlayer1++;
+            
+            pointsPlayer1 ++;            
             activepoints1.setText("" + pointsPlayer1);
+            
         } else if (round == 2) {
-            pointsPlayer2++;
+            
+            pointsPlayer2 ++;
             activepoints2.setText("" + pointsPlayer2);
 
         } else if (round == 3) {
-            pointsPlayer3++;
+            
+            pointsPlayer3 ++;
             activepoints3.setText("" + pointsPlayer3);
+            
         } else if (round == 4) {
-            pointsPlayer4++;
+            
+            pointsPlayer4 ++;
             activepoints4.setText("" + pointsPlayer4);
+            
         }
+        
     }
+    
     private void showDifferenceButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton1MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference1.isVisible()) {
+                
                 difference1.setVisible(true);
                 difference2.setVisible(true);
                 prueba();
+                
             }
+            
         }
 
     }//GEN-LAST:event_showDifferenceButton1MouseClicked
 
     private void showDifferenceButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton3MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference3.isVisible()) {
+                
                 difference3.setVisible(true);
                 difference4.setVisible(true);
                 prueba();
+                
             }
+            
         }
-
+        
     }//GEN-LAST:event_showDifferenceButton3MouseClicked
 
     private void showDifferenceButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton5MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference5.isVisible()) {
+                
                 difference5.setVisible(true);
                 difference6.setVisible(true);
                 prueba();
+                
             }
+            
         }
+        
     }//GEN-LAST:event_showDifferenceButton5MouseClicked
 
     private void showDifferenceButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton7MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference7.isVisible()) {
+                
                 difference7.setVisible(true);
                 difference8.setVisible(true);
                 prueba();
+                
             }
+            
         }
 
     }//GEN-LAST:event_showDifferenceButton7MouseClicked
 
     private void showDifferenceButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton9MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference9.isVisible()) {
+                
                 difference9.setVisible(true);
                 difference10.setVisible(true);
                 prueba();
+                
             }
+            
         }
 
     }//GEN-LAST:event_showDifferenceButton9MouseClicked
 
     private void showDifferenceButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton11MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference11.isVisible()) {
+                
                 difference11.setVisible(true);
                 difference12.setVisible(true);
                 prueba();
+                
             }
+            
         }
 
     }//GEN-LAST:event_showDifferenceButton11MouseClicked
 
     private void showDifferenceButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton13MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference13.isVisible()) {
+                
                 difference13.setVisible(true);
                 difference14.setVisible(true);
                 prueba();
+                
             }
+            
         }
+        
     }//GEN-LAST:event_showDifferenceButton13MouseClicked
 
     private void showDifferenceButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton15MouseClicked
+        
         if (time.isRunning()) {
+            
             if (!difference15.isVisible()) {
+                
                 difference15.setVisible(true);
                 difference16.setVisible(true);
                 prueba();
+                
             }
+            
         }
 
     }//GEN-LAST:event_showDifferenceButton15MouseClicked
@@ -469,7 +524,7 @@ public class Differences extends javax.swing.JFrame {
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
-        round++;
+        round ++;
 
 
     }//GEN-LAST:event_startButtonActionPerformed
@@ -530,12 +585,19 @@ public class Differences extends javax.swing.JFrame {
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         int option = 4;
         if (round == 1) {
+            
             playerPoints.add(pointsPlayer1);
+            
         } else if (round == 2) {
+            
             playerPoints.add(pointsPlayer2);
+            
         } else if (round == 3) {
+            
             playerPoints.add(pointsPlayer3);
+            
         } else if (round == 4) {
+            
             playerPoints.add(pointsPlayer4);
             Collections.sort(playerPoints);
             getPlayer1Place();
@@ -551,10 +613,9 @@ public class Differences extends javax.swing.JFrame {
         timeRunning.setText("30:00 s");
         startButton.setEnabled(true);
 
-
     }//GEN-LAST:event_nextButtonActionPerformed
 
-    public static void main(String args[]) {
+    public static void main() {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
 
