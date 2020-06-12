@@ -215,7 +215,7 @@ public class TicTacToe extends javax.swing.JFrame {
         );
 
         btnNextGame.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        btnNextGame.setText("Siguiente Juego");
+        btnNextGame.setText("Siguiente");
         btnNextGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextGameActionPerformed(evt);
@@ -274,8 +274,8 @@ public class TicTacToe extends javax.swing.JFrame {
                             .addComponent(lblTurn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnNextGame)))))
+                                .addComponent(btnInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                .addComponent(btnNextGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(

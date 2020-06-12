@@ -38,6 +38,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
         lblComputerScore = new javax.swing.JLabel();
         lblWinner = new javax.swing.JLabel();
         btnInstrucctions = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +97,14 @@ public class RockPaperScissors extends javax.swing.JFrame {
             }
         });
 
+        btnNext.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNext.setText("Siguiente");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -115,14 +124,19 @@ public class RockPaperScissors extends javax.swing.JFrame {
                     .addComponent(lblYourScore)
                     .addComponent(lblComputerScore)
                     .addComponent(lblWinner)
-                    .addComponent(btnInstrucctions))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(btnInstrucctions)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNext)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnInstrucctions)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInstrucctions)
+                    .addComponent(btnNext))
                 .addGap(18, 18, 18)
                 .addComponent(lblYourElection)
                 .addGap(18, 18, 18)
@@ -305,6 +319,14 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnInstrucctionsActionPerformed
 
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+
+        turn = 0;
+        yourScore = 0;
+        computerScore = 0;
+
+    }//GEN-LAST:event_btnNextActionPerformed
+
     private boolean finishGame() {
         
         boolean result = false;
@@ -343,6 +365,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInstrucctions;
+    private javax.swing.JButton btnNext;
     private javax.swing.JLabel btnPaper;
     private javax.swing.JLabel btnRock;
     private javax.swing.JLabel btnScissors;
