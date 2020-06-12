@@ -11,9 +11,9 @@ public class PlatformBuilder {
 	private static final int HEIGHT = 30;
 	int x = 0;
 	int xa = 0;
-	private final Game game;
+	private final BallGame game;
 
-	public PlatformBuilder(Game game) {
+	public PlatformBuilder(BallGame game) {
             
             this.game = game;
             

@@ -10,11 +10,11 @@ public class BallBuilder {
 	int y = 0;
 	int xa = 1;
 	int ya = 1;
-	private final Game game;
+	private final BallGame game;
 
-	public BallBuilder(Game game) {
+	public BallBuilder(BallGame game) {
             
-		this.game = game;
+            this.game = game;
                 
 	}
 
