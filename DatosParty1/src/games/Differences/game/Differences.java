@@ -781,7 +781,6 @@ public class Differences extends javax.swing.JFrame {
 
                     sendPlayer1Coins();
                     sendPlayer2Coins();
-                    System.out.println("rounda :" + round);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
@@ -859,21 +858,7 @@ public class Differences extends javax.swing.JFrame {
                     seconds = 30;
                     timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
-                    if (round == 4 && playerPoints.get(3) != null) {
-                        round = 0;
-                        configComponents();
-                        hundredths = 60;
-                        seconds = 30;
-                        timeRunning.setText("30:00 s");
-                        startButton.setEnabled(true);
-                        pointsPlayer1 = 0;
-                        pointsPlayer2 = 0;
-                        pointsPlayer3 = 0;
-                        pointsPlayer4 = 0;
 
-                    } else {
-
-                    }
                 }
                 break;
 
@@ -902,6 +887,7 @@ public class Differences extends javax.swing.JFrame {
             case 3:
                 if (round == 3) {
                     round = 0;
+
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     pointsPlayer3 = 0;
@@ -913,12 +899,15 @@ public class Differences extends javax.swing.JFrame {
                 break;
             case 4:
                 if (round == 4) {
+
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     pointsPlayer3 = 0;
                     pointsPlayer4 = 0;
+
                     dispose();
+
                 } else {
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 }
