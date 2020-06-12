@@ -3,6 +3,9 @@ package games.Differences.game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JOptionPane;
+import mainGame.Board;
 
 import javax.swing.Timer;
 
@@ -12,10 +15,11 @@ public class Differences extends javax.swing.JFrame {
     private int hundredths = 60, seconds = 29;
     public static int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
     public static ArrayList<Integer> playerPoints = new ArrayList<Integer>();
+    private int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
 
     public Differences() {
 
-        time = new Timer(10, action);
+        time = new Timer(1, action);
         initComponents();
         configComponents();
         this.setLocationRelativeTo(null);
@@ -23,6 +27,7 @@ public class Differences extends javax.swing.JFrame {
     }
 
     private void configComponents() {
+        int option = 4;
 
         difference1.setVisible(false);
         difference2.setVisible(false);
@@ -51,6 +56,15 @@ public class Differences extends javax.swing.JFrame {
         showDifferenceButton15.setVisible(false);
         nextButton.setEnabled(false);
 
+        switch (Board.players.size()) {
+            case 2:
+                break;
+
+            case 3:
+                break;
+            case 4:
+                break;
+        }
     }
 
     private ActionListener action = new ActionListener() {
@@ -512,11 +526,64 @@ public class Differences extends javax.swing.JFrame {
         startButton.setText("START");
         round ++;
 
+
     }//GEN-LAST:event_startButtonActionPerformed
 
+    public void getPlayer1Place() {
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints1.getText()))) {
+            System.out.println("el primer jugador tiene la cuarta posicion");
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints1.getText()))) {
+            System.out.println("el primer jugador tiene la tercera posicion");
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints1.getText()))) {
+            System.out.println("el primer jugador tiene la segunda posicion");
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints1.getText()))) {
+            System.out.println("el primer jugador tiene la primera posicion");
+        }
+    }
+
+    public void getPlayer2Place() {
+
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints2.getText()))) {
+            System.out.println("el segundo jugador tiene la cuarta posicion");
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints2.getText()))) {
+            System.out.println("el segundo jugador tiene la tercera posicion");
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints2.getText()))) {
+            System.out.println("el segundo jugador tiene la segunda posicion");
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints2.getText()))) {
+            System.out.println("el segundo jugador tiene la primera posicion");
+        }
+
+    }
+
+    public void getPlayer3Place() {
+
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints3.getText()))) {
+            System.out.println("el tercer jugador tiene la cuarta posicion");
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints3.getText()))) {
+            System.out.println("el tercer jugador tiene la tercera posicion");
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints3.getText()))) {
+            System.out.println("el tercer jugador tiene la segunda posicion");
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints3.getText()))) {
+            System.out.println("el tercer jugador tiene la primera posicion");
+        }
+
+    }
+
+    public void getPlayer4Place() {
+
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints4.getText()))) {
+            System.out.println("el cuarto jugador tiene la cuarta posicion");
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints4.getText()))) {
+            System.out.println("el cuarto jugador tiene la tercera posicion");
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints4.getText()))) {
+            System.out.println("el cuarto jugador tiene la segunda posicion");
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints4.getText()))) {
+            System.out.println("el cuarto jugador tiene la primera posicion");
+        }
+    }
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-
+        int option = 4;
         if (round == 1) {
             
             playerPoints.add(pointsPlayer1);
@@ -532,7 +599,12 @@ public class Differences extends javax.swing.JFrame {
         } else if (round == 4) {
             
             playerPoints.add(pointsPlayer4);
-            
+            Collections.sort(playerPoints);
+            getPlayer1Place();
+            getPlayer2Place();
+            getPlayer3Place();
+            getPlayer4Place();
+
         }
 
         configComponents();
