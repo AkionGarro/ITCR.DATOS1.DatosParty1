@@ -24,7 +24,7 @@ public class Board extends javax.swing.JFrame {
     private int leftDice;
     public static int playerPlaying = 0;
     private static int activePlayers;
-    private static int round = 0;
+    private static int round = 1;
     private static int pointer1 = 0;
     private static boolean pointer2 = false;    
     public static boolean teleportation = false;
@@ -62,6 +62,9 @@ public class Board extends javax.swing.JFrame {
 
         activePlayers = players.size() - 1;
         stack.shuffle();
+        
+        txtRound.setText("Ronda 1");
+        txtTurn.setText("Turno de " + players.get(0).getName());
 
     }
 
@@ -280,6 +283,8 @@ public class Board extends javax.swing.JFrame {
         activeStarsPlayer2 = new javax.swing.JTextField();
         activeStarsPlayer3 = new javax.swing.JTextField();
         activeStarsPlayer4 = new javax.swing.JTextField();
+        txtRound = new javax.swing.JTextField();
+        txtTurn = new javax.swing.JTextField();
         leaderboard = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -434,6 +439,24 @@ public class Board extends javax.swing.JFrame {
         activeStarsPlayer4.setBorder(null);
         panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, -1, -1));
 
+        txtRound.setEditable(false);
+        txtRound.setBackground(new java.awt.Color(255, 255, 255));
+        txtRound.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        txtRound.setForeground(new java.awt.Color(0, 0, 0));
+        txtRound.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtRound.setText("Ronda");
+        txtRound.setBorder(null);
+        panel.add(txtRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 200, 370, -1));
+
+        txtTurn.setEditable(false);
+        txtTurn.setBackground(new java.awt.Color(255, 255, 255));
+        txtTurn.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        txtTurn.setForeground(new java.awt.Color(0, 0, 0));
+        txtTurn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTurn.setText("Turno de");
+        txtTurn.setBorder(null);
+        panel.add(txtTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 680, 390, -1));
+
         leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard2.png"))); // NOI18N
         panel.add(leaderboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, 240));
 
@@ -461,16 +484,6 @@ public class Board extends javax.swing.JFrame {
      *
      */
     private void btnRollDicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollDicesActionPerformed
-
-        if (round == 1 && pointer2 == false) {
-
-            lblStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star1.png")));
-
-            newStar();
-            
-            pointer2 = true;
-
-        }
         
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
@@ -816,8 +829,14 @@ public class Board extends javax.swing.JFrame {
         checkStar(previousCell, nextCell);
 
         playerPlaying ++;
-        
+                        
         checkPlayerPlaying();
+        
+        if (round != 13) {
+            
+            txtTurn.setText("Turno de " + players.get(playerPlaying).getName());
+            
+        }               
         
         checkEndGame();
 
@@ -939,22 +958,44 @@ public class Board extends javax.swing.JFrame {
      */
     private void checkPlayerPlaying() {
 
-        if (round > 0 && playerPlaying > activePlayers) {
-
+        if (round > 1 && playerPlaying > activePlayers) {               
+           
             //nuevo minijuego
+                        
             String message = "El minijuego será: "; // + minijuego.getName
-
+        
             JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
 
             //minijuego.start             
+                        
             playerPlaying = 0;
-            round++;
-
+            round ++;
+            
+            txtRound.setText("Ronda " + round);
+            
         } else if (playerPlaying > activePlayers) {
 
             playerPlaying = 0;
-            round++;
+            round ++;
+            
+            txtRound.setText("Ronda " + round);
 
+        }
+        
+        if (round == 2 && pointer2 == false) {
+
+            lblStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star1.png")));
+
+            newStar();
+            
+            pointer2 = true;
+
+        }
+        
+        if (round == 13) {
+            
+            txtRound.setText("Ronda 12");
+            
         }
 
     }
@@ -982,7 +1023,7 @@ public class Board extends javax.swing.JFrame {
         
         int starCell = star.getCell();        
         
-        if (round > 0 && player.getCell() < 38) {
+        if (round > 1 && player.getCell() < 38) {
             
             if (previousCell < 38 && nextCell < 38) {
                 
@@ -1187,7 +1228,7 @@ public class Board extends javax.swing.JFrame {
         
         updateLeaderboard();
         
-        if (round == 12) {            
+        if (round == 13) {            
                         
             int starsArray[] = new int[players.size()];   
             
@@ -1844,5 +1885,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel startImage2;
     private javax.swing.JLabel startImage3;
     private javax.swing.JLabel startImage4;
+    private static javax.swing.JTextField txtRound;
+    private static javax.swing.JTextField txtTurn;
     // End of variables declaration//GEN-END:variables
 }

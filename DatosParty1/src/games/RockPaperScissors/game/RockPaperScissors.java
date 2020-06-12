@@ -4,6 +4,13 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class RockPaperScissors extends javax.swing.JFrame {
+    
+    int turn = 0;
+    int yourScore = 0;
+    int computerScore = 0;
+    int userElection;
+    int computerElection;
+    Random random;
 
     public RockPaperScissors() {
         
@@ -323,19 +330,17 @@ public class RockPaperScissors extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
+                
                 new RockPaperScissors().setVisible(true);
+                
             }
+            
         });
+        
     }
-    
-    int turn = 0;
-    int yourScore = 0;
-    int computerScore = 0;
-    int userElection;
-    int computerElection;
-    Random random;
-    
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInstrucctions;
     private javax.swing.JLabel btnPaper;
@@ -349,5 +354,6 @@ public class RockPaperScissors extends javax.swing.JFrame {
     private javax.swing.JLabel lblYourScore;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
+
 }
 

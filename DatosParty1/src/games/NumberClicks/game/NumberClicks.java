@@ -154,10 +154,15 @@ public class NumberClicks extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
+                
                 new NumberClicks().setVisible(true);
+                
             }
+            
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -167,4 +172,5 @@ public class NumberClicks extends javax.swing.JFrame {
     private javax.swing.JLabel lblClicks;
     private javax.swing.JLabel lblTime;
     // End of variables declaration//GEN-END:variables
+
 }

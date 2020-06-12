@@ -2,7 +2,6 @@ package games.Differences.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 import javax.swing.Timer;
 
@@ -12,6 +11,7 @@ public class Differences extends javax.swing.JFrame {
     private int hundredths = 60, seconds = 30;
 
     public Differences() {
+        
         time = new Timer(10, action);
         initComponents();
         configComponents();
@@ -52,14 +52,21 @@ public class Differences extends javax.swing.JFrame {
     private ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            hundredths--;
+            
+            hundredths --;
+            
             if (hundredths == 0) {
-                seconds--;
+                
+                seconds --;
                 hundredths = 60;
+                
             }
+            
             if (seconds == 0) {
+                
                 time.stop();
                 hundredths = 0;
+                
             }
 
             updateTimeLabel();
@@ -73,9 +80,11 @@ public class Differences extends javax.swing.JFrame {
             }
 
         }
+        
     };
 
     private void updateTimeLabel() {
+        
         String text = (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths + " s";
         timeRunning.setText(text);
 
@@ -287,74 +296,74 @@ public class Differences extends javax.swing.JFrame {
 
 
     private void showDifferenceButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton1MouseClicked
+        
         difference1.setVisible(true);
         difference2.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton1MouseClicked
 
     private void showDifferenceButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton3MouseClicked
+        
         difference3.setVisible(true);
         difference4.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton3MouseClicked
 
     private void showDifferenceButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton5MouseClicked
+        
         difference5.setVisible(true);
         difference6.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton5MouseClicked
 
     private void showDifferenceButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton7MouseClicked
+        
         difference7.setVisible(true);
         difference8.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton7MouseClicked
 
     private void showDifferenceButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton9MouseClicked
+        
         difference9.setVisible(true);
         difference10.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton9MouseClicked
 
     private void showDifferenceButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton11MouseClicked
+        
         difference11.setVisible(true);
         difference12.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton11MouseClicked
 
     private void showDifferenceButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton13MouseClicked
+       
         difference13.setVisible(true);
         difference14.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton13MouseClicked
 
     private void showDifferenceButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton15MouseClicked
+        
         difference15.setVisible(true);
         difference16.setVisible(true);
-        showed++;
+        showed ++;
         acertadas.setText("Diferencias acertadas: " + showed);
-
 
     }//GEN-LAST:event_showDifferenceButton15MouseClicked
 
@@ -373,17 +382,21 @@ public class Differences extends javax.swing.JFrame {
         startButton.setEnabled(false);
         startButton.setText("START");
 
-
     }//GEN-LAST:event_startButtonActionPerformed
 
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             @Override
             public void run() {
+                
                 new Differences().setVisible(true);
+                
             }
+            
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -419,4 +432,5 @@ public class Differences extends javax.swing.JFrame {
     private javax.swing.JButton startButton;
     private javax.swing.JLabel timeRunning;
     // End of variables declaration//GEN-END:variables
+
 }
