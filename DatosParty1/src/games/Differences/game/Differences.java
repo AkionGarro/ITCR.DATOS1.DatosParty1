@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import mainGame.Board;
 
@@ -15,7 +16,8 @@ public class Differences extends javax.swing.JFrame {
     private int hundredths = 60, seconds = 29;
     public static int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
     public static ArrayList<Integer> playerPoints = new ArrayList<Integer>();
-    private int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
+    private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
+    public int option = Board.players.size();
 
     public Differences() {
 
@@ -27,9 +29,7 @@ public class Differences extends javax.swing.JFrame {
     }
 
     private void configComponents() {
-        int option = 4;
 
-        difference1.setVisible(false);
         difference2.setVisible(false);
         difference3.setVisible(false);
         difference4.setVisible(false);
@@ -45,7 +45,6 @@ public class Differences extends javax.swing.JFrame {
         difference14.setVisible(false);
         difference15.setVisible(false);
         difference16.setVisible(false);
-
         showDifferenceButton1.setVisible(false);
         showDifferenceButton3.setVisible(false);
         showDifferenceButton5.setVisible(false);
@@ -56,19 +55,45 @@ public class Differences extends javax.swing.JFrame {
         showDifferenceButton15.setVisible(false);
         nextButton.setEnabled(false);
 
-        switch (Board.players.size()) {
+        switch (option) {
             case 2:
+                playerPoints1.setVisible(true);
+                activepoints1.setVisible(true);
+                playerPoints2.setVisible(true);
+                activepoints2.setVisible(true);
+                playerPoints3.setVisible(false);
+                activepoints3.setVisible(false);
+                playerPoints4.setVisible(false);
+                activepoints4.setVisible(false);
                 break;
-
             case 3:
+                playerPoints1.setVisible(true);
+                activepoints1.setVisible(true);
+                playerPoints2.setVisible(true);
+                activepoints2.setVisible(true);
+                playerPoints3.setVisible(true);
+                activepoints3.setVisible(true);
+                playerPoints4.setVisible(false);
+                activepoints4.setVisible(false);
                 break;
             case 4:
+                playerPoints1.setVisible(true);
+                activepoints1.setVisible(true);
+                playerPoints2.setVisible(true);
+                activepoints2.setVisible(true);
+                playerPoints3.setVisible(true);
+                activepoints3.setVisible(true);
+                playerPoints4.setVisible(true);
+                activepoints4.setVisible(true);
+                break;
+            default:
                 break;
         }
+
     }
 
     private ActionListener action = new ActionListener() {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -76,7 +101,7 @@ public class Differences extends javax.swing.JFrame {
 
             if (hundredths == 0) {
 
-                seconds --;
+                seconds--;
                 hundredths = 60;
 
             }
@@ -86,9 +111,9 @@ public class Differences extends javax.swing.JFrame {
                 time.stop();
                 hundredths = 0;
                 nextButton.setEnabled(true);
-                
+
             }
-            
+
             updateTimeLabel();
 
         }
@@ -357,156 +382,194 @@ public class Differences extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void prueba() {
-        
-        if (round == 1) {
-            
-            pointsPlayer1 ++;            
-            activepoints1.setText("" + pointsPlayer1);
-            
-        } else if (round == 2) {
-            
-            pointsPlayer2 ++;
-            activepoints2.setText("" + pointsPlayer2);
+    public void updatePlayersPoints() {
+        switch (option) {
+            case 2:
 
-        } else if (round == 3) {
-            
-            pointsPlayer3 ++;
-            activepoints3.setText("" + pointsPlayer3);
-            
-        } else if (round == 4) {
-            
-            pointsPlayer4 ++;
-            activepoints4.setText("" + pointsPlayer4);
-            
+                if (round == 1) {
+
+                    pointsPlayer1++;
+                    activepoints1.setText("" + pointsPlayer1);
+
+                } else if (round == 2) {
+
+                    pointsPlayer2++;
+                    activepoints2.setText("" + pointsPlayer2);
+
+                }
+                break;
+            case 3:
+                switch (round) {
+                    case 1:
+                        pointsPlayer1++;
+                        activepoints1.setText("" + pointsPlayer1);
+                        break;
+                    case 2:
+                        pointsPlayer2++;
+                        activepoints2.setText("" + pointsPlayer2);
+                        break;
+                    case 3:
+                        pointsPlayer3++;
+                        activepoints3.setText("" + pointsPlayer3);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+
+            case 4:
+                switch (round) {
+                    case 1:
+                        pointsPlayer1++;
+                        activepoints1.setText("" + pointsPlayer1);
+                        break;
+                    case 2:
+                        pointsPlayer2++;
+                        activepoints2.setText("" + pointsPlayer2);
+                        break;
+                    case 3:
+                        pointsPlayer3++;
+                        activepoints3.setText("" + pointsPlayer3);
+                        break;
+                    case 4:
+                        pointsPlayer4++;
+                        activepoints4.setText("" + pointsPlayer4);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+
+            default:
+                break;
         }
-        
+
     }
-    
+
     private void showDifferenceButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton1MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference1.isVisible()) {
-                
+
                 difference1.setVisible(true);
                 difference2.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
 
     }//GEN-LAST:event_showDifferenceButton1MouseClicked
 
     private void showDifferenceButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton3MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference3.isVisible()) {
-                
+
                 difference3.setVisible(true);
                 difference4.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
-        
+
     }//GEN-LAST:event_showDifferenceButton3MouseClicked
 
     private void showDifferenceButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton5MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference5.isVisible()) {
-                
+
                 difference5.setVisible(true);
                 difference6.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
-        
+
     }//GEN-LAST:event_showDifferenceButton5MouseClicked
 
     private void showDifferenceButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton7MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference7.isVisible()) {
-                
+
                 difference7.setVisible(true);
                 difference8.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
 
     }//GEN-LAST:event_showDifferenceButton7MouseClicked
 
     private void showDifferenceButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton9MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference9.isVisible()) {
-                
+
                 difference9.setVisible(true);
                 difference10.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
 
     }//GEN-LAST:event_showDifferenceButton9MouseClicked
 
     private void showDifferenceButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton11MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference11.isVisible()) {
-                
+
                 difference11.setVisible(true);
                 difference12.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
 
     }//GEN-LAST:event_showDifferenceButton11MouseClicked
 
     private void showDifferenceButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton13MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference13.isVisible()) {
-                
+
                 difference13.setVisible(true);
                 difference14.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
-        
+
     }//GEN-LAST:event_showDifferenceButton13MouseClicked
 
     private void showDifferenceButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton15MouseClicked
-        
+
         if (time.isRunning()) {
-            
+
             if (!difference15.isVisible()) {
-                
+
                 difference15.setVisible(true);
                 difference16.setVisible(true);
-                prueba();
-                
+                updatePlayersPoints();
+
             }
-            
+
         }
 
     }//GEN-LAST:event_showDifferenceButton15MouseClicked
@@ -524,87 +587,208 @@ public class Differences extends javax.swing.JFrame {
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
-        round ++;
+        round++;
 
 
     }//GEN-LAST:event_startButtonActionPerformed
 
-    public void getPlayer1Place() {
+    public int getPlayer1Place() {
+        int index = 0;
         if (playerPoints.get(0) == (Integer.parseInt(activepoints1.getText()))) {
-            System.out.println("el primer jugador tiene la cuarta posicion");
+
+            index = 0;
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints1.getText()))) {
-            System.out.println("el primer jugador tiene la tercera posicion");
+
+            index = 1;
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints1.getText()))) {
-            System.out.println("el primer jugador tiene la segunda posicion");
+
+            index = 2;
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints1.getText()))) {
-            System.out.println("el primer jugador tiene la primera posicion");
+
+            index = 3;
         }
+
+        return index;
     }
 
-    public void getPlayer2Place() {
-
+    public int getPlayer2Place() {
+        int index = 0;
         if (playerPoints.get(0) == (Integer.parseInt(activepoints2.getText()))) {
-            System.out.println("el segundo jugador tiene la cuarta posicion");
+
+            index = 0;
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints2.getText()))) {
-            System.out.println("el segundo jugador tiene la tercera posicion");
+
+            index = 1;
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints2.getText()))) {
-            System.out.println("el segundo jugador tiene la segunda posicion");
+
+            index = 2;
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints2.getText()))) {
-            System.out.println("el segundo jugador tiene la primera posicion");
+
+            index = 3;
         }
+
+        return index;
 
     }
 
-    public void getPlayer3Place() {
+    public int getPlayer3Place() {
+        int index = 0;
 
         if (playerPoints.get(0) == (Integer.parseInt(activepoints3.getText()))) {
-            System.out.println("el tercer jugador tiene la cuarta posicion");
+
+            index = 0;
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints3.getText()))) {
-            System.out.println("el tercer jugador tiene la tercera posicion");
+
+            index = 1;
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints3.getText()))) {
-            System.out.println("el tercer jugador tiene la segunda posicion");
+
+            index = 2;
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints3.getText()))) {
-            System.out.println("el tercer jugador tiene la primera posicion");
+
+            index = 3;
         }
+
+        return index;
 
     }
 
-    public void getPlayer4Place() {
+    public int getPlayer4Place() {
+        int index = 0;
 
         if (playerPoints.get(0) == (Integer.parseInt(activepoints4.getText()))) {
-            System.out.println("el cuarto jugador tiene la cuarta posicion");
+
+            index = 0;
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints4.getText()))) {
-            System.out.println("el cuarto jugador tiene la tercera posicion");
+
+            index = 1;
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints4.getText()))) {
-            System.out.println("el cuarto jugador tiene la segunda posicion");
+
+            index = 2;
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints4.getText()))) {
-            System.out.println("el cuarto jugador tiene la primera posicion");
+
+            index = 3;
+        }
+
+        return index;
+    }
+
+    public void sendPlayer1Coins() {
+        switch (getPlayer1Place()) {
+            case 0:
+                Board.players.get(0).setCoins(lastPlace);
+                break;
+            case 1:
+                Board.players.get(0).setCoins(thirdPlace);
+                break;
+            case 2:
+                Board.players.get(0).setCoins(secondPlace);
+                break;
+            case 3:
+                Board.players.get(0).setCoins(firstPlace);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void sendPlayer2Coins() {
+        switch (getPlayer2Place()) {
+            case 0:
+                Board.players.get(1).setCoins(lastPlace);
+                break;
+            case 1:
+                Board.players.get(1).setCoins(thirdPlace);
+                break;
+            case 2:
+                Board.players.get(1).setCoins(secondPlace);
+                break;
+            case 3:
+                Board.players.get(1).setCoins(firstPlace);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void sendPlayer3Coins() {
+        switch (getPlayer3Place()) {
+            case 0:
+                Board.players.get(2).setCoins(lastPlace);
+                break;
+            case 1:
+                Board.players.get(2).setCoins(thirdPlace);
+                break;
+            case 2:
+                Board.players.get(2).setCoins(secondPlace);
+                break;
+            case 3:
+                Board.players.get(2).setCoins(firstPlace);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void sendPlayer4Coins() {
+        switch (getPlayer4Place()) {
+            case 0:
+                Board.players.get(3).setCoins(lastPlace);
+                break;
+            case 1:
+                Board.players.get(3).setCoins(thirdPlace);
+                break;
+            case 2:
+                Board.players.get(3).setCoins(secondPlace);
+                break;
+            case 3:
+                Board.players.get(3).setCoins(firstPlace);
+                break;
+            default:
+                break;
         }
     }
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        int option = 4;
-        if (round == 1) {
-            
-            playerPoints.add(pointsPlayer1);
-            
-        } else if (round == 2) {
-            
-            playerPoints.add(pointsPlayer2);
-            
-        } else if (round == 3) {
-            
-            playerPoints.add(pointsPlayer3);
-            
-        } else if (round == 4) {
-            
-            playerPoints.add(pointsPlayer4);
-            Collections.sort(playerPoints);
-            getPlayer1Place();
-            getPlayer2Place();
-            getPlayer3Place();
-            getPlayer4Place();
 
+        switch (round) {
+            case 1:
+                playerPoints.add(pointsPlayer1);
+                break;
+            case 2:
+                playerPoints.add(pointsPlayer2);
+                break;
+            case 3:
+                playerPoints.add(pointsPlayer3);
+                break;
+            case 4:
+                playerPoints.add(pointsPlayer4);
+                Collections.sort(playerPoints);
+
+                switch (option) {
+                    case 2: {
+                        sendPlayer1Coins();
+                        sendPlayer2Coins();
+                    }
+                    break;
+                    case 3: {
+                        sendPlayer1Coins();
+                        sendPlayer2Coins();
+                        sendPlayer3Coins();
+                    }
+                    break;
+                    case 4: {
+                        sendPlayer1Coins();
+                        sendPlayer2Coins();
+                        sendPlayer3Coins();
+                        sendPlayer4Coins();
+                    }
+                    break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
         }
 
         configComponents();
