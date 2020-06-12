@@ -126,7 +126,7 @@
         <Component class="javax.swing.JLabel" name="btnRock">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/game/RockPaperScissors/images/rock.png"/>
+              <Image iconType="3" name="/games/RockPaperScissors/images/rock.png"/>
             </Property>
           </Properties>
           <Events>
@@ -136,7 +136,7 @@
         <Component class="javax.swing.JLabel" name="btnPaper">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/game/RockPaperScissors/images/paper.png"/>
+              <Image iconType="3" name="/games/RockPaperScissors/images/paper.png"/>
             </Property>
           </Properties>
           <Events>
@@ -146,7 +146,7 @@
         <Component class="javax.swing.JLabel" name="btnScissors">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/game/RockPaperScissors/images/scissors.png"/>
+              <Image iconType="3" name="/games/RockPaperScissors/images/scissors.png"/>
             </Property>
           </Properties>
           <Events>

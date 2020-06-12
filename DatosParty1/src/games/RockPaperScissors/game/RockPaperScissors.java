@@ -52,21 +52,21 @@ public class RockPaperScissors extends javax.swing.JFrame {
         lblComputerElection.setForeground(new java.awt.Color(65, 65, 65));
         lblComputerElection.setText("La computadora eligió:");
 
-        btnRock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/game/RockPaperScissors/images/rock.png"))); // NOI18N
+        btnRock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/games/RockPaperScissors/images/rock.png"))); // NOI18N
         btnRock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRockMouseClicked(evt);
             }
         });
 
-        btnPaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/game/RockPaperScissors/images/paper.png"))); // NOI18N
+        btnPaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/games/RockPaperScissors/images/paper.png"))); // NOI18N
         btnPaper.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPaperMouseClicked(evt);
             }
         });
 
-        btnScissors.setIcon(new javax.swing.ImageIcon(getClass().getResource("/game/RockPaperScissors/images/scissors.png"))); // NOI18N
+        btnScissors.setIcon(new javax.swing.ImageIcon(getClass().getResource("/games/RockPaperScissors/images/scissors.png"))); // NOI18N
         btnScissors.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnScissorsMouseClicked(evt);

@@ -7,12 +7,12 @@ import javax.swing.JOptionPane;
 public class NumberClicks extends javax.swing.JFrame {
 
     public NumberClicks() {
-        
+
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -31,7 +31,7 @@ public class NumberClicks extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(360, 312));
 
-        btnClickMe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/game/NumberClicks/images/clickMe.png"))); // NOI18N
+        btnClickMe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/games/NumberClicks/images/clickMe.png"))); // NOI18N
         btnClickMe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnClickMeMouseClicked(evt);
@@ -118,34 +118,34 @@ public class NumberClicks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClickMeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClickMeMouseClicked
-        
+
         timer.start();
-        
-        clicks ++;
-        
+
+        clicks++;
+
         if (seg > 0) {
-        
-        lblClicks.setText("Cantidad de Clicks: " + clicks);
-        
+
+            lblClicks.setText("Cantidad de Clicks: " + clicks);
+
         } else {
-        
+
             timer.stop();
-            
+
         }
-        
+
     }//GEN-LAST:event_btnClickMeMouseClicked
 
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
-        
-        String instructions =   "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (7 segundos), según las siguientes reglas:\n" +
-                                "\n" +
-                                "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n" +
-                                "   * Presiona el botón lo más rápido que puedas.\n" +
-                                "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n" + 
-                                "\n";
-        
-        JOptionPane.showMessageDialog(null, instructions);        
-        
+
+        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (7 segundos), según las siguientes reglas:\n"
+                + "\n"
+                + "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n"
+                + "   * Presiona el botón lo más rápido que puedas.\n"
+                + "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n"
+                + "\n";
+
+        JOptionPane.showMessageDialog(null, instructions);
+
     }//GEN-LAST:event_btnInstructionsActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -154,39 +154,39 @@ public class NumberClicks extends javax.swing.JFrame {
         clicks = 0;
 
     }//GEN-LAST:event_btnNextActionPerformed
-    
+
     int seg = 7;
-    
+
     int clicks = 0;
-    
+
     Timer timer = new Timer(1000, new ActionListener() {
-        
-        public void actionPerformed(ActionEvent e) {            
-            
-            seg --;
-            
+
+        public void actionPerformed(ActionEvent e) {
+
+            seg--;
+
             if (seg >= 0) {
-                
+
                 lblTime.setText("Tiempo: " + seg + " seg");
-                        
+
             }
-            
+
         }
-        
-    });    
-    
+
+    });
+
     public static void main() {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
-                                
-                new NumberClicks().setVisible(true);                
-                
+
+                new NumberClicks().setVisible(true);
+
             }
-            
+
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

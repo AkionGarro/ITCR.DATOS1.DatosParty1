@@ -21,7 +21,7 @@ public class Differences extends javax.swing.JFrame {
 
     public Differences() {
 
-        time = new Timer(1, action);
+        time = new Timer(2, action);
         initComponents();
         configComponents();
         this.setLocationRelativeTo(null);
@@ -29,7 +29,7 @@ public class Differences extends javax.swing.JFrame {
     }
 
     private void configComponents() {
-
+        difference1.setVisible(false);
         difference2.setVisible(false);
         difference3.setVisible(false);
         difference4.setVisible(false);
@@ -675,127 +675,178 @@ public class Differences extends javax.swing.JFrame {
     public void sendPlayer1Coins() {
         switch (getPlayer1Place()) {
             case 0:
-                Board.players.get(0).setCoins(lastPlace);
+                Board.players.get(0).setCoins((Board.players.get(0).getCoins()) + firstPlace);
                 break;
             case 1:
-                Board.players.get(0).setCoins(thirdPlace);
+                Board.players.get(0).setCoins(Board.players.get(0).getCoins() + secondPlace);
                 break;
             case 2:
-                Board.players.get(0).setCoins(secondPlace);
+                Board.players.get(0).setCoins(Board.players.get(0).getCoins() + thirdPlace);
                 break;
             case 3:
-                Board.players.get(0).setCoins(firstPlace);
+                Board.players.get(0).setCoins(Board.players.get(0).getCoins() + lastPlace);
                 break;
             default:
                 break;
         }
+
     }
 
     public void sendPlayer2Coins() {
         switch (getPlayer2Place()) {
             case 0:
-                Board.players.get(1).setCoins(lastPlace);
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + firstPlace);
                 break;
             case 1:
-                Board.players.get(1).setCoins(thirdPlace);
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + secondPlace);
                 break;
             case 2:
-                Board.players.get(1).setCoins(secondPlace);
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + thirdPlace);
                 break;
             case 3:
-                Board.players.get(1).setCoins(firstPlace);
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + lastPlace);
                 break;
             default:
                 break;
         }
+
     }
 
     public void sendPlayer3Coins() {
         switch (getPlayer3Place()) {
             case 0:
-                Board.players.get(2).setCoins(lastPlace);
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + firstPlace);
                 break;
             case 1:
-                Board.players.get(2).setCoins(thirdPlace);
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + secondPlace);
                 break;
             case 2:
-                Board.players.get(2).setCoins(secondPlace);
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + thirdPlace);
                 break;
             case 3:
-                Board.players.get(2).setCoins(firstPlace);
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + lastPlace);
                 break;
             default:
                 break;
         }
+
     }
 
     public void sendPlayer4Coins() {
         switch (getPlayer4Place()) {
             case 0:
-                Board.players.get(3).setCoins(lastPlace);
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + firstPlace);
                 break;
             case 1:
-                Board.players.get(3).setCoins(thirdPlace);
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + secondPlace);
                 break;
             case 2:
-                Board.players.get(3).setCoins(secondPlace);
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + thirdPlace);
                 break;
             case 3:
-                Board.players.get(3).setCoins(firstPlace);
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + lastPlace);
                 break;
             default:
                 break;
         }
+
     }
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
 
-        switch (round) {
-            case 1:
-                playerPoints.add(pointsPlayer1);
-                break;
+        switch (option) {
             case 2:
-                playerPoints.add(pointsPlayer2);
-                break;
-            case 3:
-                playerPoints.add(pointsPlayer3);
-                break;
-            case 4:
-                playerPoints.add(pointsPlayer4);
-                Collections.sort(playerPoints);
+                if (round == 1) {
+                    playerPoints.add(pointsPlayer1);
 
-                switch (option) {
-                    case 2: {
-                        sendPlayer1Coins();
-                        sendPlayer2Coins();
-                    }
-                    break;
-                    case 3: {
-                        sendPlayer1Coins();
-                        sendPlayer2Coins();
-                        sendPlayer3Coins();
-                    }
-                    break;
-                    case 4: {
-                        sendPlayer1Coins();
-                        sendPlayer2Coins();
-                        sendPlayer3Coins();
-                        sendPlayer4Coins();
-                    }
-                    break;
-                    default:
-                        break;
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
+                } else if (round == 2) {
+                    playerPoints.add(pointsPlayer2);
+                    Collections.sort(playerPoints, Collections.reverseOrder());
+
+                    sendPlayer1Coins();
+                    sendPlayer2Coins();
+                    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+
                 }
                 break;
+
+            case 3:
+                if (round == 1) {
+                    playerPoints.add(pointsPlayer1);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
+                } else if (round == 2) {
+                    playerPoints.add(pointsPlayer2);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
+
+                } else if (round == 3) {
+
+                    playerPoints.add(pointsPlayer3);
+                    Collections.sort(playerPoints, Collections.reverseOrder());
+                    sendPlayer1Coins();
+                    sendPlayer2Coins();
+                    sendPlayer3Coins();
+                    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                }
+                break;
+
+            case 4:
+
+                if (round == 1) {
+                    playerPoints.add(pointsPlayer1);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
+                } else if (round == 2) {
+                    playerPoints.add(pointsPlayer2);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
+
+                } else if (round == 3) {
+                    playerPoints.add(pointsPlayer3);
+                    configComponents();
+                    hundredths = 60;
+                    seconds = 30;
+                    timeRunning.setText("30:00 s");
+                    startButton.setEnabled(true);
+                } else if (round == 4) {
+                    playerPoints.add(pointsPlayer4);
+                    Collections.sort(playerPoints, Collections.reverseOrder());
+                    sendPlayer1Coins();
+                    sendPlayer2Coins();
+                    sendPlayer3Coins();
+                    sendPlayer4Coins();
+                    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+
+                }
+                break;
+
             default:
                 break;
+
         }
 
-        configComponents();
-        hundredths = 60;
-        seconds = 30;
-        timeRunning.setText("30:00 s");
-        startButton.setEnabled(true);
+
 
     }//GEN-LAST:event_nextButtonActionPerformed
 
