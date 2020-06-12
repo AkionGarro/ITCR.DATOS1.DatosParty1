@@ -6,6 +6,8 @@ import Lists.PhaseB;
 import Lists.PhaseC;
 import Lists.PhaseD;
 import Lists.Principal;
+import Stack.StackEvents;
+import Stack.StackMinigames;
 import static mainGame.Window.player1Active;
 import static mainGame.Window.player2Active;
 import static mainGame.Window.player3Active;
@@ -38,8 +40,8 @@ public class Board extends javax.swing.JFrame {
     static PhaseC phaseC = new PhaseC();
     static PhaseD phaseD = new PhaseD();
 
-    public static StackEvents stackEvents = new StackEvents();
-    public static StackMinigames stackMinigames = new StackMinigames();
+    static StackEvents stackEvents = new StackEvents();
+    static StackMinigames stackMinigames = new StackMinigames();
 
     static Star star;
 
