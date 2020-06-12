@@ -132,7 +132,7 @@ public class Differences extends javax.swing.JFrame {
         activepoints3 = new javax.swing.JLabel();
         activepoints4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Differences Game");
         setResizable(false);
 

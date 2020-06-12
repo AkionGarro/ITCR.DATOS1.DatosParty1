@@ -12,10 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class BallGame extends JPanel {
-
+    
     BallBuilder ball = new BallBuilder(this);
     PlatformBuilder racquet = new PlatformBuilder(this);
     int speed = 1;
+    boolean gameOver = false;
 
     private int getScore() {
 
@@ -75,11 +76,10 @@ public class BallGame extends JPanel {
     }
 
     public void gameOver() {
-
-        JOptionPane.showMessageDialog(this, "Puntos obtenidos: " + getScore(),
-        "Game Over", JOptionPane.YES_NO_OPTION);
-        System.exit(ABORT);
-
+        
+        JOptionPane.showMessageDialog(this, "Puntos obtenidos: " + getScore(), "Puntos Obtenidos", 1);
+        gameOver = true;
+        
     }
 
     public static void main() throws InterruptedException {
@@ -89,15 +89,23 @@ public class BallGame extends JPanel {
         frame.add(game);
         frame.setSize(600, 800);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
         while (true) {
+            
+            System.out.println("holaaaaa");
 
             game.move();
             game.repaint();
             Thread.sleep(10);
-
+            
+            if (game.gameOver == true || frame.isActive() == false) {
+                
+                break;
+                
+            }     
+            
         }
 
     }

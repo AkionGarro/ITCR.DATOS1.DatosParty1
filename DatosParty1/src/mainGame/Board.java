@@ -14,6 +14,8 @@ import static mainGame.Window.player3Active;
 import static mainGame.Window.player4Active;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -803,17 +805,29 @@ public class Board extends javax.swing.JFrame {
         nextCell = moveToCell;
         
         switch (playerPlaying) {
+            
             case 0:
+                
                 moveToken(0, x, y);
+                
                 break;
+                
             case 1:
+                
                 moveToken(1, x, y);
+                
                 break;
+                
             case 2:
+                
                 moveToken(2, x, y);
+                
                 break;
+                
             default:
+                
                 moveToken(3, x, y);
+                
                 break;
         }
 
@@ -831,7 +845,15 @@ public class Board extends javax.swing.JFrame {
 
         playerPlaying ++;
                         
-        checkPlayerPlaying();
+        try {
+            
+            checkPlayerPlaying();
+            
+        } catch (InterruptedException ex) {
+            
+            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
         
         if (round != 13) {
             
@@ -851,26 +873,47 @@ public class Board extends javax.swing.JFrame {
     public void randomRightDice(int dice) {
 
         switch (dice) {
+            
             case 1:
+                
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
+                
                 break;
+                
             case 2:
+                
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
+                
                 break;
+                
             case 3:
+                
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
+                
                 break;
+                
             case 4:
+                
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
+                
                 break;
+                
             case 5:
+                
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
+                
                 break;
+                
             case 6:
+                
                 lblRightDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -883,26 +926,47 @@ public class Board extends javax.swing.JFrame {
     public void randomLeftDice(int dice) {
 
         switch (dice) {
+            
             case 1:
+                
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice1.png")));
+                
                 break;
+                
             case 2:
+                
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice2.png")));
+                
                 break;
+                
             case 3:
+                
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice3.png")));
+                
                 break;
+                
             case 4:
+                
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice4.png")));
+                
                 break;
+                
             case 5:
+                
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice5.png")));
+                
                 break;
+                
             case 6:
+                
                 lblLeftDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dice/dice6.png")));
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -948,17 +1012,17 @@ public class Board extends javax.swing.JFrame {
     /**
      * Method to check the correct functioning of the players' turns.
      */
-    private void checkPlayerPlaying() {
+    private void checkPlayerPlaying() throws InterruptedException {
 
         if (round > 1 && playerPlaying > activePlayers) {               
            
-            //nuevo minijuego
+            Minigames newMinigame = new Minigames(stackMinigames.pop());
                         
-            String message = "El minijuego será: "; // + minijuego.getName
+            String message = "El minijuego será " + newMinigame.name;
         
             JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
 
-            //minijuego.start             
+            newMinigame.start();
                         
             playerPlaying = 0;
             round ++;
@@ -969,6 +1033,14 @@ public class Board extends javax.swing.JFrame {
 
             playerPlaying = 0;
             round ++;
+            
+            Minigames newMinigame = new Minigames(stackMinigames.pop());
+                        
+            String message = "El minijuego será " + newMinigame.name;
+        
+            JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
+
+            newMinigame.start();
             
             txtRound.setText("Ronda " + round);
 
@@ -1095,24 +1167,40 @@ public class Board extends javax.swing.JFrame {
 
                     buyStar();    
 
-                }            
+                }           
+                
             } else if (previousCell < 38 && nextCell >= 69){
                                 
                 switch (nextCell) {
+                    
                     case 69:
+                        
                         nextCell = 38;
+                        
                         break;
+                        
                     case 72:
+                        
                         nextCell = 9;
+                        
                         break;
+                        
                     case 76:
+                        
                         nextCell = 19;
+                        
                         break;
+                        
                     case 80:
+                        
                         nextCell = 28;
+                        
                         break;
+                        
                     default:
+                        
                         break;
+                        
                 }
 
                 if ((starCell >= previousCell && starCell <= nextCell)) {
@@ -1236,29 +1324,47 @@ public class Board extends javax.swing.JFrame {
             int repeated = checkRepeated(starsArray, maxIndex);
             
             switch (repeated) {
+                
                 case 1:
+                    
                     {
+                        
                         Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 2);
                         maxIndex = getMaxIndexPlayers(arrayPlayers, 2);
                         winnerName = arrayPlayers[maxIndex].getName();
+                        
                         break;
+                        
                     }
+                    
                 case 2:
+                    
                     {
+                        
                         Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 3);
                         maxIndex = getMaxIndexPlayers(arrayPlayers, 3);
                         winnerName = arrayPlayers[maxIndex].getName();
+                        
                         break;
+                        
                     }
+                    
                 case 3:
+                    
                     {
+                        
                         Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 4);
                         maxIndex = getMaxIndexPlayers(arrayPlayers, 4);
                         winnerName = arrayPlayers[maxIndex].getName();
+                        
                         break;
+                        
                     }
+                    
                 default:
+                    
                     break;
+                    
             }
             
             String message = winnerName + " ha ganado el juego";
@@ -1459,20 +1565,35 @@ public class Board extends javax.swing.JFrame {
         String actualCoins = String.valueOf(players.get(playerPlaying).getCoins());
 
         switch (playerPlaying) {
+            
             case 0:
+                
                 activeCoinsPlayer1.setText(actualCoins);
+                
                 break;
+                
             case 1:
+                
                 activeCoinsPlayer2.setText(actualCoins);
+                
                 break;
+                
             case 2:
+                
                 activeCoinsPlayer3.setText(actualCoins);
+                
                 break;
+                
             case 3:
+                
                 activeCoinsPlayer4.setText(actualCoins);
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -1486,30 +1607,46 @@ public class Board extends javax.swing.JFrame {
         String actualCoins2 = String.valueOf(players.get(1).getCoins());
 
         switch (activePlayers) {
+            
             case 1:
+                
                 activeCoinsPlayer1.setText(actualCoins1);
                 activeCoinsPlayer2.setText(actualCoins2);
+                
                 break;
+                
             case 2:
+                
                 {
+                    
                     String actualCoins3 = String.valueOf(players.get(2).getCoins());
                     activeCoinsPlayer1.setText(actualCoins1);
                     activeCoinsPlayer2.setText(actualCoins2);
                     activeCoinsPlayer3.setText(actualCoins3);
+                    
                     break;
+                    
                 }
+                
             case 3:
+                
                 {
+                    
                     String actualCoins3 = String.valueOf(players.get(2).getCoins());
                     String actualCoins4 = String.valueOf(players.get(3).getCoins());
                     activeCoinsPlayer1.setText(actualCoins1);
                     activeCoinsPlayer2.setText(actualCoins2);
                     activeCoinsPlayer3.setText(actualCoins3);
                     activeCoinsPlayer4.setText(actualCoins4);
+                    
                     break;
+                    
                 }
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -1523,30 +1660,46 @@ public class Board extends javax.swing.JFrame {
         String actualStars2 = String.valueOf(players.get(1).getStars());
 
         switch (activePlayers) {
+            
             case 1:
+                
                 activeStarsPlayer1.setText(actualStars1);
                 activeStarsPlayer2.setText(actualStars2);
+                
                 break;
+                
             case 2:
+                
                 {
+                    
                     String actualStars3 = String.valueOf(players.get(2).getStars());
                     activeStarsPlayer1.setText(actualStars1);
                     activeStarsPlayer2.setText(actualStars2);
                     activeStarsPlayer3.setText(actualStars3);
+                    
                     break;
+                    
                 }
+                
             case 3:
+                
                 {
+                    
                     String actualStars3 = String.valueOf(players.get(2).getStars());
                     String actualStars4 = String.valueOf(players.get(3).getStars());
                     activeStarsPlayer1.setText(actualStars1);
                     activeStarsPlayer2.setText(actualStars2);
                     activeStarsPlayer3.setText(actualStars3);
                     activeStarsPlayer4.setText(actualStars4);
+                    
                     break;
+                    
                 }
+                
             default:
+                
                 break;
+                
         }
 
     }
