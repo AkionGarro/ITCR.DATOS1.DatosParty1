@@ -2,6 +2,7 @@ package games.Differences.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import javax.swing.Timer;
@@ -9,18 +10,20 @@ import javax.swing.Timer;
 public class Differences extends javax.swing.JFrame {
 
     private Timer time;
-    private int hundredths = 60, seconds = 30;
+    private int hundredths = 60, seconds = 29;
+    public static int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
+    public static ArrayList<Integer> playerPoints = new ArrayList<Integer>();
 
     public Differences() {
         time = new Timer(10, action);
         initComponents();
         configComponents();
+        this.setLocationRelativeTo(null);
 
     }
 
     private void configComponents() {
 
-        this.setLocationRelativeTo(null);
         difference1.setVisible(false);
         difference2.setVisible(false);
         difference3.setVisible(false);
@@ -46,6 +49,7 @@ public class Differences extends javax.swing.JFrame {
         showDifferenceButton11.setVisible(false);
         showDifferenceButton13.setVisible(false);
         showDifferenceButton15.setVisible(false);
+        nextButton.setEnabled(false);
 
     }
 
@@ -60,17 +64,9 @@ public class Differences extends javax.swing.JFrame {
             if (seconds == 0) {
                 time.stop();
                 hundredths = 0;
+                nextButton.setEnabled(true);
             }
-
             updateTimeLabel();
-
-            if (seconds == 0 && hundredths == 0) {
-
-                startButton.setEnabled(false);
-                System.out.println("Las diferencias encontradas por el jugador 1 son : " + showed);
-                System.exit(0);
-
-            }
 
         }
     };
@@ -115,7 +111,15 @@ public class Differences extends javax.swing.JFrame {
         timeRunning = new javax.swing.JLabel();
         startButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        acertadas = new javax.swing.JLabel();
+        nextButton = new javax.swing.JButton();
+        playerPoints1 = new javax.swing.JLabel();
+        playerPoints2 = new javax.swing.JLabel();
+        playerPoints3 = new javax.swing.JLabel();
+        playerPoints4 = new javax.swing.JLabel();
+        activepoints1 = new javax.swing.JLabel();
+        activepoints2 = new javax.swing.JLabel();
+        activepoints3 = new javax.swing.JLabel();
+        activepoints4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Differences Game");
@@ -255,17 +259,62 @@ public class Differences extends javax.swing.JFrame {
                 startButtonActionPerformed(evt);
             }
         });
-        informationPanel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 80, 270, 50));
+        informationPanel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 180, 50));
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Encuentra las 8 diferencias en el menor tiempo posible.");
         informationPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
-        acertadas.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 30)); // NOI18N
-        acertadas.setForeground(new java.awt.Color(0, 0, 0));
-        acertadas.setText("Diferencias acertadas: ");
-        informationPanel.add(acertadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 420, -1));
+        nextButton.setBackground(new java.awt.Color(0, 255, 204));
+        nextButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        nextButton.setText("Next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+        informationPanel.add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 180, 50));
+
+        playerPoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints1.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints1.setText("Puntos jugador 1:");
+        informationPanel.add(playerPoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 180, 20));
+
+        playerPoints2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints2.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints2.setText("Puntos jugador 2:");
+        informationPanel.add(playerPoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 180, 20));
+
+        playerPoints3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints3.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints3.setText("Puntos jugador 3:");
+        informationPanel.add(playerPoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 180, 30));
+
+        playerPoints4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints4.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints4.setText("Puntos jugador 4:");
+        informationPanel.add(playerPoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 180, -1));
+
+        activepoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints1.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints1.setText("0");
+        informationPanel.add(activepoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 50, -1));
+
+        activepoints2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints2.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints2.setText("0");
+        informationPanel.add(activepoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 68, 50, -1));
+
+        activepoints3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints3.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints3.setText("0");
+        informationPanel.add(activepoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 106, 50, 20));
+
+        activepoints4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints4.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints4.setText("0");
+        informationPanel.add(activepoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 142, 50, 20));
 
         differencesPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 190));
 
@@ -283,77 +332,106 @@ public class Differences extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static int showed = 0;
+    public void prueba() {
+        if (round == 1) {
+            pointsPlayer1++;
+            activepoints1.setText("" + pointsPlayer1);
+        } else if (round == 2) {
+            pointsPlayer2++;
+            activepoints2.setText("" + pointsPlayer2);
 
-
+        } else if (round == 3) {
+            pointsPlayer3++;
+            activepoints3.setText("" + pointsPlayer3);
+        } else if (round == 4) {
+            pointsPlayer4++;
+            activepoints4.setText("" + pointsPlayer4);
+        }
+    }
     private void showDifferenceButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton1MouseClicked
-        difference1.setVisible(true);
-        difference2.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
+        if (!difference1.isVisible()) {
+            difference1.setVisible(true);
+            difference2.setVisible(true);
+            prueba();
+        }
 
 
     }//GEN-LAST:event_showDifferenceButton1MouseClicked
 
     private void showDifferenceButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton3MouseClicked
-        difference3.setVisible(true);
-        difference4.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
+        if (time.isRunning()) {
+            if (!difference3.isVisible()) {
+                difference3.setVisible(true);
+                difference4.setVisible(true);
+                prueba();
+            }
+        }
 
 
     }//GEN-LAST:event_showDifferenceButton3MouseClicked
 
     private void showDifferenceButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton5MouseClicked
-        difference5.setVisible(true);
-        difference6.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
-
-
+        if (time.isRunning()) {
+            if (!difference5.isVisible()) {
+                difference5.setVisible(true);
+                difference6.setVisible(true);
+                prueba();
+            }
+        }
     }//GEN-LAST:event_showDifferenceButton5MouseClicked
 
     private void showDifferenceButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton7MouseClicked
-        difference7.setVisible(true);
-        difference8.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
-
+        if (time.isRunning()) {
+            if (!difference7.isVisible()) {
+                difference7.setVisible(true);
+                difference8.setVisible(true);
+                prueba();
+            }
+        }
 
     }//GEN-LAST:event_showDifferenceButton7MouseClicked
 
     private void showDifferenceButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton9MouseClicked
-        difference9.setVisible(true);
-        difference10.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
+        if (time.isRunning()) {
+            if (!difference9.isVisible()) {
+                difference9.setVisible(true);
+                difference10.setVisible(true);
+                prueba();
+            }
+        }
 
 
     }//GEN-LAST:event_showDifferenceButton9MouseClicked
 
     private void showDifferenceButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton11MouseClicked
-        difference11.setVisible(true);
-        difference12.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
-
+        if (time.isRunning()) {
+            if (!difference11.isVisible()) {
+                difference11.setVisible(true);
+                difference12.setVisible(true);
+                prueba();
+            }
+        }
 
     }//GEN-LAST:event_showDifferenceButton11MouseClicked
 
     private void showDifferenceButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton13MouseClicked
-        difference13.setVisible(true);
-        difference14.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
-
-
+        if (time.isRunning()) {
+            if (!difference13.isVisible()) {
+                difference13.setVisible(true);
+                difference14.setVisible(true);
+                prueba();
+            }
+        }
     }//GEN-LAST:event_showDifferenceButton13MouseClicked
 
     private void showDifferenceButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton15MouseClicked
-        difference15.setVisible(true);
-        difference16.setVisible(true);
-        showed++;
-        acertadas.setText("Diferencias acertadas: " + showed);
+        if (time.isRunning()) {
+            if (!difference15.isVisible()) {
+                difference15.setVisible(true);
+                difference16.setVisible(true);
+                prueba();
+            }
+        }
 
 
     }//GEN-LAST:event_showDifferenceButton15MouseClicked
@@ -368,13 +446,35 @@ public class Differences extends javax.swing.JFrame {
         showDifferenceButton11.setVisible(true);
         showDifferenceButton13.setVisible(true);
         showDifferenceButton15.setVisible(true);
-
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
+        round++;
 
 
     }//GEN-LAST:event_startButtonActionPerformed
+
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+
+        if (round == 1) {
+            playerPoints.add(pointsPlayer1);
+        } else if (round == 2) {
+            playerPoints.add(pointsPlayer2);
+        } else if (round == 3) {
+            playerPoints.add(pointsPlayer3);
+        } else if (round == 4) {
+            playerPoints.add(pointsPlayer4);
+        }
+
+        configComponents();
+        hundredths = 60;
+        seconds = 30;
+        timeRunning.setText("30:00 s");
+        startButton.setEnabled(true);
+
+
+    }//GEN-LAST:event_nextButtonActionPerformed
 
     public static void main(String args[]) {
 
@@ -387,7 +487,10 @@ public class Differences extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel acertadas;
+    private javax.swing.JLabel activepoints1;
+    private javax.swing.JLabel activepoints2;
+    private javax.swing.JLabel activepoints3;
+    private javax.swing.JLabel activepoints4;
     private javax.swing.JLabel difference1;
     private javax.swing.JLabel difference10;
     private javax.swing.JLabel difference11;
@@ -408,6 +511,11 @@ public class Differences extends javax.swing.JFrame {
     private javax.swing.JLabel imageBackground;
     private javax.swing.JPanel informationPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JLabel playerPoints1;
+    private javax.swing.JLabel playerPoints2;
+    private javax.swing.JLabel playerPoints3;
+    private javax.swing.JLabel playerPoints4;
     private javax.swing.JLabel showDifferenceButton1;
     private javax.swing.JLabel showDifferenceButton11;
     private javax.swing.JLabel showDifferenceButton13;
