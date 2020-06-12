@@ -38,7 +38,8 @@ public class Board extends javax.swing.JFrame {
     static PhaseC phaseC = new PhaseC();
     static PhaseD phaseD = new PhaseD();
 
-    public static Stack stack = new Stack();
+    public static StackEvents stackEvents = new StackEvents();
+    public static StackMinigames stackMinigames = new StackMinigames();
 
     static Star star;
 
@@ -61,7 +62,8 @@ public class Board extends javax.swing.JFrame {
         playersInformation();
 
         activePlayers = players.size() - 1;
-        stack.shuffle();
+        stackEvents.shuffle();
+        stackMinigames.shuffle();
         
         txtRound.setText("Ronda 1");
         txtTurn.setText("Turno de " + players.get(0).getName());
@@ -1563,13 +1565,13 @@ public class Board extends javax.swing.JFrame {
      */
     private void eventCellAction() {
 
-        if (stack.empty() == true) {
+        if (stackEvents.empty() == true) {
 
-            stack.shuffle();
+            stackEvents.shuffle();
 
         }
 
-        Events newEvent = new Events(stack.pop());
+        Events newEvent = new Events(stackEvents.pop());
 
         newEvent.start(playerPlaying, 0);
 
