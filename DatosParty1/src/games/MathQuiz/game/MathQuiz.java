@@ -1,4 +1,4 @@
-package games.MathQuiz;
+package games.MathQuiz.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,28 +18,41 @@ public class MathQuiz extends javax.swing.JFrame {
     boolean correct = false;
     
     public MathQuiz() {
+        
         time = new Timer(10, action);
         initComponents();
         setLocationRelativeTo(null);
+        
     }
     private ActionListener action = new ActionListener() {
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            hundredths--;
+            
+            hundredths --;
+            
             if (hundredths == 0) {
+                
                 seconds--;
                 hundredths = 60;
+                
             }
+            
             if (seconds == 0) {
+                
                 time.stop();
                 hundredths = 0;
+                
             }
 
             updateTimeLabel();
+            
         }
+        
     };
 
     private void updateTimeLabel() {
+        
         String text = (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths + " s";
         timeRunning.setText(text);
 
@@ -215,68 +228,88 @@ public class MathQuiz extends javax.swing.JFrame {
         pointsText.setVisible(true);
         lblPoints.setText(String.valueOf(points));
 
-
     }//GEN-LAST:event_startButtonMouseClicked
 
     private void option2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option2ButtonMouseClicked
+        
         if (option == 3) {
+            
             correct = true;
+            
         }
+        
     }//GEN-LAST:event_option2ButtonMouseClicked
 
     private void option3ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option3ButtonMouseClicked
+        
         if (option == 2) {
+            
             correct = true;
+            
         }
+        
     }//GEN-LAST:event_option3ButtonMouseClicked
 
     private void option4ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option4ButtonMouseClicked
+        
         if (option == 1) {
+            
             correct = true;
+            
         }
+        
     }//GEN-LAST:event_option4ButtonMouseClicked
 
     private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finishButtonMouseClicked
         
         if (correct == true) {
+            
             JOptionPane.showMessageDialog(this, "Felicidades tu respuesta es correcta");
             points+=1;
             nextquestion();
             lblPoints.setText(String.valueOf(points));
             buttonGroup1.clearSelection();
             
-
         } else {
+            
             JOptionPane.showMessageDialog(this, "Tu respuesta es incorrecta");
             nextquestion();
             lblPoints.setText(String.valueOf(points));
             buttonGroup1.clearSelection();
-            
-             
+                         
         }
-       
-        
+               
     }//GEN-LAST:event_finishButtonMouseClicked
 
     private void option1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option1ButtonMouseClicked
+        
         if (option == 4) {
+            
             correct = true;
+            
         }
+        
     }//GEN-LAST:event_option1ButtonMouseClicked
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        
         time.start();
+        
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
+        
         lblPoints.setText(String.valueOf(points));
         
     }//GEN-LAST:event_finishButtonActionPerformed
+    
     public void nextquestion(){
         
         quizMath();
+        
     }
     public void quizMath() {
+        
         option = rand.nextInt(4) + 1;
         n = rand.nextInt(50) + 1;
         m = rand.nextInt(50) + 1;
@@ -285,32 +318,41 @@ public class MathQuiz extends javax.swing.JFrame {
         operationLabel.setText(String.valueOf(n + "+" + m + "-" + k));
 
         switch (option) {
+            
             case 1:
+                
                 answer4Label.setText(String.valueOf(total));
                 answer2Label.setText(String.valueOf(total - 1));
                 answer3Label.setText(String.valueOf(total + 2));
                 answer1Label.setText(String.valueOf(total / 2));
+                
                 break;
 
             case 2:
+                
                 answer3Label.setText(String.valueOf(total));
                 answer4Label.setText(String.valueOf(total - 1));
                 answer1Label.setText(String.valueOf(total + 2));
                 answer2Label.setText(String.valueOf(total / 2));
+                
                 break;
 
             case 3:
+                
                 answer2Label.setText(String.valueOf(total));
                 answer4Label.setText(String.valueOf(total - 1));
                 answer1Label.setText(String.valueOf(total + 2));
                 answer3Label.setText(String.valueOf(total / 2));
+                
                 break;
 
             case 4:
+                
                 answer1Label.setText(String.valueOf(total));
                 answer4Label.setText(String.valueOf(total - 1));
                 answer3Label.setText(String.valueOf(total + 2));
                 answer2Label.setText(String.valueOf(total / 2));
+                
                 break;
 
         }
@@ -318,37 +360,17 @@ public class MathQuiz extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MathQuiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MathQuiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MathQuiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MathQuiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
+                
                 new MathQuiz().setVisible(true);
 
             }
+            
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -371,4 +393,5 @@ public class MathQuiz extends javax.swing.JFrame {
     private javax.swing.JButton startButton;
     private javax.swing.JLabel timeRunning;
     // End of variables declaration//GEN-END:variables
+
 }

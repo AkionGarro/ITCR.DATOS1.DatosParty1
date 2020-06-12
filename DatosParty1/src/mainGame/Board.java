@@ -6,6 +6,8 @@ import Lists.PhaseB;
 import Lists.PhaseC;
 import Lists.PhaseD;
 import Lists.Principal;
+import Stack.StackEvents;
+import Stack.StackMinigames;
 import static mainGame.Window.player1Active;
 import static mainGame.Window.player2Active;
 import static mainGame.Window.player3Active;
@@ -24,9 +26,11 @@ public class Board extends javax.swing.JFrame {
     private int leftDice;
     public static int playerPlaying = 0;
     private static int activePlayers;
-    private static int round = 0;
+    private static int round = 1;
     private static int pointer1 = 0;
-    private static boolean pointer2 = false;
+    private static boolean pointer2 = false;    
+    public static boolean teleportation = false;
+    public static boolean changePositions = false;
 
     public static ArrayList<Player> players = new ArrayList<Player>();
 
@@ -36,7 +40,8 @@ public class Board extends javax.swing.JFrame {
     static PhaseC phaseC = new PhaseC();
     static PhaseD phaseD = new PhaseD();
 
-    public static Stack stack = new Stack();
+    static StackEvents stackEvents = new StackEvents();
+    static StackMinigames stackMinigames = new StackMinigames();
 
     static Star star;
 
@@ -59,7 +64,11 @@ public class Board extends javax.swing.JFrame {
         playersInformation();
 
         activePlayers = players.size() - 1;
-        stack.shuffle();
+        stackEvents.shuffle();
+        stackMinigames.shuffle();
+        
+        txtRound.setText("Ronda 1");
+        txtTurn.setText("Turno de " + players.get(0).getName());
 
     }
 
@@ -278,6 +287,8 @@ public class Board extends javax.swing.JFrame {
         activeStarsPlayer2 = new javax.swing.JTextField();
         activeStarsPlayer3 = new javax.swing.JTextField();
         activeStarsPlayer4 = new javax.swing.JTextField();
+        txtRound = new javax.swing.JTextField();
+        txtTurn = new javax.swing.JTextField();
         leaderboard = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -432,6 +443,24 @@ public class Board extends javax.swing.JFrame {
         activeStarsPlayer4.setBorder(null);
         panel.add(activeStarsPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, -1, -1));
 
+        txtRound.setEditable(false);
+        txtRound.setBackground(new java.awt.Color(255, 255, 255));
+        txtRound.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        txtRound.setForeground(new java.awt.Color(0, 0, 0));
+        txtRound.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtRound.setText("Ronda");
+        txtRound.setBorder(null);
+        panel.add(txtRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 200, 370, -1));
+
+        txtTurn.setEditable(false);
+        txtTurn.setBackground(new java.awt.Color(255, 255, 255));
+        txtTurn.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        txtTurn.setForeground(new java.awt.Color(0, 0, 0));
+        txtTurn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTurn.setText("Turno de");
+        txtTurn.setBorder(null);
+        panel.add(txtTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 680, 390, -1));
+
         leaderboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/leaderboard2.png"))); // NOI18N
         panel.add(leaderboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, 240));
 
@@ -459,330 +488,320 @@ public class Board extends javax.swing.JFrame {
      *
      */
     private void btnRollDicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRollDicesActionPerformed
-
-        if (round == 1 && pointer2 == false) {
-
-            lblStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star1.png")));
-
-            newStar();
-
-            pointer2 = true;
-
-        }
-
+        
         rightDice = new Random().nextInt(6) + 1;
         leftDice = new Random().nextInt(6) + 1;
 
         randomRightDice(rightDice);
         randomLeftDice(leftDice);
 
-        Player actualPlayer = players.get(playerPlaying);
-
+        Player actualPlayer = players.get(playerPlaying); 
+        
         int previousCell = actualPlayer.getCell();
-
+        
         int nextCell = 0;
-
+        
         int moveToCell;
-
+        
         if (actualPlayer.getDirection() == "next") {
-
+            
             moveToCell = actualPlayer.getCell() + rightDice + leftDice;
-
+            
         } else {
-
+            
             moveToCell = actualPlayer.getCell() - rightDice - leftDice;
-
+            
         }
-
+                
         String actualPhase = actualPlayer.getPhase();
-
+                
         int x = 0;
         int y = 0;
+        
+        if (null != actualPhase) switch (actualPhase) {
+            
+            case "principal":
+                
+                if (moveToCell > 37) {
+                    
+                    moveToCell -= 38;
+                    
+                } 
+                
+                switch (moveToCell) {
+                                        
+                    case 0:
+                        
+                        moveToCell = 69;                        
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("next");                                                
+                        x = phaseD.findXLocation(69);
+                        y = phaseD.findYLocation(69);
+                        
+                        break;
+                        
+                    case 9:
+                        
+                        moveToCell = 72;                                                                      
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("next");                        
+                        x = phaseD.findXLocation(72);
+                        y = phaseD.findYLocation(72);                          
+                        
+                        break;
+                        
+                    case 19:
+                        
+                        moveToCell = 76;
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("previous");                        
+                        x = phaseD.findXLocation(76);
+                        y = phaseD.findYLocation(76);
+                        
+                        break;
+                        
+                    case 28:
+                        
+                        moveToCell = 80;
+                        actualPlayer.setPhase("phaseD");
+                        actualPlayer.setDirection("previous");                        
+                        x = phaseD.findXLocation(80);
+                        y = phaseD.findYLocation(80);
+                        
+                        break;
+                        
+                    case 7:
+                        
+                        pointer1 = 7;
+                        actualPlayer.setPhase("phaseA");
+                        x = principal.findXLocation(7);
+                        y = principal.findYLocation(7);
+                        
+                        break;
+                        
+                    case 17:
+                        
+                        pointer1 = 17;
+                        actualPlayer.setPhase("phaseC");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(17);
+                        y = principal.findYLocation(17);
+                                                
+                        break;
+                        
+                    case 23:
+                        
+                        pointer1 = 23;
+                        actualPlayer.setPhase("phaseB");
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(23);
+                        y = principal.findYLocation(23);
+                        
+                        break;
+                        
+                    case 36:
+                        
+                        pointer1 = 36;
+                        actualPlayer.setPhase("phaseC");
+                        actualPlayer.setDirection("previous");
+                        x = principal.findXLocation(36);
+                        y = principal.findYLocation(36);
+                                                
+                        break;
+                        
+                    default:
+                        
+                        actualPlayer.setDirection("next");
+                        x = principal.findXLocation(moveToCell);
+                        y = principal.findYLocation(moveToCell);
+                                                
+                        break;
+                        
+                }   
 
-        if (null != actualPhase) {
-            switch (actualPhase) {
+                break;
 
-                case "principal":
-
+                
+            case "phaseA":
+                
+                if (actualPlayer.getCell() == 7) {
+                    
+                    moveToCell = 37 + rightDice + leftDice;
+                    x = phaseA.findXLocation(moveToCell);
+                    y = phaseA.findYLocation(moveToCell);
+                    
+                }
+                
+                if (moveToCell > 48) {
+                    
+                    moveToCell = moveToCell - 49 + 13;                    
+                    actualPlayer.setPhase("principal");                    
+                    actualPlayer.setDirection("next");
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else {
+                    
+                    x = phaseA.findXLocation(moveToCell);
+                    y = phaseA.findYLocation(moveToCell);
+                    
+                }  
+                
+                break;
+                
+            case "phaseB":
+                
+                if (actualPlayer.getCell() == 23) {
+                    
+                    moveToCell = 48 + rightDice + leftDice;
+                    x = phaseB.findXLocation(moveToCell);
+                    y = phaseB.findYLocation(moveToCell);
+                    
+                }
+                
+                if (moveToCell > 54) {
+                    
+                    moveToCell = moveToCell - 55 + 30;                    
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else {
+                    
+                    x = phaseB.findXLocation(moveToCell);
+                    y = phaseB.findYLocation(moveToCell);
+                    
+                }   
+                
+                break;
+                
+            case "phaseC":
+                
+                if (actualPlayer.getCell() == 17) {
+                    
+                    moveToCell = 54 + rightDice + leftDice;
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    
+                } else if (actualPlayer.getCell() == 36) {
+                    
+                    moveToCell = 69 - rightDice - leftDice;
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    
+                } else if (moveToCell > 68) {
+                    
+                    moveToCell = moveToCell - 69 + 36;
+                    
                     if (moveToCell > 37) {
-
+                        
                         moveToCell -= 38;
-
+                        
                     }
-
-                    switch (moveToCell) {
-
-                        case 0:
-
-                            moveToCell = 69;
-                            actualPlayer.setPhase("phaseD");
-                            actualPlayer.setDirection("next");
-                            x = phaseD.findXLocation(69);
-                            y = phaseD.findYLocation(69);
-
-                            break;
-
-                        case 9:
-
-                            moveToCell = 72;
-                            actualPlayer.setPhase("phaseD");
-                            actualPlayer.setDirection("next");
-                            x = phaseD.findXLocation(72);
-                            y = phaseD.findYLocation(72);
-
-                            break;
-
-                        case 19:
-
-                            moveToCell = 76;
-                            actualPlayer.setPhase("phaseD");
-                            actualPlayer.setDirection("previous");
-                            x = phaseD.findXLocation(76);
-                            y = phaseD.findYLocation(76);
-
-                            break;
-
-                        case 28:
-
-                            moveToCell = 80;
-                            actualPlayer.setPhase("phaseD");
-                            actualPlayer.setDirection("previous");
-                            x = phaseD.findXLocation(80);
-                            y = phaseD.findYLocation(80);
-
-                            break;
-
-                        case 7:
-
-                            pointer1 = 7;
-                            actualPlayer.setPhase("phaseA");
-                            x = principal.findXLocation(7);
-                            y = principal.findYLocation(7);
-
-                            break;
-
-                        case 17:
-
-                            pointer1 = 17;
-                            actualPlayer.setPhase("phaseC");
-                            actualPlayer.setDirection("next");
-                            x = principal.findXLocation(17);
-                            y = principal.findYLocation(17);
-
-                            break;
-
-                        case 23:
-
-                            pointer1 = 23;
-                            actualPlayer.setPhase("phaseB");
-                            actualPlayer.setDirection("next");
-                            x = principal.findXLocation(23);
-                            y = principal.findYLocation(23);
-
-                            break;
-
-                        case 36:
-
-                            pointer1 = 36;
-                            actualPlayer.setPhase("phaseC");
-                            actualPlayer.setDirection("previous");
-                            x = principal.findXLocation(36);
-                            y = principal.findYLocation(36);
-
-                            break;
-
-                        default:
-
-                            actualPlayer.setDirection("next");
-                            x = principal.findXLocation(moveToCell);
-                            y = principal.findYLocation(moveToCell);
-
-                            break;
-
-                    }
-
-                    break;
-
-                case "phaseA":
-
-                    if (actualPlayer.getCell() == 7) {
-
-                        moveToCell = 37 + rightDice + leftDice;
-                        x = phaseA.findXLocation(moveToCell);
-                        y = phaseA.findYLocation(moveToCell);
-
-                    }
-
-                    if (moveToCell > 48) {
-
-                        moveToCell = moveToCell - 49 + 13;
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(moveToCell);
-                        y = principal.findYLocation(moveToCell);
-
-                    } else {
-
-                        x = phaseA.findXLocation(moveToCell);
-                        y = phaseA.findYLocation(moveToCell);
-
-                    }
-
-                    break;
-
-                case "phaseB":
-
-                    if (actualPlayer.getCell() == 23) {
-
-                        moveToCell = 48 + rightDice + leftDice;
-                        x = phaseB.findXLocation(moveToCell);
-                        y = phaseB.findYLocation(moveToCell);
-
-                    }
-
-                    if (moveToCell > 54) {
-
-                        moveToCell = moveToCell - 55 + 30;
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(moveToCell);
-                        y = principal.findYLocation(moveToCell);
-
-                    } else {
-
-                        x = phaseB.findXLocation(moveToCell);
-                        y = phaseB.findYLocation(moveToCell);
-
-                    }
-
-                    break;
-
-                case "phaseC":
-
-                    if (actualPlayer.getCell() == 17) {
-
-                        moveToCell = 54 + rightDice + leftDice;
-                        x = phaseC.findXLocation(moveToCell);
-                        y = phaseC.findYLocation(moveToCell);
-
-                    } else if (actualPlayer.getCell() == 36) {
-
-                        moveToCell = 69 - rightDice - leftDice;
-                        x = phaseC.findXLocation(moveToCell);
-                        y = phaseC.findYLocation(moveToCell);
-
-                    } else if (moveToCell > 68) {
-
-                        moveToCell = moveToCell - 69 + 36;
-
-                        if (moveToCell > 37) {
-
-                            moveToCell -= 38;
-
-                        }
-
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(moveToCell);
-                        y = principal.findYLocation(moveToCell);
-
-                    } else if (moveToCell < 55) {
-
-                        moveToCell = 54 - moveToCell + 17;
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(moveToCell);
-                        y = principal.findYLocation(moveToCell);
-
-                    } else if (actualPlayer.getDirection() == "next") {
-
-                        x = phaseC.findXLocation(moveToCell);
-                        y = phaseC.findYLocation(moveToCell);
-
-                    } else if (actualPlayer.getDirection() == "previous") {
-
-                        x = phaseC.findXLocationPrevious(moveToCell);
-                        y = phaseC.findYLocationPrevious(moveToCell);
-
-                    }
-
-                    break;
-
-                case "phaseD":
-
-                    if (moveToCell > 82) {
-
-                        moveToCell = moveToCell - 83 + 69;
-
-                    } else if (moveToCell < 69) {
-
-                        moveToCell = 82 - (68 - moveToCell);
-
-                    }
-
-                    if (moveToCell == 69) {
-
-                        moveToCell = 0;
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(0);
-                        y = principal.findYLocation(0);
-
-                    } else if (moveToCell == 72) {
-
-                        moveToCell = 9;
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(9);
-                        y = principal.findYLocation(9);
-
-                    } else if (moveToCell == 76) {
-
-                        moveToCell = 19;
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(19);
-                        y = principal.findYLocation(19);
-
-                    } else if (moveToCell == 80) {
-
-                        moveToCell = 28;
-                        actualPlayer.setPhase("principal");
-                        actualPlayer.setDirection("next");
-                        x = principal.findXLocation(28);
-                        y = principal.findYLocation(28);
-
-                        if (moveToCell > 37) {
-
-                            moveToCell -= 38;
-
-                        }
-
-                    } else if (actualPlayer.getDirection() == "next") {
-
-                        x = phaseD.findXLocation(moveToCell);
-                        y = phaseD.findYLocation(moveToCell);
-
-                    } else if (actualPlayer.getDirection() == "previous") {
-
-                        x = phaseD.findXLocationPrevious(moveToCell);
-                        y = phaseD.findYLocationPrevious(moveToCell);
-
-                    }
-
-                    break;
-
-                default:
-
-                    break;
-
-            }
+                    
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else if (moveToCell < 55) {
+                    
+                    moveToCell = 54 - moveToCell + 17;                    
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(moveToCell);
+                    y = principal.findYLocation(moveToCell);
+                    
+                } else if (actualPlayer.getDirection() == "next") {
+                    
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    
+                } else if (actualPlayer.getDirection() == "previous") {
+                    
+                    x = phaseC.findXLocationPrevious(moveToCell);
+                    y = phaseC.findYLocationPrevious(moveToCell);
+                    
+                }
+                
+                break;
+                
+            case "phaseD":
+                
+                if (moveToCell > 82) {
+                    
+                    moveToCell = moveToCell - 83 + 69;
+                    
+                } else if (moveToCell < 69) {
+                    
+                    moveToCell = 82 - (68 - moveToCell);
+                    
+                }
+                
+                if (moveToCell == 69) {
+                    
+                    moveToCell = 0;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(0);
+                    y = principal.findYLocation(0);
+                    
+                    
+                } else if (moveToCell == 72) {
+                    
+                    moveToCell = 9;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(9);
+                    y = principal.findYLocation(9);     
+                    
+                } else if (moveToCell == 76) {
+                    
+                    moveToCell = 19;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(19);
+                    y = principal.findYLocation(19);
+                    
+                } else if (moveToCell == 80) {
+                    
+                    moveToCell = 28;
+                    actualPlayer.setPhase("principal");
+                    actualPlayer.setDirection("next");                    
+                    x = principal.findXLocation(28);
+                    y = principal.findYLocation(28);
+                    
+                    if (moveToCell > 37) {
+                    
+                    moveToCell -= 38;
+                    
+                    }   
+                    
+                } else if (actualPlayer.getDirection() == "next") {
+                    
+                    x = phaseD.findXLocation(moveToCell);
+                    y = phaseD.findYLocation(moveToCell);
+                    
+                } else if (actualPlayer.getDirection() == "previous") {
+                    
+                    x = phaseD.findXLocationPrevious(moveToCell);
+                    y = phaseD.findYLocationPrevious(moveToCell);
+                    
+                }    
+                
+                break;
+                
+            default:
+                
+                break;
+                
         }
-
+                
         actualPlayer.setCell(moveToCell);
-
+        
         nextCell = moveToCell;
-
+        
         if (playerPlaying == 0) {
 
             moveToken(0, x, y);
@@ -802,17 +821,27 @@ public class Board extends javax.swing.JFrame {
         }
 
         actionCell(moveToCell);
-
+        
         checkDuel();
-
-        pointer1 = 0;
-
+        
+        teleportation = false;
+        
+        changePositions = false;
+        
+        pointer1 = 0;        
+            
         checkStar(previousCell, nextCell);
 
-        playerPlaying++;
-
+        playerPlaying ++;
+                        
         checkPlayerPlaying();
-
+        
+        if (round != 13) {
+            
+            txtTurn.setText("Turno de " + players.get(playerPlaying).getName());
+            
+        }               
+        
         checkEndGame();
 
     }//GEN-LAST:event_btnRollDicesActionPerformed
@@ -933,22 +962,44 @@ public class Board extends javax.swing.JFrame {
      */
     private void checkPlayerPlaying() {
 
-        if (round > 0 && playerPlaying > activePlayers) {
-
+        if (round > 1 && playerPlaying > activePlayers) {               
+           
             //nuevo minijuego
+                        
             String message = "El minijuego será: "; // + minijuego.getName
-
+        
             JOptionPane.showMessageDialog(null, message, "Minijuego", 1);
 
             //minijuego.start             
+                        
             playerPlaying = 0;
-            round++;
-
+            round ++;
+            
+            txtRound.setText("Ronda " + round);
+            
         } else if (playerPlaying > activePlayers) {
 
             playerPlaying = 0;
-            round++;
+            round ++;
+            
+            txtRound.setText("Ronda " + round);
 
+        }
+        
+        if (round == 2 && pointer2 == false) {
+
+            lblStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Player/star1.png")));
+
+            newStar();
+            
+            pointer2 = true;
+
+        }
+        
+        if (round == 13) {
+            
+            txtRound.setText("Ronda 12");
+            
         }
 
     }
@@ -960,10 +1011,7 @@ public class Board extends javax.swing.JFrame {
 
         star.setCell();
 
-        star.setSoldFalse();
-
         int starCell = star.getCell();
-
         int newX = principal.findXLocation(starCell);
         int newY = principal.findYLocation(starCell);
 
@@ -971,89 +1019,208 @@ public class Board extends javax.swing.JFrame {
 
     }
 
-    /**
-     * Method in charge of creating the random stars on the board.
-     *
-     */
     private void checkStar(int previousCell, int nextCell) {
-
+                
         Player player = players.get(playerPlaying);
-
+        
         star = Star.getStar();
+        
+        int starCell = star.getCell();        
+        
+        if (round > 1 && player.getCell() < 38) {
+            
+            if (previousCell < 38 && nextCell < 38) {
+                
+                if (previousCell < nextCell) {
 
-        int starCell = star.getCell();
+                    if ((starCell > previousCell && starCell <= nextCell)) {
 
-        String message = "";
+                        buyStar();    
 
-        if (previousCell < 38 && nextCell < 38) {
+                    }
 
-            if (starCell > previousCell && starCell <= nextCell && round > 1 && player.getCell() < 38) {
+                } else if (previousCell > 26 && nextCell < 12) {
+                                        
+                    nextCell += 38;
 
-                message = "Has pasado por una casilla donde se encuentra la estrella" + "\n"
-                        + "¿Deseas comprarla?";
+                    if (starCell < 12) {
 
-                int option = JOptionPane.showConfirmDialog(null, message, "Comprar estrella", JOptionPane.YES_NO_OPTION);
+                        starCell += 38;
 
-                if (option == JOptionPane.YES_OPTION) {
+                    }            
 
-                    if (player.getCoins() >= 100) {
+                    if (starCell > previousCell && starCell <= nextCell) {
 
-                        player.setStars(player.getStars() + 1);
+                        buyStar();    
 
-                        player.setCoins(player.getCoins() - 100);
+                    }
 
-                        updateStarsEvent();
+                }            
 
-                        updateCoinsEvent();
+            } else if ((previousCell == 7 || (previousCell >= 38 && previousCell <= 48)) && nextCell < 38) {
+                
+                previousCell = 13;        
 
-                        newStar();
+                if ((starCell >= previousCell && starCell <= nextCell)) {
 
-                    } else {
+                    buyStar();    
 
-                        message = player.getName() + " no posee suficientes monedas para comprar la estrella.";
+                }
 
-                        JOptionPane.showMessageDialog(null, message, "Comprar estrella", 1);
+            } else if ((previousCell == 23 || (previousCell >= 49 && previousCell <= 54)) && nextCell < 38) {
+                
+                previousCell = 30;
+
+                if (nextCell < 12) {
+
+                    nextCell += 38;
+
+                }
+
+                if ((starCell >= previousCell && starCell <= nextCell)) {
+
+                    buyStar();    
+
+                }
+
+            } else if ((previousCell >= 55 && previousCell <= 68) && nextCell <= 28) {
+                
+                previousCell = 17;            
+
+                if ((starCell >= previousCell && starCell <= nextCell)) {
+
+                    buyStar();    
+
+                }
+
+            } else if ((previousCell >= 55 && previousCell <= 68) && nextCell < 38){
+                
+                previousCell = 36;
+
+                if (nextCell < 10) {
+
+                    nextCell += 38;
+
+                }            
+
+                if ((starCell >= previousCell && starCell <= nextCell)) {
+
+                    buyStar();    
+
+                }            
+            } else if (previousCell < 38 && nextCell >= 69){
+                                
+                if (nextCell == 69) {
+
+                    nextCell = 38;
+
+                } else if (nextCell == 72) {
+
+                    nextCell = 9;
+
+                } else if (nextCell == 76) {
+
+                    nextCell = 19;
+
+                } else if (nextCell == 80) {
+
+                    nextCell = 28;
+
+                }
+
+                if ((starCell >= previousCell && starCell <= nextCell)) {
+
+                    buyStar();    
+
+                }  
+
+            } else if (nextCell == starCell){
+                
+                buyStar();    
+
+            }
+            
+        }
+           
+    }
+    
+    private void buyStar() {
+        
+        Player player = players.get(playerPlaying);           
+                
+        String message = "Has pasado por una casilla donde se encuentra la estrella" + "\n"
+                            + "¿Deseas comprarla?";
+
+        int option = JOptionPane.showConfirmDialog(null,message, "Comprar estrella", JOptionPane.YES_NO_OPTION);
+
+        if (option == JOptionPane.YES_OPTION) {
+
+            if (player.getCoins() >= 100) {
+
+                player.setStars(player.getStars() + 1);
+
+                player.setCoins(player.getCoins() - 100);
+                
+                newStar(); 
+
+                updateStarsEvent();
+
+                updateCoinsEvent();                                      
+
+            } else {
+
+                message = player.getName() + " no posee suficientes monedas para comprar la estrella.";
+
+                JOptionPane.showMessageDialog(null, message, "Comprar estrella", 1);
+
+            }
+
+        } 
+        
+    }
+    
+    /**
+     * Check if the players fall in the same square and create a duel between
+     * them.
+     */
+    private void checkDuel() {   
+        
+        if (teleportation == false && changePositions == false) {
+            
+            Player actualPlayer = players.get(playerPlaying);
+            
+            Events newEvent = new Events("duelSameCell");
+                        
+            if (activePlayers == 1) {
+                
+                for (int i = 0; i <= activePlayers; i ++) {
+
+                    if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
+
+                        newEvent.start(0, 1);
+
+                    }
+
+                }
+
+            } else {
+
+                for (int i = 0; i <= activePlayers; i ++) {
+
+                    if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
+
+                        newEvent.start(playerPlaying, i);
 
                     }
 
                 }
 
             }
-
+        
         }
-
-    }
-
-    /**
-     * Check if the players fall in the same square and create a duel between
-     * them.
-     */
-    private void checkDuel() {
-
-        if (activePlayers == 1) {
-
-            Events newEvent = new Events("duelSameCell");
-
-            newEvent.start(0, 1);
-
-        } else {
-
-            Player actualPlayer = players.get(playerPlaying);
-
-            for (int i = 0; i < players.size(); i++) {
-
-                if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
-
-                    Events newEvent = new Events("duelSameCell");
-
-                    newEvent.start(playerPlaying, i);
-
-                }
-
-            }
-
-        }
-
+        
+        // reocordar retroceder una casilla al jugador que perdio 
+        
     }
 
     /**
@@ -1062,57 +1229,59 @@ public class Board extends javax.swing.JFrame {
      * players to select the winning player.
      */
     private void checkEndGame() {
-
-        if (round == 12) {
-
-            int starsArray[] = new int[players.size()];
-
-            for (int i = 0; i <= activePlayers; i++) {
-
+        
+        updateLeaderboard();
+        
+        if (round == 13) {            
+                        
+            int starsArray[] = new int[players.size()];   
+            
+            for (int i = 0; i <= activePlayers; i ++) {
+                
                 starsArray[i] = players.get(i).getStars();
-
+                
             }
-
+            
             int maxIndex = getMaxIndexStars(starsArray);
-
+            
             String winnerName = players.get(maxIndex).getName();
-
+                                    
             int repeated = checkRepeated(starsArray, maxIndex);
-
+            
             if (repeated == 1) {
-
+                
                 Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 2);
-
+                
                 maxIndex = getMaxIndexPlayers(arrayPlayers, 2);
-
-                winnerName = players.get(maxIndex).getName();
-
+                
+                winnerName = arrayPlayers[maxIndex].getName();
+                                
             } else if (repeated == 2) {
-
+                
                 Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 3);
-
+                
                 maxIndex = getMaxIndexPlayers(arrayPlayers, 3);
-
-                winnerName = players.get(maxIndex).getName();
-
+                
+                winnerName = arrayPlayers[maxIndex].getName();
+                                
             } else if (repeated == 3) {
-
+                
                 Player[] arrayPlayers = checkRepeatedPlayers(starsArray[maxIndex], 4);
-
+                
                 maxIndex = getMaxIndexPlayers(arrayPlayers, 4);
-
-                winnerName = players.get(maxIndex).getName();
-
+                
+                winnerName = arrayPlayers[maxIndex].getName();
+                
             }
-
+            
             String message = winnerName + " ha ganado el juego";
-
+        
             JOptionPane.showMessageDialog(null, message, "Ganador del juego", 1);
-
+            
             btnRollDices.setEnabled(false);
-
+                        
         }
-
+        
     }
 
     /**
@@ -1398,13 +1567,13 @@ public class Board extends javax.swing.JFrame {
      */
     private void eventCellAction() {
 
-        if (stack.empty() == true) {
+        if (stackEvents.empty() == true) {
 
-            stack.shuffle();
+            stackEvents.shuffle();
 
         }
 
-        Events newEvent = new Events(stack.pop());
+        Events newEvent = new Events(stackEvents.pop());
 
         newEvent.start(playerPlaying, 0);
 
@@ -1720,5 +1889,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel startImage2;
     private javax.swing.JLabel startImage3;
     private javax.swing.JLabel startImage4;
+    private static javax.swing.JTextField txtRound;
+    private static javax.swing.JTextField txtTurn;
     // End of variables declaration//GEN-END:variables
 }

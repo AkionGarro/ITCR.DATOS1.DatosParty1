@@ -15,6 +15,7 @@ public class Differences extends javax.swing.JFrame {
     public static ArrayList<Integer> playerPoints = new ArrayList<Integer>();
 
     public Differences() {
+        
         time = new Timer(10, action);
         initComponents();
         configComponents();
@@ -56,12 +57,18 @@ public class Differences extends javax.swing.JFrame {
     private ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            hundredths--;
+            
+            hundredths --;
+            
             if (hundredths == 0) {
-                seconds--;
+                
+                seconds --;
                 hundredths = 60;
+                
             }
+            
             if (seconds == 0) {
+                
                 time.stop();
                 hundredths = 0;
                 nextButton.setEnabled(true);
@@ -69,9 +76,11 @@ public class Differences extends javax.swing.JFrame {
             updateTimeLabel();
 
         }
+        
     };
 
     private void updateTimeLabel() {
+        
         String text = (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths + " s";
         timeRunning.setText(text);
 
@@ -355,7 +364,6 @@ public class Differences extends javax.swing.JFrame {
             prueba();
         }
 
-
     }//GEN-LAST:event_showDifferenceButton1MouseClicked
 
     private void showDifferenceButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton3MouseClicked
@@ -366,7 +374,6 @@ public class Differences extends javax.swing.JFrame {
                 prueba();
             }
         }
-
 
     }//GEN-LAST:event_showDifferenceButton3MouseClicked
 
@@ -400,7 +407,6 @@ public class Differences extends javax.swing.JFrame {
             }
         }
 
-
     }//GEN-LAST:event_showDifferenceButton9MouseClicked
 
     private void showDifferenceButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton11MouseClicked
@@ -433,7 +439,6 @@ public class Differences extends javax.swing.JFrame {
             }
         }
 
-
     }//GEN-LAST:event_showDifferenceButton15MouseClicked
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
@@ -450,7 +455,6 @@ public class Differences extends javax.swing.JFrame {
         startButton.setEnabled(false);
         startButton.setText("START");
         round++;
-
 
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -479,11 +483,16 @@ public class Differences extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             @Override
             public void run() {
+                
                 new Differences().setVisible(true);
+                
             }
+            
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -527,4 +536,5 @@ public class Differences extends javax.swing.JFrame {
     private javax.swing.JButton startButton;
     private javax.swing.JLabel timeRunning;
     // End of variables declaration//GEN-END:variables
+
 }

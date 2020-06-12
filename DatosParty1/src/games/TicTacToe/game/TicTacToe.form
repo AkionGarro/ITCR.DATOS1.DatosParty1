@@ -65,8 +65,8 @@
                               <Component id="lblTurn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnInstructions" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <Component id="btnNextGame" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnInstructions" pref="134" max="32767" attributes="0"/>
+                                  <Component id="btnNextGame" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -322,7 +322,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="13" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Siguiente Juego"/>
+            <Property name="text" type="java.lang.String" value="Siguiente"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextGameActionPerformed"/>
