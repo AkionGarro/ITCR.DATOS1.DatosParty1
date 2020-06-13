@@ -1026,6 +1026,13 @@ public class MathQuiz extends javax.swing.JFrame {
                 break;
 
         }
+        
+        if (Board.round == 13) {
+            
+            Board.mingameFinished = true;
+            Board.checkEndGame();
+            
+        }
 
     }//GEN-LAST:event_exitButtonActionPerformed
 

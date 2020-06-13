@@ -1207,6 +1207,7 @@ public class Differences extends javax.swing.JFrame {
             Board.checkEndGame();
             
         }
+        
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed

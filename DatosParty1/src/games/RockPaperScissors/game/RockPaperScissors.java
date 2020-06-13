@@ -931,6 +931,14 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 break;
 
         }
+        
+        if (Board.round == 13) {
+            
+            Board.mingameFinished = true;
+            Board.checkEndGame();
+            
+        }
+        
     }//GEN-LAST:event_btnNextMouseClicked
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed

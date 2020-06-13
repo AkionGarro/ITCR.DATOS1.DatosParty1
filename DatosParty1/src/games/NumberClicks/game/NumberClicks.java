@@ -820,6 +820,7 @@ public class NumberClicks extends javax.swing.JFrame {
      * Method in charge of finishing the minigame.
      */
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        
         switch (option) {
 
             case 2:
@@ -881,6 +882,14 @@ public class NumberClicks extends javax.swing.JFrame {
                 break;
 
         }
+        
+        if (Board.round == 13) {
+            
+            Board.mingameFinished = true;
+            Board.checkEndGame();
+            
+        }
+        
     }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
