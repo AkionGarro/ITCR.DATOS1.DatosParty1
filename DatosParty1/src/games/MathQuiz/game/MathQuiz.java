@@ -532,6 +532,7 @@ public class MathQuiz extends javax.swing.JFrame {
             nextquestion();
             //lblPoints.setText(String.valueOf(points));
             buttonGroup1.clearSelection();
+            
 
         } else {
 
@@ -540,7 +541,7 @@ public class MathQuiz extends javax.swing.JFrame {
             //lblPoints.setText(String.valueOf(points));
             buttonGroup1.clearSelection();
 
-        }
+        }correct = false;
 
     }//GEN-LAST:event_checkButtonMouseClicked
 
@@ -550,7 +551,6 @@ public class MathQuiz extends javax.swing.JFrame {
     private void option1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_option1ButtonMouseClicked
 
         if (option == 4) {
-
             correct = true;
 
         }
@@ -561,13 +561,16 @@ public class MathQuiz extends javax.swing.JFrame {
      * Method in charge updating the points of the player.
      */
     private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
-
+        
         //lblPoints.setText(String.valueOf(points));
 
     }//GEN-LAST:event_checkButtonActionPerformed
 
     private void option2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option2ButtonActionPerformed
-        // TODO add your handling code here:
+        if (option == 3) {
+            
+
+            correct = true;}
     }//GEN-LAST:event_option2ButtonActionPerformed
 
     private void option1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1ButtonActionPerformed
@@ -578,7 +581,12 @@ public class MathQuiz extends javax.swing.JFrame {
      * Method in charge start the minigame.
      */
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-
+        option1Button.setVisible(true);
+        option2Button.setVisible(true);
+        option3Button.setVisible(true);
+        option4Button.setVisible(true);
+        checkButton.setVisible(true);
+        quizMath();
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
@@ -876,24 +884,24 @@ public class MathQuiz extends javax.swing.JFrame {
             case 2:
                 
                 if (round == 1) {
-                    
-                    playerPoints.add(pointsPlayer1);
+                    activepoints1.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
                     
                 } else if (round == 2) {
-                    
-                    playerPoints.add(pointsPlayer2);
+                    activepoints2.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
                     sendPlayer2Coins();
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
 
                 }
@@ -903,26 +911,26 @@ public class MathQuiz extends javax.swing.JFrame {
             case 3:
                 
                 if (round == 1) {
-                    
-                    playerPoints.add(pointsPlayer1);
+                    activepoints1.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
                     
                 } else if (round == 2) {
-                    
-                    playerPoints.add(pointsPlayer2);
+                    activepoints2.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 3) {
-
-                    playerPoints.add(pointsPlayer3);
+                    activepoints3.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
                     sendPlayer2Coins();
@@ -930,7 +938,7 @@ public class MathQuiz extends javax.swing.JFrame {
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
 
                 }
@@ -940,35 +948,35 @@ public class MathQuiz extends javax.swing.JFrame {
             case 4:
 
                 if (round == 1) {
-                    
-                    playerPoints.add(pointsPlayer1);
+                    activepoints1.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
                     
                 } else if (round == 2) {
-                    
-                    playerPoints.add(pointsPlayer2);
+                    activepoints1.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 3) {
-                    
-                    playerPoints.add(pointsPlayer3);
+                    activepoints1.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
                     
                 } else if (round == 4) {
-                    
-                    playerPoints.add(pointsPlayer4);
+                    activepoints1.setText(String.valueOf(points));
+                    playerPoints.add(points);
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
                     sendPlayer2Coins();
@@ -977,7 +985,7 @@ public class MathQuiz extends javax.swing.JFrame {
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    timeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
 
                 }
@@ -1085,7 +1093,6 @@ public class MathQuiz extends javax.swing.JFrame {
      * Method in charge of updating the visible questions on the window.
      */
     public void nextquestion() {
-
         quizMath();
 
     }
