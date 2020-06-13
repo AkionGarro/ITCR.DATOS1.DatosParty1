@@ -17,7 +17,7 @@ public class BallGame extends javax.swing.JFrame {
     public ArrayList<Integer> playerPoints = new ArrayList<Integer>();
     private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
     public int option = Board.players.size();
-    
+
     /**
      * Creates new form BallGame
      */
@@ -26,13 +26,12 @@ public class BallGame extends javax.swing.JFrame {
         initComponents();
         configComponents();
         this.setLocationRelativeTo(null);
-        
+
         //time = new Timer(10, action);
-        
     }
 
     private void configComponents() {
-
+        btnBall.setEnabled(false);
         nextButton.setEnabled(false);
 
         switch (option) {
@@ -311,7 +310,7 @@ public class BallGame extends javax.swing.JFrame {
 
         btnInstructions.setBackground(new java.awt.Color(0, 255, 204));
         btnInstructions.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
-        btnInstructions.setText("Instrucciones");
+        btnInstructions.setText("Instructions");
         btnInstructions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInstructionsActionPerformed(evt);
@@ -623,8 +622,11 @@ public class BallGame extends javax.swing.JFrame {
     }
 
     private void btnBallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBallActionPerformed
-        
-        //Sumar puntos
+
+        if (time.isRunning()) {
+            updatePlayersPoints();
+        }
+
 
     }//GEN-LAST:event_btnBallActionPerformed
 
@@ -634,17 +636,17 @@ public class BallGame extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                hundredths --;
-                
+
+                hundredths--;
+
                 if (hundredths == 0) {
-                    
+
                     Random random = new Random();
                     int x = random.nextInt(300);
                     int y = random.nextInt(300);
                     btnBall.setLocation(x, y);
 
-                    seconds --;
+                    seconds--;
                     hundredths = 60;
 
                 }
@@ -656,18 +658,18 @@ public class BallGame extends javax.swing.JFrame {
                     nextButton.setEnabled(true);
 
                 }
-                                
+
                 updateTimeTextBox();
 
             }
 
         });
-        
+        btnBall.setEnabled(true);
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
-        round ++;
-        
+        round++;
+
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
@@ -679,7 +681,7 @@ public class BallGame extends javax.swing.JFrame {
                 if (round == 1) {
 
                     playerPoints.add(pointsPlayer1);
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
@@ -691,11 +693,12 @@ public class BallGame extends javax.swing.JFrame {
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
                     sendPlayer2Coins();
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
+                    nextButton.setEnabled(false);
 
                 }
 
@@ -706,7 +709,7 @@ public class BallGame extends javax.swing.JFrame {
                 if (round == 1) {
 
                     playerPoints.add(pointsPlayer1);
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
@@ -715,7 +718,7 @@ public class BallGame extends javax.swing.JFrame {
                 } else if (round == 2) {
 
                     playerPoints.add(pointsPlayer2);
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
@@ -728,11 +731,12 @@ public class BallGame extends javax.swing.JFrame {
                     sendPlayer1Coins();
                     sendPlayer2Coins();
                     sendPlayer3Coins();
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
+                    nextButton.setEnabled(false);
 
                 }
 
@@ -741,9 +745,9 @@ public class BallGame extends javax.swing.JFrame {
             case 4:
 
                 if (round == 1) {
-                    
+
                     playerPoints.add(pointsPlayer1);
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
@@ -752,7 +756,7 @@ public class BallGame extends javax.swing.JFrame {
                 } else if (round == 2) {
 
                     playerPoints.add(pointsPlayer2);
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
@@ -761,7 +765,7 @@ public class BallGame extends javax.swing.JFrame {
                 } else if (round == 3) {
 
                     playerPoints.add(pointsPlayer3);
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
@@ -775,11 +779,12 @@ public class BallGame extends javax.swing.JFrame {
                     sendPlayer2Coins();
                     sendPlayer3Coins();
                     sendPlayer4Coins();
-                    
+
                     hundredths = 60;
                     seconds = 19;
                     txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
+                    nextButton.setEnabled(false);
 
                 }
 
@@ -867,11 +872,11 @@ public class BallGame extends javax.swing.JFrame {
 
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
 
-        String instructions = "El objetivo consiste en obtener la mayor cantidad de diferencias en el tiempo establecido (30 segundos), según las siguientes reglas:\n"
+        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (20 segundos), según las siguientes reglas:\n"
                 + "\n"
                 + "   * En el momento en que se presione el botón \"Start\", comenzará a correr el tiempo inmediatamente.\n"
-                + "   * Busca las diferencias en la parte izquierda de la pantalla.\n"
-                + "   * Cuando hayan transcurrido los 30 segundos, no podrás contabilizar más diferencias.\n"
+                + "   * Presione la moneda en la pantalla que se mueve de manera random en el area para obtener puntos .\n"
+                + "   * Cuando hayan transcurrido los 20 segundos, no podrás contabilizar más diferencias.\n"
                 + "   * Al final de su ronda presionar el boton next player.\n"
                 + "   * Si eres el jugador final para volver al tablero presionar exit.\n"
                 + "\n";
@@ -882,18 +887,18 @@ public class BallGame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        
+    public static void main() {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
-                
+
                 new BallGame().setVisible(true);
-                
+
             }
-            
+
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
