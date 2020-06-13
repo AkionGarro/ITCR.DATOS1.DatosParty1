@@ -666,11 +666,11 @@ public class NumberClicks extends javax.swing.JFrame {
      */
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
 
-        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (7 segundos), según las siguientes reglas:\n"
+        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (30 segundos), según las siguientes reglas:\n"
                 + "\n"
                 + "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n"
                 + "   * Presiona el botón lo más rápido que puedas.\n"
-                + "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n"
+                + "   * Cuando hayan transcurrido los 30 segundos, no podrás contabilizar más puntos.\n"
                 + "\n";
 
         JOptionPane.showMessageDialog(null, instructions);
