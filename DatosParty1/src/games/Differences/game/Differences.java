@@ -785,7 +785,7 @@ public class Differences extends javax.swing.JFrame {
                     hundredths = 60;
                     seconds = 30;
                     timeRunning.setText("30:00 s");
-                    startButton.setEnabled(true);
+                    startButton.setEnabled(false);
 
                 }
                 break;
@@ -817,7 +817,7 @@ public class Differences extends javax.swing.JFrame {
                     hundredths = 60;
                     seconds = 30;
                     timeRunning.setText("30:00 s");
-                    startButton.setEnabled(true);
+                    startButton.setEnabled(false);
 
                 }
                 break;
@@ -857,7 +857,7 @@ public class Differences extends javax.swing.JFrame {
                     hundredths = 60;
                     seconds = 30;
                     timeRunning.setText("30:00 s");
-                    startButton.setEnabled(true);
+                    startButton.setEnabled(false);
 
                 }
                 break;
@@ -877,7 +877,6 @@ public class Differences extends javax.swing.JFrame {
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
-
                     dispose();
 
                 } else {
@@ -887,11 +886,9 @@ public class Differences extends javax.swing.JFrame {
             case 3:
                 if (round == 3) {
                     round = 0;
-
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     pointsPlayer3 = 0;
-
                     dispose();
                 } else {
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -899,13 +896,11 @@ public class Differences extends javax.swing.JFrame {
                 break;
             case 4:
                 if (round == 4) {
-
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     pointsPlayer3 = 0;
                     pointsPlayer4 = 0;
-
                     dispose();
 
                 } else {

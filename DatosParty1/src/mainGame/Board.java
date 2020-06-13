@@ -1306,7 +1306,7 @@ public class Board extends javax.swing.JFrame {
 
         updateLeaderboard();
 
-        if (round == 14) {
+        if (round == 13) {
 
             int starsArray[] = new int[players.size()];
 
