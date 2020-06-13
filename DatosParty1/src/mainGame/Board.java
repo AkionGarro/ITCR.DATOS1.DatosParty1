@@ -834,7 +834,7 @@ public class Board extends javax.swing.JFrame {
 
         actionCell(moveToCell);
 
-        checkDuel();
+        //checkDuel();
 
         teleportation = false;
 
@@ -843,8 +843,10 @@ public class Board extends javax.swing.JFrame {
         pointer1 = 0;
 
         checkStar(previousCell, nextCell);
+        
+        checkDuel();
 
-        playerPlaying++;
+        playerPlaying ++;
 
         try {
 
@@ -984,18 +986,31 @@ public class Board extends javax.swing.JFrame {
         if (x != -1 && y != -1) {
 
             switch (playerToken) {
+                
                 case 0:
+                    
                     lblTokenPlayer1.setLocation(x, y);
+                    
                     break;
+                    
                 case 1:
+                    
                     lblTokenPlayer2.setLocation(x + 29, y);
+                    
                     break;
+                    
                 case 2:
+                    
                     lblTokenPlayer3.setLocation(x, y + 28);
+                    
                     break;
+                    
                 default:
+                    
                     lblTokenPlayer4.setLocation(x + 29, y + 29);
+                    
                     break;
+                    
             }
 
         } else {
@@ -1004,8 +1019,6 @@ public class Board extends javax.swing.JFrame {
 
             System.out.println("player token " + players.get(playerToken).getPhase() + "   " + players.get(playerToken).getCell());
 
-            // validar caso en el que la ficha no esté en el board principal
-            // Recordar que si el metodo retorna un -1, quiere decir que el jugador no esta en ese tablero especifico
         }
 
     }
@@ -1013,7 +1026,7 @@ public class Board extends javax.swing.JFrame {
     /**
      * Method to check the correct functioning of the players' turns.
      */
-    private void checkPlayerPlaying() throws InterruptedException {
+    public void checkPlayerPlaying() throws InterruptedException {
 
         if (round > 1 && playerPlaying > activePlayers) {
 
@@ -1286,6 +1299,8 @@ public class Board extends javax.swing.JFrame {
                     if (actualPlayer.getCell() == players.get(i).getCell() && playerPlaying != i) {
 
                         newEvent.start(playerPlaying, i);
+                        
+                        break;
 
                     }
 

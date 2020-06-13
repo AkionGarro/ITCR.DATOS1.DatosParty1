@@ -1,5 +1,7 @@
 package mainGame;
 
+import games.Differences.game.Differences;
+import games.NumberClicks.game.NumberClicks;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -181,20 +183,39 @@ public class Events {
 
         Player firstPlayer = Board.players.get(firstIndex);
         Player secondPlayer = Board.players.get(secondIndex);
+        
+        String message = "";
 
-        // Llamar al minijuego
-        // get nombre del minijuego
-        String message = firstPlayer.getName() + " y " + secondPlayer.getName() + " se enfrentarán en: "; // + nommbre del duelo
-
+        Random random = new Random();
+        
+        int number = random.nextInt(2);
+        
+        if (number == 0) {
+            
+            message = firstPlayer.getName() + " y " + secondPlayer.getName() + " se enfrentarán en NumberClicks";
+            
+        } else if (number == 1) {
+            
+            message = firstPlayer.getName() + " y " + secondPlayer.getName() + " se enfrentarán en Differences";
+            
+        }
+        
         JOptionPane.showMessageDialog(null, message, "Evento: Duelo", 1);
+        
+        if (number == 0) {
+            
+            NumberClicks numberClicks = new NumberClicks();
+                
+            numberClicks.main();
+            
+        } else if (number == 1) {
+            
+            Differences differences = new Differences();
+                
+            differences.main();
+            
+        }
 
-        /*
-        
-        gato(firstPlayer, secondPlayer);
-        cantidad de clicks(firstPlayer, secondPlayer);  
-        Diferencias(firstPlayer, secondPlayer); 
-        
-         */
     }
 
     /**
