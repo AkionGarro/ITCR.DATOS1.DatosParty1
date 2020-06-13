@@ -64,7 +64,7 @@ public class Minigames {
                 
                 BallGame ballGame = new BallGame();
                 
-                ballGame.main();                                
+                //ballGame.main();                                
                 
                 break;
         
