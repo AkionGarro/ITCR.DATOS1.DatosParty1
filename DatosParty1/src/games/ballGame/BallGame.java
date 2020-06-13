@@ -115,7 +115,7 @@ public class BallGame extends JPanel {
                 
         while (game.gameOver == false) {
             
-            System.out.println("holaaaaa");
+            
 
             game.move();
             game.repaint();
