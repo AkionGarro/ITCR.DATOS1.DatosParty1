@@ -12,12 +12,12 @@ import mainGame.Board;
 public class BallGame extends javax.swing.JFrame {
 
     private Timer time;
-    private int hundredths = 60, seconds = 29;
+    private int hundredths = 60, seconds = 19;
     public int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
     public ArrayList<Integer> playerPoints = new ArrayList<Integer>();
     private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
     public int option = Board.players.size();
-
+    
     /**
      * Creates new form BallGame
      */
@@ -26,7 +26,9 @@ public class BallGame extends javax.swing.JFrame {
         initComponents();
         configComponents();
         this.setLocationRelativeTo(null);
-
+        
+        //time = new Timer(10, action);
+        
     }
 
     private void configComponents() {
@@ -83,43 +85,12 @@ public class BallGame extends javax.swing.JFrame {
     }
 
     /**
-     * Method in charge of take care of time while the palyer is playing .
-     */
-    private ActionListener action = new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            hundredths--;
-
-            if (hundredths == 0) {
-
-                seconds--;
-                hundredths = 60;
-
-            }
-
-            if (seconds == 0) {
-
-                time.stop();
-                hundredths = 0;
-                nextButton.setEnabled(true);
-
-            }
-
-            updateTimeLabel();
-
-        }
-
-    };
-
-    /**
      * Method in charge of set the time to the timeRunning label.
      */
-    private void updateTimeLabel() {
+    private void updateTimeTextBox() {
 
         String text = (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths + " s";
-        timeRunning.setText(text);
+        txtTimeRunning.setText(text);
 
     }
 
@@ -238,9 +209,6 @@ public class BallGame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnBall = new javax.swing.JButton();
-        lblScore = new javax.swing.JLabel();
-        lblPoints = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         activepoints4 = new javax.swing.JLabel();
         playerPoints4 = new javax.swing.JLabel();
         playerPoints3 = new javax.swing.JLabel();
@@ -253,17 +221,11 @@ public class BallGame extends javax.swing.JFrame {
         nextButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         btnInstructions = new javax.swing.JButton();
-        timeRunning = new javax.swing.JLabel();
+        txtTimeRunning = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ball Game");
         setBackground(new java.awt.Color(255, 255, 255));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
-        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -275,62 +237,47 @@ public class BallGame extends javax.swing.JFrame {
                 btnBallActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBall, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
-
-        lblScore.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        lblScore.setForeground(new java.awt.Color(255, 255, 255));
-        lblScore.setText("Puntaje: ");
-        jPanel1.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 11, -1, -1));
-
-        lblPoints.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        lblPoints.setForeground(new java.awt.Color(255, 255, 255));
-        lblPoints.setText("0");
-        jPanel1.add(lblPoints, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 11, -1, -1));
-
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 90)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 25, -1, -1));
+        jPanel1.add(btnBall, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, -1, -1));
 
         activepoints4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         activepoints4.setForeground(new java.awt.Color(0, 0, 0));
         activepoints4.setText("0");
-        jPanel1.add(activepoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 50, 20));
+        jPanel1.add(activepoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 50, 20));
 
         playerPoints4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints4.setForeground(new java.awt.Color(0, 0, 0));
         playerPoints4.setText("Puntos jugador 4:");
-        jPanel1.add(playerPoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 180, -1));
+        jPanel1.add(playerPoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 180, -1));
 
         playerPoints3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints3.setForeground(new java.awt.Color(0, 0, 0));
         playerPoints3.setText("Puntos jugador 3:");
-        jPanel1.add(playerPoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 180, 30));
+        jPanel1.add(playerPoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 180, 30));
 
         activepoints3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         activepoints3.setForeground(new java.awt.Color(0, 0, 0));
         activepoints3.setText("0");
-        jPanel1.add(activepoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 50, 20));
+        jPanel1.add(activepoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 50, 20));
 
         activepoints2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         activepoints2.setForeground(new java.awt.Color(0, 0, 0));
         activepoints2.setText("0");
-        jPanel1.add(activepoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 50, -1));
+        jPanel1.add(activepoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 50, -1));
 
         playerPoints2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints2.setForeground(new java.awt.Color(0, 0, 0));
         playerPoints2.setText("Puntos jugador 2:");
-        jPanel1.add(playerPoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 180, 20));
+        jPanel1.add(playerPoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 180, 20));
 
         playerPoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints1.setForeground(new java.awt.Color(0, 0, 0));
         playerPoints1.setText("Puntos jugador 1:");
-        jPanel1.add(playerPoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 180, 20));
+        jPanel1.add(playerPoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 180, 20));
 
         activepoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         activepoints1.setForeground(new java.awt.Color(0, 0, 0));
         activepoints1.setText("0");
-        jPanel1.add(activepoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 50, -1));
+        jPanel1.add(activepoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 50, -1));
 
         startButton.setBackground(new java.awt.Color(0, 255, 204));
         startButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -340,7 +287,7 @@ public class BallGame extends javax.swing.JFrame {
                 startButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 180, 50));
+        jPanel1.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 180, 50));
 
         nextButton.setBackground(new java.awt.Color(0, 255, 204));
         nextButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -350,7 +297,7 @@ public class BallGame extends javax.swing.JFrame {
                 nextButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 180, 50));
+        jPanel1.add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, 180, 50));
 
         exitButton.setBackground(new java.awt.Color(0, 255, 204));
         exitButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -360,7 +307,7 @@ public class BallGame extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 180, 50));
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 180, 50));
 
         btnInstructions.setBackground(new java.awt.Color(0, 255, 204));
         btnInstructions.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -370,15 +317,27 @@ public class BallGame extends javax.swing.JFrame {
                 btnInstructionsActionPerformed(evt);
             }
         });
-        jPanel1.add(btnInstructions, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 180, 50));
+        jPanel1.add(btnInstructions, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 180, 50));
 
-        timeRunning.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
-        timeRunning.setForeground(new java.awt.Color(0, 0, 0));
-        timeRunning.setText("00:00 s");
-        jPanel1.add(timeRunning, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+        txtTimeRunning.setEditable(false);
+        txtTimeRunning.setBackground(new java.awt.Color(255, 255, 255));
+        txtTimeRunning.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
+        txtTimeRunning.setForeground(new java.awt.Color(0, 0, 0));
+        txtTimeRunning.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTimeRunning.setText("00:00 s");
+        txtTimeRunning.setBorder(null);
+        jPanel1.add(txtTimeRunning, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 620, -1, -1));
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 480, 680);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -663,50 +622,52 @@ public class BallGame extends javax.swing.JFrame {
 
     }
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
-        Timer timer = new Timer(800, new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                Random random = new Random();
-                int x = random.nextInt((350 - 0 + 1)) + 0;
-                int y = random.nextInt((180 - 0 + 1)) + 0;
-                btnBall.setLocation(x, y);
-
-            }
-
-        });
-
-        timer.start();
-
-    }//GEN-LAST:event_formWindowOpened
-
     private void btnBallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBallActionPerformed
-
-        int z = Integer.parseInt(lblPoints.getText());
-        lblPoints.setText("" + (z + 100));
-
-        if (z == 400) {
-
-            lblPoints.setVisible(false);
-            lblScore.setVisible(false);
-            btnBall.setVisible(false);
-            jLabel1.setText("Ganaste");
-
-        }
-
+        
+        //Sumar puntos
 
     }//GEN-LAST:event_btnBallActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
 
+        time = new Timer(10, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                hundredths --;
+                
+                if (hundredths == 0) {
+                    
+                    Random random = new Random();
+                    int x = random.nextInt(300);
+                    int y = random.nextInt(300);
+                    btnBall.setLocation(x, y);
+
+                    seconds --;
+                    hundredths = 60;
+
+                }
+
+                if (seconds == 0) {
+
+                    time.stop();
+                    hundredths = 0;
+                    nextButton.setEnabled(true);
+
+                }
+                                
+                updateTimeTextBox();
+
+            }
+
+        });
+        
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
-        round++;
-
+        round ++;
+        
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
@@ -720,8 +681,8 @@ public class BallGame extends javax.swing.JFrame {
                     playerPoints.add(pointsPlayer1);
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 2) {
@@ -732,8 +693,8 @@ public class BallGame extends javax.swing.JFrame {
                     sendPlayer2Coins();
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
 
                 }
@@ -747,8 +708,8 @@ public class BallGame extends javax.swing.JFrame {
                     playerPoints.add(pointsPlayer1);
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 2) {
@@ -756,8 +717,8 @@ public class BallGame extends javax.swing.JFrame {
                     playerPoints.add(pointsPlayer2);
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 3) {
@@ -769,8 +730,8 @@ public class BallGame extends javax.swing.JFrame {
                     sendPlayer3Coins();
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
 
                 }
@@ -780,11 +741,12 @@ public class BallGame extends javax.swing.JFrame {
             case 4:
 
                 if (round == 1) {
+                    
                     playerPoints.add(pointsPlayer1);
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 2) {
@@ -792,8 +754,8 @@ public class BallGame extends javax.swing.JFrame {
                     playerPoints.add(pointsPlayer2);
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 3) {
@@ -801,8 +763,8 @@ public class BallGame extends javax.swing.JFrame {
                     playerPoints.add(pointsPlayer3);
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 4) {
@@ -815,8 +777,8 @@ public class BallGame extends javax.swing.JFrame {
                     sendPlayer4Coins();
                     
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("30:00 s");
+                    seconds = 19;
+                    txtTimeRunning.setText("20:00 s");
                     startButton.setEnabled(false);
 
                 }
@@ -921,35 +883,17 @@ public class BallGame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BallGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BallGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BallGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BallGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
+                
                 new BallGame().setVisible(true);
+                
             }
+            
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -960,16 +904,14 @@ public class BallGame extends javax.swing.JFrame {
     private javax.swing.JButton btnBall;
     private javax.swing.JButton btnInstructions;
     private javax.swing.JButton exitButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblPoints;
-    private javax.swing.JLabel lblScore;
     private javax.swing.JButton nextButton;
     private javax.swing.JLabel playerPoints1;
     private javax.swing.JLabel playerPoints2;
     private javax.swing.JLabel playerPoints3;
     private javax.swing.JLabel playerPoints4;
     private javax.swing.JButton startButton;
-    private javax.swing.JLabel timeRunning;
+    public static javax.swing.JTextField txtTimeRunning;
     // End of variables declaration//GEN-END:variables
+
 }
