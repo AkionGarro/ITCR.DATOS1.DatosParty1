@@ -17,7 +17,6 @@ public class BallGame extends javax.swing.JFrame {
     public ArrayList<Integer> playerPoints = new ArrayList<Integer>();
     private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
     public int option = Board.players.size();
-    
 
     /**
      * Creates new form BallGame
@@ -32,7 +31,7 @@ public class BallGame extends javax.swing.JFrame {
     }
 
     private void configComponents() {
-
+        btnBall.setEnabled(false);
         nextButton.setEnabled(false);
 
         switch (option) {
@@ -311,7 +310,7 @@ public class BallGame extends javax.swing.JFrame {
 
         btnInstructions.setBackground(new java.awt.Color(0, 255, 204));
         btnInstructions.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
-        btnInstructions.setText("Instrucciones");
+        btnInstructions.setText("Instructions");
         btnInstructions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInstructionsActionPerformed(evt);
@@ -623,6 +622,7 @@ public class BallGame extends javax.swing.JFrame {
     }
 
     private void btnBallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBallActionPerformed
+
         if (time.isRunning()) {
             updatePlayersPoints();
         }
@@ -664,7 +664,7 @@ public class BallGame extends javax.swing.JFrame {
             }
 
         });
-
+        btnBall.setEnabled(true);
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
@@ -872,11 +872,11 @@ public class BallGame extends javax.swing.JFrame {
 
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
 
-        String instructions = "El objetivo consiste en obtener la mayor cantidad de diferencias en el tiempo establecido (30 segundos), según las siguientes reglas:\n"
+        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (20 segundos), según las siguientes reglas:\n"
                 + "\n"
                 + "   * En el momento en que se presione el botón \"Start\", comenzará a correr el tiempo inmediatamente.\n"
-                + "   * Busca las diferencias en la parte izquierda de la pantalla.\n"
-                + "   * Cuando hayan transcurrido los 30 segundos, no podrás contabilizar más diferencias.\n"
+                + "   * Presione la moneda en la pantalla que se mueve de manera random en el area para obtener puntos .\n"
+                + "   * Cuando hayan transcurrido los 20 segundos, no podrás contabilizar más diferencias.\n"
                 + "   * Al final de su ronda presionar el boton next player.\n"
                 + "   * Si eres el jugador final para volver al tablero presionar exit.\n"
                 + "\n";

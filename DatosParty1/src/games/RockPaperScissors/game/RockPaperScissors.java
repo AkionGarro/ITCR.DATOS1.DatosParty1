@@ -170,17 +170,19 @@ public class RockPaperScissors extends javax.swing.JFrame {
         lblWinner.setText("El ganador es:");
         panel.add(lblWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
 
+        btnInstrucctions.setBackground(new java.awt.Color(0, 255, 204));
         btnInstrucctions.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnInstrucctions.setText("Instrucciones");
+        btnInstrucctions.setText("Instructions");
         btnInstrucctions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInstrucctionsActionPerformed(evt);
             }
         });
-        panel.add(btnInstrucctions, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        panel.add(btnInstrucctions, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 20, 420, 40));
 
-        btnNext.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnNext.setText("Siguiente");
+        btnNext.setBackground(new java.awt.Color(0, 255, 204));
+        btnNext.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnNext.setText("NEXT");
         btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnNextMouseClicked(evt);
@@ -191,16 +193,17 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 btnNextActionPerformed(evt);
             }
         });
-        panel.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 120, 40));
+        panel.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 130, 40));
 
-        btnNext1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnNext1.setText("Exit");
+        btnNext1.setBackground(new java.awt.Color(0, 255, 204));
+        btnNext1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnNext1.setText("EXIT");
         btnNext1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNext1ActionPerformed(evt);
             }
         });
-        panel.add(btnNext1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 120, 40));
+        panel.add(btnNext1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 140, 40));
 
         playerPoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints1.setForeground(new java.awt.Color(0, 0, 0));
@@ -250,7 +253,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 startButtonActionPerformed(evt);
             }
         });
-        panel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 150, 40));
+        panel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
