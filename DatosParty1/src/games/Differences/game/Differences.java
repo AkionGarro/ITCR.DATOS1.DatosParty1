@@ -14,14 +14,14 @@ public class Differences extends javax.swing.JFrame {
 
     private Timer time;
     private int hundredths = 60, seconds = 29;
-    public static int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
-    public static ArrayList<Integer> playerPoints = new ArrayList<Integer>();
+    public int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
+    public  ArrayList<Integer> playerPoints = new ArrayList<Integer>();
     private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
     public int option = Board.players.size();
 
     public Differences() {
 
-        time = new Timer(2, action);
+        time = new Timer(10, action);
         initComponents();
         configComponents();
         this.setLocationRelativeTo(null);
@@ -171,6 +171,7 @@ public class Differences extends javax.swing.JFrame {
         activepoints3 = new javax.swing.JLabel();
         activepoints4 = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
+        btnInstructions = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Differences Game");
@@ -303,14 +304,14 @@ public class Differences extends javax.swing.JFrame {
         informationPanel.add(timeRunning, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 200, -1));
 
         startButton.setBackground(new java.awt.Color(0, 255, 204));
-        startButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        startButton.setText("START");
+        startButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        startButton.setText("Start");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startButtonActionPerformed(evt);
             }
         });
-        informationPanel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 180, 50));
+        informationPanel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 180, 50));
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -318,14 +319,14 @@ public class Differences extends javax.swing.JFrame {
         informationPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
         nextButton.setBackground(new java.awt.Color(0, 255, 204));
-        nextButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        nextButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         nextButton.setText("Next Player");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
             }
         });
-        informationPanel.add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 180, 50));
+        informationPanel.add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 180, 50));
 
         playerPoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints1.setForeground(new java.awt.Color(0, 0, 0));
@@ -368,14 +369,24 @@ public class Differences extends javax.swing.JFrame {
         informationPanel.add(activepoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 142, 50, 20));
 
         exitButton.setBackground(new java.awt.Color(0, 255, 204));
-        exitButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        exitButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
             }
         });
-        informationPanel.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 180, 50));
+        informationPanel.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 180, 50));
+
+        btnInstructions.setBackground(new java.awt.Color(0, 255, 204));
+        btnInstructions.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        btnInstructions.setText("Instrucciones");
+        btnInstructions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInstructionsActionPerformed(evt);
+            }
+        });
+        informationPanel.add(btnInstructions, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, 160, 50));
 
         differencesPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 190));
 
@@ -912,6 +923,18 @@ public class Differences extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
+
+        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (7 segundos), según las siguientes reglas:\n"
+        + "\n"
+        + "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n"
+        + "   * Presiona el botón lo más rápido que puedas.\n"
+        + "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n"
+        + "\n";
+
+        JOptionPane.showMessageDialog(null, instructions);
+    }//GEN-LAST:event_btnInstructionsActionPerformed
+
     public static void main() {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -932,6 +955,7 @@ public class Differences extends javax.swing.JFrame {
     private javax.swing.JLabel activepoints2;
     private javax.swing.JLabel activepoints3;
     private javax.swing.JLabel activepoints4;
+    private javax.swing.JButton btnInstructions;
     private javax.swing.JLabel difference1;
     private javax.swing.JLabel difference10;
     private javax.swing.JLabel difference11;
