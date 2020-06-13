@@ -997,6 +997,8 @@ public class MathQuiz extends javax.swing.JFrame {
      */
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         
+        /*
+        
         switch (option) {
             
             case 2:
@@ -1057,6 +1059,17 @@ public class MathQuiz extends javax.swing.JFrame {
                 
                 break;
                 
+        }
+        
+        */
+        
+        dispose();
+        
+        if (Board.round == 13) {
+            
+            Board.mingameFinished = true;
+            Board.checkEndGame();
+            
         }
         
     }//GEN-LAST:event_exitButtonActionPerformed
