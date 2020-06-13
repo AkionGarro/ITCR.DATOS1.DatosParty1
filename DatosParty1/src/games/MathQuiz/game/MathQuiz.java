@@ -16,8 +16,8 @@ import mainGame.Board;
 public class MathQuiz extends javax.swing.JFrame {
 
     private Timer time;
-    private int hundredths = 60, seconds = 30;
-    public  int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
+    private int hundredths = 60, seconds = 60;
+    public int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
     public ArrayList<Integer> playerPoints = new ArrayList<Integer>();
     private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
     public int playerSize = Board.players.size();
@@ -36,6 +36,7 @@ public class MathQuiz extends javax.swing.JFrame {
 
         time = new Timer(10, action);
         initComponents();
+        configComponents();
         setLocationRelativeTo(null);
 
     }
@@ -45,13 +46,13 @@ public class MathQuiz extends javax.swing.JFrame {
      * the math Quiz window.
      */
     private void configComponents() {
-        
+
         nextButton.setEnabled(false);
 
-        switch (option) {
-            
+        switch (playerSize) {
+
             case 2:
-                
+
                 playerPoints1.setVisible(true);
                 activepoints1.setVisible(true);
                 playerPoints2.setVisible(true);
@@ -60,11 +61,11 @@ public class MathQuiz extends javax.swing.JFrame {
                 activepoints3.setVisible(false);
                 playerPoints4.setVisible(false);
                 activepoints4.setVisible(false);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 playerPoints1.setVisible(true);
                 activepoints1.setVisible(true);
                 playerPoints2.setVisible(true);
@@ -73,11 +74,11 @@ public class MathQuiz extends javax.swing.JFrame {
                 activepoints3.setVisible(true);
                 playerPoints4.setVisible(false);
                 activepoints4.setVisible(false);
-                
+
                 break;
-                
+
             case 4:
-                
+
                 playerPoints1.setVisible(true);
                 activepoints1.setVisible(true);
                 playerPoints2.setVisible(true);
@@ -86,30 +87,30 @@ public class MathQuiz extends javax.swing.JFrame {
                 activepoints3.setVisible(true);
                 playerPoints4.setVisible(true);
                 activepoints4.setVisible(true);
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
-    
+
     /**
-     * Method in charge of take care of time while the palyer is playing  .    
+     * Method in charge of take care of time while the palyer is playing .
      */
     private ActionListener action = new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            hundredths --;
+            hundredths--;
 
             if (hundredths == 0) {
 
-                seconds --;
+                seconds--;
                 hundredths = 60;
 
             }
@@ -118,6 +119,7 @@ public class MathQuiz extends javax.swing.JFrame {
 
                 time.stop();
                 hundredths = 0;
+                nextButton.setEnabled(true);
 
             }
 
@@ -136,14 +138,14 @@ public class MathQuiz extends javax.swing.JFrame {
         timeRunning.setText(text);
 
     }
-    
+
     /**
      * Method in charge of update the players points on the window.
      */
     public void updatePlayersPoints() {
-        
-        switch (option) {
-            
+
+        switch (playerSize) {
+
             case 2:
 
                 if (round == 1) {
@@ -157,86 +159,86 @@ public class MathQuiz extends javax.swing.JFrame {
                     activepoints2.setText("" + pointsPlayer2);
 
                 }
-                
+
                 break;
-                
+
             case 3:
-                
+
                 switch (round) {
-                    
+
                     case 1:
-                        
-                        pointsPlayer1 ++;
+
+                        pointsPlayer1++;
                         activepoints1.setText("" + pointsPlayer1);
-                        
+
                         break;
-                        
+
                     case 2:
-                        
-                        pointsPlayer2 ++;
+
+                        pointsPlayer2++;
                         activepoints2.setText("" + pointsPlayer2);
-                        
+
                         break;
-                        
+
                     case 3:
-                        
-                        pointsPlayer3 ++;
+
+                        pointsPlayer3++;
                         activepoints3.setText("" + pointsPlayer3);
-                        
+
                         break;
-                        
+
                     default:
-                        
+
                         break;
-                        
+
                 }
-                
+
                 break;
 
             case 4:
-                
+
                 switch (round) {
-                    
+
                     case 1:
-                        
-                        pointsPlayer1 ++;
+
+                        pointsPlayer1++;
                         activepoints1.setText("" + pointsPlayer1);
-                        
+
                         break;
-                        
+
                     case 2:
-                        
-                        pointsPlayer2 ++;
+
+                        pointsPlayer2++;
                         activepoints2.setText("" + pointsPlayer2);
-                        
+
                         break;
-                        
+
                     case 3:
-                        
-                        pointsPlayer3 ++;
+
+                        pointsPlayer3++;
                         activepoints3.setText("" + pointsPlayer3);
-                        
+
                         break;
-                        
+
                     case 4:
-                        
-                        pointsPlayer4 ++;
+
+                        pointsPlayer4++;
                         activepoints4.setText("" + pointsPlayer4);
-                        
+
                         break;
-                        
+
                     default:
-                                                
+
                         break;
-                        
+
                 }
-                
+
                 break;
 
             default:
-                
+
                 break;
-                
+
         }
 
     }
@@ -291,11 +293,6 @@ public class MathQuiz extends javax.swing.JFrame {
                 checkButtonMouseClicked(evt);
             }
         });
-        checkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkButtonActionPerformed(evt);
-            }
-        });
         gamePanel.add(checkButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 740, 250, 80));
 
         option1Button.setBackground(new java.awt.Color(0, 255, 204));
@@ -307,11 +304,6 @@ public class MathQuiz extends javax.swing.JFrame {
                 option1ButtonMouseClicked(evt);
             }
         });
-        option1Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                option1ButtonActionPerformed(evt);
-            }
-        });
         gamePanel.add(option1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 600, 30, -1));
 
         option2Button.setBackground(new java.awt.Color(0, 255, 204));
@@ -320,11 +312,6 @@ public class MathQuiz extends javax.swing.JFrame {
         option2Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 option2ButtonMouseClicked(evt);
-            }
-        });
-        option2Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                option2ButtonActionPerformed(evt);
             }
         });
         gamePanel.add(option2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 700, -1, -1));
@@ -346,11 +333,6 @@ public class MathQuiz extends javax.swing.JFrame {
         option4Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 option4ButtonMouseClicked(evt);
-            }
-        });
-        option4Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                option4ButtonActionPerformed(evt);
             }
         });
         gamePanel.add(option4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 700, -1, -1));
@@ -489,8 +471,8 @@ public class MathQuiz extends javax.swing.JFrame {
         if (option == 3) {
 
             correct = true;
-
         }
+
 
     }//GEN-LAST:event_option2ButtonMouseClicked
 
@@ -504,6 +486,7 @@ public class MathQuiz extends javax.swing.JFrame {
             correct = true;
 
         }
+
 
     }//GEN-LAST:event_option3ButtonMouseClicked
 
@@ -525,23 +508,26 @@ public class MathQuiz extends javax.swing.JFrame {
      */
     private void checkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkButtonMouseClicked
 
-        if (correct == true) {
+        if (time.isRunning()) {
+            if (correct == true) {
+                updatePlayersPoints();
+                JOptionPane.showMessageDialog(this, "Felicidades tu respuesta es correcta");
+                points += 1;
+                nextquestion();
+                //lblPoints.setText(String.valueOf(points));
+                buttonGroup1.clearSelection();
 
-            JOptionPane.showMessageDialog(this, "Felicidades tu respuesta es correcta");
-            points += 1;
-            nextquestion();
-            //lblPoints.setText(String.valueOf(points));
-            buttonGroup1.clearSelection();
-            
+            } else {
 
-        } else {
+                JOptionPane.showMessageDialog(this, "Tu respuesta es incorrecta");
+                nextquestion();
+                //lblPoints.setText(String.valueOf(points));
+                buttonGroup1.clearSelection();
 
-            JOptionPane.showMessageDialog(this, "Tu respuesta es incorrecta");
-            nextquestion();
-            //lblPoints.setText(String.valueOf(points));
-            buttonGroup1.clearSelection();
+            }
+            correct = false;
+        }
 
-        }correct = false;
 
     }//GEN-LAST:event_checkButtonMouseClicked
 
@@ -558,26 +544,6 @@ public class MathQuiz extends javax.swing.JFrame {
     }//GEN-LAST:event_option1ButtonMouseClicked
 
     /**
-     * Method in charge updating the points of the player.
-     */
-    private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
-        
-        //lblPoints.setText(String.valueOf(points));
-
-    }//GEN-LAST:event_checkButtonActionPerformed
-
-    private void option2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option2ButtonActionPerformed
-        if (option == 3) {
-            
-
-            correct = true;}
-    }//GEN-LAST:event_option2ButtonActionPerformed
-
-    private void option1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1ButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_option1ButtonActionPerformed
-
-    /**
      * Method in charge start the minigame.
      */
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
@@ -590,39 +556,39 @@ public class MathQuiz extends javax.swing.JFrame {
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
-        round ++;
+        round++;
 
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**
      * Method in charge get the index of the players that are playing.
-     * 
+     *
      * @return The index of the needed player.
      */
     public int getPlayer1Place() {
-        
+
         int index = 0;
-        
+
         if (playerPoints.get(0) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 0;
-            
+
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 1;
-            
+
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 2;
-            
+
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 3;
-            
+
         }
 
         return index;
-        
+
     }
 
     /**
@@ -631,25 +597,25 @@ public class MathQuiz extends javax.swing.JFrame {
      * @return The index of the second player.
      */
     public int getPlayer2Place() {
-        
+
         int index = 0;
-        
+
         if (playerPoints.get(0) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 0;
-            
+
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 1;
-            
+
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 2;
-            
+
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 3;
-            
+
         }
 
         return index;
@@ -662,25 +628,25 @@ public class MathQuiz extends javax.swing.JFrame {
      * @return The index of the third player.
      */
     public int getPlayer3Place() {
-        
+
         int index = 0;
 
         if (playerPoints.get(0) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 0;
-            
+
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 1;
-            
+
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 2;
-            
+
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 3;
-            
+
         }
 
         return index;
@@ -693,307 +659,303 @@ public class MathQuiz extends javax.swing.JFrame {
      * @return The index of the fourth player.
      */
     public int getPlayer4Place() {
-        
+
         int index = 0;
 
         if (playerPoints.get(0) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 0;
-            
+
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 1;
-            
+
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 2;
-            
+
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 3;
-            
+
         }
 
         return index;
-        
+
     }
 
     /**
-     * Method in charge of updating the coins of the first player.     
+     * Method in charge of updating the coins of the first player.
      */
     public void sendPlayer1Coins() {
-        
+
         switch (getPlayer1Place()) {
-            
+
             case 0:
-                
+
                 Board.players.get(0).setCoins((Board.players.get(0).getCoins()) + firstPlace);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 Board.players.get(0).setCoins(Board.players.get(0).getCoins() + secondPlace);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 Board.players.get(0).setCoins(Board.players.get(0).getCoins() + thirdPlace);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 Board.players.get(0).setCoins(Board.players.get(0).getCoins() + lastPlace);
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
 
     /**
-     * Method in charge of updating the coins of the second player.     
+     * Method in charge of updating the coins of the second player.
      */
     public void sendPlayer2Coins() {
-        
+
         switch (getPlayer2Place()) {
-            
+
             case 0:
-                
+
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + firstPlace);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + secondPlace);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + thirdPlace);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + lastPlace);
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
 
     /**
-     * Method in charge of updating the coins of the third player.    
+     * Method in charge of updating the coins of the third player.
      */
     public void sendPlayer3Coins() {
-        
+
         switch (getPlayer3Place()) {
-            
+
             case 0:
-                
+
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + firstPlace);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + secondPlace);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + thirdPlace);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + lastPlace);
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
 
     /**
-     * Method in charge of updating the coins of the fourth player.     *
+     * Method in charge of updating the coins of the fourth player. *
      */
     public void sendPlayer4Coins() {
-        
+
         switch (getPlayer4Place()) {
-            
+
             case 0:
-                
+
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + firstPlace);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + secondPlace);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + thirdPlace);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + lastPlace);
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
 
     }
-    
+
     /**
-     * Method in charge of starting a new minigame to pass the turn to the other players.
+     * Method in charge of starting a new minigame to pass the turn to the other
+     * players.
      */
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
 
-        switch (option) {
-            
+        switch (playerSize) {
+
             case 2:
-                
+
                 if (round == 1) {
-                    activepoints1.setText(String.valueOf(points));
-                    playerPoints.add(points);
-                    configComponents();
+
+                    playerPoints.add(pointsPlayer1);
                     hundredths = 60;
                     seconds = 30;
                     timeRunning.setText("20:00 s");
                     startButton.setEnabled(true);
-                    
+
                 } else if (round == 2) {
-                    activepoints2.setText(String.valueOf(points));
-                    playerPoints.add(points);
+
+                    playerPoints.add(pointsPlayer2);
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
                     sendPlayer2Coins();
-                    configComponents();
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(false);
+                    nextButton.setEnabled(false);
 
                 }
-                
+
                 break;
 
             case 3:
-                
+
                 if (round == 1) {
-                    activepoints1.setText(String.valueOf(points));
-                    playerPoints.add(points);
-                    configComponents();
+
+                    playerPoints.add(pointsPlayer1);
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
-                    
+
                 } else if (round == 2) {
-                    activepoints2.setText(String.valueOf(points));
-                    playerPoints.add(points);
-                    configComponents();
+
+                    playerPoints.add(pointsPlayer2);
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 3) {
-                    activepoints3.setText(String.valueOf(points));
-                    playerPoints.add(points);
+
+                    playerPoints.add(pointsPlayer3);
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
                     sendPlayer2Coins();
                     sendPlayer3Coins();
                     configComponents();
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(false);
+                    nextButton.setEnabled(false);
 
                 }
-                
+
                 break;
 
             case 4:
 
                 if (round == 1) {
-                    activepoints1.setText(String.valueOf(points));
-                    playerPoints.add(points);
-                    configComponents();
+
+                    playerPoints.add(pointsPlayer1);
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
-                    
+
                 } else if (round == 2) {
-                    activepoints1.setText(String.valueOf(points));
-                    playerPoints.add(points);
-                    configComponents();
+
+                    playerPoints.add(pointsPlayer2);
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 3) {
-                    activepoints1.setText(String.valueOf(points));
-                    playerPoints.add(points);
-                    configComponents();
+
+                    playerPoints.add(pointsPlayer3);
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
-                    
+
                 } else if (round == 4) {
-                    activepoints1.setText(String.valueOf(points));
-                    playerPoints.add(points);
+
+                    playerPoints.add(pointsPlayer4);
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
                     sendPlayer2Coins();
                     sendPlayer3Coins();
                     sendPlayer4Coins();
-                    configComponents();
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(false);
+                    nextButton.setEnabled(false);
 
                 }
-                
+
                 break;
 
             default:
-                
+
                 break;
 
         }
@@ -1004,48 +966,48 @@ public class MathQuiz extends javax.swing.JFrame {
      * Method in charge of finishing the minigame.
      */
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        
-        switch (option) {
-            
+
+        switch (playerSize) {
+
             case 2:
-                
+
                 if (round == 2) {
-                    
+
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     dispose();
 
                 } else {
-                    
+
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-                    
+
                 }
-                
+
                 break;
-                
+
             case 3:
-                
+
                 if (round == 3) {
-                    
+
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     pointsPlayer3 = 0;
                     dispose();
-                    
+
                 } else {
-                    
+
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-                    
+
                 }
-                
+
                 break;
-                
+
             case 4:
-                
+
                 if (round == 4) {
-                    
+
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
@@ -1054,19 +1016,19 @@ public class MathQuiz extends javax.swing.JFrame {
                     dispose();
 
                 } else {
-                    
+
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-                    
+
                 }
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
-        
+
     }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
@@ -1075,19 +1037,15 @@ public class MathQuiz extends javax.swing.JFrame {
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
 
         String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (7 segundos), según las siguientes reglas:\n"
-        + "\n"
-        + "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n"
-        + "   * Presiona el botón lo más rápido que puedas.\n"
-        + "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n"
-        + "\n";
+                + "\n"
+                + "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n"
+                + "   * Presiona el botón lo más rápido que puedas.\n"
+                + "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n"
+                + "\n";
 
         JOptionPane.showMessageDialog(null, instructions);
-        
-    }//GEN-LAST:event_btnInstructionsActionPerformed
 
-    private void option4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option4ButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_option4ButtonActionPerformed
+    }//GEN-LAST:event_btnInstructionsActionPerformed
 
     /**
      * Method in charge of updating the visible questions on the window.
