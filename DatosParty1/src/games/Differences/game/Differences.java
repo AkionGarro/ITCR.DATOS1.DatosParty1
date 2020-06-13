@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Set;
 import javax.swing.JOptionPane;
 import mainGame.Board;
 
@@ -27,6 +26,7 @@ public class Differences extends javax.swing.JFrame {
      * Differences class constructor method
      */
     public Differences() {
+        
         time = new Timer(10, action);
         initComponents();
         configComponents();
@@ -38,6 +38,7 @@ public class Differences extends javax.swing.JFrame {
      * Method in charge of the initial configuration of the graphic components.
      */
     private void configComponents() {
+        
         difference1.setVisible(false);
         difference2.setVisible(false);
         difference3.setVisible(false);
@@ -65,7 +66,9 @@ public class Differences extends javax.swing.JFrame {
         nextButton.setEnabled(false);
 
         switch (option) {
+            
             case 2:
+                
                 playerPoints1.setVisible(true);
                 activepoints1.setVisible(true);
                 playerPoints2.setVisible(true);
@@ -74,8 +77,11 @@ public class Differences extends javax.swing.JFrame {
                 activepoints3.setVisible(false);
                 playerPoints4.setVisible(false);
                 activepoints4.setVisible(false);
+                
                 break;
+                
             case 3:
+                
                 playerPoints1.setVisible(true);
                 activepoints1.setVisible(true);
                 playerPoints2.setVisible(true);
@@ -84,8 +90,11 @@ public class Differences extends javax.swing.JFrame {
                 activepoints3.setVisible(true);
                 playerPoints4.setVisible(false);
                 activepoints4.setVisible(false);
+                
                 break;
+                
             case 4:
+                
                 playerPoints1.setVisible(true);
                 activepoints1.setVisible(true);
                 playerPoints2.setVisible(true);
@@ -94,9 +103,13 @@ public class Differences extends javax.swing.JFrame {
                 activepoints3.setVisible(true);
                 playerPoints4.setVisible(true);
                 activepoints4.setVisible(true);
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -109,11 +122,11 @@ public class Differences extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            hundredths--;
+            hundredths --;
 
             if (hundredths == 0) {
 
-                seconds--;
+                seconds --;
                 hundredths = 60;
 
             }
@@ -423,7 +436,9 @@ public class Differences extends javax.swing.JFrame {
      * Method responsible for updating player points.
      */
     public void updatePlayersPoints() {
+        
         switch (option) {
+            
             case 2:
 
                 if (round == 1) {
@@ -437,51 +452,86 @@ public class Differences extends javax.swing.JFrame {
                     activepoints2.setText("" + pointsPlayer2);
 
                 }
+                
                 break;
+                
             case 3:
+                
                 switch (round) {
+                    
                     case 1:
-                        pointsPlayer1++;
+                        
+                        pointsPlayer1 ++;
                         activepoints1.setText("" + pointsPlayer1);
+                        
                         break;
+                        
                     case 2:
-                        pointsPlayer2++;
+                        
+                        pointsPlayer2 ++;
                         activepoints2.setText("" + pointsPlayer2);
+                        
                         break;
+                        
                     case 3:
-                        pointsPlayer3++;
+                        
+                        pointsPlayer3 ++;
                         activepoints3.setText("" + pointsPlayer3);
+                        
                         break;
+                        
                     default:
+                        
                         break;
+                        
                 }
+                
                 break;
 
             case 4:
+                
                 switch (round) {
+                    
                     case 1:
-                        pointsPlayer1++;
+                        
+                        pointsPlayer1 ++;
                         activepoints1.setText("" + pointsPlayer1);
+                        
                         break;
+                        
                     case 2:
-                        pointsPlayer2++;
+                        
+                        pointsPlayer2 ++;
                         activepoints2.setText("" + pointsPlayer2);
+                        
                         break;
+                        
                     case 3:
-                        pointsPlayer3++;
+                        
+                        pointsPlayer3 ++;
                         activepoints3.setText("" + pointsPlayer3);
+                        
                         break;
+                        
                     case 4:
-                        pointsPlayer4++;
+                        
+                        pointsPlayer4 ++;
                         activepoints4.setText("" + pointsPlayer4);
+                        
                         break;
+                        
                     default:
+                        
                         break;
+                        
                 }
+                
                 break;
 
             default:
+                
                 break;
+                
         }
 
     }
@@ -670,7 +720,7 @@ public class Differences extends javax.swing.JFrame {
         time.start();
         startButton.setEnabled(false);
         startButton.setText("START");
-        round++;
+        round ++;
 
 
     }//GEN-LAST:event_startButtonActionPerformed
@@ -681,19 +731,25 @@ public class Differences extends javax.swing.JFrame {
      * @return he position of the player 1.
      */
     public int getPlayer1Place() {
+        
         int index = 0;
+        
         if (playerPoints.get(0) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 0;
+            
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 1;
+            
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 2;
+            
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints1.getText()))) {
 
             index = 3;
+            
         }
 
         return index;
@@ -705,19 +761,25 @@ public class Differences extends javax.swing.JFrame {
      * @return he position of the player 2.
      */
     public int getPlayer2Place() {
+        
         int index = 0;
+        
         if (playerPoints.get(0) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 0;
+            
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 1;
+            
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 2;
+            
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints2.getText()))) {
 
             index = 3;
+            
         }
 
         return index;
@@ -730,20 +792,25 @@ public class Differences extends javax.swing.JFrame {
      * @return he position of the player 3.
      */
     public int getPlayer3Place() {
+        
         int index = 0;
 
         if (playerPoints.get(0) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 0;
+            
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 1;
+            
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 2;
+            
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints3.getText()))) {
 
             index = 3;
+            
         }
 
         return index;
@@ -756,44 +823,66 @@ public class Differences extends javax.swing.JFrame {
      * @return he position of the player 4.
      */
     public int getPlayer4Place() {
+        
         int index = 0;
 
         if (playerPoints.get(0) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 0;
+            
         } else if (playerPoints.get(1) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 1;
+            
         } else if (playerPoints.get(2) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 2;
+            
         } else if (playerPoints.get(3) == (Integer.parseInt(activepoints4.getText()))) {
 
             index = 3;
+            
         }
 
         return index;
+        
     }
 
     /**
      * Method that sends the first player's coins.
      */
     public void sendPlayer1Coins() {
+        
         switch (getPlayer1Place()) {
+            
             case 0:
+                
                 Board.players.get(0).setCoins((Board.players.get(0).getCoins()) + firstPlace);
+                
                 break;
+                
             case 1:
+                
                 Board.players.get(0).setCoins(Board.players.get(0).getCoins() + secondPlace);
+                
                 break;
+                
             case 2:
+                
                 Board.players.get(0).setCoins(Board.players.get(0).getCoins() + thirdPlace);
+                
                 break;
+                
             case 3:
+                
                 Board.players.get(0).setCoins(Board.players.get(0).getCoins() + lastPlace);
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -802,21 +891,37 @@ public class Differences extends javax.swing.JFrame {
      * Method that sends the second player's coins.
      */
     public void sendPlayer2Coins() {
+        
         switch (getPlayer2Place()) {
+            
             case 0:
+                
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + firstPlace);
+                
                 break;
+                
             case 1:
+                
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + secondPlace);
+                
                 break;
+                
             case 2:
+                
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + thirdPlace);
+                
                 break;
+                
             case 3:
+                
                 Board.players.get(1).setCoins(Board.players.get(1).getCoins() + lastPlace);
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -825,21 +930,37 @@ public class Differences extends javax.swing.JFrame {
      * Method that sends the third player's coins.
      */
     public void sendPlayer3Coins() {
+        
         switch (getPlayer3Place()) {
+            
             case 0:
+                
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + firstPlace);
+                
                 break;
+                
             case 1:
+                
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + secondPlace);
+                
                 break;
+                
             case 2:
+                
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + thirdPlace);
+                
                 break;
+                
             case 3:
+                
                 Board.players.get(2).setCoins(Board.players.get(2).getCoins() + lastPlace);
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -848,21 +969,37 @@ public class Differences extends javax.swing.JFrame {
      * Method that sends the fourth player's coins.
      */
     public void sendPlayer4Coins() {
+        
         switch (getPlayer4Place()) {
+            
             case 0:
+                
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + firstPlace);
+                
                 break;
+                
             case 1:
+                
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + secondPlace);
+                
                 break;
+                
             case 2:
+                
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + thirdPlace);
+                
                 break;
+                
             case 3:
+                
                 Board.players.get(3).setCoins(Board.players.get(3).getCoins() + lastPlace);
+                
                 break;
+                
             default:
+                
                 break;
+                
         }
 
     }
@@ -875,19 +1012,22 @@ public class Differences extends javax.swing.JFrame {
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
 
         switch (option) {
+            
             case 2:
+                
                 if (round == 1) {
+                    
                     playerPoints.add(pointsPlayer1);
-
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
                     timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
+                    
                 } else if (round == 2) {
+                    
                     playerPoints.add(pointsPlayer2);
                     Collections.sort(playerPoints, Collections.reverseOrder());
-
                     sendPlayer1Coins();
                     sendPlayer2Coins();
                     configComponents();
@@ -897,17 +1037,22 @@ public class Differences extends javax.swing.JFrame {
                     startButton.setEnabled(false);
 
                 }
+                
                 break;
 
             case 3:
+                
                 if (round == 1) {
+                    
                     playerPoints.add(pointsPlayer1);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
                     timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
+                    
                 } else if (round == 2) {
+                    
                     playerPoints.add(pointsPlayer2);
                     configComponents();
                     hundredths = 60;
@@ -929,6 +1074,7 @@ public class Differences extends javax.swing.JFrame {
                     startButton.setEnabled(false);
 
                 }
+                
                 break;
 
             case 4:
@@ -940,7 +1086,9 @@ public class Differences extends javax.swing.JFrame {
                     seconds = 30;
                     timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
+                    
                 } else if (round == 2) {
+                    
                     playerPoints.add(pointsPlayer2);
                     configComponents();
                     hundredths = 60;
@@ -949,13 +1097,16 @@ public class Differences extends javax.swing.JFrame {
                     startButton.setEnabled(true);
 
                 } else if (round == 3) {
+                    
                     playerPoints.add(pointsPlayer3);
                     configComponents();
                     hundredths = 60;
                     seconds = 30;
                     timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
+                    
                 } else if (round == 4) {
+                    
                     playerPoints.add(pointsPlayer4);
                     Collections.sort(playerPoints, Collections.reverseOrder());
                     sendPlayer1Coins();
@@ -969,9 +1120,11 @@ public class Differences extends javax.swing.JFrame {
                     startButton.setEnabled(false);
 
                 }
+                
                 break;
 
             default:
+                
                 break;
 
         }
@@ -985,31 +1138,48 @@ public class Differences extends javax.swing.JFrame {
      * @param evt Event when the player clicks
      */
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        
         switch (option) {
+            
             case 2:
+                
                 if (round == 2) {
+                    
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     dispose();
 
                 } else {
+                    
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                    
                 }
+                
                 break;
+                
             case 3:
+                
                 if (round == 3) {
+                    
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
                     pointsPlayer3 = 0;
                     dispose();
+                    
                 } else {
+                    
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                    
                 }
+                
                 break;
+                
             case 4:
+                
                 if (round == 4) {
+                    
                     round = 0;
                     pointsPlayer1 = 0;
                     pointsPlayer2 = 0;
@@ -1018,11 +1188,24 @@ public class Differences extends javax.swing.JFrame {
                     dispose();
 
                 } else {
+                    
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                    
                 }
+                
                 break;
+                
             default:
+                
                 break;
+                
+        }
+        
+        if (Board.round == 13) {
+            
+            Board.mingameFinished = true;
+            Board.checkEndGame();
+            
         }
     }//GEN-LAST:event_exitButtonActionPerformed
 

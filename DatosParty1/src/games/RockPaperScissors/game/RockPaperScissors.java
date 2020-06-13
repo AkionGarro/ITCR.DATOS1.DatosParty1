@@ -2,6 +2,7 @@ package games.RockPaperScissors.game;
 
 import java.util.Random;
 import javax.swing.JOptionPane;
+import mainGame.Board;
 
 /**
  * This class is in charge of all the graphic configuration of the components
@@ -47,6 +48,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
         lblWinner = new javax.swing.JLabel();
         btnInstrucctions = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
+        btnNext1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -113,6 +115,14 @@ public class RockPaperScissors extends javax.swing.JFrame {
             }
         });
 
+        btnNext1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNext1.setText("Exit");
+        btnNext1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -135,7 +145,9 @@ public class RockPaperScissors extends javax.swing.JFrame {
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(btnInstrucctions)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNext)))
+                        .addComponent(btnNext)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
@@ -144,7 +156,8 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInstrucctions)
-                    .addComponent(btnNext))
+                    .addComponent(btnNext)
+                    .addComponent(btnNext1))
                 .addGap(18, 18, 18)
                 .addComponent(lblYourElection)
                 .addGap(18, 18, 18)
@@ -350,6 +363,19 @@ public class RockPaperScissors extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNextActionPerformed
 
+    private void btnNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext1ActionPerformed
+
+        dispose();
+
+        if (Board.round == 13) {
+
+            Board.mingameFinished = true;
+            Board.checkEndGame();
+
+        }
+
+    }//GEN-LAST:event_btnNext1ActionPerformed
+
     /**
      * Method in charge of finishing the minigame.
      * 
@@ -397,6 +423,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInstrucctions;
     private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnNext1;
     private javax.swing.JLabel btnPaper;
     private javax.swing.JLabel btnRock;
     private javax.swing.JLabel btnScissors;

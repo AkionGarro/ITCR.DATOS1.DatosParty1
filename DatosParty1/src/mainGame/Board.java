@@ -28,11 +28,12 @@ public class Board extends javax.swing.JFrame {
     private int leftDice;
     public static int playerPlaying = 0;
     private static int activePlayers;
-    private static int round = 1;
+    public static int round = 1;
     private static int pointer1 = 0;
     private static boolean pointer2 = false;
     public static boolean teleportation = false;
-    public static boolean changePositions = false;
+    public static boolean changePositions = false;    
+    public static boolean mingameFinished = false;
 
     public static ArrayList<Player> players = new ArrayList<Player>();
 
@@ -210,7 +211,7 @@ public class Board extends javax.swing.JFrame {
     /**
      * Update the graphic information of the current players in the leaderboard.
      */
-    private void updateLeaderboard() {
+    private static void updateLeaderboard() {
 
         switch (players.size()) {
 
@@ -716,10 +717,10 @@ public class Board extends javax.swing.JFrame {
                         y = principal.findYLocation(moveToCell);
 
                     } else if (actualPlayer.getDirection() == "next") {
-
-                        x = phaseC.findXLocation(moveToCell);
-                        y = phaseC.findYLocation(moveToCell);
-
+                    
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    
                     } else if (actualPlayer.getDirection() == "previous") {
 
                         x = phaseC.findXLocationPrevious(moveToCell);
@@ -1302,11 +1303,11 @@ public class Board extends javax.swing.JFrame {
      * established amount is reached.It also compares the stars and coins of the
      * players to select the winning player.
      */
-    private void checkEndGame() {
+    public static void checkEndGame() {
 
         updateLeaderboard();
 
-        if (round == 13) {
+        if (round == 13 && mingameFinished == true) {
 
             int starsArray[] = new int[players.size()];
 
@@ -1377,7 +1378,7 @@ public class Board extends javax.swing.JFrame {
      * @param max The position of the player with the highest stars.
      * @return If there are players with the same number of stars.
      */
-    private int checkRepeated(int[] array, int max) {
+    private static int checkRepeated(int[] array, int max) {
 
         int repeated = 0;
         int number = array[max];
@@ -1403,7 +1404,7 @@ public class Board extends javax.swing.JFrame {
      * @param size Number of players that the array will contain.
      * @return The array with players who have the same number of stars.
      */
-    private Player[] checkRepeatedPlayers(int max, int size) {
+    private static Player[] checkRepeatedPlayers(int max, int size) {
 
         Player arrayPlayers[] = new Player[size];
 
@@ -1430,7 +1431,7 @@ public class Board extends javax.swing.JFrame {
      * @param array Array with the stars of the players.
      * @return The position of the player with the highest stars.
      */
-    private int getMaxIndexStars(int[] array) {
+    private static int getMaxIndexStars(int[] array) {
 
         int max = array[0];
         int index = 0;
@@ -1458,7 +1459,7 @@ public class Board extends javax.swing.JFrame {
      * @param size Number of players that the array will contain.
      * @return The position with the largest amount of coins.
      */
-    private int getMaxIndexPlayers(Player[] array, int size) {
+    private static int getMaxIndexPlayers(Player[] array, int size) {
 
         int max = array[0].getCoins();
         int index = 0;
@@ -1535,7 +1536,7 @@ public class Board extends javax.swing.JFrame {
 
         } else if (color == "red") {
 
-            if (actualCoins < 10) {
+            if (actualCoins > 10) {
 
                 player.setCoins(actualCoins - 10);
                 updateCoins();
@@ -1994,7 +1995,7 @@ public class Board extends javax.swing.JFrame {
     public static javax.swing.JTextField activeStarsPlayer2;
     public static javax.swing.JTextField activeStarsPlayer3;
     public static javax.swing.JTextField activeStarsPlayer4;
-    private javax.swing.JButton btnRollDices;
+    private static javax.swing.JButton btnRollDices;
     private javax.swing.JLabel coinImage1;
     private javax.swing.JLabel coinImage2;
     private javax.swing.JLabel coinImage3;

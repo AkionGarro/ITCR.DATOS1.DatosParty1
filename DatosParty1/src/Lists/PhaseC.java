@@ -72,7 +72,7 @@ public class PhaseC extends ListStructure {
             actual = actual.next;
 
         } while (actual != null);
-
+        
         return -1;
 
     }
@@ -100,7 +100,7 @@ public class PhaseC extends ListStructure {
             actual = actual.next;
 
         } while (actual != null);
-
+        
         return -1;
 
     }
@@ -115,7 +115,7 @@ public class PhaseC extends ListStructure {
     public int findXLocationPrevious(int cellNumber) {
 
         DoubleNode actual = new DoubleNode();
-        actual = first;
+        actual = last;
 
         do {
 
@@ -128,7 +128,7 @@ public class PhaseC extends ListStructure {
             actual = actual.previous;
 
         } while (actual != null);
-
+        
         return -1;
 
     }
@@ -143,7 +143,7 @@ public class PhaseC extends ListStructure {
     public int findYLocationPrevious(int cellNumber) {
 
         DoubleNode actual = new DoubleNode();
-        actual = first;
+        actual = last;
 
         do {
 
@@ -156,7 +156,7 @@ public class PhaseC extends ListStructure {
             actual = actual.previous;
 
         } while (actual != null);
-
+        
         return -1;
 
     }
