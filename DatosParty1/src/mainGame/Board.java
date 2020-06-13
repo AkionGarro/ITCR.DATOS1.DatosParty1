@@ -717,10 +717,10 @@ public class Board extends javax.swing.JFrame {
                         y = principal.findYLocation(moveToCell);
 
                     } else if (actualPlayer.getDirection() == "next") {
-
-                        x = phaseC.findXLocation(moveToCell);
-                        y = phaseC.findYLocation(moveToCell);
-
+                    
+                    x = phaseC.findXLocation(moveToCell);
+                    y = phaseC.findYLocation(moveToCell);
+                    
                     } else if (actualPlayer.getDirection() == "previous") {
 
                         x = phaseC.findXLocationPrevious(moveToCell);
@@ -1536,7 +1536,7 @@ public class Board extends javax.swing.JFrame {
 
         } else if (color == "red") {
 
-            if (actualCoins < 10) {
+            if (actualCoins > 10) {
 
                 player.setCoins(actualCoins - 10);
                 updateCoins();
