@@ -17,11 +17,11 @@ public class NumberClicks extends javax.swing.JFrame {
     public int option = Board.players.size();
 
     public NumberClicks() {
-
+        
+        time = new Timer(10, action);
         initComponents();
-
+        configComponents();
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
 
     }
 
@@ -63,6 +63,7 @@ public class NumberClicks extends javax.swing.JFrame {
         }
 
     }
+
     private ActionListener action = new ActionListener() {
 
         @Override
@@ -461,19 +462,7 @@ public class NumberClicks extends javax.swing.JFrame {
 
     private void btnClickMeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClickMeMouseClicked
 
-        timer.start();
-
-        clicks++;
-
-        if (seg > 0) {
-
-          //  lblClicks.setText("Cantidad de Clicks: " + clicks);
-
-        } else {
-
-            timer.stop();
-
-        }
+        time.start();
 
     }//GEN-LAST:event_btnClickMeMouseClicked
 
@@ -646,26 +635,6 @@ public class NumberClicks extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_exitButtonActionPerformed
-
-    int seg = 7;
-
-    int clicks = 0;
-
-    Timer timer = new Timer(1000, new ActionListener() {
-
-        public void actionPerformed(ActionEvent e) {
-
-            seg--;
-
-            if (seg >= 0) {
-
-             //   lblTime.setText("Tiempo: " + seg + " seg");
-
-            }
-
-        }
-
-    });
 
     public static void main() {
 

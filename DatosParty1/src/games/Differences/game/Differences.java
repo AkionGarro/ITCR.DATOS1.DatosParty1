@@ -10,17 +10,23 @@ import mainGame.Board;
 
 import javax.swing.Timer;
 
+/**
+ * Class in charge of creating the game to find the 8 differences.
+ *
+ */
 public class Differences extends javax.swing.JFrame {
 
     private Timer time;
     private int hundredths = 60, seconds = 29;
     public int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
-    public  ArrayList<Integer> playerPoints = new ArrayList<Integer>();
+    public ArrayList<Integer> playerPoints = new ArrayList<Integer>();
     private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
     public int option = Board.players.size();
 
+    /**
+     * Differences class constructor method
+     */
     public Differences() {
-
         time = new Timer(10, action);
         initComponents();
         configComponents();
@@ -28,6 +34,9 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method in charge of the initial configuration of the graphic components.
+     */
     private void configComponents() {
         difference1.setVisible(false);
         difference2.setVisible(false);
@@ -92,6 +101,9 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method in charge of time.
+     */
     private ActionListener action = new ActionListener() {
 
         @Override
@@ -120,6 +132,9 @@ public class Differences extends javax.swing.JFrame {
 
     };
 
+    /**
+     * Method in charge of updating the time.
+     */
     private void updateTimeLabel() {
 
         String text = (seconds <= 9 ? "0" : "") + seconds + ":" + (hundredths <= 9 ? "0" : "") + hundredths + " s";
@@ -404,6 +419,9 @@ public class Differences extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method responsible for updating player points.
+     */
     public void updatePlayersPoints() {
         switch (option) {
             case 2:
@@ -468,6 +486,11 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton1MouseClicked
 
         if (time.isRunning()) {
@@ -484,6 +507,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton1MouseClicked
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton3MouseClicked
 
         if (time.isRunning()) {
@@ -500,6 +528,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton3MouseClicked
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton5MouseClicked
 
         if (time.isRunning()) {
@@ -516,6 +549,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton5MouseClicked
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton7MouseClicked
 
         if (time.isRunning()) {
@@ -532,6 +570,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton7MouseClicked
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton9MouseClicked
 
         if (time.isRunning()) {
@@ -548,6 +591,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton9MouseClicked
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton11MouseClicked
 
         if (time.isRunning()) {
@@ -564,6 +612,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton11MouseClicked
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton13MouseClicked
 
         if (time.isRunning()) {
@@ -580,6 +633,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton13MouseClicked
 
+    /**
+     * Method in charge of showing the differences graphically.
+     *
+     * @param evt Event when the player clicks
+     */
     private void showDifferenceButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDifferenceButton15MouseClicked
 
         if (time.isRunning()) {
@@ -596,6 +654,9 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showDifferenceButton15MouseClicked
 
+    /**
+     * Method in charge of start the game.
+     */
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
 
         showDifferenceButton1.setVisible(true);
@@ -614,6 +675,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_startButtonActionPerformed
 
+    /**
+     * Method in charge of obtaining the position of the player 1.
+     *
+     * @return he position of the player 1.
+     */
     public int getPlayer1Place() {
         int index = 0;
         if (playerPoints.get(0) == (Integer.parseInt(activepoints1.getText()))) {
@@ -633,6 +699,11 @@ public class Differences extends javax.swing.JFrame {
         return index;
     }
 
+    /**
+     * Method in charge of obtaining the position of the player 2.
+     *
+     * @return he position of the player 2.
+     */
     public int getPlayer2Place() {
         int index = 0;
         if (playerPoints.get(0) == (Integer.parseInt(activepoints2.getText()))) {
@@ -653,6 +724,11 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method in charge of obtaining the position of the player 3.
+     *
+     * @return he position of the player 3.
+     */
     public int getPlayer3Place() {
         int index = 0;
 
@@ -674,6 +750,11 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method in charge of obtaining the position of the player 4.
+     *
+     * @return he position of the player 4.
+     */
     public int getPlayer4Place() {
         int index = 0;
 
@@ -694,6 +775,9 @@ public class Differences extends javax.swing.JFrame {
         return index;
     }
 
+    /**
+     * Method that sends the first player's coins.
+     */
     public void sendPlayer1Coins() {
         switch (getPlayer1Place()) {
             case 0:
@@ -714,6 +798,9 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method that sends the second player's coins.
+     */
     public void sendPlayer2Coins() {
         switch (getPlayer2Place()) {
             case 0:
@@ -734,6 +821,9 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method that sends the third player's coins.
+     */
     public void sendPlayer3Coins() {
         switch (getPlayer3Place()) {
             case 0:
@@ -754,6 +844,9 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method that sends the fourth player's coins.
+     */
     public void sendPlayer4Coins() {
         switch (getPlayer4Place()) {
             case 0:
@@ -774,6 +867,11 @@ public class Differences extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method that is responsible for passing to the next player.
+     *
+     * @param evt Event when the player clicks
+     */
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
 
         switch (option) {
@@ -881,6 +979,11 @@ public class Differences extends javax.swing.JFrame {
 
     }//GEN-LAST:event_nextButtonActionPerformed
 
+    /**
+     * Method to go out to the board again.
+     *
+     * @param evt Event when the player clicks
+     */
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         switch (option) {
             case 2:
@@ -925,16 +1028,21 @@ public class Differences extends javax.swing.JFrame {
 
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
 
-        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (7 segundos), según las siguientes reglas:\n"
-        + "\n"
-        + "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n"
-        + "   * Presiona el botón lo más rápido que puedas.\n"
-        + "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n"
-        + "\n";
+        String instructions = "El objetivo consiste en obtener la mayor cantidad de diferencias en el tiempo establecido (30 segundos), según las siguientes reglas:\n"
+                + "\n"
+                + "   * En el momento en que se presione el botón \"Start\", comenzará a correr el tiempo inmediatamente.\n"
+                + "   * Busca las diferencias en la parte izquierda de la pantalla.\n"
+                + "   * Cuando hayan transcurrido los 30 segundos, no podrás contabilizar más diferencias.\n"
+                + "   * Al final de su ronda presionar el boton next player.\n"
+                + "   * Si eres el jugador final para volver al tablero presionar exit.\n"
+                + "\n";
 
         JOptionPane.showMessageDialog(null, instructions);
     }//GEN-LAST:event_btnInstructionsActionPerformed
 
+    /**
+     * Main method for game execution.
+     */
     public static void main() {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

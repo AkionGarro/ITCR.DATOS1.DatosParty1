@@ -11,6 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * method in charge of creating the game.
+ * 
+ */
 public class BallGame extends JPanel {
     
     BallBuilder ball = new BallBuilder(this);
@@ -24,6 +28,9 @@ public class BallGame extends JPanel {
 
     }
 
+    /**
+     * Class Constructor
+     */
     public BallGame() {
 
         addKeyListener(new KeyListener() {
@@ -52,6 +59,9 @@ public class BallGame extends JPanel {
 
     }
 
+    /**
+     * Method for moving.
+     */
     private void move() {
 
         ball.move();
@@ -59,6 +69,10 @@ public class BallGame extends JPanel {
 
     }
 
+    /**
+     * Method for drawing
+     * @param g Enter an object of type graphics
+     */
     @Override
     public void paint(Graphics g) {
 
@@ -75,6 +89,9 @@ public class BallGame extends JPanel {
 
     }
 
+    /**
+     * Method responsible for checking if the player lost
+     */
     public void gameOver() {
         
         JOptionPane.showMessageDialog(this, "Puntos obtenidos: " + getScore(), "Puntos Obtenidos", 1);
@@ -82,6 +99,10 @@ public class BallGame extends JPanel {
         
     }
 
+    /**
+     * The main method of the class.
+     * @throws InterruptedException 
+     */
     public static void main() throws InterruptedException {
 
         JFrame frame = new JFrame("Ball Game");
