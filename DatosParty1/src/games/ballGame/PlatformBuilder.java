@@ -21,8 +21,8 @@ public class PlatformBuilder {
 
 	public void move() {
             
-            if (x + xa > 0 && x + xa < game.getWidth() - WITH)
-                    x = x + xa;
+            if (x + xa > 0 && x + xa < game.getWidth() - WITH) 
+                x = x + xa;
                 
 	}
 

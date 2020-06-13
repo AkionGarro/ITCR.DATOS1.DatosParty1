@@ -91,20 +91,14 @@ public class BallGame extends JPanel {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-
-        while (true) {
+                
+        while (game.gameOver == false) {
             
             System.out.println("holaaaaa");
 
             game.move();
             game.repaint();
-            Thread.sleep(10);
-            
-            if (game.gameOver == true || frame.isActive() == false) {
-                
-                break;
-                
-            }     
+            Thread.sleep(10);            
             
         }
 

@@ -3,6 +3,10 @@ package games.RockPaperScissors.game;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
+/**
+ * This class is in charge of all the graphic configuration of the components
+ * and other functions found on the Rock, Paper, Scissors minigame.
+ */
 public class RockPaperScissors extends javax.swing.JFrame {
     
     int turn = 0;
@@ -12,6 +16,10 @@ public class RockPaperScissors extends javax.swing.JFrame {
     int computerElection;
     Random random;
 
+    /**
+     * This is the constructor of the Rock, Paper, Scissors class, where the initial
+     * configuration of the components is made.
+     */
     public RockPaperScissors() {
         
         initComponents();
@@ -171,6 +179,9 @@ public class RockPaperScissors extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * Method in charge of detecting when the player press the rock button.
+     */
     private void btnRockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRockMouseClicked
         
         if (yourScore == 3 || computerScore == 3) {
@@ -215,6 +226,9 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnRockMouseClicked
 
+    /**
+     * Method in charge of detecting when the player press the paper button.
+     */
     private void btnPaperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaperMouseClicked
         
         if (yourScore == 3 || computerScore == 3) {
@@ -259,6 +273,9 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_btnPaperMouseClicked
 
+    /**
+     * Method in charge of detecting when the player press the scissors button.
+     */
     private void btnScissorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScissorsMouseClicked
         
         if (yourScore == 3 || computerScore == 3) {
@@ -303,6 +320,9 @@ public class RockPaperScissors extends javax.swing.JFrame {
          
     }//GEN-LAST:event_btnScissorsMouseClicked
 
+    /**
+     * Method in charge of showing the instructions of the minigame.
+     */
     private void btnInstrucctionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstrucctionsActionPerformed
         
         String instructions =   "El objetivo consiste en vencer al oponente seleccionando el arma que gana, según las siguientes reglas:\n" +
@@ -319,6 +339,9 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnInstrucctionsActionPerformed
 
+    /**
+     * Method in charge of starting a new minigame to pass the turn to the other players.
+     */
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
 
         turn = 0;
@@ -327,6 +350,11 @@ public class RockPaperScissors extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNextActionPerformed
 
+    /**
+     * Method in charge of finishing the minigame.
+     * 
+     * @return The result is true if someone has win the game, otherwise, it will return false.
+     */
     private boolean finishGame() {
         
         boolean result = false;
@@ -349,6 +377,9 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Method in charge start the minigame.
+     */
     public static void main() {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

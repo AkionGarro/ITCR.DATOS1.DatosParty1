@@ -18,10 +18,10 @@ public class BallBuilder {
 
     }
 
-    void move() {
+    public void move() {
 
         boolean changeOrientation = true;
-
+        
         if (x + xa < 0)
 
             xa = game.speed;
