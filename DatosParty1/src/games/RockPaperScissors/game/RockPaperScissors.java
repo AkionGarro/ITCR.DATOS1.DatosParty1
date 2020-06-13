@@ -1,5 +1,7 @@
 package games.RockPaperScissors.game;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import mainGame.Board;
@@ -16,6 +18,10 @@ public class RockPaperScissors extends javax.swing.JFrame {
     int userElection;
     int computerElection;
     Random random;
+     public int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
+    public ArrayList<Integer> playerPoints = new ArrayList<Integer>();
+    private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
+    public int playerSize = Board.players.size();
 
     /**
      * This is the constructor of the Rock, Paper, Scissors class, where the initial
@@ -27,8 +33,54 @@ public class RockPaperScissors extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        lblWinner.setVisible(false);  
         
-        lblWinner.setVisible(false);        
+        switch (playerSize) {
+                
+            case 2:
+
+                playerPoints1.setVisible(true);
+                activepoints1.setVisible(true);
+                playerPoints2.setVisible(true);
+                activepoints2.setVisible(true);
+                playerPoints3.setVisible(false);
+                activepoints3.setVisible(false);
+                playerPoints4.setVisible(false);
+                activepoints4.setVisible(false);
+
+                break;
+
+            case 3:
+
+                playerPoints1.setVisible(true);
+                activepoints1.setVisible(true);
+                playerPoints2.setVisible(true);
+                activepoints2.setVisible(true);
+                playerPoints3.setVisible(true);
+                activepoints3.setVisible(true);
+                playerPoints4.setVisible(false);
+                activepoints4.setVisible(false);
+
+                break;
+
+            case 4:
+
+                playerPoints1.setVisible(true);
+                activepoints1.setVisible(true);
+                playerPoints2.setVisible(true);
+                activepoints2.setVisible(true);
+                playerPoints3.setVisible(true);
+                activepoints3.setVisible(true);
+                playerPoints4.setVisible(true);
+                activepoints4.setVisible(true);
+
+                break;
+
+            default:
+
+                break;
+
+        }
         
     }
 
@@ -49,18 +101,30 @@ public class RockPaperScissors extends javax.swing.JFrame {
         btnInstrucctions = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnNext1 = new javax.swing.JButton();
+        playerPoints1 = new javax.swing.JLabel();
+        playerPoints2 = new javax.swing.JLabel();
+        playerPoints3 = new javax.swing.JLabel();
+        playerPoints4 = new javax.swing.JLabel();
+        activepoints1 = new javax.swing.JLabel();
+        activepoints2 = new javax.swing.JLabel();
+        activepoints3 = new javax.swing.JLabel();
+        activepoints4 = new javax.swing.JLabel();
+        startButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
+        panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblYourElection.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblYourElection.setForeground(new java.awt.Color(65, 65, 65));
         lblYourElection.setText("Tú elejiste:");
+        panel.add(lblYourElection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         lblComputerElection.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblComputerElection.setForeground(new java.awt.Color(65, 65, 65));
         lblComputerElection.setText("La computadora eligió:");
+        panel.add(lblComputerElection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         btnRock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/games/RockPaperScissors/images/rock.png"))); // NOI18N
         btnRock.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,6 +132,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 btnRockMouseClicked(evt);
             }
         });
+        panel.add(btnRock, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
         btnPaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/games/RockPaperScissors/images/paper.png"))); // NOI18N
         btnPaper.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,6 +140,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 btnPaperMouseClicked(evt);
             }
         });
+        panel.add(btnPaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, -1));
 
         btnScissors.setIcon(new javax.swing.ImageIcon(getClass().getResource("/games/RockPaperScissors/images/scissors.png"))); // NOI18N
         btnScissors.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -82,22 +148,27 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 btnScissorsMouseClicked(evt);
             }
         });
+        panel.add(btnScissors, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
 
         lblTurn.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblTurn.setForeground(new java.awt.Color(60, 65, 65));
         lblTurn.setText("Turno: 0");
+        panel.add(lblTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         lblYourScore.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblYourScore.setForeground(new java.awt.Color(60, 65, 65));
         lblYourScore.setText("Tu puntaje: 0");
+        panel.add(lblYourScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
 
         lblComputerScore.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblComputerScore.setForeground(new java.awt.Color(60, 65, 65));
         lblComputerScore.setText("Puntaje de la computadora: 0");
+        panel.add(lblComputerScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
         lblWinner.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblWinner.setForeground(new java.awt.Color(60, 65, 65));
         lblWinner.setText("El ganador es:");
+        panel.add(lblWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
 
         btnInstrucctions.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnInstrucctions.setText("Instrucciones");
@@ -106,14 +177,21 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 btnInstrucctionsActionPerformed(evt);
             }
         });
+        panel.add(btnInstrucctions, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         btnNext.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnNext.setText("Siguiente");
+        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNextMouseClicked(evt);
+            }
+        });
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
             }
         });
+        panel.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 120, 40));
 
         btnNext1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnNext1.setText("Exit");
@@ -122,71 +200,67 @@ public class RockPaperScissors extends javax.swing.JFrame {
                 btnNext1ActionPerformed(evt);
             }
         });
+        panel.add(btnNext1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 120, 40));
 
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblYourElection)
-                    .addComponent(lblComputerElection)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(btnRock)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPaper)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnScissors))
-                    .addComponent(lblTurn)
-                    .addComponent(lblYourScore)
-                    .addComponent(lblComputerScore)
-                    .addComponent(lblWinner)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(btnInstrucctions)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNext)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInstrucctions)
-                    .addComponent(btnNext)
-                    .addComponent(btnNext1))
-                .addGap(18, 18, 18)
-                .addComponent(lblYourElection)
-                .addGap(18, 18, 18)
-                .addComponent(lblComputerElection)
-                .addGap(18, 18, 18)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRock)
-                    .addComponent(btnPaper)
-                    .addComponent(btnScissors))
-                .addGap(18, 18, 18)
-                .addComponent(lblTurn)
-                .addGap(18, 18, 18)
-                .addComponent(lblYourScore)
-                .addGap(18, 18, 18)
-                .addComponent(lblComputerScore)
-                .addGap(18, 18, 18)
-                .addComponent(lblWinner)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        playerPoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints1.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints1.setText("Puntos jugador 1:");
+        panel.add(playerPoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 180, 20));
+
+        playerPoints2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints2.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints2.setText("Puntos jugador 2:");
+        panel.add(playerPoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 180, 20));
+
+        playerPoints3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints3.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints3.setText("Puntos jugador 3:");
+        panel.add(playerPoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 620, 180, 30));
+
+        playerPoints4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        playerPoints4.setForeground(new java.awt.Color(0, 0, 0));
+        playerPoints4.setText("Puntos jugador 4:");
+        panel.add(playerPoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 180, -1));
+
+        activepoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints1.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints1.setText("0");
+        panel.add(activepoints1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 50, -1));
+
+        activepoints2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints2.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints2.setText("0");
+        panel.add(activepoints2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, 50, -1));
+
+        activepoints3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints3.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints3.setText("0");
+        panel.add(activepoints3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 630, 50, 20));
+
+        activepoints4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        activepoints4.setForeground(new java.awt.Color(0, 0, 0));
+        activepoints4.setText("0");
+        panel.add(activepoints4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 660, 50, 20));
+
+        startButton.setBackground(new java.awt.Color(0, 255, 204));
+        startButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        startButton.setText("START");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+        panel.add(startButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
         );
 
         pack();
@@ -225,6 +299,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
 
                     lblComputerElection.setText("La computadora eligió: Tijeras");
                     yourScore ++;
+                    updatePlayersPoints();
                     lblYourScore.setText("Tu puntaje: " + Integer.toString(yourScore));
 
                 }
@@ -262,6 +337,7 @@ public class RockPaperScissors extends javax.swing.JFrame {
 
                 lblComputerElection.setText("La computadora eligió: Piedra");
                 yourScore ++;
+                updatePlayersPoints();
                 lblYourScore.setText("Tu puntaje: " + Integer.toString(yourScore));
 
             } else if (computerElection == 2) {
@@ -285,7 +361,383 @@ public class RockPaperScissors extends javax.swing.JFrame {
         } 
                 
     }//GEN-LAST:event_btnPaperMouseClicked
+ /**
+     * Method in charge get the index of the players that are playing.
+     *
+     * @return The index of the needed player.
+     */
+    public int getPlayer1Place() {
 
+        int index = 0;
+
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints1.getText()))) {
+
+            index = 0;
+
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints1.getText()))) {
+
+            index = 1;
+
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints1.getText()))) {
+
+            index = 2;
+
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints1.getText()))) {
+
+            index = 3;
+
+        }
+
+        return index;
+
+    }
+
+    /**
+     * Method in charge of getting the index of an specific player.
+     *
+     * @return The index of the second player.
+     */
+    public int getPlayer2Place() {
+
+        int index = 0;
+
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints2.getText()))) {
+
+            index = 0;
+
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints2.getText()))) {
+
+            index = 1;
+
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints2.getText()))) {
+
+            index = 2;
+
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints2.getText()))) {
+
+            index = 3;
+
+        }
+
+        return index;
+
+    }
+
+    /**
+     * Method in charge of getting the index of an specific player.
+     *
+     * @return The index of the third player.
+     */
+    public int getPlayer3Place() {
+
+        int index = 0;
+
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints3.getText()))) {
+
+            index = 0;
+
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints3.getText()))) {
+
+            index = 1;
+
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints3.getText()))) {
+
+            index = 2;
+
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints3.getText()))) {
+
+            index = 3;
+
+        }
+
+        return index;
+
+    }
+
+    /**
+     * Method in charge of getting the index of an specific player.
+     *
+     * @return The index of the fourth player.
+     */
+    public int getPlayer4Place() {
+
+        int index = 0;
+
+        if (playerPoints.get(0) == (Integer.parseInt(activepoints4.getText()))) {
+
+            index = 0;
+
+        } else if (playerPoints.get(1) == (Integer.parseInt(activepoints4.getText()))) {
+
+            index = 1;
+
+        } else if (playerPoints.get(2) == (Integer.parseInt(activepoints4.getText()))) {
+
+            index = 2;
+
+        } else if (playerPoints.get(3) == (Integer.parseInt(activepoints4.getText()))) {
+
+            index = 3;
+
+        }
+
+        return index;
+
+    }
+
+    /**
+     * Method in charge of updating the coins of the first player.
+     */
+    public void sendPlayer1Coins() {
+
+        switch (getPlayer1Place()) {
+
+            case 0:
+
+                Board.players.get(0).setCoins((Board.players.get(0).getCoins()) + firstPlace);
+
+                break;
+
+            case 1:
+
+                Board.players.get(0).setCoins(Board.players.get(0).getCoins() + secondPlace);
+
+                break;
+
+            case 2:
+
+                Board.players.get(0).setCoins(Board.players.get(0).getCoins() + thirdPlace);
+
+                break;
+
+            case 3:
+
+                Board.players.get(0).setCoins(Board.players.get(0).getCoins() + lastPlace);
+
+                break;
+
+            default:
+
+                break;
+
+        }
+
+    }
+
+    /**
+     * Method in charge of updating the coins of the second player.
+     */
+    public void sendPlayer2Coins() {
+
+        switch (getPlayer2Place()) {
+
+            case 0:
+
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + firstPlace);
+
+                break;
+
+            case 1:
+
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + secondPlace);
+
+                break;
+
+            case 2:
+
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + thirdPlace);
+
+                break;
+
+            case 3:
+
+                Board.players.get(1).setCoins(Board.players.get(1).getCoins() + lastPlace);
+
+                break;
+
+            default:
+
+                break;
+
+        }
+
+    }
+
+    /**
+     * Method in charge of updating the coins of the third player.
+     */
+    public void sendPlayer3Coins() {
+
+        switch (getPlayer3Place()) {
+
+            case 0:
+
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + firstPlace);
+
+                break;
+
+            case 1:
+
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + secondPlace);
+
+                break;
+
+            case 2:
+
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + thirdPlace);
+
+                break;
+
+            case 3:
+
+                Board.players.get(2).setCoins(Board.players.get(2).getCoins() + lastPlace);
+
+                break;
+
+            default:
+
+                break;
+
+        }
+
+    }
+
+    /**
+     * Method in charge of updating the coins of the fourth player. *
+     */
+    public void sendPlayer4Coins() {
+
+        switch (getPlayer4Place()) {
+
+            case 0:
+
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + firstPlace);
+
+                break;
+
+            case 1:
+
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + secondPlace);
+
+                break;
+
+            case 2:
+
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + thirdPlace);
+
+                break;
+
+            case 3:
+
+                Board.players.get(3).setCoins(Board.players.get(3).getCoins() + lastPlace);
+
+                break;
+
+            default:
+
+                break;
+
+        }
+
+    }
+    public void updatePlayersPoints() {
+
+        switch (playerSize) {
+
+            case 2:
+
+                if (round == 1) {
+
+                    pointsPlayer1++;
+                    activepoints1.setText("" + pointsPlayer1);
+
+                } else if (round == 2) {
+
+                    pointsPlayer2++;
+                    activepoints2.setText("" + pointsPlayer2);
+
+                }
+
+                break;
+
+            case 3:
+
+                switch (round) {
+
+                    case 1:
+
+                        pointsPlayer1++;
+                        activepoints1.setText("" + pointsPlayer1);
+
+                        break;
+
+                    case 2:
+
+                        pointsPlayer2++;
+                        activepoints2.setText("" + pointsPlayer2);
+
+                        break;
+
+                    case 3:
+
+                        pointsPlayer3++;
+                        activepoints3.setText("" + pointsPlayer3);
+
+                        break;
+
+                    default:
+
+                        break;
+
+                }
+
+                break;
+
+            case 4:
+
+                switch (round) {
+
+                    case 1:
+
+                        pointsPlayer1++;
+                        activepoints1.setText("" + pointsPlayer1);
+
+                        break;
+
+                    case 2:
+
+                        pointsPlayer2++;
+                        activepoints2.setText("" + pointsPlayer2);
+
+                        break;
+
+                    case 3:
+
+                        pointsPlayer3++;
+                        activepoints3.setText("" + pointsPlayer3);
+
+                        break;
+
+                    case 4:
+
+                        pointsPlayer4++;
+                        activepoints4.setText("" + pointsPlayer4);
+
+                        break;
+
+                    default:
+
+                        break;
+
+                }
+
+                break;
+
+            default:
+
+                break;
+
+        }}
     /**
      * Method in charge of detecting when the player press the scissors button.
      */
@@ -315,6 +767,8 @@ public class RockPaperScissors extends javax.swing.JFrame {
 
                     lblComputerElection.setText("La computadora eligió: Papel");
                     yourScore ++;
+                    updatePlayersPoints();
+                    System.out.println(""+playerPoints);
                     lblYourScore.setText("Tu puntaje: " + Integer.toString(yourScore));
 
                 } else {
@@ -357,9 +811,8 @@ public class RockPaperScissors extends javax.swing.JFrame {
      */
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
 
-        turn = 0;
-        yourScore = 0;
-        computerScore = 0;
+        
+
 
     }//GEN-LAST:event_btnNextActionPerformed
 
@@ -375,6 +828,118 @@ public class RockPaperScissors extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnNext1ActionPerformed
+
+    private void btnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseClicked
+        turn = 0;
+        yourScore = 0;
+        computerScore = 0;
+        lblYourScore.setText("Tu puntaje: " + Integer.toString(yourScore));
+        lblComputerScore.setText("Puntaje de la computadora: " + computerScore);
+        lblTurn.setText("Turno: " + Integer.toString(turn));
+        switch (playerSize) {
+
+            case 2:
+
+                if (round == 1) {
+
+                    playerPoints.add(pointsPlayer1);
+                    startButton.setEnabled(true);
+                    btnRock.setEnabled(false);
+                    btnPaper.setEnabled(false);
+                    btnScissors.setEnabled(false);
+
+                } else if (round == 2) {
+
+                    playerPoints.add(pointsPlayer2);
+                    Collections.sort(playerPoints, Collections.reverseOrder());
+                    sendPlayer1Coins();
+                    sendPlayer2Coins();
+                    startButton.setEnabled(false);
+                    btnNext.setEnabled(false);
+                    btnRock.setEnabled(false);
+                    btnPaper.setEnabled(false);
+                    btnScissors.setEnabled(false);
+
+                }
+
+                break;
+
+            case 3:
+
+                if (round == 1) {
+
+                    playerPoints.add(pointsPlayer1);
+                    startButton.setEnabled(true);
+
+                } else if (round == 2) {
+
+                    playerPoints.add(pointsPlayer2);
+                    startButton.setEnabled(true);
+
+                } else if (round == 3) {
+
+                    playerPoints.add(pointsPlayer3);
+                    Collections.sort(playerPoints, Collections.reverseOrder());
+                    sendPlayer1Coins();
+                    sendPlayer2Coins();
+                    sendPlayer3Coins();
+                    startButton.setEnabled(true);
+                    btnNext.setEnabled(false);
+                    
+
+                }
+
+                break;
+
+            case 4:
+
+                if (round == 1) {
+
+                    playerPoints.add(pointsPlayer1);
+                    startButton.setEnabled(true);
+
+                } else if (round == 2) {
+
+                    playerPoints.add(pointsPlayer2);
+                    startButton.setEnabled(true);
+                    
+                } else if (round == 3) {
+
+                    playerPoints.add(pointsPlayer3);
+                    startButton.setEnabled(true);
+
+                } else if (round == 4) {
+
+                    playerPoints.add(pointsPlayer4);
+                    Collections.sort(playerPoints, Collections.reverseOrder());
+                    sendPlayer1Coins();
+                    sendPlayer2Coins();
+                    sendPlayer3Coins();
+                    sendPlayer4Coins();
+                    startButton.setEnabled(false);
+                    btnNext.setEnabled(false);
+
+                }
+
+                break;
+
+            default:
+
+                break;
+
+        }
+    }//GEN-LAST:event_btnNextMouseClicked
+
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        
+        lblWinner.setVisible(false);
+        btnRock.setEnabled(true);
+        btnPaper.setEnabled(true);
+        btnScissors.setEnabled(true);
+        startButton.setEnabled(false);
+        startButton.setText("START");
+        round++;
+    }//GEN-LAST:event_startButtonActionPerformed
 
     /**
      * Method in charge of finishing the minigame.
@@ -421,6 +986,10 @@ public class RockPaperScissors extends javax.swing.JFrame {
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel activepoints1;
+    private javax.swing.JLabel activepoints2;
+    private javax.swing.JLabel activepoints3;
+    private javax.swing.JLabel activepoints4;
     private javax.swing.JButton btnInstrucctions;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnNext1;
@@ -434,6 +1003,11 @@ public class RockPaperScissors extends javax.swing.JFrame {
     private javax.swing.JLabel lblYourElection;
     private javax.swing.JLabel lblYourScore;
     private javax.swing.JPanel panel;
+    private javax.swing.JLabel playerPoints1;
+    private javax.swing.JLabel playerPoints2;
+    private javax.swing.JLabel playerPoints3;
+    private javax.swing.JLabel playerPoints4;
+    private javax.swing.JButton startButton;
     // End of variables declaration//GEN-END:variables
 
 }

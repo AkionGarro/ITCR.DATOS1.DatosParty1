@@ -365,7 +365,7 @@ public class MathQuiz extends javax.swing.JFrame {
         gameTittle.setForeground(new java.awt.Color(0, 0, 0));
         gameTittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gameTittle.setText("¡Realiza la operación matemática aleatoria!");
-        informationPanel.add(gameTittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 550, 60));
+        informationPanel.add(gameTittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 550, 60));
 
         playerPoints1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         playerPoints1.setForeground(new java.awt.Color(0, 0, 0));
