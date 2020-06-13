@@ -1,4 +1,4 @@
-package games.TicTacToe.game;
+ package games.TicTacToe.game;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -8,6 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import mainGame.Board;
 
+ /**
+ * This class is in charge of all the graphic configuration of the components
+ * and other functions found on the Number Clicks minigame.
+ */
 public class TicTacToe extends javax.swing.JFrame {
 
     public int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
@@ -20,7 +24,11 @@ public class TicTacToe extends javax.swing.JFrame {
     JLabel boxes[] = new JLabel[9];
     int victories[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {1, 5, 9}, {3, 5, 7}};
     boolean available = true;
-
+    
+    /**
+     * This is the constructor of the Tic Tac Toe class, where the initial
+     * configuration of the components is made.
+     */
     public TicTacToe() {
 
         initComponents();
@@ -635,54 +643,83 @@ public void updatePlayersPoints() {
 
     }//GEN-LAST:event_box1MousePressed
 
+    /**
+     * Method in charge of detecting when the player press the second button.
+     */
     private void box2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box2MousePressed
 
         press(2);
 
     }//GEN-LAST:event_box2MousePressed
 
+    /**
+     * Method in charge of detecting when the player press the fourth button.
+     */
     private void box4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box4MousePressed
 
         press(4);
 
     }//GEN-LAST:event_box4MousePressed
 
+    /**
+     * Method in charge of detecting when the player press the third button.
+     */
     private void box3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box3MousePressed
 
         press(3);
 
     }//GEN-LAST:event_box3MousePressed
 
+    /**
+     * Method in charge of detecting when the player press the fifth button.
+     */
     private void box5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box5MousePressed
 
         press(5);
 
     }//GEN-LAST:event_box5MousePressed
 
+    
+    /**
+     * Method in charge of detecting when the player press the sixth button.
+     */
     private void box6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box6MousePressed
 
         press(6);
 
     }//GEN-LAST:event_box6MousePressed
 
+    
+    /**
+     * Method in charge of detecting when the player press the eighth button.
+     */
     private void box8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box8MousePressed
 
         press(8);
 
     }//GEN-LAST:event_box8MousePressed
 
+    /**
+     * Method in charge of detecting when the player press the seventh button.
+     */
     private void box7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box7MousePressed
 
         press(7);
 
     }//GEN-LAST:event_box7MousePressed
 
+    /**
+     * Method in charge of detecting when the player press the nineth button.
+     */
     private void box9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_box9MousePressed
 
         press(9);
 
     }//GEN-LAST:event_box9MousePressed
 
+    /**
+     * Method in charge of starting a new minigame to pass the turn to the other players.
+     */
     private void btnNextGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextGameActionPerformed
 
         if (Integer.parseInt(lblPointsX.getText()) != 3 && Integer.parseInt(lblPointsO.getText()) != 3) {
@@ -713,6 +750,9 @@ public void updatePlayersPoints() {
 
     }//GEN-LAST:event_btnNextGameActionPerformed
 
+    /**
+     * Method in charge of showing the instructions of the minigame.
+     */
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
 
         String instructions = "El objetivo consiste en vencer al oponente seleccionando la mejor estrategia, según las siguientes reglas:\n"
@@ -874,6 +914,7 @@ public void updatePlayersPoints() {
 
             boxes[cell - 1].setText(turn);
             changeTurn();
+            
             if (checkGame() == false && tie() == true) {
 
                 lblTurn.setText("Empate");
@@ -883,7 +924,10 @@ public void updatePlayersPoints() {
         }
 
     }
-
+    
+    /**
+     * Method in charge of passing the turn to the other player.
+     */
     public void changeTurn() {
 
         if (turn == "X") {
@@ -899,7 +943,12 @@ public void updatePlayersPoints() {
         lblTurn.setText("Turno de " + turn);
 
     }
-
+    
+    /**
+     * Method in charge analysing if someone has won the game.
+     * 
+     * @return true if somehas has won the game, otherwise, it will return false.
+     */
     public boolean checkGame() {
 
         for (int i = 0; i < victories.length; i++) {
@@ -949,7 +998,12 @@ public void updatePlayersPoints() {
         return false;
 
     }
-
+    
+    /**
+     * Method in charge analysing if someone has won the game.
+     * 
+     * @return true if both there is a tie, otherwise, it will return false.
+     */
     public boolean tie() {
 
         for (int i = 0; i < boxes.length; i++) {
@@ -965,9 +1019,12 @@ public void updatePlayersPoints() {
         return true;
 
     }
-
+    
+    /**
+     * Method in charge start the minigame.
+     */
     public static void main() {
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
