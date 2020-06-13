@@ -16,7 +16,7 @@ import mainGame.Board;
 public class MathQuiz extends javax.swing.JFrame {
 
     private Timer time;
-    private int hundredths = 60, seconds = 60;
+    private int hundredths = 60, seconds = 29;
     public int pointsPlayer1, pointsPlayer2, pointsPlayer3, pointsPlayer4, round = 0;
     public ArrayList<Integer> playerPoints = new ArrayList<Integer>();
     private final int firstPlace = 100, secondPlace = 75, thirdPlace = 50, lastPlace = 25;
@@ -510,18 +510,16 @@ public class MathQuiz extends javax.swing.JFrame {
 
         if (time.isRunning()) {
             if (correct == true) {
-                updatePlayersPoints();
                 JOptionPane.showMessageDialog(this, "Felicidades tu respuesta es correcta");
-                points += 1;
+                updatePlayersPoints();
                 nextquestion();
-                //lblPoints.setText(String.valueOf(points));
                 buttonGroup1.clearSelection();
 
             } else {
 
                 JOptionPane.showMessageDialog(this, "Tu respuesta es incorrecta");
                 nextquestion();
-                //lblPoints.setText(String.valueOf(points));
+
                 buttonGroup1.clearSelection();
 
             }
@@ -854,8 +852,8 @@ public class MathQuiz extends javax.swing.JFrame {
 
                     playerPoints.add(pointsPlayer1);
                     hundredths = 60;
-                    seconds = 30;
-                    timeRunning.setText("20:00 s");
+                    seconds = 29;
+                    timeRunning.setText("30:00 s");
                     startButton.setEnabled(true);
 
                 } else if (round == 2) {
@@ -1036,11 +1034,13 @@ public class MathQuiz extends javax.swing.JFrame {
      */
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
 
-        String instructions = "El objetivo consiste en obtener la mayor cantidad de puntos en el tiempo establecido (7 segundos), según las siguientes reglas:\n"
+        String instructions = "El objetivo consiste en obtener la mayor cantidad de respuestas correctas en el tiempo establecido (30 segundos), según las siguientes reglas:\n"
                 + "\n"
-                + "   * En el momento en que se presione el botón \"Click Me\", comenzará a correr el tiempo inmediatamente.\n"
-                + "   * Presiona el botón lo más rápido que puedas.\n"
-                + "   * Cuando hayan transcurrido los 7 segundos, no podrás contabilizar más puntos.\n"
+                + "   * En el momento en que se presione el botón \"Start\", comenzará a correr el tiempo inmediatamente.\n"
+                + "   * Resuelva las operaciones lo más rápido que puedas.\n"
+                + "   * Cada vez que tengas la respuesta, comprobar con el boton check answer.\n"
+                + "   * Cuando hayan transcurrido los 30 segundos, no podrás contabilizar más respuestas.\n"
+                + "   * Al finalizar el turno por favor accionar el boton de next player.\n"
                 + "\n";
 
         JOptionPane.showMessageDialog(null, instructions);
