@@ -834,7 +834,7 @@ public class Board extends javax.swing.JFrame {
 
         actionCell(moveToCell);
 
-        //checkDuel();
+        checkDuel();
 
         teleportation = false;
 
@@ -844,8 +844,6 @@ public class Board extends javax.swing.JFrame {
 
         checkStar(previousCell, nextCell);
         
-        checkDuel();
-
         playerPlaying ++;
 
         try {
