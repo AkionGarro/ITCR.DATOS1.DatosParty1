@@ -2,7 +2,7 @@ package mainGame;
 
 /**
  *  Main class for program execution.
- *
+ *hola
  */
 public class Main {
 
